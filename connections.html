@@ -476,7 +476,7 @@
             }
         }
 
-        /* Shared Nav */
+        /* Top Nav */
         .pats-nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
             background: #111720;
@@ -484,22 +484,24 @@
             padding: 0 24px;
             display: flex;
             align-items: center;
-            height: 56px;
-            gap: 32px;
+            justify-content: space-between;
+            height: 48px;
         }
-        .pats-nav .brand { font-size: 15px; font-weight: 700; color: #4a90e2; letter-spacing: 0.5px; white-space: nowrap; }
-        .pats-nav a { color: #a0aec0; text-decoration: none; font-size: 14px; font-weight: 500; padding: 16px 4px; border-bottom: 2px solid transparent; transition: all 0.2s ease; }
-        .pats-nav a:hover { color: #e0e0e0; }
-        .pats-nav a.active { color: #4a90e2; border-bottom-color: #4a90e2; }
-        body { padding-top: 80px !important; }
+        .pats-nav .brand { display: flex; align-items: center; }
+        .pats-nav .brand img { height: 28px; width: auto; }
+        .pats-nav .nav-link {
+            color: #a0aec0; text-decoration: none; font-size: 13px; font-weight: 500;
+            background: rgba(74, 144, 226, 0.1); border: 1px solid rgba(74, 144, 226, 0.25);
+            padding: 6px 14px; border-radius: 6px; transition: all 0.2s ease;
+        }
+        .pats-nav .nav-link:hover { background: rgba(74, 144, 226, 0.2); color: #fff; }
+        body { padding-top: 64px !important; }
     </style>
 </head>
 <body>
     <nav class="pats-nav">
-        <span class="brand">PATS</span>
-        <a href="index.html">Home</a>
-        <a href="scorecard.html">Automation Scorecard</a>
-        <a href="connections.html" class="active">QBO Connections</a>
+        <span class="brand"><img src="https://patrickaccounting.com/hubfs/patrick/logos/patrick-accounting-logo-color.svg" alt="Patrick Accounting"></span>
+        <a href="index.html" class="nav-link">← Automation Scorecard</a>
     </nav>
     <div class="container">
         <header>

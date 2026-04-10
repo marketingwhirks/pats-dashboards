@@ -3,126 +3,1167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PATS Dashboards — Patrick Accounting</title>
+    <title>Automation Scorecard — PATS Dashboards</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
             color: #e0e0e0;
+            padding: 24px;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
 
-        /* Shared Nav */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 32px;
+            border-bottom: 2px solid rgba(74, 144, 226, 0.3);
+            padding-bottom: 24px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.5px;
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .month-selector {
+            padding: 10px 14px;
+            background: rgba(74, 144, 226, 0.15);
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            border-radius: 6px;
+            color: #e0e0e0;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .month-selector:focus {
+            outline: none;
+            border-color: rgba(74, 144, 226, 0.6);
+            background: rgba(74, 144, 226, 0.25);
+        }
+
+        .export-btn {
+            padding: 10px 16px;
+            background: rgba(81, 207, 102, 0.15);
+            border: 1px solid rgba(81, 207, 102, 0.3);
+            border-radius: 6px;
+            color: #51cf66;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .export-btn:hover {
+            background: rgba(81, 207, 102, 0.25);
+            border-color: rgba(81, 207, 102, 0.6);
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #a0a0a0;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .processed-info {
+            font-size: 12px;
+            color: #888;
+            font-style: italic;
+        }
+
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .kpi-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(74, 144, 226, 0.2);
+            border-radius: 8px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .kpi-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(74, 144, 226, 0.4);
+        }
+
+        .kpi-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: #888;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .kpi-value {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .kpi-card.critical .kpi-value {
+            color: #ff6b6b;
+        }
+
+        .kpi-card.success .kpi-value {
+            color: #51cf66;
+        }
+
+        .kpi-card.neutral .kpi-value {
+            color: #4a90e2;
+        }
+
+        .kpi-subtext {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 6px;
+        }
+
+        .kpi-change {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        .kpi-change.up {
+            background: rgba(81, 207, 102, 0.2);
+            color: #51cf66;
+        }
+
+        .kpi-change.down {
+            background: rgba(255, 107, 107, 0.2);
+            color: #ff6b6b;
+        }
+
+        .kpi-change.baseline {
+            background: rgba(100, 100, 100, 0.2);
+            color: #aaa;
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            margin: 32px 0 16px 0;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(74, 144, 226, 0.2);
+        }
+
+        /* Chart Containers */
+        .chart-container {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(74, 144, 226, 0.15);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 400px;
+        }
+
+        .chart-wrapper.transaction-type {
+            height: 500px;
+        }
+
+        .chart-wrapper.trend {
+            height: 350px;
+        }
+
+        .no-data-message {
+            text-align: center;
+            padding: 40px 20px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* Table Styling */
+        .table-controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(74, 144, 226, 0.2);
+            border-radius: 6px;
+            color: #e0e0e0;
+            font-size: 14px;
+        }
+
+        .search-box::placeholder {
+            color: #666;
+        }
+
+        .search-box:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(74, 144, 226, 0.4);
+        }
+
+        .table-wrapper {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(74, 144, 226, 0.15);
+            border-radius: 8px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        thead {
+            background: rgba(74, 144, 226, 0.1);
+            border-bottom: 1px solid rgba(74, 144, 226, 0.2);
+        }
+
+        th {
+            padding: 14px 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #4a90e2;
+            cursor: pointer;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        th:hover {
+            background: rgba(74, 144, 226, 0.15);
+        }
+
+        th.sortable::after {
+            content: ' ⇅';
+            font-size: 12px;
+            opacity: 0.4;
+        }
+
+        th.sort-asc::after {
+            content: ' ↑';
+            opacity: 1;
+            color: #51cf66;
+        }
+
+        th.sort-desc::after {
+            content: ' ↓';
+            opacity: 1;
+            color: #51cf66;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid rgba(74, 144, 226, 0.08);
+        }
+
+        tbody tr {
+            transition: background 0.2s ease;
+        }
+
+        tbody tr:hover {
+            background: rgba(74, 144, 226, 0.08);
+        }
+
+        tbody tr.expanded {
+            background: rgba(74, 144, 226, 0.12);
+        }
+
+        tbody tr.new-client {
+            border-left: 3px solid #ffc107;
+        }
+
+        .pct-cell {
+            font-weight: 600;
+            padding: 12px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .pct-cell.green {
+            background: rgba(81, 207, 102, 0.15);
+            color: #51cf66;
+        }
+
+        .pct-cell.yellow {
+            background: rgba(255, 193, 7, 0.15);
+            color: #ffc107;
+        }
+
+        .pct-cell.red {
+            background: rgba(255, 107, 107, 0.15);
+            color: #ff6b6b;
+        }
+
+        .client-name {
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .client-new-badge {
+            display: inline-block;
+            background: rgba(255, 193, 7, 0.25);
+            color: #ffc107;
+            font-size: 10px;
+            padding: 3px 6px;
+            border-radius: 3px;
+            margin-left: 8px;
+            font-weight: 600;
+        }
+
+        .expand-btn {
+            background: none;
+            border: none;
+            color: #4a90e2;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 0;
+            width: 24px;
+            text-align: center;
+        }
+
+        .expand-btn:hover {
+            color: #6fa3e8;
+        }
+
+        .signal-row {
+            display: none;
+        }
+
+        .signal-row.show {
+            display: table-row;
+        }
+
+        .signal-content {
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .signal-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+        }
+
+        .signal-item {
+            background: rgba(74, 144, 226, 0.1);
+            border-left: 3px solid #4a90e2;
+            padding: 10px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .signal-item-label {
+            color: #4a90e2;
+            font-weight: 600;
+        }
+
+        .signal-item-count {
+            color: #51cf66;
+            font-weight: 700;
+        }
+
+        /* Opportunity Section */
+        .opportunity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .opportunity-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(74, 144, 226, 0.15);
+            border-radius: 8px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .opportunity-rank {
+            display: inline-block;
+            background: #4a90e2;
+            color: #fff;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .opportunity-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .opportunity-stat {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4a90e2;
+            margin-bottom: 4px;
+        }
+
+        .opportunity-stat.red {
+            color: #ff6b6b;
+        }
+
+        .opportunity-desc {
+            font-size: 13px;
+            color: #a0a0a0;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .opportunity-action {
+            font-size: 12px;
+            background: rgba(81, 207, 102, 0.15);
+            color: #51cf66;
+            padding: 8px 10px;
+            border-radius: 4px;
+            border-left: 2px solid #51cf66;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(74, 144, 226, 0.15);
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Utility */
+        .hidden {
+            display: none;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .trending-clickable {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .trending-clickable:hover {
+            transform: scale(1.08);
+        }
+
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .header-controls {
+                width: 100%;
+            }
+
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .chart-wrapper {
+                height: 350px;
+            }
+
+            .opportunity-grid {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            td, th {
+                padding: 10px 8px;
+            }
+        }
+
+        /* Top Nav */
         .pats-nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
             background: #111720;
             border-bottom: 1px solid rgba(74, 144, 226, 0.25);
             padding: 0 24px;
             display: flex;
             align-items: center;
-            height: 56px;
-            gap: 32px;
-            flex-shrink: 0;
+            justify-content: space-between;
+            height: 48px;
         }
-        .pats-nav .brand {
-            font-size: 15px;
-            font-weight: 700;
-            color: #4a90e2;
-            letter-spacing: 0.5px;
-            white-space: nowrap;
+        .pats-nav .brand { display: flex; align-items: center; }
+        .pats-nav .brand img { height: 28px; width: auto; }
+        .pats-nav .nav-link {
+            color: #a0aec0; text-decoration: none; font-size: 13px; font-weight: 500;
+            background: rgba(74, 144, 226, 0.1); border: 1px solid rgba(74, 144, 226, 0.25);
+            padding: 6px 14px; border-radius: 6px; transition: all 0.2s ease;
         }
-        .pats-nav a {
-            color: #a0aec0;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            padding: 16px 4px;
-            border-bottom: 2px solid transparent;
-            transition: all 0.2s ease;
-        }
-        .pats-nav a:hover { color: #e0e0e0; }
-        .pats-nav a.active {
-            color: #4a90e2;
-            border-bottom-color: #4a90e2;
-        }
-
-        /* Landing Content */
-        .landing {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 24px;
-        }
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-            max-width: 800px;
-            width: 100%;
-        }
-        .dash-card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(74,144,226,0.2);
-            border-radius: 12px;
-            padding: 32px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.3s ease;
-        }
-        .dash-card:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(74,144,226,0.5);
-            transform: translateY(-2px);
-        }
-        .dash-card h2 {
-            font-size: 20px;
-            color: #fff;
-            margin-bottom: 8px;
-        }
-        .dash-card p {
-            font-size: 14px;
-            color: #888;
-            line-height: 1.5;
-        }
-        .dash-card .icon {
-            font-size: 36px;
-            margin-bottom: 16px;
-            display: block;
-        }
-        .footer {
-            text-align: center;
-            padding: 16px;
-            font-size: 12px;
-            color: #555;
-        }
+        .pats-nav .nav-link:hover { background: rgba(74, 144, 226, 0.2); color: #fff; }
+        body { padding-top: 64px !important; }
     </style>
 </head>
 <body>
     <nav class="pats-nav">
-        <span class="brand">PATS</span>
-        <a href="index.html" class="active">Home</a>
-        <a href="scorecard.html">Automation Scorecard</a>
-        <a href="connections.html">QBO Connections</a>
+        <span class="brand"><img src="https://patrickaccounting.com/hubfs/patrick/logos/patrick-accounting-logo-color.svg" alt="Patrick Accounting"></span>
+        <a href="connections.html" class="nav-link">QBO Connections →</a>
     </nav>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-top">
+                <div>
+                    <h1>Zero-Touch Automation Scorecard</h1>
+                    <p class="subtitle">Patrick Accounting | Strict Zero-Touch Standard</p>
+                </div>
+                <div class="header-controls">
+                    <select id="monthSelector" class="month-selector"></select>
+                    <button id="exportBtn" class="export-btn">Export CSV</button>
+                </div>
+            </div>
+            <p class="processed-info" id="processedInfo"></p>
+        </header>
 
-    <div class="landing">
-        <div class="card-grid">
-            <a href="scorecard.html" class="dash-card">
-                <span class="icon">📊</span>
-                <h2>Automation Scorecard</h2>
-                <p>Track zero-touch transaction automation rates across all clients. View monthly trends, team comparisons, and progress toward the 85% target.</p>
-            </a>
-            <a href="connections.html" class="dash-card">
-                <span class="icon">🔗</span>
-                <h2>QBO Connections</h2>
-                <p>Manage QuickBooks Online OAuth authorizations. See which clients are connected, pending, or need authorization in Airtable.</p>
-            </a>
+        <!-- KPI Cards -->
+        <div class="kpi-grid" id="kpiGrid">
         </div>
+
+        <!-- Trend Chart -->
+        <div id="trendSection" style="display: none;">
+            <div class="section-header">Automation Trend</div>
+            <div class="chart-container">
+                <div class="chart-wrapper trend">
+                    <canvas id="trendChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Signal Breakdown -->
+        <div class="section-header">Zero-Touch Signal Breakdown</div>
+        <div class="chart-container">
+            <div class="chart-wrapper">
+                <canvas id="signalChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Transaction Type Breakdown -->
+        <div class="section-header">Transaction Type: Zero-Touch vs Touched</div>
+        <div class="chart-container">
+            <div class="chart-wrapper transaction-type">
+                <canvas id="transactionTypeChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Client Scorecard -->
+        <div class="section-header">Client Scorecard</div>
+        <div class="table-controls">
+            <input type="text" id="searchInput" class="search-box" placeholder="Search by client name...">
+        </div>
+        <div class="table-wrapper">
+            <table id="clientTable">
+                <thead>
+                    <tr>
+                        <th style="width: 40px;"></th>
+                        <th class="sortable" data-column="name">Client Name</th>
+                        <th class="sortable text-right" data-column="pct">Zero-Touch %</th>
+                        <th class="sortable text-right" data-column="zero">Zero-Touch Count</th>
+                        <th class="sortable text-right" data-column="touched">Touched Count</th>
+                        <th class="sortable text-right" data-column="total">Total</th>
+                        <th class="sortable text-right" data-column="byrule">By Rule</th>
+                        <th class="sortable" data-column="signal">Top Signal</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Opportunity Analysis -->
+        <div class="section-header">Opportunity Analysis</div>
+        <div class="opportunity-grid" id="opportunityGrid">
+        </div>
+
+        <footer id="footer">
+            Dashboard generated for Patrick Accounting
+        </footer>
     </div>
 
-    <div class="footer">Patrick Accounting &amp; Tax Services PLLC</div>
+    <script>
+        // Multi-month data structure
+        const SCORECARD_DATA = {
+            "2026-02": {
+                summary: {
+                    total_transactions: 62774,
+                    total_automated: 3368,
+                    clients: 190,
+                    processed_at: "2026-04-09T00:00:00Z"
+                },
+                clients: [["SOL 2 SOUL YOGA LLC", 52, 10, 62, 83.9, {"[PA] Rule Tag": 52}], ["FOUNDATION FOR CHIROPRACTIC EDUCATION", 11, 15, 26, 42.3, {"Bill.com Clearing Payment": 6, "Bill.com Payables JE": 5}], ["BENCHMARK ATLANTIC HEALTHCARE INC", 71, 99, 170, 41.8, {"[PA] Rule Tag": 68, "Payroll JE (PA###)": 3}], ["Sunrise Poplar LLC", 96, 170, 266, 36.1, {"Payroll JE (PA###)": 10, "Toast Integration JE": 28, "Bill.com Clearing Payment": 54, "Bill.com Payables JE": 4}], ["117 PRIME", 64, 141, 205, 31.2, {"Recurring Sales JE": 16, "Payroll JE (PA###)": 12, "Bill.com Clearing Payment": 36}], ["CDL-AMZ LLC", 3, 7, 10, 30.0, {"Payroll JE (PA###)": 3}], ["BELLE MEADE SOCIAL LLC", 67, 189, 256, 26.2, {"Recurring Sales JE": 23, "Payroll JE (PA###)": 8, "Bill.com Clearing Payment": 13, "Auto Transfer/CC Payment": 4, "[PA] Rule Tag": 19}], ["Sunrise Cafe LLC", 67, 192, 259, 25.9, {"Payroll JE (PA###)": 13, "Bill.com Clearing Payment": 51, "Recurring Sales JE": 3}], ["Heritage Convalescent Center Ltd.", 65, 200, 265, 24.5, {"Auto Transfer/CC Payment": 16, "Bill.com Clearing Payment": 44, "Bill.com Payables JE": 5}], ["GERMANTOWN CHRISTIAN COUNSELING", 27, 86, 113, 23.9, {"Payroll JE (PA###)": 7, "Auto Transfer/CC Payment": 20}], ["GREENWAVE INVESTMENT GROUP LLC", 176, 565, 741, 23.8, {"Ramp Integration Bill": 150, "Payroll JE (PA###)": 21, "Auto Transfer/CC Payment": 5}], ["Greer Injury Lawyers PLLC", 82, 268, 350, 23.4, {"Payroll JE (PA###)": 11, "Auto Transfer/CC Payment": 34, "Bill.com Clearing Payment": 22, "Bill.com Payables JE": 15}], ["Better Business Bureau of the Mid-South", 55, 187, 242, 22.7, {"Bill.com Clearing Payment": 22, "Bill.com Payables JE": 6, "Auto Transfer/CC Payment": 16, "Payroll JE (PA###)": 11}], ["BENCHMARK ATLANTIC HEALTHCARE MEMPHIS INC", 24, 96, 120, 20.0, {"[PA] Rule Tag": 24}], ["Family First Hospice LLC", 10, 45, 55, 18.2, {"Bill.com Clearing Payment": 6, "Bill.com Payables JE": 4}], ["LSUB LLC", 7, 32, 39, 17.9, {"Bill.com Clearing Payment": 2, "Payroll JE (PA###)": 5}], ["Lettuce Eat LLC", 45, 206, 251, 17.9, {"Bill.com Clearing Payment": 10, "Payroll JE (PA###)": 23, "Toast Integration JE": 12}], ["SHOEMAKER INSURANCE SOLUTIONS INC", 26, 123, 149, 17.4, {"Bill.com Clearing Payment": 20, "Bill.com Payables JE": 3, "Payroll JE (PA###)": 3}], ["Tambolis LLC", 36, 171, 207, 17.4, {"Toast Integration JE": 26, "Payroll JE (PA###)": 10}], ["DANVERS LLC", 47, 242, 289, 16.3, {"Payroll JE (PA###)": 9, "Auto Transfer/CC Payment": 38}], ["RSCB HOLDINGS LLC - FKA- CENTRAL BBQ", 201, 1030, 1231, 16.3, {"Recurring Sales JE": 47, "Toast Integration JE": 28, "Payroll JE (PA###)": 13, "Bill.com Clearing Payment": 113}], ["WOLF RIVER  CONSERVANCY INC", 30, 155, 185, 16.2, {"Bill.com Clearing Payment": 19, "Bill.com Payables JE": 9, "Auto Transfer/CC Payment": 2}], ["Loflin Yard LLC", 41, 216, 257, 16.0, {"Recurring Sales JE": 19, "Bill.com Clearing Payment": 12, "Payroll JE (PA###)": 10}], ["SOMETHING DESI LLC", 38, 200, 238, 16.0, {"Payroll JE (PA###)": 9, "Auto Transfer/CC Payment": 29}], ["ARJOSA LLC", 198, 1090, 1288, 15.4, {"Toast Integration JE": 91, "Payroll JE (PA###)": 33, "Bill.com Clearing Payment": 69, "Auto Transfer/CC Payment": 5}], ["Hicks Convention Services", 68, 382, 450, 15.1, {"Bill.com Clearing Payment": 56, "Bill.com Payables JE": 7, "Auto Transfer/CC Payment": 2, "[PA] Rule Tag": 1, "Payroll JE (PA###)": 2}], ["ELITE INFUSION SERVICES LLC", 3, 17, 20, 15.0, {"Payroll JE (PA###)": 3}], ["J.H. SHOEMAKER COMPANY INC", 34, 192, 226, 15.0, {"Bill.com Clearing Payment": 28, "Bill.com Payables JE": 5, "Auto Transfer/CC Payment": 1}], ["KH EXECUTIVE SECURITY CONSULTANTS LLC", 86, 496, 582, 14.8, {"[PA] Rule Tag": 76, "Auto Transfer/CC Payment": 8, "Payroll JE (PA###)": 2}], ["BAKING JOY LLC", 28, 164, 192, 14.6, {"Payroll JE (PA###)": 18, "Bill.com Clearing Payment": 9, "Auto Transfer/CC Payment": 1}], ["LSUB-MILL LLC", 31, 204, 235, 13.2, {"Payroll JE (PA###)": 19, "Bill.com Clearing Payment": 12}], ["Lee HealthCare", 32, 213, 245, 13.1, {"Bill.com Clearing Payment": 26, "Bill.com Payables JE": 5, "Auto Transfer/CC Payment": 1}], ["The North End LLC dba Westys", 58, 389, 447, 13.0, {"Payroll JE (PA###)": 14, "Bill.com Clearing Payment": 31, "Auto Transfer/CC Payment": 13}], ["Wichita Home Health Services - HHA", 21, 143, 164, 12.8, {"Auto Transfer/CC Payment": 21}], ["BAKING A DIFFERENCE LLC", 24, 168, 192, 12.5, {"Payroll JE (PA###)": 10, "Bill.com Clearing Payment": 6, "Recurring Sales JE": 6, "Auto Transfer/CC Payment": 2}], ["LSUB SD LLC", 27, 205, 232, 11.6, {"Payroll JE (PA###)": 17, "Bill.com Clearing Payment": 10}], ["3D NYC Corp", 22, 178, 200, 11.0, {"Auto Transfer/CC Payment": 15, "Payroll JE (PA###)": 7}], ["Booyas", 30, 244, 274, 10.9, {"Payroll JE (PA###)": 12, "Auto Transfer/CC Payment": 12, "Bill.com Clearing Payment": 6}], ["GREEN FROG COFFEE COMPANY LLC", 53, 435, 488, 10.9, {"Toast Integration JE": 49, "Bill.com Clearing Payment": 4}], ["Cozy Corner  Restaurants Inc.", 24, 200, 224, 10.7, {"Payroll JE (PA###)": 12, "Auto Transfer/CC Payment": 2, "Bill.com Clearing Payment": 10}], ["BARONS BARBERSHOP MEMPHIS LLC", 18, 152, 170, 10.6, {"Auto Transfer/CC Payment": 7, "Payroll JE (PA###)": 11}], ["Hotworx FL0111", 11, 96, 107, 10.3, {"Auto Transfer/CC Payment": 5, "Payroll JE (PA###)": 6}], ["Hotworx FL0112", 8, 71, 79, 10.1, {"Auto Transfer/CC Payment": 4, "Payroll JE (PA###)": 4}], ["ELITE PREMIER NURSING SERVICES LLC", 16, 148, 164, 9.8, {"[PA] Rule Tag": 1, "Auto Transfer/CC Payment": 13, "Payroll JE (PA###)": 2}], ["BRICKHOUSE BUFFETS LLC", 26, 252, 278, 9.4, {"Payroll JE (PA###)": 8, "Auto Transfer/CC Payment": 18}], ["Texas Storm Group LLC", 37, 363, 400, 9.2, {"Auto Transfer/CC Payment": 36, "Payroll JE (PA###)": 1}], ["MIDSOUTH SENIOR CONSULT INC", 2, 20, 22, 9.1, {"Payroll JE (PA###)": 2}], ["FARWINDS PARTNERSHIP", 18, 182, 200, 9.0, {"Auto Transfer/CC Payment": 14, "Payroll JE (PA###)": 4}], ["CASH JEWELRY LOANS INC", 3, 31, 34, 8.8, {"Payroll JE (PA###)": 3}], ["LSUB SV LLC", 18, 186, 204, 8.8, {"Payroll JE (PA###)": 12, "Bill.com Clearing Payment": 6}], ["COPPER WELL RETREAT LLC", 11, 118, 129, 8.5, {"Auto Transfer/CC Payment": 11}], ["INTEGRITY FIRST CAREGIVERS LLC", 13, 148, 161, 8.1, {"Payroll JE (PA###)": 9, "Auto Transfer/CC Payment": 4}], ["CONCORD ACADEMY INC", 8, 98, 106, 7.5, {"Payroll JE (PA###)": 8}], ["CULLISON EYE CARE PLLC", 11, 136, 147, 7.5, {"[PA] Rule Tag": 9, "Payroll JE (PA###)": 2}], ["SLB ENTERPRISE INC", 7, 91, 98, 7.1, {"Auto Transfer/CC Payment": 2, "Payroll JE (PA###)": 5}], ["CLIPPERS OF KNOXVILLE LLC", 82, 1085, 1167, 7.0, {"Payroll JE (PA###)": 9, "Auto Transfer/CC Payment": 73}], ["EPSTEINS LOAN OFFICE INC.", 7, 93, 100, 7.0, {"Payroll JE (PA###)": 7}], ["GOOD FORTUNE COMPANY MEMPHIS LLC", 31, 409, 440, 7.0, {"Toast Integration JE": 21, "Payroll JE (PA###)": 7, "Auto Transfer/CC Payment": 2, "Bill.com Clearing Payment": 1}], ["ECONOMIST BREWING COMPANY LLC", 7, 98, 105, 6.7, {"Payroll JE (PA###)": 7}], ["Vectair USA LLC", 5, 70, 75, 6.7, {"Payroll JE (PA###)": 5}], ["West Stone Works", 19, 264, 283, 6.7, {"Auto Transfer/CC Payment": 4, "Bill.com Clearing Payment": 8, "Payroll JE (PA###)": 7}], ["ZenFire ATL LLC", 7, 98, 105, 6.7, {"Auto Transfer/CC Payment": 1, "Payroll JE (PA###)": 6}], ["NBC BILLINGS LLC", 10, 143, 153, 6.5, {"Payroll JE (PA###)": 7, "Auto Transfer/CC Payment": 3}], ["VC Restaurant Group LLC", 42, 626, 668, 6.3, {"Payroll JE (PA###)": 42}], ["DARK HORSE EDUCATION & ENTERTAINMENT LLC", 6, 91, 97, 6.2, {"Payroll JE (PA###)": 6}], ["Joy McDaniel Academy of Dance & Gymnastics", 9, 135, 144, 6.2, {"Auto Transfer/CC Payment": 4, "Payroll JE (PA###)": 5}], ["SPANOW LLC", 5, 76, 81, 6.2, {"Payroll JE (PA###)": 5}], ["FOUNDATION FOR CHIROPRACTIC PROGRESS", 46, 724, 770, 6.0, {"Auto Transfer/CC Payment": 33, "Bill.com Clearing Payment": 8, "Bill.com Payables JE": 5}], ["NAHL II LLC", 6, 94, 100, 6.0, {"Auto Transfer/CC Payment": 4, "Payroll JE (PA###)": 2}], ["ELITE PREMIER NURSING SERVICES OF NAPLES LLC", 3, 48, 51, 5.9, {"Auto Transfer/CC Payment": 1, "Payroll JE (PA###)": 2}], ["LAND ACADEMY INC", 5, 86, 91, 5.5, {"Payroll JE (PA###)": 5}], ["Green Family Ventures LLC", 48, 841, 889, 5.4, {"Auto Transfer/CC Payment": 30, "Payroll JE (PA###)": 18}], ["The Arcade Restaurant LLC", 11, 194, 205, 5.4, {"Payroll JE (PA###)": 10, "Auto Transfer/CC Payment": 1}], ["Southern Pediatrics Holdings LLC", 88, 1563, 1651, 5.3, {"Payroll JE (PA###)": 35, "Auto Transfer/CC Payment": 4, "Bill.com Clearing Payment": 49}], ["69 PONTOTOC LLC", 10, 182, 192, 5.2, {"Payroll JE (PA###)": 10}], ["BARONS MAN CAVE LLC", 5, 91, 96, 5.2, {"Auto Transfer/CC Payment": 1, "Payroll JE (PA###)": 4}], ["Bonk Internal Medicine Inc", 6, 110, 116, 5.2, {"Auto Transfer/CC Payment": 2, "Payroll JE (PA###)": 4}], ["CYNOSURE DENTAL LABORATORY LLC", 6, 109, 115, 5.2, {"Bill.com Clearing Payment": 3, "Bill.com Payables JE": 3}], ["LATINO MEMPHIS INC", 13, 244, 257, 5.1, {"Payroll JE (PA###)": 12, "Auto Transfer/CC Payment": 1}], ["HSB SHIV LLC", 5, 99, 104, 4.8, {"Auto Transfer/CC Payment": 2, "Payroll JE (PA###)": 3}], ["NET WORTH FINANCIAL INC.", 2, 41, 43, 4.7, {"Auto Transfer/CC Payment": 1, "Payroll JE (PA###)": 1}], ["The Good Viking", 8, 162, 170, 4.7, {"Auto Transfer/CC Payment": 3, "Payroll JE (PA###)": 5}], ["Vilonia Metal Works Inc.", 9, 183, 192, 4.7, {"Payroll JE (PA###)": 9}], ["CELEBRATING RENEE LLC", 9, 186, 195, 4.6, {"Payroll JE (PA###)": 9}], ["HUB ATHLETICS LLC", 6, 127, 133, 4.5, {"Payroll JE (PA###)": 6}], ["LONE STAR CAKES LLC", 3, 63, 66, 4.5, {"Auto Transfer/CC Payment": 3}], ["MOUNT PLEASANT SC-BAKERY CORPORATION", 17, 368, 385, 4.4, {"Payroll JE (PA###)": 9, "Auto Transfer/CC Payment": 8}], ["COASTAL CAR CARE INC", 9, 200, 209, 4.3, {"Auto Transfer/CC Payment": 3, "Payroll JE (PA###)": 6}], ["CTI PROFESSIONAL FLIGHT TRAINING LLC", 6, 135, 141, 4.3, {"Payroll JE (PA###)": 6}], ["GUARDIAN INSURANCE GROUP LLC", 8, 178, 186, 4.3, {"Auto Transfer/CC Payment": 7, "Payroll JE (PA###)": 1}], ["Valeo Design & Marketing", 12, 266, 278, 4.3, {"Auto Transfer/CC Payment": 6, "[PA] Rule Tag": 1, "Payroll JE (PA###)": 5}], ["Healing Paws Animal Hospital", 9, 205, 214, 4.2, {"Auto Transfer/CC Payment": 6, "Payroll JE (PA###)": 3}], ["J & J JOYBITES LLC", 17, 390, 407, 4.2, {"Payroll JE (PA###)": 12, "Auto Transfer/CC Payment": 5}], ["JIM ROBBINS & ASSOCIATES INC.", 3, 68, 71, 4.2, {"Auto Transfer/CC Payment": 1, "Payroll JE (PA###)": 2}], ["Trilogy Marketing Inc. dba Southern Bride Magazine", 3, 69, 72, 4.2, {"Auto Transfer/CC Payment": 2, "Payroll JE (PA###)": 1}], ["GRUDZIENA INC", 4, 93, 97, 4.1, {"Auto Transfer/CC Payment": 1, "Payroll JE (PA###)": 3}], ["HK MEM LLC", 7, 165, 172, 4.1, {"Payroll JE (PA###)": 7}], ["JAMES J & TERESA A KNAUS PTR", 17, 402, 419, 4.1, {"Payroll JE (PA###)": 17}], ["El Mero", 13, 333, 346, 3.8, {"Auto Transfer/CC Payment": 3, "Payroll JE (PA###)": 10}], ["Moseleys Automotive Service", 5, 126, 131, 3.8, {"Auto Transfer/CC Payment": 1, "Payroll JE (PA###)": 4}], ["GRAWE HAUL AND INSTALL LLC", 5, 130, 135, 3.7, {"Auto Transfer/CC Payment": 1, "Payroll JE (PA###)": 4}], ["Presidente Home Care Inc.", 26, 693, 719, 3.6, {"Auto Transfer/CC Payment": 26}], ["Joyous Embroidery LLC", 10, 285, 295, 3.4, {"Payroll JE (PA###)": 6, "Auto Transfer/CC Payment": 4}], ["NUTRITION CENTER", 2, 58, 60, 3.3, {"Payroll JE (PA###)": 2}], ["FIRST BAPTIST CHURCH KENSETT", 4, 121, 125, 3.2, {"Auto Transfer/CC Payment": 4}], ["Two Rivers Power LLC", 4, 121, 125, 3.2, {"Auto Transfer/CC Payment": 2, "Payroll JE (PA###)": 2}], ["901 GAMES LLC", 3, 93, 96, 3.1, {"Payroll JE (PA###)": 3}], ["AEROQUEST LLC", 6, 189, 195, 3.1, {"Auto Transfer/CC Payment": 2, "Payroll JE (PA###)": 4}], ["BASSJENKINS LLC", 18, 563, 581, 3.1, {"Payroll JE (PA###)": 12, "Auto Transfer/CC Payment": 6}], ["Sweet Renee LLC", 6, 189, 195, 3.1, {"Payroll JE (PA###)": 6}], ["GUARDIAN TITLE LLC", 6, 192, 198, 3.0, {"Auto Transfer/CC Payment": 5, "Payroll JE (PA###)": 1}], ["HYDRA FIRE PROTECTION LLC", 7, 231, 238, 2.9, {"Auto Transfer/CC Payment": 5, "Payroll JE (PA###)": 2}], ["Holistic Care Home Health Agency Inc", 8, 270, 278, 2.9, {"Auto Transfer/CC Payment": 8}], ["Allstar Hospice Inc.", 3, 106, 109, 2.8, {"Auto Transfer/CC Payment": 3}], ["MEDIPLAN HOLDINGS LLC", 5, 177, 182, 2.7, {"Payroll JE (PA###)": 4, "Auto Transfer/CC Payment": 1}], ["U360 Wellness", 2, 71, 73, 2.7, {"Payroll JE (PA###)": 2}], ["KC EATERY LLC", 9, 337, 346, 2.6, {"Payroll JE (PA###)": 9}], ["HARPER-AVERY INSURANCE LLC", 4, 161, 165, 2.4, {"Auto Transfer/CC Payment": 1, "Payroll JE (PA###)": 3}], ["ENFINITY SUPPLY LLC", 5, 217, 222, 2.3, {"Payroll JE (PA###)": 5}], ["PLAYA EAST MEMPHIS LLC", 15, 629, 644, 2.3, {"Auto Transfer/CC Payment": 15}], ["San Rafael Healthcare Inc.", 2, 84, 86, 2.3, {"Auto Transfer/CC Payment": 2}], ["HILL CAPITAL PARTNERS INC.", 11, 494, 505, 2.2, {"Auto Transfer/CC Payment": 3, "Payroll JE (PA###)": 8}], ["NEW URBAN MEDIA", 7, 314, 321, 2.2, {"Auto Transfer/CC Payment": 4, "Payroll JE (PA###)": 3}], ["K CONCEPTS LLC", 22, 1044, 1066, 2.1, {"Payroll JE (PA###)": 18, "Bill.com Clearing Payment": 3, "Auto Transfer/CC Payment": 1}], ["BST Holdings LLC", 6, 307, 313, 1.9, {"Payroll JE (PA###)": 6}], ["901 COFFEE LLC", 3, 168, 171, 1.8, {"Payroll JE (PA###)": 3}], ["MANGO SHEET METAL LLC", 19, 1021, 1040, 1.8, {"Payroll JE (PA###)": 8, "Auto Transfer/CC Payment": 11}], ["SENATOBIA DENTAL STUDIO PLLC", 2, 112, 114, 1.8, {"Payroll JE (PA###)": 2}], ["TDJ 77 LLC", 5, 292, 297, 1.7, {"Auto Transfer/CC Payment": 4, "Payroll JE (PA###)": 1}], ["CLAIBORNE FERGUSON LAW FIRM P.A.", 2, 125, 127, 1.6, {"Auto Transfer/CC Payment": 2}], ["PUZZOL CREATIVE CONSULTING LLC", 13, 776, 789, 1.6, {"Payroll JE (PA###)": 13}], ["PUZZOL HOLDINGS LLC", 13, 776, 789, 1.6, {"Payroll JE (PA###)": 13}], ["Teamwear Graphics LLC.", 4, 252, 256, 1.6, {"Payroll JE (PA###)": 3, "Auto Transfer/CC Payment": 1}], ["KAIZEN WELLNESS LLC", 1, 66, 67, 1.5, {"Auto Transfer/CC Payment": 1}], ["LANDMARK HEATING & AIR CONDITIONING INC", 13, 878, 891, 1.5, {"Payroll JE (PA###)": 4, "Auto Transfer/CC Payment": 7, "[PA] Rule Tag": 2}], ["Venture Motor Lines LLC", 4, 271, 275, 1.5, {"Payroll JE (PA###)": 4}], ["Edwards Law Group LLC", 5, 340, 345, 1.4, {"Payroll JE (PA###)": 5}], ["Patterson Bray PLLC", 7, 489, 496, 1.4, {"Payroll JE (PA###)": 3, "Auto Transfer/CC Payment": 2, "Bill.com Clearing Payment": 2}], ["BAYOU CAKES LLC", 1, 76, 77, 1.3, {"Payroll JE (PA###)": 1}], ["JEHL LAW GROUP PLLC", 5, 373, 378, 1.3, {"Auto Transfer/CC Payment": 2, "Payroll JE (PA###)": 3}], ["BLUES CITY PSYCHIATRY PLLC", 5, 408, 413, 1.2, {"Auto Transfer/CC Payment": 2, "Payroll JE (PA###)": 3}], ["COPPER COLLAR GROUP LLC", 1, 81, 82, 1.2, {"Payroll JE (PA###)": 1}], ["GOPAL LLC", 3, 238, 241, 1.2, {"Auto Transfer/CC Payment": 3}], ["Golden Age Health Inc.", 2, 163, 165, 1.2, {"Auto Transfer/CC Payment": 2}], ["PEDIATRIC PARTNERS OF NASHVILLE PLLC", 2, 170, 172, 1.2, {"[PA] Rule Tag": 2}], ["Accurate Law Enforcement Inc", 2, 175, 177, 1.1, {"Payroll JE (PA###)": 2}], ["Daniel Law Firm", 4, 371, 375, 1.1, {"Auto Transfer/CC Payment": 4}], ["ELITE ELECTRIC &LIGHTING INC.", 6, 543, 549, 1.1, {"Auto Transfer/CC Payment": 1, "Bill.com Clearing Payment": 2, "Payroll JE (PA###)": 3}], ["PINK FLAMINGO LLC", 6, 551, 557, 1.1, {"Auto Transfer/CC Payment": 1, "Payroll JE (PA###)": 5}], ["LIVE HAUL PRODUCTS INC.", 6, 652, 658, 0.9, {"Payroll JE (PA###)": 6}], ["RELEASE COATINGS LLC", 2, 229, 231, 0.9, {"Payroll JE (PA###)": 2}], ["Rich-way Landscape Inc", 5, 674, 679, 0.7, {"Auto Transfer/CC Payment": 5}], ["Patrick Accounting and Tax Services PLLC", 82, 13946, 14028, 0.6, {"Payroll JE (PA###)": 1, "Ramp Integration Bill": 13, "Auto Transfer/CC Payment": 67, "[PA] Rule Tag": 1}], ["Aspen Hospice Care Inc.", 1, 191, 192, 0.5, {"Auto Transfer/CC Payment": 1}], ["RTK COMPONENTS LLC", 1, 203, 204, 0.5, {"Payroll JE (PA###)": 1}], ["ABOVE AND BEYOND ELECTRIC COMPANY INC", 2, 491, 493, 0.4, {"Auto Transfer/CC Payment": 2}], ["Aspen Healthcare Services Inc.", 1, 317, 318, 0.3, {"Auto Transfer/CC Payment": 1}], ["PRAVINCHANDRA P PATEL MD PC", 2, 763, 765, 0.3, {"Auto Transfer/CC Payment": 1, "Payroll JE (PA###)": 1}], ["294 WASHINGTON LAW FIRM", 0, 6, 6, 0.0, {}], ["4155 EAST RAINES RD LLC", 0, 2, 2, 0.0, {}], ["4CI Property Investments LLC", 0, 7, 7, 0.0, {}], ["A-One Plus Home Health Agency", 0, 95, 95, 0.0, {}], ["ADVANCED POOLS INC.", 0, 717, 717, 0.0, {}], ["ASAPP PROPERTIES LLC", 0, 8, 8, 0.0, {}], ["AUM Enterprises Inc.", 0, 60, 60, 0.0, {}], ["BARCAS ENTERPRISES LLC", 0, 62, 62, 0.0, {}], ["BHS HOLDINGS LLC", 0, 21, 21, 0.0, {}], ["BLUEBONNET CAKES LLC", 0, 71, 71, 0.0, {}], ["BS PROPERTIES II LLC", 0, 2, 2, 0.0, {}], ["BYS PROPERTIES LLC", 0, 1, 1, 0.0, {}], ["CBBQ PROPERTIES LLC", 0, 2, 2, 0.0, {}], ["Carr Property Management LLC", 0, 29, 29, 0.0, {}], ["Cura Beatus", 0, 22, 22, 0.0, {}], ["Deere Builders LLC", 0, 35, 35, 0.0, {}], ["Deere Construction LLC", 0, 21, 21, 0.0, {}], ["Dignity Investments LLC", 0, 18, 18, 0.0, {}], ["Harbour Hospice of Bexar County LLC", 0, 100, 100, 0.0, {}], ["KOLB DEVELOPMENTS LLC", 0, 11, 11, 0.0, {}], ["Lawson Mutual of Texas LLC", 0, 5, 5, 0.0, {}], ["Llano Estacado Healthcare LLC", 0, 23, 23, 0.0, {}], ["M.W.ESCUE COMPANY INC.", 0, 25, 25, 0.0, {}], ["MEMPHIS RESTAURANT ASSOCIATION", 0, 50, 50, 0.0, {}], ["MID-SOUTH NEPHROLOGY CONSULTANTS PLLC", 0, 1089, 1089, 0.0, {}], ["MRA POLITICAL ACTION COMMITTEE", 0, 5, 5, 0.0, {}], ["PILLAR BUILDING SOLUTIONS LLC", 0, 18, 18, 0.0, {}], ["SCARY GARY 2 INC", 0, 4, 4, 0.0, {}], ["The Transformation Center for Women LLC", 0, 170, 170, 0.0, {}], ["USA Karate MMA LLC", 0, 546, 546, 0.0, {}], ["WeCare Properties LLC", 0, 7, 7, 0.0, {}], ["YX Gives", 0, 19, 19, 0.0, {}]],
+                transactionTypes: [
+                    { type: "Expense", zero: 181, touched: 24376, total: 24557, pct: 0.7 },
+                    { type: "Deposit", zero: 72, touched: 18339, total: 18411, pct: 0.4 },
+                    { type: "Bill", zero: 163, touched: 3589, total: 3752, pct: 4.3 },
+                    { type: "Journal Entry", zero: 1377, touched: 1946, total: 3323, pct: 41.4 },
+                    { type: "Check", zero: 0, touched: 2815, total: 2815, pct: 0.0 },
+                    { type: "Invoice", zero: 0, touched: 2337, total: 2337, pct: 0.0 },
+                    { type: "Payment", zero: 0, touched: 2238, total: 2238, pct: 0.0 },
+                    { type: "Bill Payment (Check)", zero: 782, touched: 1432, total: 2214, pct: 35.3 },
+                    { type: "Transfer", zero: 639, touched: 0, total: 639, pct: 100.0 },
+                    { type: "Sales Receipt", zero: 0, touched: 571, total: 571, pct: 0.0 },
+                    { type: "Credit Card Credit", zero: 0, touched: 316, total: 316, pct: 0.0 },
+                    { type: "Estimate", zero: 0, touched: 294, total: 294, pct: 0.0 },
+                    { type: "Bill Payment (Credit Card)", zero: 0, touched: 245, total: 245, pct: 0.0 },
+                    { type: "Expenditure", zero: 0, touched: 242, total: 242, pct: 0.0 },
+                    { type: "Time Charge", zero: 0, touched: 235, total: 235, pct: 0.0 },
+                    { type: "Credit Card Payment", zero: 154, touched: 0, total: 154, pct: 100.0 },
+                    { type: "Vendor Credit", zero: 0, touched: 126, total: 126, pct: 0.0 },
+                    { type: "Credit Card Expense", zero: 0, touched: 111, total: 111, pct: 0.0 }
+                ],
+                signals: [
+                    { name: "Payroll JE (PA###)", count: 929 },
+                    { name: "Auto Transfer/CC Payment", count: 790 },
+                    { name: "Bill.com Clearing Payment", count: 782 },
+                    { name: "[PA] Rule Tag", count: 256 },
+                    { name: "Toast Integration JE", count: 255 },
+                    { name: "Ramp Integration Bill", count: 163 },
+                    { name: "Recurring Sales JE", count: 114 },
+                    { name: "Bill.com Payables JE", count: 79 }
+                ]
+            }
+        };
+
+        // Color palette
+        const colors = {
+            primary: '#4a90e2',
+            success: '#51cf66',
+            warning: '#ffc107',
+            danger: '#ff6b6b',
+            purple: '#a78bfa',
+            cyan: '#06b6d4',
+            pink: '#ec4899',
+            teal: '#14b8a6'
+        };
+
+        const signalColors = {
+            "Payroll JE (PA###)": colors.primary,
+            "Auto Transfer/CC Payment": colors.success,
+            "[PA] Rule Tag": colors.warning,
+            "Bill.com Clearing Payment": colors.danger,
+            "Ramp Integration Bill": colors.purple,
+            "Toast Integration JE": colors.cyan,
+            "Recurring Sales JE": colors.pink,
+            "Bill.com Payables JE": colors.teal
+        };
+
+        // Helper: parse "YYYY-MM" without timezone shift
+        function parseMonth(ym, opts) {
+            const [y, m] = ym.split('-').map(Number);
+            return new Date(y, m - 1, 1).toLocaleDateString('en-US', opts);
+        }
+
+        let currentMonth = null;
+        let currentData = null;
+        let sortColumn = 'pct';
+        let sortDirection = 'desc';
+        let trendChart = null;
+
+        function initializeMonthSelector() {
+            const selector = document.getElementById('monthSelector');
+            const months = Object.keys(SCORECARD_DATA).sort().reverse();
+            currentMonth = months[0];
+
+            months.forEach(month => {
+                const option = document.createElement('option');
+                option.value = month;
+                option.textContent = parseMonth(month, { year: 'numeric', month: 'long' });
+                selector.appendChild(option);
+            });
+
+            selector.value = currentMonth;
+            selector.addEventListener('change', (e) => {
+                currentMonth = e.target.value;
+                renderDashboard();
+            });
+        }
+
+        function renderDashboard() {
+            currentData = SCORECARD_DATA[currentMonth];
+            const summary = currentData.summary;
+            const autoRate = (summary.total_automated / summary.total_transactions * 100).toFixed(1);
+
+            // Update header
+            document.querySelector('h1').textContent = `Zero-Touch Automation Scorecard — ${parseMonth(currentMonth, { year: 'numeric', month: 'long' })}`;
+            const processedDate = new Date(summary.processed_at).toLocaleDateString('en-US');
+            document.getElementById('processedInfo').textContent = `Data processed: ${processedDate} | ${summary.clients} clients | ${summary.total_transactions.toLocaleString()} transactions`;
+
+            // Get prior month rate if available
+            const months = Object.keys(SCORECARD_DATA).sort();
+            const monthIndex = months.indexOf(currentMonth);
+            let changeText = 'Baseline';
+            let changeClass = 'baseline';
+            if (monthIndex > 0) {
+                const priorMonth = months[monthIndex - 1];
+                const priorData = SCORECARD_DATA[priorMonth];
+                const priorRate = priorData.summary.total_automated / priorData.summary.total_transactions * 100;
+                const change = autoRate - priorRate;
+                const priorMonthName = parseMonth(priorMonth, { month: 'short', year: 'numeric' });
+                changeText = (change >= 0 ? '+' : '') + change.toFixed(1) + ' pt from ' + priorMonthName;
+                changeClass = change >= 0 ? 'up' : 'down';
+            }
+
+            // Render KPI cards
+            const kpiGrid = document.getElementById('kpiGrid');
+            kpiGrid.innerHTML = `
+                <div class="kpi-card critical">
+                    <div class="kpi-label">Current Rate</div>
+                    <div class="kpi-value">${autoRate}%</div>
+                    <div class="kpi-subtext">${summary.total_automated.toLocaleString()} of ${summary.total_transactions.toLocaleString()}</div>
+                    <div class="kpi-change ${changeClass}">${changeText}</div>
+                </div>
+                <div class="kpi-card success">
+                    <div class="kpi-label">Target</div>
+                    <div class="kpi-value">85%</div>
+                    <div class="kpi-subtext">Goal Rate</div>
+                </div>
+                <div class="kpi-card critical">
+                    <div class="kpi-label">Gap</div>
+                    <div class="kpi-value">${(85 - autoRate).toFixed(1)} pt</div>
+                    <div class="kpi-subtext">Percentage Points</div>
+                </div>
+                <div class="kpi-card neutral">
+                    <div class="kpi-label">Total Txns</div>
+                    <div class="kpi-value">${summary.total_transactions.toLocaleString()}</div>
+                    <div class="kpi-subtext">All Types</div>
+                </div>
+                <div class="kpi-card neutral">
+                    <div class="kpi-label">Clients</div>
+                    <div class="kpi-value">${summary.clients}</div>
+                    <div class="kpi-subtext">Analyzed</div>
+                </div>
+                <div class="kpi-card neutral">
+                    <div class="kpi-label">Zero-Touch</div>
+                    <div class="kpi-value">${summary.total_automated.toLocaleString()}</div>
+                    <div class="kpi-subtext">Transactions</div>
+                </div>
+            `;
+
+            // Render trend chart if 2+ months
+            const months_list = Object.keys(SCORECARD_DATA).sort();
+            const trendSection = document.getElementById('trendSection');
+            if (months_list.length >= 2) {
+                trendSection.style.display = 'block';
+                renderTrendChart(months_list);
+            } else {
+                trendSection.style.display = 'none';
+            }
+
+            // Render other charts
+            renderSignalChart();
+            renderTransactionTypeChart();
+            renderClientTable();
+            renderOpportunityCards();
+
+            document.getElementById('footer').textContent = `Dashboard generated for Patrick Accounting | ${parseMonth(currentMonth, { year: 'numeric', month: 'long' })} Zero-Touch Analysis`;
+        }
+
+        function renderTrendChart(months_list) {
+            const labels = months_list.map(m => parseMonth(m, { month: 'short', year: '2-digit' }));
+            const data = months_list.map(m => {
+                const d = SCORECARD_DATA[m];
+                return (d.summary.total_automated / d.summary.total_transactions * 100).toFixed(1);
+            });
+
+            const ctx = document.getElementById('trendChart').getContext('2d');
+            if (trendChart) trendChart.destroy();
+
+            trendChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Automation %',
+                            data: data,
+                            borderColor: colors.primary,
+                            backgroundColor: 'rgba(74, 144, 226, 0.1)',
+                            tension: 0.4,
+                            pointRadius: 6,
+                            pointBackgroundColor: colors.primary,
+                            pointBorderColor: '#fff',
+                            pointBorderWidth: 2,
+                            pointHoverRadius: 8,
+                            fill: true,
+                            borderWidth: 2
+                        },
+                        {
+                            label: 'Target (85%)',
+                            data: Array(labels.length).fill(85),
+                            borderColor: colors.success,
+                            borderDash: [5, 5],
+                            borderWidth: 2,
+                            pointRadius: 0,
+                            fill: false,
+                            tension: 0
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: {
+                            labels: { color: '#e0e0e0', font: { size: 13 } }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#e0e0e0',
+                            borderColor: colors.primary,
+                            borderWidth: 1,
+                            padding: 12,
+                            displayColors: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            min: 0,
+                            max: 100,
+                            ticks: { color: '#888' },
+                            grid: { color: 'rgba(74, 144, 226, 0.1)' }
+                        },
+                        x: {
+                            ticks: { color: '#888' },
+                            grid: { color: 'rgba(74, 144, 226, 0.1)' }
+                        }
+                    }
+                }
+            });
+
+            // Add click handlers to points
+            const canvas = document.getElementById('trendChart');
+            canvas.onclick = (event) => {
+                const points = trendChart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, true);
+                if (points.length && points[0].datasetIndex === 0) {
+                    const monthIndex = points[0].index;
+                    const month = months_list[monthIndex];
+                    document.getElementById('monthSelector').value = month;
+                    currentMonth = month;
+                    renderDashboard();
+                }
+            };
+        }
+
+        function renderSignalChart() {
+            const ctx = document.getElementById('signalChart').getContext('2d');
+            if (window.signalChartInstance) window.signalChartInstance.destroy();
+
+            window.signalChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: currentData.signals.map(d => d.name),
+                    datasets: [{
+                        label: 'Transactions',
+                        data: currentData.signals.map(d => d.count),
+                        backgroundColor: currentData.signals.map(d => signalColors[d.name]),
+                        borderColor: 'rgba(74, 144, 226, 0.3)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#e0e0e0',
+                            borderColor: colors.primary,
+                            borderWidth: 1,
+                            padding: 12,
+                            displayColors: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: '#888' },
+                            grid: { color: 'rgba(74, 144, 226, 0.1)' }
+                        },
+                        y: {
+                            ticks: { color: '#e0e0e0', font: { size: 12 } },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderTransactionTypeChart() {
+            const ctx = document.getElementById('transactionTypeChart').getContext('2d');
+            if (window.txChartInstance) window.txChartInstance.destroy();
+
+            const sortedTxTypes = [...currentData.transactionTypes].sort((a, b) => b.total - a.total);
+
+            window.txChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: sortedTxTypes.map(d => `${d.type} (${d.pct.toFixed(1)}%)`),
+                    datasets: [
+                        {
+                            label: 'Zero-Touch',
+                            data: sortedTxTypes.map(d => d.zero),
+                            backgroundColor: colors.success,
+                            borderColor: colors.success,
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Touched',
+                            data: sortedTxTypes.map(d => d.touched),
+                            backgroundColor: '#555',
+                            borderColor: '#666',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#e0e0e0', font: { size: 13 } }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                            titleColor: '#fff',
+                            bodyColor: '#e0e0e0',
+                            borderColor: colors.primary,
+                            borderWidth: 1,
+                            padding: 12,
+                            displayColors: true
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: true,
+                            ticks: { color: '#888' },
+                            grid: { color: 'rgba(74, 144, 226, 0.1)' }
+                        },
+                        y: {
+                            stacked: true,
+                            ticks: { color: '#e0e0e0', font: { size: 12 } },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderClientTable() {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+
+            let displayClients = [...currentData.clients];
+
+            // Apply search filter
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            if (searchTerm) {
+                displayClients = displayClients.filter(c => c[0].toLowerCase().includes(searchTerm));
+            }
+
+            // Apply sort
+            displayClients.sort((a, b) => {
+                let aVal, bVal;
+                switch (sortColumn) {
+                    case 'name': aVal = a[0]; bVal = b[0]; break;
+                    case 'pct': aVal = a[4]; bVal = b[4]; break;
+                    case 'zero': aVal = a[1]; bVal = b[1]; break;
+                    case 'touched': aVal = a[2]; bVal = b[2]; break;
+                    case 'total': aVal = a[3]; bVal = b[3]; break;
+                    case 'byrule': aVal = Object.keys(a[5]).length; bVal = Object.keys(b[5]).length; break;
+                    case 'signal': aVal = Object.keys(a[5])[0] || ''; bVal = Object.keys(b[5])[0] || ''; break;
+                }
+                if (typeof aVal === 'string') aVal = aVal.toLowerCase();
+                if (typeof bVal === 'string') bVal = bVal.toLowerCase();
+                return sortDirection === 'asc' ? (aVal > bVal ? 1 : -1) : (aVal < bVal ? 1 : -1);
+            });
+
+            displayClients.forEach((client, idx) => {
+                const [name, zero, touched, total, pct, signals] = client;
+                const signalKeys = Object.keys(signals);
+                const topSignal = signalKeys.length > 0 ? signalKeys[0] : '-';
+
+                let pctClass = 'red';
+                if (pct >= 50) pctClass = 'green';
+                else if (pct >= 20) pctClass = 'yellow';
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><button class="expand-btn" onclick="toggleSignals(this, ${idx})">▶</button></td>
+                    <td><span class="client-name">${name}</span></td>
+                    <td class="text-right"><span class="pct-cell ${pctClass}">${pct.toFixed(1)}%</span></td>
+                    <td class="text-right">${zero.toLocaleString()}</td>
+                    <td class="text-right">${touched.toLocaleString()}</td>
+                    <td class="text-right">${total.toLocaleString()}</td>
+                    <td class="text-right">${signalKeys.length}</td>
+                    <td>${topSignal}</td>
+                `;
+                tbody.appendChild(row);
+
+                const signalRow = document.createElement('tr');
+                signalRow.className = 'signal-row';
+                let signalHTML = '<td colspan="8"><div class="signal-content"><div class="signal-list">';
+                signalKeys.forEach(signal => {
+                    signalHTML += `<div class="signal-item"><span class="signal-item-label">${signal}</span>: <span class="signal-item-count">${signals[signal]}</span></div>`;
+                });
+                signalHTML += '</div></div></td>';
+                signalRow.innerHTML = signalHTML;
+                tbody.appendChild(signalRow);
+            });
+        }
+
+        function renderOpportunityCards() {
+            const grid = document.getElementById('opportunityGrid');
+            grid.innerHTML = `
+                <div class="opportunity-card">
+                    <div class="opportunity-rank">BIGGEST OPPORTUNITY</div>
+                    <div class="opportunity-title">Expenses</div>
+                    <div class="opportunity-stat red">0.7%</div>
+                    <div class="opportunity-desc">24,557 transactions at very low automation. Rolling out [PA] Rule Tags on QBO rules would capture most of these.</div>
+                    <div class="opportunity-action">✓ Lever: Rule Tag rollout on QB rules</div>
+                </div>
+                <div class="opportunity-card">
+                    <div class="opportunity-rank">#2 OPPORTUNITY</div>
+                    <div class="opportunity-title">Deposits</div>
+                    <div class="opportunity-stat red">0.4%</div>
+                    <div class="opportunity-desc">18,411 transactions. Need better deposit reconciliation patterns and possibly new Rule Tags for specific industries.</div>
+                    <div class="opportunity-action">✓ Lever: Deposit matching logic</div>
+                </div>
+                <div class="opportunity-card">
+                    <div class="opportunity-rank">#3 OPPORTUNITY</div>
+                    <div class="opportunity-title">Bill.com & Ramp</div>
+                    <div class="opportunity-stat" style="color: #ffc107;">4.3%</div>
+                    <div class="opportunity-desc">3,752 transactions. Expand Bill.com & Ramp integrations. Already seeing strong automation on linked bills (22.3%).</div>
+                    <div class="opportunity-action">✓ Lever: Expand Bill.com & Ramp reach</div>
+                </div>
+                <div class="opportunity-card" style="border: 2px solid #51cf66;">
+                    <div class="opportunity-rank" style="background: #51cf66;">KEY INSIGHT</div>
+                    <div class="opportunity-title" style="color: #51cf66;">Only 10 clients using [PA] Tags</div>
+                    <div class="opportunity-desc">Rolling out [PA] tags firm-wide is the #1 lever for unlocking zero-touch automation. These clients show what's possible with proper tagging infrastructure.</div>
+                    <div class="opportunity-action" style="background: rgba(81, 207, 102, 0.2); border-left-color: #51cf66; color: #51cf66;">→ Firm-wide rollout should be priority #1</div>
+                </div>
+            `;
+        }
+
+        function toggleSignals(btn, rowIdx) {
+            const tbody = document.getElementById('tableBody');
+            const rows = tbody.querySelectorAll('tr');
+            const signalRow = rows[rowIdx * 2 + 1];
+            signalRow.classList.toggle('show');
+            btn.textContent = signalRow.classList.contains('show') ? '▼' : '▶';
+            const parentRow = rows[rowIdx * 2];
+            parentRow.classList.toggle('expanded');
+        }
+
+        function exportToCSV() {
+            const clients = currentData.clients;
+            const months_list = Object.keys(SCORECARD_DATA).sort();
+            const monthIndex = months_list.indexOf(currentMonth);
+            const priorMonth = monthIndex > 0 ? months_list[monthIndex - 1] : null;
+            const priorClients = priorMonth ? SCORECARD_DATA[priorMonth].clients.map(c => c[0]) : [];
+
+            let csv = 'Client Name,Zero-Touch,Touched,Total,Automation %,Rules Used,Top Signal,Status\n';
+            clients.forEach(([name, zero, touched, total, pct, signals]) => {
+                const isNew = priorMonth && !priorClients.includes(name);
+                const status = isNew ? 'NEW' : 'RETURNING';
+                const rulesCount = Object.keys(signals).length;
+                const topSignal = Object.keys(signals)[0] || '';
+                csv += `"${name}",${zero},${touched},${total},${pct.toFixed(1)},${rulesCount},"${topSignal}",${status}\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Client_Scorecard_${currentMonth}.csv`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('input', renderClientTable);
+        document.getElementById('exportBtn').addEventListener('click', exportToCSV);
+
+        document.querySelectorAll('th.sortable').forEach(th => {
+            th.addEventListener('click', () => {
+                const newColumn = th.dataset.column;
+                if (sortColumn === newColumn) {
+                    sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+                } else {
+                    sortColumn = newColumn;
+                    sortDirection = 'desc';
+                }
+
+                document.querySelectorAll('th.sortable').forEach(h => h.classList.remove('sort-asc', 'sort-desc'));
+                th.classList.add(sortDirection === 'asc' ? 'sort-asc' : 'sort-desc');
+
+                renderClientTable();
+            });
+        });
+
+        // Initialize
+        initializeMonthSelector();
+        renderDashboard();
+    </script>
 </body>
 </html>
