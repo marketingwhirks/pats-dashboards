@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PATS Dashboards — Patrick Accounting</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Shared Nav */
+        .pats-nav {
+            background: #111720;
+            border-bottom: 1px solid rgba(74, 144, 226, 0.25);
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            height: 56px;
+            gap: 32px;
+            flex-shrink: 0;
+        }
+        .pats-nav .brand {
+            font-size: 15px;
+            font-weight: 700;
+            color: #4a90e2;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+        .pats-nav a {
+            color: #a0aec0;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 16px 4px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+        .pats-nav a:hover { color: #e0e0e0; }
+        .pats-nav a.active {
+            color: #4a90e2;
+            border-bottom-color: #4a90e2;
+        }
+
+        /* Landing Content */
+        .landing {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            max-width: 800px;
+            width: 100%;
+        }
+        .dash-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(74,144,226,0.2);
+            border-radius: 12px;
+            padding: 32px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+        .dash-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(74,144,226,0.5);
+            transform: translateY(-2px);
+        }
+        .dash-card h2 {
+            font-size: 20px;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .dash-card p {
+            font-size: 14px;
+            color: #888;
+            line-height: 1.5;
+        }
+        .dash-card .icon {
+            font-size: 36px;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .footer {
+            text-align: center;
+            padding: 16px;
+            font-size: 12px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <nav class="pats-nav">
+        <span class="brand">PATS</span>
+        <a href="index.html" class="active">Home</a>
+        <a href="scorecard.html">Automation Scorecard</a>
+        <a href="connections.html">QBO Connections</a>
+    </nav>
+
+    <div class="landing">
+        <div class="card-grid">
+            <a href="scorecard.html" class="dash-card">
+                <span class="icon">📊</span>
+                <h2>Automation Scorecard</h2>
+                <p>Track zero-touch transaction automation rates across all clients. View monthly trends, team comparisons, and progress toward the 85% target.</p>
+            </a>
+            <a href="connections.html" class="dash-card">
+                <span class="icon">🔗</span>
+                <h2>QBO Connections</h2>
+                <p>Manage QuickBooks Online OAuth authorizations. See which clients are connected, pending, or need authorization in Airtable.</p>
+            </a>
+        </div>
+    </div>
+
+    <div class="footer">Patrick Accounting &amp; Tax Services PLLC</div>
+</body>
+</html>

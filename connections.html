@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QBO Connections — PATS Dashboards</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #1a3a5c;
+            color: white;
+            padding: 40px 20px;
+            margin: -20px -20px 30px -20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.95;
+            margin-bottom: 8px;
+        }
+
+        .source-info {
+            font-size: 13px;
+            opacity: 0.7;
+        }
+
+        .instructions {
+            background-color: #e8f0f7;
+            border-left: 4px solid #1a3a5c;
+            padding: 16px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #1a3a5c;
+        }
+
+        .instructions strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #0f2438;
+        }
+
+        .instructions p {
+            margin-bottom: 8px;
+        }
+
+        .instructions p:last-child {
+            margin-bottom: 0;
+        }
+
+        .controls {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: white;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #1a3a5c;
+            box-shadow: 0 0 0 3px rgba(26, 58, 92, 0.1);
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        button {
+            padding: 10px 16px;
+            border: 1px solid #ddd;
+            background-color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #f0f0f0;
+            border-color: #999;
+        }
+
+        button.active {
+            background-color: #1a3a5c;
+            color: white;
+            border-color: #1a3a5c;
+        }
+
+        .refresh-btn {
+            background-color: #1a3a5c;
+            color: white;
+            border-color: #1a3a5c;
+        }
+
+        .refresh-btn:hover {
+            background-color: #0f2438;
+            border-color: #0f2438;
+        }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .summary-card {
+            background-color: white;
+            padding: 16px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .summary-card .count {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .summary-card .label {
+            font-size: 13px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .summary-card.total .count { color: #1a3a5c; }
+        .summary-card.connected .count { color: #155724; }
+        .summary-card.pending .count { color: #856404; }
+        .summary-card.missing .count { color: #c62828; }
+
+        .progress-bar {
+            background-color: white;
+            padding: 16px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .progress-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a3a5c;
+            min-width: 180px;
+        }
+
+        .progress-fill {
+            flex: 1;
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill-inner {
+            height: 100%;
+            background-color: #1a3a5c;
+            transition: width 0.3s ease;
+        }
+
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .spinner {
+            border: 4px solid #e0e0e0;
+            border-top: 4px solid #1a3a5c;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .error-message {
+            display: none;
+            background-color: #ffebee;
+            border-left: 4px solid #c62828;
+            padding: 16px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #c62828;
+        }
+
+        .removal-section {
+            display: none;
+            background-color: #fff3cd;
+            border-left: 4px solid #856404;
+            padding: 16px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #856404;
+        }
+
+        .removal-section strong {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .removal-section ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        .removal-section li {
+            margin-bottom: 4px;
+        }
+
+        .table-wrapper {
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: #f8f8f8;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        th {
+            padding: 14px 16px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a3a5c;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #e8e8e8;
+            font-size: 14px;
+        }
+
+        tbody tr {
+            transition: background-color 0.2s ease;
+        }
+
+        tbody tr:hover {
+            background-color: #fafafa;
+        }
+
+        tbody tr.completed {
+            background-color: #f0f8f4;
+            opacity: 0.8;
+        }
+
+        .row-number {
+            color: #999;
+            font-weight: 500;
+            width: 40px;
+        }
+
+        .sn {
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .company-name {
+            font-weight: 500;
+            color: #1a3a5c;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .status-active {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .status-missing {
+            background-color: #ffebee;
+            color: #c62828;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .authorize-btn {
+            padding: 8px 16px;
+            background-color: #1a3a5c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .authorize-btn:hover {
+            background-color: #0f2438;
+            box-shadow: 0 2px 6px rgba(26, 58, 92, 0.2);
+        }
+
+        .authorize-btn:active {
+            transform: translateY(1px);
+        }
+
+        .connected-badge {
+            color: #155724;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .checkmark {
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+        .skip-btn {
+            padding: 6px 10px;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            color: #666;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .skip-btn:hover {
+            background-color: #eee;
+            border-color: #999;
+            color: #333;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+
+        .empty-state p {
+            font-size: 16px;
+        }
+
+        .skip-counter {
+            background-color: white;
+            padding: 12px 16px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #666;
+            display: none;
+        }
+
+        .skip-counter.visible {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .filter-buttons {
+                flex-wrap: wrap;
+            }
+
+            .action-buttons {
+                flex-wrap: wrap;
+                width: 100%;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            th, td {
+                padding: 10px 12px;
+            }
+
+            .actions {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .row-number {
+                display: none;
+            }
+
+            .summary-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Shared Nav */
+        .pats-nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: #111720;
+            border-bottom: 1px solid rgba(74, 144, 226, 0.25);
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            height: 56px;
+            gap: 32px;
+        }
+        .pats-nav .brand { font-size: 15px; font-weight: 700; color: #4a90e2; letter-spacing: 0.5px; white-space: nowrap; }
+        .pats-nav a { color: #a0aec0; text-decoration: none; font-size: 14px; font-weight: 500; padding: 16px 4px; border-bottom: 2px solid transparent; transition: all 0.2s ease; }
+        .pats-nav a:hover { color: #e0e0e0; }
+        .pats-nav a.active { color: #4a90e2; border-bottom-color: #4a90e2; }
+        body { padding-top: 80px !important; }
+    </style>
+</head>
+<body>
+    <nav class="pats-nav">
+        <span class="brand">PATS</span>
+        <a href="index.html">Home</a>
+        <a href="scorecard.html">Automation Scorecard</a>
+        <a href="connections.html" class="active">QBO Connections</a>
+    </nav>
+    <div class="container">
+        <header>
+            <h1>PATS QBO OAuth Authorization Dashboard</h1>
+            <p class="subtitle">Master List from Qount &middot; Status from Airtable</p>
+            <p class="source-info">269 Active QBO-tagged clients &middot; Last synced from Qount: April 7, 2026</p>
+        </header>
+
+        <div class="instructions">
+            <strong>Instructions for Maddie:</strong>
+            <p>For each client below, click Authorize to open QuickBooks. Sign in with the client's QBO credentials and grant access.</p>
+            <p>After authorizing, click Refresh to update the list. Connected clients will automatically turn green.</p>
+            <p>If a client should not be on this list, click Skip to hide it for this session.</p>
+        </div>
+
+        <div class="error-message" id="errorMessage"></div>
+
+        <div class="loading-spinner" id="loadingSpinner">
+            <div class="spinner"></div>
+            <div class="loading-text">Loading status from Airtable...</div>
+        </div>
+
+        <div id="mainContent" style="display: none;">
+            <div class="controls">
+                <div class="search-box">
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search by company name or serial number..."
+                        autocomplete="off"
+                    >
+                </div>
+                <div class="filter-buttons">
+                    <button id="filterAll" class="filter-btn active" data-filter="all">All</button>
+                    <button id="filterPending" class="filter-btn" data-filter="pending">Pending</button>
+                    <button id="filterCompleted" class="filter-btn" data-filter="completed">Connected</button>
+                    <button id="filterMissing" class="filter-btn" data-filter="missing">Not in Airtable</button>
+                </div>
+                <div class="action-buttons">
+                    <button id="refreshBtn" class="refresh-btn">Refresh Status</button>
+                </div>
+            </div>
+
+            <div class="summary-cards" id="summaryCards">
+                <div class="summary-card total">
+                    <div class="count" id="totalCount">0</div>
+                    <div class="label">Total QBO Clients</div>
+                </div>
+                <div class="summary-card connected">
+                    <div class="count" id="connectedCount">0</div>
+                    <div class="label">Connected</div>
+                </div>
+                <div class="summary-card pending">
+                    <div class="count" id="pendingCount">0</div>
+                    <div class="label">Pending Auth</div>
+                </div>
+                <div class="summary-card missing">
+                    <div class="count" id="missingCount">0</div>
+                    <div class="label">Not in Airtable</div>
+                </div>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-text"><span id="completedCountBar">0</span> / <span id="totalCountBar">0</span> connected</div>
+                <div class="progress-fill">
+                    <div class="progress-fill-inner" id="progressFill"></div>
+                </div>
+            </div>
+
+            <div class="removal-section" id="removalSection">
+                <strong>Airtable Records Not in Qount (to be removed):</strong>
+                <p>These Airtable records have no matching Active QBO-tagged client in Qount. They may be ex-clients or incorrectly tagged.</p>
+                <ul id="removalList"></ul>
+            </div>
+
+            <div class="skip-counter" id="skipCounter">
+                <strong id="skipCount">0</strong> item(s) hidden
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 4%;">#</th>
+                            <th style="width: 16%;">Serial Number</th>
+                            <th style="width: 40%;">Company Name</th>
+                            <th style="width: 15%;">Status</th>
+                            <th style="width: 25%;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clientsTable">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const OAUTH_BASE_URL = "https://appcenter.intuit.com/connect/oauth2?client_id=AB7MyQslNgsncbRDGAJhdXPCICBvfgLAWkONkgzQyukHXHExzW&redirect_uri=https://hook.us1.make.com/98y8xjh2or1bm2aw48w0n3w5sb6t1zh3&response_type=code&scope=com.intuit.quickbooks.accounting";
+
+        const AIRTABLE_API_TOKEN = "pat26c7dMkJ2eActJ.a6b333204ae7771b40aecb84fab76bbf822cd16cf7385e20cf7e4dfbcba9e834";
+        const AIRTABLE_BASE_ID = "appi7ERo40QNWxcsL";
+        const AIRTABLE_TABLE_ID = "tblKuge5zCecvC2Gj";
+        const AIRTABLE_URL = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_ID}`;
+
+        // Field IDs for Airtable
+        const FIELD_IDS = {
+            company_name: "fld2d4Cg96DL1g9mb",
+            serial_number: "fldDHYLOxGMf3w3aV",
+            status: "fldO3ahAOcY9fyKyx",
+            realm_id: "fld5dhlsC79KckPzB"
+        };
+
+        // =====================================================
+        // MASTER CLIENT LIST — sourced from Qount Redshift
+        // Active clients with "Tech: QBO" label
+        // Last pulled: April 7, 2026
+        // =====================================================
+        const QOUNT_MASTER_LIST = [
+            {sn:"10099",name:"HERITAGE PROPERTIES"},
+            {sn:"117001",name:"117 PRIME"},
+            {sn:"1531945",name:"1539 CAPE LLC"},
+            {sn:"294001",name:"294 WASHINGTON LAW FIRM"},
+            {sn:"3354",name:"DEERE BUILDERS, LLC"},
+            {sn:"3355",name:"DEERE CONSTRUCTION, LLC"},
+            {sn:"3DN1519",name:"3D NY0009 LLC"},
+            {sn:"3DN3486",name:"3D NY0007 LLC"},
+            {sn:"4158430",name:"4155 EAST RAINES RD LLC"},
+            {sn:"4CI001",name:"4CI PROPERTY INVESTMENTS, LLC"},
+            {sn:"6838",name:"NET WORTH FINANCIAL INC."},
+            {sn:"69P9951",name:"69 PONTOTOC, LLC"},
+            {sn:"901002",name:"901 GAMES, LLC"},
+            {sn:"9013233",name:"901 COFFEE LLC"},
+            {sn:"9014644",name:"901 TOYS LLC"},
+            {sn:"AAH002",name:"ARCY AT HOME"},
+            {sn:"ABL0655",name:"ABLE ADVERTISING LLC"},
+            {sn:"ABO7708",name:"ABOVE AND BEYOND ELECTRIC COMPANY INC"},
+            {sn:"ACC8345",name:"ACCURATE LAW ENFORCEMENT-GOVERNMENT SALES"},
+            {sn:"ADV001",name:"Advanced Pools, Inc"},
+            {sn:"AER001",name:"AEROQUEST, LLC"},
+            {sn:"AHC006",name:"ASPEN HOSPICE SERVICES, INC."},
+            {sn:"AHS002",name:"ASPEN HEALTHCARE SERVICES, INC."},
+            {sn:"ALL9293",name:"ALLSTAR HOSPICE INC"},
+            {sn:"ALP3352",name:"A&L PARTNERSHIP"},
+            {sn:"AOP001",name:"A-ONE PLUS HOME HEALTH CARE, LLC"},
+            {sn:"ARC4203",name:"THE ARCADE RESTAURANT, LLC"},
+            {sn:"ARJ6345",name:"ARJOSA LLC"},
+            {sn:"ASA001",name:"ASAPP PROPERTIES, LLC"},
+            {sn:"ATL001",name:"AT LAST, INC."},
+            {sn:"AUM001",name:"AUM ENTERPRISES, INC"},
+            {sn:"AlexCraig",name:"MEMPHIS TURNKEY PROPERTIES GP"},
+            {sn:"BAI3056",name:"GREER INJURY LAWYERS PLLC"},
+            {sn:"BAK005",name:"BAKING A DIFFERENCE, LLC"},
+            {sn:"BAK1033",name:"BAKING JOY, LLC"},
+            {sn:"BAK7927",name:"BAKE LIFE SWEET, LLC"},
+            {sn:"BAR015",name:"BARON'S MAN CAVE, LLC"},
+            {sn:"BAR1657",name:"BARCAS ENTERPRISES LLC"},
+            {sn:"BAR2487",name:"BARONS BAR MEMPHIS LLC"},
+            {sn:"BAR2732",name:"BARNES219 LLC"},
+            {sn:"BAR2819",name:"BARONS BARBERSHOP MEMPHIS LLC"},
+            {sn:"BAR6289",name:"RIDE OR DIE 219 LLC"},
+            {sn:"BAS4935",name:"BASSJENKINS LLC"},
+            {sn:"BAY001",name:"BAYOU CAKES, LLC"},
+            {sn:"BEN1977",name:"BENCHMARK ATLANTIC HEALTHCARE INC"},
+            {sn:"BEN3035",name:"BENCHMARK ATLANTIC HEALTHCARE MEMPHIS INC"},
+            {sn:"BET001",name:"BETTER BUSINESS BUREAU OF THE MID-SOUTH"},
+            {sn:"BHH004TAX",name:"WICHITA HHS - HHA"},
+            {sn:"BHS0289",name:"BHS HOLDINGS LLC"},
+            {sn:"BIG6317",name:"BIG RIVER MARKET, LLC"},
+            {sn:"BLU004",name:"BLUES CITY PSYCHIATRY, PLLC"},
+            {sn:"BLU005",name:"BLUEBONNET CAKES, LLC"},
+            {sn:"BON9517",name:"BONK INTERNAL MEDICINE INC"},
+            {sn:"BOO8844",name:"BOOYAS INC"},
+            {sn:"BRI005",name:"BRICKHOUSE BUFFETS, LLC"},
+            {sn:"BSP001",name:"BS PROPERTIES II, LLC"},
+            {sn:"BST001",name:"BST HOLDINGS, LLC"},
+            {sn:"BYS001",name:"BYS PROPERTIES, LLC"},
+            {sn:"CAR014",name:"CARR PROPERTY MANAGEMENT LLC"},
+            {sn:"CAR4892",name:"JACOB SCHORR III"},
+            {sn:"CAS5198",name:"CASH JEWELRY LOANS INC"},
+            {sn:"CBB001",name:"CBBQ PROPERTIES, LLC"},
+            {sn:"CDL8629",name:"CDL-AMZ LLC"},
+            {sn:"CEL3679",name:"CELEBRATING RENEE, LLC"},
+            {sn:"CFO3176",name:"CFO ACCOUNTING LLC"},
+            {sn:"CHE005",name:"CHERRY ROAD BAPTIST CHURCH, INC."},
+            {sn:"CLA004",name:"CLAIBORNE FERGUSON LAW FIRM, P.A."},
+            {sn:"CLI0772",name:"CLIPPERS OF KNOXVILLE, LLC"},
+            {sn:"COA4898",name:"COASTAL CAR CARE INC"},
+            {sn:"COL003",name:"COLLIERVILLE EYECARE, PLLC"},
+            {sn:"CON4410",name:"CONCORD ACADEMY INC"},
+            {sn:"COP001",name:"COPPER WELL RETREAT LLC"},
+            {sn:"COP002",name:"COPPER COLLAR GROUP LLC"},
+            {sn:"COZ1256",name:"COZY CORNER RESTAURANTS INC."},
+            {sn:"CTI3416",name:"CTI PROFESSIONAL FLIGHT TRAINING, LLC"},
+            {sn:"CUL003",name:"CULLISON EYE CARE, PLLC"},
+            {sn:"CUR7815",name:"CURA BEATUS INCORPORATED"},
+            {sn:"CYN001",name:"CYNOSURE DENTAL LABORATORY, LLC"},
+            {sn:"DAN005",name:"THE DANIEL LAW FIRM"},
+            {sn:"DAN011",name:"DANVER'S LLC"},
+            {sn:"DAR004",name:"DARK HORSE EDUCATION & ENTERTAINMENT, LLC"},
+            {sn:"DEE4553",name:"DEERE DEVELOPMENT COMPANY LLC"},
+            {sn:"DHC8906",name:"DIGNITY HEALTHCARE LLC"},
+            {sn:"DIG4618",name:"DIGNITY INVESTMENTS LLC"},
+            {sn:"ECC0342",name:"ECCO ON OVERTON PARK, LLC"},
+            {sn:"ECC9968",name:"SABINE DORIS BACHMANN"},
+            {sn:"ECO1964",name:"ECONOMIST BREWING COMPANY, LLC"},
+            {sn:"ECO4244",name:"ECO ERA LLC"},
+            {sn:"EDW003",name:"EDWARDS LAW GROUP, LLC"},
+            {sn:"ELI001",name:"ELITE ELECTRIC &LIGHTING, INC."},
+            {sn:"ELI4384",name:"ELITE INFUSION SERVICES, LLC"},
+            {sn:"ELI4615",name:"ELITE PREMIER NURSING SERVICES OF NAPLES LLC"},
+            {sn:"ELI8017",name:"ELITE PREMIER NURSING SERVICES LLC"},
+            {sn:"ELM002",name:"EL MERO, INC"},
+            {sn:"EMI0022",name:"EMILY CAROL INVESTMENTS, LLC"},
+            {sn:"ENF2469",name:"ENFINITY SUPPLY LLC"},
+            {sn:"EPS001",name:"EPSTEIN'S LOAN OFFICE, INC."},
+            {sn:"ESC9938",name:"THE ESCAPE ROOM TENNESSEE LLC"},
+            {sn:"FAR008",name:"FARWINDS PARTNERSHIP"},
+            {sn:"FFH003",name:"FAMILY FIRST HOME HEALTH, LLC"},
+            {sn:"FFH004",name:"FAMILY FIRST HOSPICE, LLC"},
+            {sn:"FIR0656",name:"FIRST BAPTIST CHURCH KENSETT"},
+            {sn:"FIR5934",name:"FIREWHEEL CAKES LLC"},
+            {sn:"FOR7340",name:"FORTUNE FOODS LLC"},
+            {sn:"FOU003",name:"FOUNDATION FOR CHIROPRACTIC PROGRESS"},
+            {sn:"FOU004",name:"FOUNDATION FOR CHIROPRACTIC EDUCATION"},
+            {sn:"GAG1223",name:"GAGLIANO GROUP LLC"},
+            {sn:"GAH001",name:"GOLDEN AGE HEALTH, INC."},
+            {sn:"GAL2584",name:"GA LEASING LLC"},
+            {sn:"GOO0908",name:"THE GOOD VIKING LLC"},
+            {sn:"GOO3487",name:"GOOD FORTUNE COMPANY MEMPHIS LLC"},
+            {sn:"GOP001",name:"GOPAL, LLC"},
+            {sn:"GOR3052",name:"GORDIN HOLDINGS LLC"},
+            {sn:"GOU003",name:"GOURMET YOUR WAY, LLC"},
+            {sn:"GRA6371",name:"GRAWE HAUL AND INSTALL LLC"},
+            {sn:"GRE0601",name:"GREGORY T. WILKINSON DDS PC"},
+            {sn:"GRE5131",name:"GREENWAVE INVESTMENT GROUP, LLC"},
+            {sn:"GRE6867",name:"GREEN FROG COFFEE COMPANY LLC"},
+            {sn:"GRU1101",name:"GRUDZIENA INC"},
+            {sn:"GUA0916",name:"GUARDIAN TITLE, LLC"},
+            {sn:"GUA4477",name:"GUARDIAN INSURANCE GROUP, LLC"},
+            {sn:"GUA4879",name:"GUAC, INC"},
+            {sn:"HAR027",name:"HARPER-AVERY INSURANCE, LLC"},
+            {sn:"HEA001",name:"GERMANTOWN CHRISTIAN COUNSELING"},
+            {sn:"HEA008",name:"HEALING PAWS ANIMAL HOSPITAL"},
+            {sn:"HER009",name:"HERITAGE CONVALESCENT CENTER LTD"},
+            {sn:"HHL001",name:"HARBOUR HOSPICE OF BEXAR COUNTY, LLC"},
+            {sn:"HIC8630",name:"HICKS CONVENTION SERVICES AND SPECIAL EVENTS INC"},
+            {sn:"HIL006",name:"HILL CAPITAL PARTNERS, INC."},
+            {sn:"HKM7117",name:"HK MEM LLC"},
+            {sn:"HNH8271",name:"HN HOSPITALITY, LLC"},
+            {sn:"HOL2528",name:"HOLISTIC CARE HOME HEALTH AGENCY INC"},
+            {sn:"HOM001",name:"HOME SURETY TITLE & ESCROW LLC"},
+            {sn:"HOS3683",name:"HOSPICE SPECIALISTS LLC"},
+            {sn:"HOU004",name:"HOUSE OF AGLAIA SALON, LLC"},
+            {sn:"HOW5988",name:"HOWARD'S CUSTOM WINDOW TINT"},
+            {sn:"HSB6558",name:"HSB SHIV, LLC"},
+            {sn:"HUB3664",name:"HUB ATHLETICS LLC"},
+            {sn:"INS005",name:"INSPIRE HOSPICE AND PALLIATIVE CARE, INC."},
+            {sn:"INT6095",name:"INTEGRITY FIRST CAREGIVERS, LLC"},
+            {sn:"JEF001",name:"JEFFREY THOMAS, LLC"},
+            {sn:"JEH2421",name:"JEHL LAW GROUP PLLC"},
+            {sn:"JHS2847",name:"J.H. SHOEMAKER COMPANY INC"},
+            {sn:"JIM003",name:"JIM ROBBINS & ASSOCIATES, INC."},
+            {sn:"JJJ001",name:"J & J JOYBITES, LLC"},
+            {sn:"JON010",name:"JONES-WILLEY CORPORATION"},
+            {sn:"JOS001",name:"JOSEPH VOLNER DDS PLLC"},
+            {sn:"JOY4375",name:"JOY MCDANIEL ACADEMY OF DANCE & GYMNASTICS, INC"},
+            {sn:"KAI5639",name:"KAIZEN WELLNESS LLC"},
+            {sn:"KCE1729",name:"KC EATERY LLC"},
+            {sn:"KCH6624",name:"K CONCEPTS LLC"},
+            {sn:"KGR1062",name:"KGR WHITEHAVEN LLC"},
+            {sn:"KGR1614",name:"KGR SOUTH MAIN LLC"},
+            {sn:"KGR5426",name:"KGR POPLAR LLC"},
+            {sn:"KGR5917",name:"KGR- AMERICAN WAY LLC"},
+            {sn:"KGR7665",name:"KGR COOPER LLC"},
+            {sn:"KH54904",name:"KH525 LLC"},
+            {sn:"KHE7022",name:"KH EXECUTIVE SECURITY CONSULTANTS LLC"},
+            {sn:"KOL8642",name:"KOLB DEVELOPMENTS, LLC"},
+            {sn:"LAN7985",name:"LANDMARK HEATING & AIR CONDITIONING, INC"},
+            {sn:"LAN9053",name:"LAND ACADEMY INC"},
+            {sn:"LAT4878",name:"LATINO MEMPHIS INC"},
+            {sn:"LEE9124",name:"LEE HEALTHCARE, INC"},
+            {sn:"LET001",name:"LETTUCE EAT, LLC"},
+            {sn:"LET7956",name:"LETTUCE EAT MIDTOWN, LLC"},
+            {sn:"LIV003",name:"LIVE HAUL PRODUCTS, INC."},
+            {sn:"LLA001",name:"LLANO ESTACADO HEALTHCARE LLC"},
+            {sn:"LMT001",name:"LAWSON MUTUAL OF TEXAS, LLC"},
+            {sn:"LOF001",name:"LOFLIN YARD, LLC"},
+            {sn:"LON001",name:"LONE STAR CAKES, LLC"},
+            {sn:"LOV002",name:"LOVE MARKERS, LLC"},
+            {sn:"LSU001",name:"LSUB, LLC"},
+            {sn:"LSU003",name:"LSUB SD, LLC"},
+            {sn:"LSU004",name:"LSUB SV, LLC"},
+            {sn:"LSU005",name:"LSUB-MILL, LLC"},
+            {sn:"LWL7532",name:"LWL - HELLO, LLC"},
+            {sn:"MAN7663",name:"MANGO SHEET METAL LLC"},
+            {sn:"MCE001",name:"MCEVOY, JEFFREY & EMILY"},
+            {sn:"ME30755",name:"ME3 CAPITAL, LLC"},
+            {sn:"MED0266",name:"MEDIPLAN PROPERTIES LLC"},
+            {sn:"MED9575",name:"MEDIPLAN HOLDINGS LLC"},
+            {sn:"MEM1682",name:"MEMPHIS PSYCHIATRY PLLC"},
+            {sn:"MID0432",name:"MID-SOUTH NEPHROLOGY CONSULTANTS PLLC"},
+            {sn:"MID1689",name:"MIDSOUTH SENIOR CONSULT INC"},
+            {sn:"MOS7850",name:"MOSELEY'S AUTOMOTIVE SERVICES & SALES LLC"},
+            {sn:"MRA001",name:"MEMPHIS RESTAURANT ASSOCIATION"},
+            {sn:"MRA002",name:"MRA POLITICAL ACTION COMMITTEE"},
+            {sn:"MTP001",name:"MOUNT PLEASANT SC-BAKERY CORPORATION"},
+            {sn:"MTP809",name:"MOUNT PLEASANT SC BAKERY CORPORATION - CHARLESTON"},
+            {sn:"MVA6013",name:"MVAG INC."},
+            {sn:"MWE001",name:"M.W.ESCUE COMPANY, INC."},
+            {sn:"NBC3625",name:"NBC BILLINGS LLC"},
+            {sn:"NEW1960",name:"NEW URBAN MEDIA"},
+            {sn:"NOR004",name:"NAHL II, LLC"},
+            {sn:"NOR4656",name:"THE NORTH END, LLC"},
+            {sn:"NUT3674",name:"NUTRITION CENTER"},
+            {sn:"PAT015",name:"HYDRA FIRE PROTECTION, LLC"},
+            {sn:"PED002",name:"PEDIATRIC PARTNERS OF NASHVILLE PLLC"},
+            {sn:"PHC002",name:"PRESIDENTE HOME CARE, INC"},
+            {sn:"PIL002",name:"PILLAR BUILDING SOLUTIONS, LLC"},
+            {sn:"PIM3014",name:"BELLE MEADE SOCIAL LLC"},
+            {sn:"PIN7883",name:"PINK FLAMINGO LLC"},
+            {sn:"PLA2134",name:"PLAYA EAST MEMPHIS LLC"},
+            {sn:"PRA002",name:"PRAVINCHANDRA P PATEL MD PC"},
+            {sn:"PUZ1455",name:"PUZZOL CREATIVE CONSULTING LLC"},
+            {sn:"PUZ2621",name:"PUZZOL HOLDINGS LLC"},
+            {sn:"PUZ2860",name:"THE ESCAPE ROOM ALABAMA, LLC"},
+            {sn:"QUA6056",name:"QUALITY HOME HEALTH CARE INC"},
+            {sn:"RAM1111",name:"RAMBLIN' JOE'S"},
+            {sn:"REL6043",name:"RELIANT PROPERTY SERVICES, LP"},
+            {sn:"REL8723",name:"RELEASE COATINGS LLC"},
+            {sn:"RGG7611",name:"RGGC FLOORING"},
+            {sn:"RIC004",name:"RICH-WAY LANDSCAPE, INC."},
+            {sn:"RNE5277",name:"R N ENTERPRISE INC"},
+            {sn:"ROB012",name:"ROBBINS SOLID SOLUTIONS, LLC"},
+            {sn:"RSC001",name:"RSCB HOLDINGS, LLC - FKA- CENTRAL BBQ"},
+            {sn:"RTK4369",name:"RTK COMPONENTS, LLC"},
+            {sn:"RYA9696",name:"RYANJEN219 LLC"},
+            {sn:"SCA2019",name:"SCARY GARY 2, INC"},
+            {sn:"SCA3419",name:"SCARY GARY LLC"},
+            {sn:"SEN004",name:"SENATOBIA DENTAL STUDIO, PLLC"},
+            {sn:"SHO2053",name:"SHOEMAKER INSURANCE SOLUTIONS INC"},
+            {sn:"SID002",name:"SIDDIHIVINAYAK, INC."},
+            {sn:"SLB9389",name:"SLB ENTERPRISE INC"},
+            {sn:"SOL5321",name:"SOL 2 SOUL YOGA, LLC"},
+            {sn:"SOM4671",name:"SOMETHING DESI LLC"},
+            {sn:"SOU6458",name:"SOUTHERN PEDIATRICS, LLC"},
+            {sn:"SPA1352",name:"SPANOW, LLC"},
+            {sn:"SRH003",name:"SAN RAFAEL HEALTHCARE, INC."},
+            {sn:"STA1111",name:"STAGE LEFT"},
+            {sn:"STE1111",name:"STEAK ESCAPE COLLIERVILLE"},
+            {sn:"STE1112",name:"STEAK ESCAPE JACKSON"},
+            {sn:"SUN002TN",name:"SUNRISE CENTRAL, LLC DBA SUNRISE MEMPHIS"},
+            {sn:"SUN004",name:"SUNFLOWER BAKEHOUSE, LLC"},
+            {sn:"SUN6209",name:"SUNRISE POPLAR, LLC"},
+            {sn:"SWE003",name:"SWEETRENEE, LLC"},
+            {sn:"TAM5258",name:"TAMBOLI'S LLC"},
+            {sn:"TDJ7794",name:"TDJ 77 LLC"},
+            {sn:"TEA9817",name:"TEAMWEAR GRAPHICS LLC"},
+            {sn:"TER007",name:"TERREL I INVESTMENTS, LLC"},
+            {sn:"TER008",name:"TERREL II INVESTMENTS, LLC"},
+            {sn:"TEX3021",name:"TEXAS STORM GROUP LLC"},
+            {sn:"TIN001",name:"JAMES J & TERESA A KNAUS PTR"},
+            {sn:"TON6012",name:"TONICA LLC"},
+            {sn:"TRA003",name:"THE TRANSFORMATION CENTER FOR WOMEN, LLC"},
+            {sn:"TRI003",name:"TRILOGY MARKETING, INC."},
+            {sn:"TTK9883",name:"TTKBG INC."},
+            {sn:"TWO1977",name:"TWO RIVERS POWER, LLC"},
+            {sn:"U362393",name:"U360 PC"},
+            {sn:"UNB1501",name:"UNBROKEN219 LLC"},
+            {sn:"UNB8167",name:"UNBROKEN220 LLC"},
+            {sn:"USA6650",name:"USA KARATE MMA LLC"},
+            {sn:"VAL001",name:"VALEO DESIGN AND MARKETING, IN"},
+            {sn:"VCR9528",name:"VC RESTAURANT GROUP, LLC"},
+            {sn:"VEC001",name:"VECTAIR USA, LLC"},
+            {sn:"VEN001",name:"VENTURE MOTOR LINES, LLC"},
+            {sn:"VIL2554",name:"VILONIA METAL WORKS, INC"},
+            {sn:"VIL9528",name:"VILLA CASTRIOTI - LAKE DISTRICT"},
+            {sn:"VRS001",name:"VRSSSE PROPERTIES, LLC"},
+            {sn:"WEC002",name:"WECARE PROPERTIES LLC"},
+            {sn:"WES003",name:"WEST STONE WORKS CO, INC."},
+            {sn:"WIL5900",name:"JOSHUA CREWS"},
+            {sn:"WIS001",name:"PATTERSON BRAY PLLC"},
+            {sn:"WOL003",name:"WOLF RIVER CONSERVANCY, INC."},
+            {sn:"WRR001",name:"HERITAGE LAND AND DEVELOPMENT, LLC"},
+            {sn:"YXG2520",name:"YX GIVES"},
+            {sn:"ZAP5075",name:"ZAP LLC"},
+            {sn:"ZEN3796",name:"ZENFIRE ATL LLC"},
+            {sn:"ZON4300",name:"ZONKHEAD, LLC"}
+        ];
+
+        // Build a quick lookup by serial number
+        const qountBySN = {};
+        QOUNT_MASTER_LIST.forEach(c => { qountBySN[c.sn] = c; });
+
+        // In-memory state
+        let allClients = [];
+        let airtableOrphans = [];
+        const skippedState = {};
+        let currentFilter = 'all';
+        let currentSearch = '';
+
+        async function fetchAirtableStatus() {
+            const airtableRecords = [];
+            let offset = null;
+
+            try {
+                while (true) {
+                    const params = new URLSearchParams();
+                    params.append('returnFieldsByFieldId', 'true');
+                    if (offset) {
+                        params.append('offset', offset);
+                    }
+
+                    const response = await fetch(`${AIRTABLE_URL}?${params.toString()}`, {
+                        headers: {
+                            'Authorization': `Bearer ${AIRTABLE_API_TOKEN}`
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Airtable API error: ${response.status} ${response.statusText}`);
+                    }
+
+                    const data = await response.json();
+
+                    data.records.forEach(record => {
+                        const fields = record.fields;
+                        const rawStatus = fields[FIELD_IDS.status];
+                        const status = (typeof rawStatus === 'object' && rawStatus !== null) ? rawStatus.name : (rawStatus || "Pending");
+
+                        if (status !== "Invalid") {
+                            airtableRecords.push({
+                                id: record.id,
+                                company_name: fields[FIELD_IDS.company_name] || "",
+                                serial_number: fields[FIELD_IDS.serial_number] || "",
+                                status: status,
+                                realm_id: fields[FIELD_IDS.realm_id] || ""
+                            });
+                        }
+                    });
+
+                    offset = data.offset;
+                    if (!offset) break;
+                }
+
+                // Build Airtable lookup by serial number (normalize SN_ prefix)
+                const airtableBySN = {};
+                airtableRecords.forEach(r => {
+                    airtableBySN[r.serial_number] = r;
+                    // Also index without SN_ prefix so Qount SNs match
+                    const stripped = r.serial_number.replace(/^SN_/, '');
+                    if (stripped !== r.serial_number) {
+                        airtableBySN[stripped] = r;
+                    }
+                });
+
+                // Cross-reference: build the merged client list from Qount master
+                allClients = QOUNT_MASTER_LIST.map(qc => {
+                    const atRec = airtableBySN[qc.sn];
+                    if (atRec) {
+                        return {
+                            id: atRec.id,
+                            company_name: qc.name,
+                            serial_number: qc.sn,
+                            status: atRec.status,
+                            realm_id: atRec.realm_id
+                        };
+                    } else {
+                        return {
+                            id: 'missing_' + qc.sn,
+                            company_name: qc.name,
+                            serial_number: qc.sn,
+                            status: 'Not in Airtable',
+                            realm_id: ''
+                        };
+                    }
+                });
+
+                // Sort alphabetically by company name
+                allClients.sort((a, b) => a.company_name.localeCompare(b.company_name));
+
+                // Find Airtable orphans (records NOT in Qount master list, normalize SN_ prefix)
+                airtableOrphans = airtableRecords.filter(ar => {
+                    const stripped = ar.serial_number.replace(/^SN_/, '');
+                    return !qountBySN[ar.serial_number] && !qountBySN[stripped];
+                });
+
+                hideLoading();
+                renderRemovalSection();
+                renderTable();
+                updateSummary();
+
+            } catch (error) {
+                showError(`Failed to fetch from Airtable: ${error.message}. The master client list is still shown below.`);
+                // Fall back to showing Qount list without Airtable status
+                allClients = QOUNT_MASTER_LIST.map(qc => ({
+                    id: 'offline_' + qc.sn,
+                    company_name: qc.name,
+                    serial_number: qc.sn,
+                    status: 'Unknown',
+                    realm_id: ''
+                }));
+                allClients.sort((a, b) => a.company_name.localeCompare(b.company_name));
+                hideLoading();
+                renderTable();
+                updateSummary();
+            }
+        }
+
+        function showError(message) {
+            const errorEl = document.getElementById('errorMessage');
+            errorEl.textContent = message;
+            errorEl.style.display = 'block';
+            document.getElementById('loadingSpinner').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingSpinner').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+        }
+
+        function renderRemovalSection() {
+            if (airtableOrphans.length === 0) return;
+
+            const section = document.getElementById('removalSection');
+            const list = document.getElementById('removalList');
+
+            list.innerHTML = airtableOrphans.map(o =>
+                `<li><strong>${escapeHtml(o.serial_number)}</strong> — ${escapeHtml(o.company_name)} (Status: ${escapeHtml(o.status)})</li>`
+            ).join('');
+
+            section.style.display = 'block';
+        }
+
+        function getFilteredClients() {
+            return allClients.filter(client => {
+                if (skippedState[client.id]) return false;
+
+                const matchesSearch = client.company_name.toLowerCase().includes(currentSearch.toLowerCase()) ||
+                                     client.serial_number.toLowerCase().includes(currentSearch.toLowerCase());
+
+                if (currentFilter === 'completed') {
+                    return matchesSearch && client.status === 'Active';
+                } else if (currentFilter === 'pending') {
+                    return matchesSearch && client.status === 'Pending';
+                } else if (currentFilter === 'missing') {
+                    return matchesSearch && client.status === 'Not in Airtable';
+                } else {
+                    return matchesSearch;
+                }
+            });
+        }
+
+        function updateSummary() {
+            const visible = allClients.filter(c => !skippedState[c.id]);
+            const connected = visible.filter(c => c.status === 'Active').length;
+            const pending = visible.filter(c => c.status === 'Pending').length;
+            const missing = visible.filter(c => c.status === 'Not in Airtable').length;
+            const total = visible.length;
+
+            document.getElementById('totalCount').textContent = total;
+            document.getElementById('connectedCount').textContent = connected;
+            document.getElementById('pendingCount').textContent = pending;
+            document.getElementById('missingCount').textContent = missing;
+
+            document.getElementById('completedCountBar').textContent = connected;
+            document.getElementById('totalCountBar').textContent = total;
+
+            if (total > 0) {
+                document.getElementById('progressFill').style.width = ((connected / total) * 100) + '%';
+            }
+        }
+
+        function toggleSkip(clientId) {
+            if (skippedState[clientId]) {
+                delete skippedState[clientId];
+            } else {
+                skippedState[clientId] = true;
+            }
+
+            const skippedCount = Object.keys(skippedState).length;
+            const skipCounter = document.getElementById('skipCounter');
+            if (skippedCount > 0) {
+                skipCounter.classList.add('visible');
+                document.getElementById('skipCount').textContent = skippedCount;
+            } else {
+                skipCounter.classList.remove('visible');
+            }
+
+            updateSummary();
+            renderTable();
+        }
+
+        function renderTable() {
+            const filtered = getFilteredClients();
+            const tbody = document.getElementById('clientsTable');
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="5" style="padding: 40px;">
+                            <div class="empty-state">
+                                <p>No clients found</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            let rowNum = 1;
+            tbody.innerHTML = filtered.map(client => {
+                const isCompleted = client.status === 'Active';
+                const isMissing = client.status === 'Not in Airtable';
+                const rowClass = isCompleted ? 'completed' : '';
+
+                let statusClass = 'status-pending';
+                if (isCompleted) statusClass = 'status-active';
+                if (isMissing) statusClass = 'status-missing';
+
+                let actionHtml = '';
+                if (isCompleted) {
+                    actionHtml = '<span class="connected-badge"><span class="checkmark">&#10003;</span>Connected</span>';
+                } else {
+                    actionHtml = `<button class="authorize-btn" onclick="openOAuth('${escapeHtml(client.serial_number)}')">Authorize</button>`;
+                }
+
+                return `
+                    <tr class="${rowClass}" data-client-id="${escapeHtml(client.id)}">
+                        <td class="row-number">${rowNum++}</td>
+                        <td><span class="sn">${escapeHtml(client.serial_number)}</span></td>
+                        <td><span class="company-name">${escapeHtml(client.company_name)}</span></td>
+                        <td>
+                            <span class="status-badge ${statusClass}">
+                                ${escapeHtml(client.status)}
+                            </span>
+                        </td>
+                        <td>
+                            <div class="actions">
+                                ${actionHtml}
+                                <button class="skip-btn" onclick="toggleSkip('${escapeHtml(client.id)}')">Skip</button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function openOAuth(sn) {
+            const oauthUrl = `${OAUTH_BASE_URL}&state=SN_${encodeURIComponent(sn)}`;
+            window.open(oauthUrl, '_blank', 'width=800,height=600');
+        }
+
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            currentSearch = e.target.value;
+            renderTable();
+        });
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                currentFilter = e.target.dataset.filter;
+                renderTable();
+            });
+        });
+
+        document.getElementById('refreshBtn').addEventListener('click', () => {
+            document.getElementById('loadingSpinner').style.display = 'block';
+            document.getElementById('mainContent').style.display = 'none';
+            fetchAirtableStatus();
+        });
+
+        // Initial load
+        window.addEventListener('load', () => {
+            document.getElementById('loadingSpinner').style.display = 'block';
+            fetchAirtableStatus();
+        });
+    </script>
+</body>
+</html>
