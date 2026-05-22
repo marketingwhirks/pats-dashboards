@@ -1,0 +1,8 @@
+{
+  "_comment": "Sample for testing the not_ready state. ?client=demo-not-ready",
+  "client_id": "demo-not-ready",
+  "firm_id": "pats",
+  "client_name": "Demo Restaurant LLC",
+  "period": { "month": "2026-04" },
+  "state": "not_ready"
+}

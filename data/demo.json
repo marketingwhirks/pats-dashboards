@@ -1,0 +1,35 @@
+{
+  "_comment": "Hand-curated sample data for the A2 renderer. Replace with real PATS client data in A3.",
+  "client_id": "demo",
+  "firm_id": "pats",
+  "client_name": "Demo Restaurant LLC",
+  "industry": "restaurant",
+  "revenue_band": "100k-250k",
+  "period": { "month": "2026-04", "as_of": "2026-05-22T00:00:00Z" },
+  "state": "ready",
+  "score": { "value": 78, "grade": "B", "delta_vs_last_month": 4 },
+  "score_components": {
+    "gross_margin":   { "value": 0.42, "weight": 0.30 },
+    "expense_ratio":  { "value": 0.58, "weight": 0.25 },
+    "cash_days":      { "value": 47,   "weight": 0.20 },
+    "books_health":   { "value": 0.91, "weight": 0.15 },
+    "streak":         { "value": 6,    "weight": 0.10 }
+  },
+  "score_history": [
+    { "month": "2025-11", "value": 64 },
+    { "month": "2025-12", "value": 66 },
+    { "month": "2026-01", "value": 70 },
+    { "month": "2026-02", "value": 72 },
+    { "month": "2026-03", "value": 74 },
+    { "month": "2026-04", "value": 78 }
+  ],
+  "kpis": {
+    "revenue":        { "value": 184000, "sparkline": [158000, 162000, 171000, 169000, 178000, 184000] },
+    "cash_on_hand":   { "value": 62000,  "sparkline": [41000, 44000, 49000, 52000, 58000, 62000] },
+    "gross_margin":   { "value": 0.42,   "sparkline": [0.36, 0.37, 0.39, 0.40, 0.41, 0.42] },
+    "expense_ratio":  { "value": 0.58,   "sparkline": [0.64, 0.63, 0.61, 0.60, 0.59, 0.58] },
+    "books_health":   { "value": 0.91,   "sparkline": [0.78, 0.82, 0.85, 0.87, 0.89, 0.91] },
+    "ai_approval":    { "value": 0.87,   "sparkline": [0.72, 0.76, 0.80, 0.83, 0.85, 0.87] }
+  },
+  "accountant_note": "April revenue was up 8% over March. Food cost crept to 33% — recommend renegotiating with your primary produce vendor before May. Cash position is the strongest it has been in six months."
+}

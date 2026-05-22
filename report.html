@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0b0f1a">
+    <title>Your Financial Report — Better2</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <style>
+        :root {
+            --bg: #0b0f1a;
+            --bg-elev: #131826;
+            --bg-card: #1a1f2e;
+            --border: rgba(255,255,255,0.08);
+            --border-strong: rgba(255,255,255,0.16);
+            --text: #ffffff;
+            --text-dim: #9aa3b2;
+            --text-mute: #6b7280;
+            --accent: #4a90e2;
+            --good: #51cf66;
+            --warn: #ffd43b;
+            --bad: #ff6b6b;
+            --grade-a: #51cf66;
+            --grade-b: #94d82d;
+            --grade-c: #ffd43b;
+            --grade-d: #ff922b;
+            --grade-f: #ff6b6b;
+            --nav-h: 64px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        html, body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        body {
+            padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px));
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        /* ---- Header ---- */
+        .app-header {
+            padding: 16px 20px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .wordmark {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        .wordmark span { color: var(--accent); }
+        .firm-tag {
+            font-size: 11px;
+            color: var(--text-mute);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .client-meta {
+            padding: 0 20px 16px;
+        }
+        .client-name {
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .client-period {
+            font-size: 13px;
+            color: var(--text-dim);
+            margin-top: 2px;
+        }
+
+        /* ---- State banners ---- */
+        .state-banner {
+            margin: 0 20px 16px;
+            padding: 14px 16px;
+            border-radius: 10px;
+            font-size: 14px;
+            line-height: 1.4;
+            display: none;
+        }
+        .state-banner.show { display: block; }
+        .state-banner.stale {
+            background: rgba(255, 212, 59, 0.10);
+            border: 1px solid rgba(255, 212, 59, 0.30);
+            color: #ffd43b;
+        }
+        .state-banner.not-ready {
+            background: rgba(74, 144, 226, 0.10);
+            border: 1px solid rgba(74, 144, 226, 0.30);
+            color: var(--accent);
+        }
+
+        .full-state {
+            display: none;
+            padding: 60px 24px;
+            text-align: center;
+        }
+        .full-state.show { display: block; }
+        .full-state h2 { font-size: 22px; margin-bottom: 8px; }
+        .full-state p { color: var(--text-dim); font-size: 15px; line-height: 1.5; }
+
+        /* ---- Score hero ---- */
+        .score-hero {
+            padding: 8px 20px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .score-ring-wrap {
+            position: relative;
+            width: 220px;
+            height: 220px;
+        }
+        .score-ring-wrap svg {
+            transform: rotate(-90deg);
+            width: 100%;
+            height: 100%;
+        }
+        .ring-track {
+            fill: none;
+            stroke: rgba(255,255,255,0.06);
+            stroke-width: 14;
+        }
+        .ring-fill {
+            fill: none;
+            stroke-width: 14;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .score-center {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .score-value {
+            font-size: 64px;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -2px;
+        }
+        .score-label {
+            font-size: 11px;
+            color: var(--text-mute);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 4px;
+        }
+        .grade-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            font-size: 24px;
+            font-weight: 800;
+            margin-top: 16px;
+        }
+        .delta {
+            font-size: 13px;
+            margin-top: 10px;
+            color: var(--text-dim);
+        }
+        .delta-up { color: var(--good); }
+        .delta-down { color: var(--bad); }
+
+        /* ---- Section ---- */
+        .section {
+            padding: 0 20px 24px;
+        }
+        .section-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-mute);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 12px;
+        }
+
+        /* ---- History chart ---- */
+        .history-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 16px;
+        }
+        .history-card canvas {
+            width: 100% !important;
+            height: 140px !important;
+        }
+
+        /* ---- KPI grid ---- */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .kpi-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 14px;
+            min-height: 110px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .kpi-label {
+            font-size: 11px;
+            color: var(--text-mute);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 600;
+        }
+        .kpi-value {
+            font-size: 22px;
+            font-weight: 700;
+            margin-top: 4px;
+            line-height: 1.1;
+        }
+        .kpi-spark {
+            width: 100%;
+            height: 28px;
+            margin-top: 6px;
+        }
+
+        /* ---- Accountant note ---- */
+        .note-card {
+            background: linear-gradient(135deg, rgba(74,144,226,0.12), rgba(74,144,226,0.04));
+            border: 1px solid rgba(74,144,226,0.25);
+            border-radius: 14px;
+            padding: 16px;
+        }
+        .note-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-size: 12px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+        .note-body {
+            font-size: 15px;
+            line-height: 1.5;
+            color: var(--text);
+        }
+
+        /* ---- Bottom nav ---- */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 560px;
+            height: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px));
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+            background: rgba(11, 15, 26, 0.92);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-top: 1px solid var(--border);
+            display: flex;
+            z-index: 100;
+        }
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            color: var(--text-mute);
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+            transition: color 0.15s ease;
+            border: none;
+            background: transparent;
+            padding: 0;
+        }
+        .nav-item.active { color: var(--accent); }
+        .nav-icon {
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        /* ---- Tab panels ---- */
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; }
+
+        .placeholder-tab {
+            padding: 80px 24px;
+            text-align: center;
+        }
+        .placeholder-tab .ph-icon {
+            font-size: 48px;
+            opacity: 0.4;
+            margin-bottom: 12px;
+        }
+        .placeholder-tab h2 {
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+        .placeholder-tab p {
+            color: var(--text-dim);
+            font-size: 14px;
+            max-width: 280px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* ---- Loading ---- */
+        .loading {
+            padding: 80px 24px;
+            text-align: center;
+            color: var(--text-dim);
+        }
+        .spinner {
+            width: 28px;
+            height: 28px;
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 16px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (min-width: 561px) {
+            body {
+                box-shadow: 0 0 0 1px var(--border);
+                min-height: 100vh;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Loading state -->
+<div id="loading" class="loading">
+    <div class="spinner"></div>
+    Loading your report…
+</div>
+
+<!-- Full-page state (not_ready) -->
+<div id="state-not-ready" class="full-state">
+    <h2>Your report isn't ready yet</h2>
+    <p>Your accountant is still working on this month. You'll get a notification when it's ready.</p>
+</div>
+
+<!-- Main content -->
+<div id="main" style="display:none;">
+    <header class="app-header">
+        <div class="wordmark">Better<span>2</span></div>
+        <div class="firm-tag" id="firm-tag">Patrick Accounting</div>
+    </header>
+
+    <div class="client-meta">
+        <div class="client-name" id="client-name">—</div>
+        <div class="client-period" id="client-period">—</div>
+    </div>
+
+    <div id="banner-stale" class="state-banner stale">
+        These financials are from <span id="stale-month">—</span>. The current month is still in progress.
+    </div>
+
+    <!-- Score tab -->
+    <div id="tab-score" class="tab-panel active">
+        <div class="score-hero">
+            <div class="score-ring-wrap">
+                <svg viewBox="0 0 200 200">
+                    <circle class="ring-track" cx="100" cy="100" r="86"></circle>
+                    <circle id="ring-fill" class="ring-fill" cx="100" cy="100" r="86"
+                            stroke-dasharray="540.354" stroke-dashoffset="540.354"></circle>
+                </svg>
+                <div class="score-center">
+                    <div class="score-value" id="score-value">—</div>
+                    <div class="score-label">Score</div>
+                </div>
+            </div>
+            <div class="grade-pill" id="grade-pill">—</div>
+            <div class="delta" id="delta">—</div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Score History · 6 Months</div>
+            <div class="history-card">
+                <canvas id="history-chart"></canvas>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Key Metrics</div>
+            <div class="kpi-grid" id="kpi-grid"></div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">From Your Accountant</div>
+            <div class="note-card">
+                <div class="note-header">◆ Note</div>
+                <div class="note-body" id="accountant-note">—</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Goals tab (scaffold for C1) -->
+    <div id="tab-goals" class="tab-panel">
+        <div class="placeholder-tab">
+            <div class="ph-icon">⬟</div>
+            <h2>Goals</h2>
+            <p>Your accountant will assign 1–3 goals here each quarter to help you improve your score.</p>
+        </div>
+    </div>
+
+    <!-- Benchmarks tab (scaffold for C2) -->
+    <div id="tab-benchmarks" class="tab-panel">
+        <div class="placeholder-tab">
+            <div class="ph-icon">▲</div>
+            <h2>Benchmarks</h2>
+            <p>See how your business compares to similar businesses in your industry and revenue band.</p>
+        </div>
+    </div>
+
+    <!-- Badges tab (scaffold for C4) -->
+    <div id="tab-badges" class="tab-panel">
+        <div class="placeholder-tab">
+            <div class="ph-icon">✦</div>
+            <h2>Badges</h2>
+            <p>Earn badges as you hit milestones — clean books, top margin, cash positive, and more.</p>
+        </div>
+    </div>
+
+    <nav class="bottom-nav">
+        <button class="nav-item active" data-tab="score">
+            <div class="nav-icon">◎</div>
+            <div>Score</div>
+        </button>
+        <button class="nav-item" data-tab="goals">
+            <div class="nav-icon">⬟</div>
+            <div>Goals</div>
+        </button>
+        <button class="nav-item" data-tab="benchmarks">
+            <div class="nav-icon">▲</div>
+            <div>Benchmarks</div>
+        </button>
+        <button class="nav-item" data-tab="badges">
+            <div class="nav-icon">✦</div>
+            <div>Badges</div>
+        </button>
+    </nav>
+</div>
+
+<script>
+(function () {
+    const RING_R = 86;
+    const RING_C = 2 * Math.PI * RING_R; // ≈ 540.354
+
+    const params = new URLSearchParams(window.location.search);
+    const clientParam = (params.get('client') || 'demo').replace(/[^a-z0-9_-]/gi, '');
+    const dataUrl = `data/${clientParam}.json`;
+
+    function gradeColor(grade) {
+        const g = (grade || '').toUpperCase()[0];
+        return {
+            A: 'var(--grade-a)', B: 'var(--grade-b)', C: 'var(--grade-c)',
+            D: 'var(--grade-d)', F: 'var(--grade-f)'
+        }[g] || 'var(--text-mute)';
+    }
+
+    function ringColor(score) {
+        if (score >= 85) return '#51cf66';
+        if (score >= 70) return '#94d82d';
+        if (score >= 55) return '#ffd43b';
+        if (score >= 40) return '#ff922b';
+        return '#ff6b6b';
+    }
+
+    function fmtCurrency(v) {
+        if (v == null) return '—';
+        const abs = Math.abs(v);
+        if (abs >= 1_000_000) return '$' + (v / 1_000_000).toFixed(abs >= 10_000_000 ? 0 : 1) + 'M';
+        if (abs >= 1_000) return '$' + (v / 1_000).toFixed(abs >= 10_000 ? 0 : 1) + 'K';
+        return '$' + Math.round(v).toLocaleString();
+    }
+    function fmtPct(v) {
+        if (v == null) return '—';
+        return (v * 100).toFixed(1) + '%';
+    }
+    function fmtDays(v) {
+        if (v == null) return '—';
+        return Math.round(v) + ' days';
+    }
+
+    function fmtPeriod(period) {
+        if (!period || !period.month) return '—';
+        const [y, m] = period.month.split('-').map(Number);
+        const name = ['January','February','March','April','May','June','July','August','September','October','November','December'][m - 1];
+        return `${name} ${y}`;
+    }
+
+    function fmtPeriodShort(month) {
+        if (!month) return '—';
+        const [y, m] = month.split('-').map(Number);
+        const name = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][m - 1];
+        return `${name} ${y}`;
+    }
+
+    function sparkline(values, color) {
+        if (!values || values.length < 2) return '';
+        const w = 160, h = 28, pad = 2;
+        const min = Math.min(...values);
+        const max = Math.max(...values);
+        const range = max - min || 1;
+        const step = (w - pad * 2) / (values.length - 1);
+        const points = values.map((v, i) => {
+            const x = pad + i * step;
+            const y = h - pad - ((v - min) / range) * (h - pad * 2);
+            return `${x.toFixed(1)},${y.toFixed(1)}`;
+        }).join(' ');
+        const lastX = pad + (values.length - 1) * step;
+        const lastY = h - pad - ((values[values.length-1] - min) / range) * (h - pad * 2);
+        return `
+            <svg class="kpi-spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
+                <polyline points="${points}" fill="none" stroke="${color}" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" opacity="0.85"/>
+                <circle cx="${lastX.toFixed(1)}" cy="${lastY.toFixed(1)}" r="2.5" fill="${color}"/>
+            </svg>
+        `;
+    }
+
+    const KPI_DEFS = [
+        { key: 'revenue',       label: 'Revenue',         fmt: fmtCurrency, color: '#4a90e2' },
+        { key: 'cash_on_hand',  label: 'Cash on Hand',    fmt: fmtCurrency, color: '#51cf66' },
+        { key: 'gross_margin',  label: 'Gross Margin',    fmt: fmtPct,      color: '#94d82d' },
+        { key: 'expense_ratio', label: 'Expense Ratio',   fmt: fmtPct,      color: '#ffd43b' },
+        { key: 'books_health',  label: 'Books Health',    fmt: fmtPct,      color: '#9775fa' },
+        { key: 'ai_approval',   label: 'AI Approval Rate', fmt: fmtPct,     color: '#22b8cf' }
+    ];
+
+    function renderKpis(kpis) {
+        const grid = document.getElementById('kpi-grid');
+        grid.innerHTML = KPI_DEFS.map(def => {
+            const kpi = (kpis || {})[def.key] || {};
+            const value = def.fmt(kpi.value);
+            const spark = sparkline(kpi.sparkline, def.color);
+            return `
+                <div class="kpi-card">
+                    <div>
+                        <div class="kpi-label">${def.label}</div>
+                        <div class="kpi-value">${value}</div>
+                    </div>
+                    ${spark}
+                </div>
+            `;
+        }).join('');
+    }
+
+    function renderScoreRing(score) {
+        const ring = document.getElementById('ring-fill');
+        ring.style.stroke = ringColor(score);
+        ring.setAttribute('stroke-dasharray', RING_C.toFixed(3));
+        // Force a reflow so the transition runs from full → target
+        ring.setAttribute('stroke-dashoffset', RING_C.toFixed(3));
+        // eslint-disable-next-line no-unused-expressions
+        ring.getBoundingClientRect();
+        const pct = Math.max(0, Math.min(100, score)) / 100;
+        ring.setAttribute('stroke-dashoffset', (RING_C * (1 - pct)).toFixed(3));
+    }
+
+    function renderHistoryChart(history) {
+        const canvas = document.getElementById('history-chart');
+        if (!history || history.length === 0) return;
+        const labels = history.map(h => fmtPeriodShort(h.month));
+        const values = history.map(h => h.value);
+        const ctx = canvas.getContext('2d');
+        const gradient = ctx.createLinearGradient(0, 0, 0, 140);
+        gradient.addColorStop(0, 'rgba(74,144,226,0.45)');
+        gradient.addColorStop(1, 'rgba(74,144,226,0.02)');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels,
+                datasets: [{
+                    data: values,
+                    borderColor: '#4a90e2',
+                    backgroundColor: gradient,
+                    fill: true,
+                    tension: 0.35,
+                    borderWidth: 2.5,
+                    pointRadius: 3,
+                    pointBackgroundColor: '#4a90e2',
+                    pointBorderColor: '#0b0f1a',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false }, tooltip: {
+                    backgroundColor: '#1a1f2e',
+                    borderColor: 'rgba(255,255,255,0.12)',
+                    borderWidth: 1,
+                    padding: 10,
+                    callbacks: { label: (c) => `Score: ${c.parsed.y}` }
+                } },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#6b7280', font: { size: 11 } }
+                    },
+                    y: {
+                        min: 0, max: 100,
+                        grid: { color: 'rgba(255,255,255,0.04)' },
+                        ticks: { color: '#6b7280', font: { size: 11 }, stepSize: 25 }
+                    }
+                }
+            }
+        });
+    }
+
+    function renderReport(d) {
+        // Firm + client meta
+        document.getElementById('client-name').textContent = d.client_name || '—';
+        document.getElementById('client-period').textContent = fmtPeriod(d.period);
+
+        // Score hero
+        const score = d.score && d.score.value != null ? d.score.value : 0;
+        document.getElementById('score-value').textContent = score;
+        const grade = (d.score && d.score.grade) || '—';
+        const gradePill = document.getElementById('grade-pill');
+        gradePill.textContent = grade;
+        gradePill.style.background = `${gradeColor(grade)}22`;
+        gradePill.style.color = gradeColor(grade);
+        gradePill.style.border = `1.5px solid ${gradeColor(grade)}`;
+
+        const delta = d.score && d.score.delta_vs_last_month;
+        const deltaEl = document.getElementById('delta');
+        if (delta == null) {
+            deltaEl.textContent = '';
+        } else if (delta > 0) {
+            deltaEl.innerHTML = `<span class="delta-up">▲ ${delta} pts</span> vs last month`;
+        } else if (delta < 0) {
+            deltaEl.innerHTML = `<span class="delta-down">▼ ${Math.abs(delta)} pts</span> vs last month`;
+        } else {
+            deltaEl.textContent = 'No change vs last month';
+        }
+
+        // Animate ring after a tick
+        setTimeout(() => renderScoreRing(score), 50);
+
+        // History
+        renderHistoryChart(d.score_history);
+
+        // KPIs
+        renderKpis(d.kpis);
+
+        // Note
+        document.getElementById('accountant-note').textContent =
+            d.accountant_note || 'No note from your accountant this month.';
+
+        // Stale banner
+        if (d.state === 'stale') {
+            document.getElementById('banner-stale').classList.add('show');
+            document.getElementById('stale-month').textContent = fmtPeriod(d.period);
+        }
+    }
+
+    function showNotReady() {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('state-not-ready').classList.add('show');
+    }
+
+    function showError(msg) {
+        document.getElementById('loading').innerHTML =
+            `<div style="color:#ff6b6b;">${msg}</div>`;
+    }
+
+    function wireNav() {
+        document.querySelectorAll('.nav-item').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tab = btn.dataset.tab;
+                document.querySelectorAll('.nav-item').forEach(b => b.classList.toggle('active', b === btn));
+                document.querySelectorAll('.tab-panel').forEach(p => {
+                    p.classList.toggle('active', p.id === `tab-${tab}`);
+                });
+                window.scrollTo({ top: 0, behavior: 'instant' });
+            });
+        });
+    }
+
+    fetch(dataUrl, { cache: 'no-store' })
+        .then(r => {
+            if (!r.ok) throw new Error(`Could not load report (${r.status})`);
+            return r.json();
+        })
+        .then(d => {
+            if (d.state === 'not_ready') {
+                showNotReady();
+                return;
+            }
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('main').style.display = 'block';
+            renderReport(d);
+            wireNav();
+        })
+        .catch(e => {
+            showError(`We couldn't load this report. Check your link or try again later.<br><br><span style="color:#6b7280;font-size:12px;">${e.message}</span>`);
+        });
+})();
+</script>
+
+</body>
+</html>
