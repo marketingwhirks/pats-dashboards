@@ -197,6 +197,48 @@
         .team-bar { height: 8px; background: rgba(255,255,255,0.06); border-radius: 4px; margin-top: 6px; }
         .team-bar-fill { height: 100%; border-radius: 4px; transition: width 0.5s ease; }
 
+
+        /* Data table (team detail, type detail) */
+        .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .data-table th {
+            text-align: left; padding: 10px 12px; background: rgba(74,144,226,0.1);
+            color: var(--text-secondary); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; white-space: nowrap;
+        }
+        .data-table th:hover { color: var(--text-primary); }
+        .data-table th .sort-arrow { font-size: 10px; margin-left: 4px; opacity: 0.4; }
+        .data-table th.sorted .sort-arrow { opacity: 1; color: var(--accent); }
+        .data-table td { padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+        .data-table tr:hover { background: rgba(255,255,255,0.03); }
+
+        /* Universal filter bar for any table section */
+        .table-filter-bar {
+            display: flex; gap: 10px; margin-bottom: 12px; align-items: center; flex-wrap: wrap;
+        }
+        .table-filter-bar .search-input {
+            padding: 8px 12px; background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+            border-radius: 6px; color: var(--text-primary); font-size: 13px; width: 260px;
+        }
+        .table-filter-bar .search-input::placeholder { color: var(--text-muted); }
+        .table-filter-bar .filter-select {
+            padding: 8px 12px; background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+            border-radius: 6px; color: var(--text-primary); font-size: 13px; cursor: pointer;
+        }
+        .table-filter-bar .filter-count {
+            font-size: 12px; color: var(--text-muted); margin-left: auto;
+        }
+
+        /* Type table sortable headers */
+        .type-table th { cursor: pointer; user-select: none; }
+        .type-table th:hover { color: var(--text-primary); }
+        .type-table th .sort-arrow { font-size: 10px; margin-left: 4px; opacity: 0.4; }
+        .type-table th.sorted .sort-arrow { opacity: 1; color: var(--accent); }
+
+        /* Opp filter bar */
+        .opp-filter-bar {
+            display: flex; gap: 10px; margin-bottom: 16px; align-items: center; flex-wrap: wrap;
+        }
+
         footer { text-align: center; padding: 24px 0 8px; font-size: 11px; color: var(--text-muted); }
 
         @media (max-width: 900px) {
@@ -268,14 +310,18 @@
         <div class="chart-card full" style="margin-bottom:16px">
             <div class="chart-title">Transaction Type Breakdown</div>
             <div class="chart-subtitle">Every transaction type, its volume, and what percentage is automated</div>
+            <div class="table-filter-bar">
+                <input type="text" class="search-input" id="typeSearch" placeholder="Search transaction types..." oninput="renderTypeTable(SCORECARD_DATA[currentMonth])">
+                <span class="filter-count" id="typeCount"></span>
+            </div>
             <table class="type-table" id="typeTable">
                 <thead>
                     <tr>
-                        <th>Transaction Type</th>
-                        <th style="text-align:right">Total</th>
-                        <th style="text-align:right">Automated</th>
-                        <th style="text-align:right">Manual</th>
-                        <th style="text-align:right">Auto %</th>
+                        <th onclick="sortTypeTable('name')">Transaction Type <span class="sort-arrow">&#x25B2;&#x25BC;</span></th>
+                        <th onclick="sortTypeTable('total')" style="text-align:right">Total <span class="sort-arrow">&#x25B2;&#x25BC;</span></th>
+                        <th onclick="sortTypeTable('auto')" style="text-align:right">Automated <span class="sort-arrow">&#x25B2;&#x25BC;</span></th>
+                        <th onclick="sortTypeTable('manual')" style="text-align:right">Manual <span class="sort-arrow">&#x25B2;&#x25BC;</span></th>
+                        <th onclick="sortTypeTable('rate')" style="text-align:right">Auto % <span class="sort-arrow">&#x25B2;&#x25BC;</span></th>
                         <th style="width:120px">Rate</th>
                     </tr>
                 </thead>
@@ -330,6 +376,23 @@
         <div class="chart-card full" style="margin-bottom:16px">
             <div class="chart-title">&#x1f3af; Automation Opportunity Finder</div>
             <div class="chart-subtitle">Clients ranked by potential impact. Each card shows what's manual and what could be automated.</div>
+            <div class="table-filter-bar" style="margin-top:12px">
+                <input type="text" class="search-input" id="oppSearch" placeholder="Search clients..." oninput="renderOpportunities(SCORECARD_DATA[currentMonth])">
+                <select class="filter-select" id="oppSort" onchange="renderOpportunities(SCORECARD_DATA[currentMonth])">
+                    <option value="manual-desc">Most Manual Txns</option>
+                    <option value="total-desc">Most Total Txns</option>
+                    <option value="rate-asc">Lowest Rate</option>
+                    <option value="rate-desc">Highest Rate</option>
+                    <option value="name">Alphabetical</option>
+                </select>
+                <select class="filter-select" id="oppImpact" onchange="renderOpportunities(SCORECARD_DATA[currentMonth])">
+                    <option value="all">All Impact Levels</option>
+                    <option value="high">High Impact Only</option>
+                    <option value="medium">Medium Impact Only</option>
+                    <option value="low">Low Impact Only</option>
+                </select>
+                <span class="filter-count" id="oppCount"></span>
+            </div>
         </div>
         <div id="oppList"></div>
     </div>
@@ -344,6 +407,24 @@
         <div class="chart-card full" style="margin-top:16px">
             <div class="chart-title">Team Client Detail</div>
             <div class="chart-subtitle">Click a team above to see its client breakdown.</div>
+            <div class="table-filter-bar" id="teamFilterBar" style="margin-top:12px;display:none">
+                <input type="text" class="search-input" id="teamClientSearch" placeholder="Search clients in team..." oninput="renderTeamDetail()">
+                <select class="filter-select" id="teamClientSort" onchange="renderTeamDetail()">
+                    <option value="manual-desc">Most Manual Txns</option>
+                    <option value="total-desc">Most Total Txns</option>
+                    <option value="rate-desc">Highest Rate</option>
+                    <option value="rate-asc">Lowest Rate</option>
+                    <option value="name">Alphabetical</option>
+                </select>
+                <select class="filter-select" id="teamTierFilter" onchange="renderTeamDetail()">
+                    <option value="all">All Tiers</option>
+                    <option value="elite">Elite (75-100%)</option>
+                    <option value="strong">Strong (50-74%)</option>
+                    <option value="developing">Developing (25-49%)</option>
+                    <option value="opportunity">Needs Work (0-24%)</option>
+                </select>
+                <span class="filter-count" id="teamClientCount"></span>
+            </div>
             <div id="teamClientDetail" style="margin-top:12px"></div>
         </div>
     </div>
@@ -598,37 +679,69 @@ function renderOverviewCharts(d) {
 }
 
 // ─── Type Table ───
+let typeSort = 'total-desc';
+function sortTypeTable(field) {
+    if (typeSort.startsWith(field)) {
+        typeSort = typeSort.endsWith('desc') ? field + '-asc' : field + '-desc';
+    } else {
+        typeSort = field + (field === 'name' ? '-asc' : '-desc');
+    }
+    renderTypeTable(SCORECARD_DATA[currentMonth]);
+}
+
 function renderTypeTable(d) {
     const bt = d.by_type;
-    const types = Object.keys(bt).sort((a,b) => bt[b].total - bt[a].total);
+    const search = (document.getElementById('typeSearch')?.value || '').toLowerCase();
+    let types = Object.keys(bt);
+    if (search) types = types.filter(t => t.toLowerCase().includes(search));
+
+    const [sf, sd] = typeSort.split('-');
+    const desc = sd === 'desc';
+    types.sort((a, b) => {
+        let va, vb;
+        if (sf === 'name') { va = a.toLowerCase(); vb = b.toLowerCase(); return desc ? vb.localeCompare(va) : va.localeCompare(vb); }
+        const sa = bt[a], sb = bt[b];
+        if (sf === 'total') { va = sa.total; vb = sb.total; }
+        else if (sf === 'auto') { va = sa.automated; vb = sb.automated; }
+        else if (sf === 'manual') { va = sa.manual; vb = sb.manual; }
+        else if (sf === 'rate') { va = sa.rate ?? sa.automation_rate ?? 0; vb = sb.rate ?? sb.automation_rate ?? 0; }
+        else { va = sa.total; vb = sb.total; }
+        return desc ? vb - va : va - vb;
+    });
+
+    const countEl = document.getElementById('typeCount');
+    if (countEl) countEl.textContent = types.length + ' types';
+
+    // Update header sort arrows
+    document.querySelectorAll('#typeTable th').forEach(th => th.classList.remove('sorted'));
+
     const tbody = document.getElementById('typeTableBody');
     let html = '';
     types.forEach(t => {
         const s = bt[t];
         const pct = s.rate ?? s.automation_rate ?? (s.total ? s.automated/s.total*100 : 0);
         const color = rateColor(pct);
-        html += `<tr>
-            <td style="font-weight:600">${t || '(empty)'}</td>
-            <td style="text-align:right">${formatNum(s.total)}</td>
-            <td style="text-align:right;color:var(--green)">${formatNum(s.automated)}</td>
-            <td style="text-align:right;color:var(--red)">${formatNum(s.manual)}</td>
-            <td style="text-align:right;font-weight:600;color:${color}">${pct.toFixed(1)}%</td>
-            <td><div class="rate-bar-bg"><div class="rate-bar-fill" style="width:${pct}%;background:${color}"></div></div></td>
-        </tr>`;
+        html += '<tr>' +
+            '<td style="font-weight:600">' + (t || '(empty)') + '</td>' +
+            '<td style="text-align:right">' + formatNum(s.total) + '</td>' +
+            '<td style="text-align:right;color:var(--green)">' + formatNum(s.automated) + '</td>' +
+            '<td style="text-align:right;color:var(--red)">' + formatNum(s.manual) + '</td>' +
+            '<td style="text-align:right;font-weight:600;color:' + color + '">' + pct.toFixed(1) + '%</td>' +
+            '<td><div class="rate-bar-bg"><div class="rate-bar-fill" style="width:' + pct + '%;background:' + color + '"></div></div></td>' +
+            '</tr>';
     });
     // Totals row
     const totT = Object.values(bt).reduce((a,b) => a + b.total, 0);
     const totA = Object.values(bt).reduce((a,b) => a + b.automated, 0);
     const totM = totT - totA;
     const totR = totT ? (totA/totT*100) : 0;
-    html += `<tr style="font-weight:700;border-top:2px solid var(--border)">
-        <td>TOTAL</td>
-        <td style="text-align:right">${formatNum(totT)}</td>
-        <td style="text-align:right;color:var(--green)">${formatNum(totA)}</td>
-        <td style="text-align:right;color:var(--red)">${formatNum(totM)}</td>
-        <td style="text-align:right;color:${rateColor(totR)}">${totR.toFixed(1)}%</td>
-        <td></td>
-    </tr>`;
+    html += '<tr style="font-weight:700;border-top:2px solid var(--border)">' +
+        '<td>TOTAL</td>' +
+        '<td style="text-align:right">' + formatNum(totT) + '</td>' +
+        '<td style="text-align:right;color:var(--green)">' + formatNum(totA) + '</td>' +
+        '<td style="text-align:right;color:var(--red)">' + formatNum(totM) + '</td>' +
+        '<td style="text-align:right;color:' + rateColor(totR) + '">' + totR.toFixed(1) + '%</td>' +
+        '<td></td></tr>';
     tbody.innerHTML = html;
 }
 
@@ -802,12 +915,44 @@ function sortClients(s) { currentSort = s; clientPage = 1; renderClients(SCORECA
 
 // ─── Opportunities ───
 function renderOpportunities(d) {
-    // Sort by manual txns descending
-    const clients = d.clients.slice().sort((a,b) => b[2] - a[2]).slice(0, 25);
+    let clients = d.clients.slice();
+    const search = (document.getElementById('oppSearch')?.value || '').toLowerCase();
+    const sortVal = document.getElementById('oppSort')?.value || 'manual-desc';
+    const impactFilter = document.getElementById('oppImpact')?.value || 'all';
+
+    if (search) clients = clients.filter(c => c[0].toLowerCase().includes(search));
+    if (currentTierFilter) clients = clients.filter(c => tierOf(c[4]) === currentTierFilter);
+
+    // Impact filter
+    if (impactFilter !== 'all') {
+        clients = clients.filter(c => {
+            const m = c[2];
+            if (impactFilter === 'high') return m > 200;
+            if (impactFilter === 'medium') return m > 100 && m <= 200;
+            return m <= 100;
+        });
+    }
+
+    // Sort
+    const [sf, sd] = sortVal.split('-');
+    clients.sort((a, b) => {
+        if (sf === 'name') return a[0].localeCompare(b[0]);
+        let va, vb;
+        if (sf === 'manual') { va = a[2]; vb = b[2]; }
+        else if (sf === 'total') { va = a[3]; vb = b[3]; }
+        else if (sf === 'rate') { va = a[4]; vb = b[4]; }
+        else { va = a[2]; vb = b[2]; }
+        return sd === 'asc' ? va - vb : vb - va;
+    });
+
+    const shown = clients.slice(0, 50);
+    const countEl = document.getElementById('oppCount');
+    if (countEl) countEl.textContent = clients.length + ' clients' + (clients.length > 50 ? ' (showing 50)' : '');
+
     const container = document.getElementById('oppList');
     let html = '';
 
-    clients.forEach(c => {
+    shown.forEach(c => {
         const [name, auto, manual, total, rate, autoTypes, manualTypes] = c;
         const manualSorted = manualTypes ? Object.keys(manualTypes).sort((a,b) => manualTypes[b] - manualTypes[a]) : [];
         const impact = manual > 200 ? 'high' : manual > 100 ? 'medium' : 'low';
@@ -933,32 +1078,109 @@ function showTeamDetail(teamName) {
     const d = SCORECARD_DATA[currentMonth];
     renderTeamLeaderboard(d);
 
+    const filterBar = document.getElementById('teamFilterBar');
     const container = document.getElementById('teamClientDetail');
-    if (!activeTeam) { container.innerHTML = '<p style="color:var(--text-muted);text-align:center">Click a team to see its clients.</p>'; return; }
+    if (!activeTeam) {
+        filterBar.style.display = 'none';
+        container.innerHTML = '<p style="color:var(--text-muted);text-align:center">Click a team to see its clients.</p>';
+        return;
+    }
 
-    const teamClients = d.clients.filter(c => (c[7] || 'Unassigned') === activeTeam);
-    teamClients.sort((a,b) => b[2] - a[2]); // sort by manual desc
+    filterBar.style.display = 'flex';
+    renderTeamDetail();
+}
 
+function renderTeamDetail() {
+    if (!activeTeam) return;
+    const d = SCORECARD_DATA[currentMonth];
+    let teamClients = d.clients.filter(c => (c[7] || 'Unassigned') === activeTeam);
+
+    // Search filter
+    const search = (document.getElementById('teamClientSearch')?.value || '').toLowerCase();
+    if (search) teamClients = teamClients.filter(c => c[0].toLowerCase().includes(search));
+
+    // Tier filter
+    const tierFilter = document.getElementById('teamTierFilter')?.value || 'all';
+    if (tierFilter !== 'all') teamClients = teamClients.filter(c => tierOf(c[4]) === tierFilter);
+
+    // Sort
+    const sortVal = document.getElementById('teamClientSort')?.value || 'manual-desc';
+    const [sf, sd] = sortVal.split('-');
+    teamClients.sort((a, b) => {
+        if (sf === 'name') return a[0].localeCompare(b[0]);
+        let va, vb;
+        if (sf === 'manual') { va = a[2]; vb = b[2]; }
+        else if (sf === 'total') { va = a[3]; vb = b[3]; }
+        else if (sf === 'rate') { va = a[4]; vb = b[4]; }
+        else { va = a[2]; vb = b[2]; }
+        return sd === 'asc' ? va - vb : vb - va;
+    });
+
+    const countEl = document.getElementById('teamClientCount');
+    if (countEl) countEl.textContent = teamClients.length + ' clients';
+
+    const container = document.getElementById('teamClientDetail');
     let html = '<table class="data-table"><thead><tr>';
-    html += '<th>Client</th><th style="text-align:right">Total</th><th style="text-align:right">Automated</th>';
-    html += '<th style="text-align:right">Manual</th><th style="text-align:right">Rate</th><th>Top Manual Types</th>';
+    html += '<th onclick="teamDetailSort(\'name\')">Client <span class="sort-arrow">&#x25B2;&#x25BC;</span></th>';
+    html += '<th onclick="teamDetailSort(\'total-desc\')" style="text-align:right">Total <span class="sort-arrow">&#x25B2;&#x25BC;</span></th>';
+    html += '<th onclick="teamDetailSort(\'auto-desc\')" style="text-align:right">Automated <span class="sort-arrow">&#x25B2;&#x25BC;</span></th>';
+    html += '<th onclick="teamDetailSort(\'manual-desc\')" style="text-align:right">Manual <span class="sort-arrow">&#x25B2;&#x25BC;</span></th>';
+    html += '<th onclick="teamDetailSort(\'rate-desc\')" style="text-align:right">Rate <span class="sort-arrow">&#x25B2;&#x25BC;</span></th>';
+    html += '<th style="min-width:140px">Automation</th>';
+    html += '<th>Top Manual Types</th>';
     html += '</tr></thead><tbody>';
 
     teamClients.forEach(c => {
         const [name, auto, manual, total, rate, autoTypes, manualTypes] = c;
+        const color = rateColor(rate);
         const topManual = manualTypes ? Object.keys(manualTypes).sort((a,b) => manualTypes[b] - manualTypes[a]).slice(0,3) : [];
-        const tags = topManual.map(t => `<span class="opp-tag">${t} (${manualTypes[t]})</span>`).join('');
-        html += `<tr>
-            <td style="font-weight:500">${name}</td>
-            <td style="text-align:right">${formatNum(total)}</td>
-            <td style="text-align:right;color:var(--green)">${formatNum(auto)}</td>
-            <td style="text-align:right;color:var(--red)">${formatNum(manual)}</td>
-            <td style="text-align:right;font-weight:700;color:${rateColor(rate)}">${rate.toFixed(1)}%</td>
-            <td>${tags || '-'}</td>
-        </tr>`;
+        const tags = topManual.map(t => '<span class="opp-tag">' + t + ' (' + manualTypes[t] + ')</span>').join('');
+        html += '<tr>' +
+            '<td style="font-weight:500">' + name + '</td>' +
+            '<td style="text-align:right">' + formatNum(total) + '</td>' +
+            '<td style="text-align:right;color:var(--green)">' + formatNum(auto) + '</td>' +
+            '<td style="text-align:right;color:var(--red)">' + formatNum(manual) + '</td>' +
+            '<td style="text-align:right;font-weight:700;color:' + color + '">' + rate.toFixed(1) + '%</td>' +
+            '<td><div class="rate-bar-bg" style="width:100%"><div class="rate-bar-fill" style="width:' + rate + '%;background:' + color + '"></div></div></td>' +
+            '<td>' + (tags || '<span style="color:var(--text-muted)">-</span>') + '</td>' +
+            '</tr>';
     });
+
+    // Team totals row
+    const totT = teamClients.reduce((a,c) => a + c[3], 0);
+    const totA = teamClients.reduce((a,c) => a + c[1], 0);
+    const totM = teamClients.reduce((a,c) => a + c[2], 0);
+    const totR = totT > 0 ? (totA / totT * 100) : 0;
+    html += '<tr style="font-weight:700;border-top:2px solid var(--border)">' +
+        '<td>TEAM TOTAL (' + teamClients.length + ' clients)</td>' +
+        '<td style="text-align:right">' + formatNum(totT) + '</td>' +
+        '<td style="text-align:right;color:var(--green)">' + formatNum(totA) + '</td>' +
+        '<td style="text-align:right;color:var(--red)">' + formatNum(totM) + '</td>' +
+        '<td style="text-align:right;font-weight:700;color:' + rateColor(totR) + '">' + totR.toFixed(1) + '%</td>' +
+        '<td></td><td></td></tr>';
+
     html += '</tbody></table>';
     container.innerHTML = html;
+}
+
+function teamDetailSort(val) {
+    const sel = document.getElementById('teamClientSort');
+    if (sel) {
+        // Toggle direction if same field
+        const cur = sel.value;
+        if (val === 'name') {
+            sel.value = 'name';
+        } else {
+            const [cf] = cur.split('-');
+            const [nf, nd] = val.split('-');
+            if (cf === nf) {
+                sel.value = nf + (cur.endsWith('desc') ? '-asc' : '-desc');
+            } else {
+                sel.value = val;
+            }
+        }
+    }
+    renderTeamDetail();
 }
 
 // Boot
