@@ -293,14 +293,26 @@
         </div>
         <div class="charts-row">
             <div class="chart-card">
-                <div class="chart-title">Manual Transaction Volume by Type</div>
-                <div class="chart-subtitle">Where the biggest automation opportunities live</div>
-                <canvas id="manualChart"></canvas>
+                <div class="chart-title">Transaction Source Breakdown</div>
+                <div class="chart-subtitle">How transactions enter QBO: PA rules, integrations, bank feeds, manual, or system</div>
+                <canvas id="sourceChart"></canvas>
             </div>
             <div class="chart-card">
                 <div class="chart-title">Top 10 Clients by Manual Transactions</div>
                 <div class="chart-subtitle">Highest-impact clients to automate next</div>
                 <canvas id="topManualChart"></canvas>
+            </div>
+        </div>
+        <div class="charts-row">
+            <div class="chart-card">
+                <div class="chart-title">Manual Transaction Volume by Type</div>
+                <div class="chart-subtitle">Where the biggest automation opportunities live</div>
+                <canvas id="manualChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <div class="chart-title">Automation Sources Over Time</div>
+                <div class="chart-subtitle">Month-over-month trend by source category</div>
+                <canvas id="sourceTrendChart"></canvas>
             </div>
         </div>
     </div>
@@ -676,6 +688,62 @@ function renderOverviewCharts(d) {
             }
         }
     });
+
+    // Source breakdown donut chart
+    const bs = d.by_source || {};
+    const sourceLabels = { pa_rule: 'PA Rules', integration: 'Integrations', bank_feed: 'Bank Feed', manual: 'Manual Entry', system: 'System/Recurring', unknown: 'Unknown' };
+    const sourceColors = { pa_rule: 'rgba(74,144,226,0.8)', integration: 'rgba(81,207,102,0.8)', bank_feed: 'rgba(252,196,25,0.8)', manual: 'rgba(255,107,107,0.7)', system: 'rgba(177,151,252,0.8)', unknown: 'rgba(120,120,120,0.5)' };
+    const srcKeys = Object.keys(bs).filter(k => bs[k].total > 0).sort((a,b) => bs[b].total - bs[a].total);
+    const srcEl = document.getElementById('sourceChart');
+    if (srcEl && srcKeys.length > 0) {
+        destroyChart('sourceChart');
+        chartInstances.sourceChart = new Chart(srcEl, {
+            type: 'doughnut',
+            data: {
+                labels: srcKeys.map(k => (sourceLabels[k] || k) + ' (' + formatNum(bs[k].total) + ')'),
+                datasets: [{ data: srcKeys.map(k => bs[k].total),
+                    backgroundColor: srcKeys.map(k => sourceColors[k] || 'rgba(120,120,120,0.5)'),
+                    borderWidth: 0 }]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false, cutout: '55%',
+                plugins: { legend: { position: 'right', labels: { color: '#a0a0a0', font: { size: 11 }, padding: 10 } } }
+            }
+        });
+    }
+
+    // Source trend chart (across months)
+    const trendEl = document.getElementById('sourceTrendChart');
+    if (trendEl) {
+        const allMonths = Object.keys(SCORECARD_DATA).sort();
+        const allSrcKeys = ['pa_rule', 'integration', 'bank_feed', 'manual', 'system'];
+        const trendData = {};
+        allSrcKeys.forEach(k => { trendData[k] = []; });
+        allMonths.forEach(m => {
+            const mbs = (SCORECARD_DATA[m] || {}).by_source || {};
+            allSrcKeys.forEach(k => { trendData[k].push(mbs[k] ? mbs[k].total : 0); });
+        });
+        destroyChart('sourceTrendChart');
+        chartInstances.sourceTrendChart = new Chart(trendEl, {
+            type: 'bar',
+            data: {
+                labels: allMonths.map(m => { const [y,mo] = m.split('-'); return ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+mo] + ' ' + y; }),
+                datasets: allSrcKeys.map(k => ({
+                    label: sourceLabels[k] || k,
+                    data: trendData[k],
+                    backgroundColor: sourceColors[k] || 'rgba(120,120,120,0.5)',
+                }))
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: { legend: { labels: { color: '#a0a0a0', font: { size: 11 } } } },
+                scales: {
+                    x: { stacked: true, ticks: { color: '#a0a0a0' }, grid: { color: 'rgba(255,255,255,0.04)' } },
+                    y: { stacked: true, ticks: { color: '#666' }, grid: { color: 'rgba(255,255,255,0.04)' } }
+                }
+            }
+        });
+    }
 }
 
 // ─── Type Table ───
@@ -953,7 +1021,8 @@ function renderOpportunities(d) {
     let html = '';
 
     shown.forEach(c => {
-        const [name, auto, manual, total, rate, autoTypes, manualTypes] = c;
+        const [name, auto, manual, total, rate, autoTypes, manualTypes, team] = c;
+        const sources = c[8] || {};
         const manualSorted = manualTypes ? Object.keys(manualTypes).sort((a,b) => manualTypes[b] - manualTypes[a]) : [];
         const impact = manual > 200 ? 'high' : manual > 100 ? 'medium' : 'low';
         const impactLabel = manual > 200 ? 'High Impact' : manual > 100 ? 'Medium Impact' : 'Lower Impact';
@@ -962,14 +1031,36 @@ function renderOpportunities(d) {
             `<span class="opp-tag">${t}: ${manualTypes[t]}</span>`
         ).join('');
 
+        // Source breakdown mini-bar
+        const sourceLabels = { pa_rule: 'PA Rules', integration: 'Integrations', bank_feed: 'Bank Feed', manual: 'Manual', system: 'System', unknown: 'Unknown' };
+        const sourceColors = { pa_rule: '#4a90e2', integration: '#51cf66', bank_feed: '#fcc419', manual: '#ff6b6b', system: '#b197fc', unknown: '#888' };
+        let sourceBarHtml = '';
+        if (Object.keys(sources).length > 0) {
+            const srcParts = Object.keys(sources).filter(k => sources[k] > 0).sort((a,b) => sources[b] - sources[a]);
+            sourceBarHtml = '<div style="display:flex;height:6px;border-radius:3px;overflow:hidden;margin-top:6px">';
+            srcParts.forEach(k => {
+                const pct = (sources[k] / total * 100).toFixed(1);
+                sourceBarHtml += `<div style="width:${pct}%;background:${sourceColors[k] || '#888'}" title="${sourceLabels[k] || k}: ${sources[k]} (${pct}%)"></div>`;
+            });
+            sourceBarHtml += '</div>';
+            sourceBarHtml += '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;font-size:10px;color:var(--text-muted)">';
+            srcParts.forEach(k => {
+                const pct = (sources[k] / total * 100).toFixed(0);
+                sourceBarHtml += `<span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:${sourceColors[k] || '#888'};margin-right:3px"></span>${sourceLabels[k] || k} ${pct}%</span>`;
+            });
+            sourceBarHtml += '</div>';
+        }
+
         // Suggest specific automation strategies
         const suggestions = [];
-        if (manualTypes?.['Bill'] > 10) suggestions.push('Bill.com or QBO auto-bill could automate ' + manualTypes['Bill'] + ' bills');
+        if ((sources.bank_feed || 0) > 20) suggestions.push('Write PA bank rules for ' + sources.bank_feed + ' uncategorized bank feed txns');
+        if (manualTypes?.['Bill'] > 10) suggestions.push('Bill.com could automate ' + manualTypes['Bill'] + ' bills');
         if (manualTypes?.['Journal Entry'] > 10) suggestions.push('Recurring JE templates could cover ' + manualTypes['Journal Entry'] + ' entries');
         if (manualTypes?.['Check'] > 10) suggestions.push('ACH/auto-pay could replace ' + manualTypes['Check'] + ' checks');
         if (manualTypes?.['Bill Payment (Check)'] > 10) suggestions.push('Switch ' + manualTypes['Bill Payment (Check)'] + ' bill payments to autopay');
         if (manualTypes?.['Invoice'] > 10) suggestions.push('Recurring invoices could automate ' + manualTypes['Invoice'] + ' invoices');
         if (manualTypes?.['Payment'] > 5) suggestions.push('Auto-apply payments (' + manualTypes['Payment'] + ' manual)');
+        if ((sources.manual || 0) > 100 && !(sources.integration > 0)) suggestions.push('No integrations detected - evaluate Ramp/Bill.com/payroll integration');
 
         const sugHtml = suggestions.length > 0 ?
             `<div style="margin-top:6px;font-size:11px;color:var(--accent)">&#x1f4a1; ${suggestions.join(' &bull; ')}</div>` : '';
@@ -978,6 +1069,7 @@ function renderOpportunities(d) {
             <div class="opp-header">
                 <span class="opp-name">${name}</span>
                 <span class="opp-badge ${impact}">${impactLabel}</span>
+                ${team ? `<span style="font-size:11px;color:var(--text-muted);margin-left:auto">${team}</span>` : ''}
             </div>
             <div class="opp-stats">
                 <span>${formatNum(total)} total txns</span>
@@ -985,6 +1077,7 @@ function renderOpportunities(d) {
                 <span style="color:var(--green)">${formatNum(auto)} automated (${rate.toFixed(1)}%)</span>
             </div>
             <div class="opp-breakdown">${topManualHtml}</div>
+            ${sourceBarHtml}
             ${sugHtml}
         </div>`;
     });
@@ -996,9 +1089,10 @@ function renderOpportunities(d) {
 function exportCSV() {
     const d = SCORECARD_DATA[currentMonth];
     if (!d) return;
-    let csv = 'Client,Total,Automated,Manual,Rate\n';
+    let csv = 'Client,Team,Total,Automated,Manual,Rate,PA_Rules,Integration,Bank_Feed,Manual_Entry,System\n';
     d.clients.forEach(c => {
-        csv += `"${c[0]}",${c[3]},${c[1]},${c[2]},${c[4]}\n`;
+        const src = c[8] || {};
+        csv += `"${c[0]}","${c[7] || ''}",${c[3]},${c[1]},${c[2]},${c[4]},${src.pa_rule||0},${src.integration||0},${src.bank_feed||0},${src.manual||0},${src.system||0}\n`;
     });
     const blob = new Blob([csv], { type: 'text/csv' });
     const a = document.createElement('a');
