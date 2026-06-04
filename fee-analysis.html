@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee Analysis &amp; Profitability - PATS Dashboards</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <script src="fee_analysis_data.js"></script>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --bg-primary:#0f1419;--bg-secondary:#1a1f2e;
+            --bg-card:rgba(255,255,255,0.04);--border:rgba(74,144,226,0.2);
+            --text-primary:#e0e0e0;--text-secondary:#a0a0a0;--text-muted:#666;
+            --accent:#4a90e2;--green:#51cf66;--yellow:#fcc419;--orange:#ff922b;
+            --red:#ff6b6b;--purple:#b197fc;--emerald:#10b981;--cyan:#06b6d4;
+        }
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:linear-gradient(135deg,var(--bg-primary) 0%,var(--bg-secondary) 100%);color:var(--text-primary);padding:20px;min-height:100vh}
+        .container{max-width:1500px;margin:0 auto}
+
+        /* Header */
+        header{margin-bottom:24px;border-bottom:2px solid var(--border);padding-bottom:20px}
+        .header-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+        h1{font-size:26px;font-weight:700;color:#fff;letter-spacing:-0.5px}
+        .header-sub{font-size:13px;color:var(--text-secondary);margin-top:4px}
+        .header-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+        .nav-link{padding:8px 14px;background:rgba(74,144,226,0.15);border:1px solid rgba(74,144,226,0.3);border-radius:6px;color:var(--accent);font-size:13px;font-weight:600;text-decoration:none;transition:background .2s}
+        .nav-link:hover{background:rgba(74,144,226,0.25)}
+        .export-btn{padding:8px 14px;background:rgba(81,207,102,0.15);border:1px solid rgba(81,207,102,0.3);border-radius:6px;color:var(--green);font-size:13px;font-weight:600;cursor:pointer;border:1px solid rgba(81,207,102,0.3)}
+        .export-btn:hover{background:rgba(81,207,102,0.25)}
+
+        /* Controls row */
+        .controls-row{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin-bottom:16px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+        .preset-btn{padding:6px 14px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.03);color:var(--text-secondary);transition:all .2s}
+        .preset-btn.active{background:rgba(74,144,226,0.3);color:#fff;border-color:rgba(74,144,226,0.5)}
+        .preset-btn:hover:not(.active){background:rgba(255,255,255,0.06);color:var(--text-primary)}
+        .date-input{padding:5px 10px;border-radius:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);color:var(--text-primary);font-size:12px}
+        .date-input::-webkit-calendar-picker-indicator{filter:invert(0.7)}
+        .filter-select{padding:7px 12px;border-radius:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);color:var(--text-primary);font-size:13px;cursor:pointer}
+        .filter-select option{background:#1a1f2e;color:#e0e0e0}
+        .search-input{padding:7px 12px 7px 32px;border-radius:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);color:var(--text-primary);font-size:13px;min-width:200px}
+        .search-wrap{position:relative}
+        .search-wrap::before{content:"\1F50D";position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:12px;opacity:.5}
+        .clear-btn{padding:5px 10px;border-radius:6px;background:rgba(255,107,107,0.1);border:1px solid rgba(255,107,107,0.2);color:var(--red);font-size:12px;cursor:pointer}
+
+        /* KPI cards */
+        .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:20px}
+        .kpi-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
+        .kpi-label{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-secondary);margin-bottom:6px}
+        .kpi-value{font-size:28px;font-weight:700;color:#fff}
+        .kpi-sub{font-size:12px;color:var(--text-muted);margin-top:4px}
+
+        /* Charts */
+        .chart-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+        .chart-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px}
+        .chart-card.full{grid-column:1/-1}
+        .chart-title{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--text-secondary);margin-bottom:12px;font-weight:600}
+        canvas{max-height:280px}
+
+        /* Distribution bars */
+        .dist-row{display:flex;align-items:center;gap:10px;padding:6px 8px;border-radius:8px;cursor:pointer;transition:background .2s}
+        .dist-row:hover{background:rgba(255,255,255,0.04)}
+        .dist-label{font-size:13px;color:var(--text-secondary);width:110px;flex-shrink:0}
+        .dist-track{flex:1;height:24px;background:rgba(255,255,255,0.05);border-radius:12px;overflow:hidden}
+        .dist-fill{height:100%;border-radius:12px;transition:width .6s ease}
+        .dist-value{font-size:13px;font-weight:600;width:90px;text-align:right;flex-shrink:0}
+
+        /* Team rate bars */
+        .rate-row{display:flex;align-items:center;gap:10px;padding:8px;border-radius:8px;cursor:pointer;transition:background .2s}
+        .rate-row:hover{background:rgba(255,255,255,0.04)}
+        .rate-label{font-size:13px;font-weight:600;width:100px;flex-shrink:0}
+        .rate-track{flex:1;height:28px;background:rgba(255,255,255,0.05);border-radius:14px;overflow:hidden}
+        .rate-fill{height:100%;border-radius:14px;transition:width .6s ease}
+        .rate-value{font-size:14px;font-weight:700;font-family:monospace;width:80px;text-align:right;flex-shrink:0}
+
+        /* Team cards */
+        .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:20px}
+        .team-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center;cursor:pointer;transition:background .2s}
+        .team-card:hover{background:rgba(255,255,255,0.06)}
+
+        /* Tabs */
+        .tab-bar{display:flex;gap:4px;margin-bottom:16px;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:0}
+        .tab{padding:10px 18px;border-radius:8px 8px 0 0;cursor:pointer;font-size:13px;font-weight:600;background:rgba(255,255,255,0.02);color:var(--text-secondary);border:1px solid transparent;border-bottom:none;transition:all .2s}
+        .tab.active{background:rgba(74,144,226,0.15);color:#fff;border-color:var(--border)}
+        .tab:hover:not(.active){background:rgba(255,255,255,0.05);color:var(--text-primary)}
+        .tab-panel{display:none}
+        .tab-panel.active{display:block}
+
+        /* Tables */
+        .table-wrap{overflow-x:auto;border-radius:10px;border:1px solid var(--border);background:var(--bg-card)}
+        table{width:100%;border-collapse:collapse;font-size:13px}
+        thead{position:sticky;top:0;z-index:2}
+        thead th{background:rgba(74,144,226,0.1);padding:10px 12px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-secondary);cursor:pointer;user-select:none;white-space:nowrap;border-bottom:1px solid var(--border)}
+        thead th:hover{color:var(--text-primary);background:rgba(74,144,226,0.15)}
+        thead th .sort-arrow{margin-left:4px;opacity:.3}
+        thead th.sorted .sort-arrow{opacity:1;color:var(--accent)}
+        tbody tr{border-bottom:1px solid rgba(255,255,255,0.03);transition:background .15s}
+        tbody tr:hover{background:rgba(255,255,255,0.03)}
+        tbody td{padding:8px 12px;white-space:nowrap}
+        .text-right{text-align:right}
+        .text-center{text-align:center}
+        .font-mono{font-family:'SF Mono',SFMono-Regular,Consolas,monospace}
+        .font-bold{font-weight:700}
+        .text-muted{color:var(--text-muted)}
+        .truncate{max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;vertical-align:middle}
+
+        /* Margin badges */
+        .badge{display:inline-flex;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600}
+        .badge-neg{background:rgba(255,107,107,0.2);color:#ff6b6b}
+        .badge-low{background:rgba(255,107,107,0.1);color:#ff9999}
+        .badge-mid{background:rgba(252,196,25,0.1);color:#fcc419}
+        .badge-good{background:rgba(81,207,102,0.1);color:#51cf66}
+        .badge-great{background:rgba(16,185,129,0.2);color:#10b981}
+
+        /* Team badges */
+        .team-badge{display:inline-flex;padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600}
+        .team-Alpha{background:rgba(16,185,129,0.2);color:#34d399}
+        .team-Papa{background:rgba(139,92,246,0.2);color:#a78bfa}
+        .team-Tango{background:rgba(245,158,11,0.2);color:#fbbf24}
+        .team-Accounting{background:rgba(6,182,212,0.2);color:#22d3ee}
+        .team-Unassigned{background:rgba(148,163,184,0.15);color:#94a3b8}
+
+        /* Expand row */
+        .expand-toggle{cursor:pointer;padding:2px 6px;border-radius:4px;font-size:12px;transition:background .2s}
+        .expand-toggle:hover{background:rgba(255,255,255,0.08)}
+        .expand-row{display:none}
+        .expand-row.open{display:table-row}
+        .expand-row td{padding:12px 16px;background:rgba(74,144,226,0.03);border-bottom:2px solid var(--border)}
+        .expand-content{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+        .expand-section h4{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-secondary);margin-bottom:8px;font-weight:600}
+        .expand-detail{display:flex;justify-content:space-between;font-size:13px;padding:2px 0}
+
+        /* Drill panel */
+        .drill-panel{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;margin-bottom:20px;overflow:hidden;display:none}
+        .drill-panel.open{display:block}
+        .drill-header{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:rgba(255,255,255,0.02);border-bottom:1px solid var(--border)}
+        .drill-header h3{font-size:14px;font-weight:700}
+        .drill-stats{display:flex;gap:16px;font-size:12px;color:var(--text-secondary);font-family:monospace}
+        .drill-close{padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.05);border:none;color:var(--text-secondary);cursor:pointer;font-size:14px}
+        .drill-close:hover{background:rgba(255,255,255,0.1);color:var(--text-primary)}
+        .drill-body{max-height:500px;overflow-y:auto}
+
+        /* Filter row in tables */
+        .filter-row input{width:100%;padding:4px 8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;color:var(--text-primary);font-size:11px}
+        .filter-row input:focus{outline:none;border-color:rgba(74,144,226,0.4)}
+        .filter-row td{padding:4px 12px}
+
+        /* Row highlighting */
+        .row-neg{background:rgba(255,107,107,0.03)}
+        .row-low{background:rgba(252,196,25,0.02)}
+
+        /* Responsive */
+        @media(max-width:900px){
+            .chart-row{grid-template-columns:1fr}
+            .expand-content{grid-template-columns:1fr}
+            .kpi-grid{grid-template-columns:repeat(2,1fr)}
+        }
+        @media(max-width:600px){
+            .kpi-grid{grid-template-columns:1fr}
+            .controls-row{flex-direction:column;align-items:stretch}
+        }
+
+        /* Loading */
+        .loading{text-align:center;padding:60px;color:var(--text-muted);font-size:16px}
+    </style>
+</head>
+<body>
+<div class="container" id="app">
+    <div class="loading">Loading fee analysis data...</div>
+</div>
+
+<script>
+// ============================================================
+// DATA & STATE
+// ============================================================
+const D = window.FEE_DATA;
+const allClients = D.clients || [];
+const familyRollups = D.family_rollups || {};
+const availableMonths = D.available_months || [];
+const payrollSummary = D.payroll_summary || [];
+
+// State
+let state = {
+    tab: 'clients',
+    preset: '12m',
+    startMonth: '',
+    endMonth: '',
+    teamFilter: 'all',
+    employeeFilter: 'all',
+    statusFilter: 'active',
+    search: '',
+    sortCol: {},  // per-tab sort: { tab: { col, dir } }
+    drillPanel: null,
+    expandedRows: new Set()
+};
+
+// ============================================================
+// HELPERS
+// ============================================================
+function fmt$(v) { return '$' + Math.round(v).toLocaleString(); }
+function fmt$dec(v) { return '$' + v.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+function fmtNum(v) { return v.toFixed(1).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+function fmtPct(v) { return v === null ? '--' : v.toFixed(1) + '%'; }
+
+function marginBadge(pct) {
+    if (pct === null || pct === undefined) return '<span class="text-muted">--</span>';
+    let cls = pct < 0 ? 'badge-neg' : pct < 20 ? 'badge-low' : pct < 40 ? 'badge-mid' : pct < 60 ? 'badge-good' : 'badge-great';
+    return `<span class="badge ${cls}">${pct.toFixed(1)}%</span>`;
+}
+
+function teamBadge(team) {
+    const t = team || 'Unassigned';
+    return `<span class="team-badge team-${t}">${t}</span>`;
+}
+
+function cleanName(n) { return (n || '--').replace(/@patrickaccounting\.com/g, ''); }
+
+// Date helpers
+function getPresetRange(preset) {
+    if (!availableMonths.length) return ['2020-01', '2026-12'];
+    const last = availableMonths[availableMonths.length - 1];
+    const first = availableMonths[0];
+    if (preset === 'all') return [first, last];
+    if (preset === 'ytd') { return [new Date().getFullYear() + '-01', last]; }
+    const n = preset === '3m' ? 3 : preset === '6m' ? 6 : 12;
+    const d = new Date(last + '-15');
+    d.setMonth(d.getMonth() - n + 1);
+    const s = d.toISOString().slice(0, 7);
+    return [s < first ? first : s, last];
+}
+
+function sumMonthly(monthly, start, end, field) {
+    let total = 0;
+    for (const e of monthly) {
+        if (e.m >= start && e.m <= end) total += (field === 'h' ? e.h : e.r);
+    }
+    return total;
+}
+
+function sumRecord(rec, start, end) {
+    let total = 0;
+    for (const [m, v] of Object.entries(rec || {})) {
+        if (m >= start && m <= end) total += v;
+    }
+    return total;
+}
+
+function clientMetrics(c, start, end) {
+    const rev = sumMonthly(c.monthly || [], start, end, 'r');
+    const hrs = sumMonthly(c.monthly || [], start, end, 'h');
+    const rate = hrs > 0 ? rev / hrs : null;
+    let lc = 0;
+    for (const s of (c.staff || [])) {
+        const staffHrs = sumRecord(s.mo, start, end);
+        lc += staffHrs * s.r;
+    }
+    const gm = rev - lc;
+    const mp = rev > 0 ? (gm / rev) * 100 : null;
+    return { rev, hrs, rate, lc, gm, mp };
+}
+
+// ============================================================
+// FILTERING & COMPUTED DATA
+// ============================================================
+function getFilteredClients() {
+    let list = [...allClients];
+    const { statusFilter, teamFilter, employeeFilter, search, startMonth, endMonth } = state;
+    
+    if (statusFilter === 'active') list = list.filter(c => (c.status || 'active').toLowerCase() === 'active');
+    else if (statusFilter === 'inactive') list = list.filter(c => c.status?.toLowerCase() === 'inactive');
+    
+    if (teamFilter !== 'all') list = list.filter(c => c.team === teamFilter);
+    
+    if (employeeFilter !== 'all') {
+        list = list.filter(c => (c.staff || []).some(s => s.n === employeeFilter && sumRecord(s.mo, startMonth, endMonth) > 0));
+    }
+    
+    if (search) {
+        const s = search.toLowerCase();
+        list = list.filter(c =>
+            c.name.toLowerCase().includes(s) ||
+            (c.accountant || '').toLowerCase().includes(s) ||
+            (c.bookkeeper || '').toLowerCase().includes(s) ||
+            (c.family_name || '').toLowerCase().includes(s)
+        );
+    }
+    
+    return list;
+}
+
+function getClientsWithMetrics(filtered) {
+    const { startMonth, endMonth } = state;
+    return filtered.map(c => {
+        const m = clientMetrics(c, startMonth, endMonth);
+        return { ...c, _rev: m.rev, _hrs: m.hrs, _rate: m.rate, _lc: m.lc, _gm: m.gm, _mp: m.mp };
+    });
+}
+
+function getActiveClients(withMetrics) {
+    return withMetrics.filter(c => c._hrs > 0.5 || c._rev > 0);
+}
+
+function getTeamSummary(active) {
+    const agg = {};
+    for (const t of ['Accounting','Alpha','Papa','Tango','Unassigned']) agg[t] = { rev:0, hrs:0, lc:0, clients:0 };
+    for (const c of active) {
+        const t = c.team || 'Unassigned';
+        if (!agg[t]) agg[t] = { rev:0, hrs:0, lc:0, clients:0 };
+        agg[t].rev += c._rev; agg[t].hrs += c._hrs; agg[t].lc += c._lc; agg[t].clients++;
+    }
+    return Object.entries(agg).map(([team, d]) => {
+        const gm = d.rev - d.lc;
+        return { team, client_count: d.clients, total_rev: d.rev, total_hrs: d.hrs,
+            eff_rate: d.hrs > 0 ? d.rev / d.hrs : null, labor_cost: d.lc, gross_margin: gm,
+            margin_pct: d.rev > 0 ? (gm / d.rev) * 100 : null };
+    });
+}
+
+function getWorkflowSummary(active) {
+    const { startMonth, endMonth } = state;
+    const agg = {};
+    for (const c of active) {
+        for (const wf of (c.workflows || [])) {
+            const hrs = sumRecord(wf.hm, startMonth, endMonth);
+            const rev = sumRecord(wf.rm, startMonth, endMonth);
+            if (hrs < 0.1 && rev < 1) continue;
+            if (!agg[wf.w]) agg[wf.w] = { name: wf.w, rev:0, hrs:0, clients: new Set() };
+            agg[wf.w].rev += rev; agg[wf.w].hrs += hrs; agg[wf.w].clients.add(c.cid);
+        }
+    }
+    return Object.values(agg).map(d => ({
+        workflow: d.name, total_rev: d.rev, total_hrs: d.hrs, client_count: d.clients.size,
+        eff_rate: d.hrs > 0 ? d.rev / d.hrs : null
+    })).sort((a,b) => b.total_rev - a.total_rev);
+}
+
+function getStaffSummary(active) {
+    const { startMonth, endMonth } = state;
+    const agg = {};
+    for (const c of active) {
+        const totalClientHrs = c._hrs;
+        for (const s of (c.staff || [])) {
+            const hrs = sumRecord(s.mo, startMonth, endMonth);
+            if (hrs < 0.1) continue;
+            if (!agg[s.n]) agg[s.n] = { name: s.n, hrs:0, cost:0, rev:0, rate: s.r, clients: new Set() };
+            agg[s.n].hrs += hrs; agg[s.n].cost += hrs * s.r; agg[s.n].clients.add(c.cid);
+            if (totalClientHrs > 0) agg[s.n].rev += (hrs / totalClientHrs) * c._rev;
+        }
+    }
+    return Object.values(agg).map(d => {
+        const gm = d.rev - d.cost;
+        return { name: d.name, cost_rate: d.rate, hours: d.hrs, client_count: d.clients.size,
+            allocated_revenue: d.rev, effective_rate: d.hrs > 0 ? d.rev / d.hrs : null,
+            cost: d.cost, margin: gm, margin_pct: d.rev > 0 ? (gm / d.rev) * 100 : null };
+    }).sort((a,b) => b.allocated_revenue - a.allocated_revenue);
+}
+
+function getFamilySummary() {
+    const { startMonth, endMonth } = state;
+    const clientMap = new Map(allClients.map(c => [c.cid, c]));
+    return Object.values(familyRollups).map(fam => {
+        let rev = 0, hrs = 0, lc = 0;
+        for (const mem of fam.members) {
+            const c = clientMap.get(mem.cid);
+            if (!c) continue;
+            const m = clientMetrics(c, startMonth, endMonth);
+            rev += m.rev; hrs += m.hrs; lc += m.lc;
+        }
+        const gm = rev - lc;
+        return { ...fam, total_rev: rev, total_hrs: hrs, eff_rate: hrs > 0 ? rev / hrs : null,
+            labor_cost: lc, gross_margin: gm, margin_pct: rev > 0 ? (gm / rev) * 100 : null };
+    }).filter(f => f.total_rev > 0 || f.total_hrs > 0);
+}
+
+// ============================================================
+// SORTING
+// ============================================================
+function sortData(data, tab, columns) {
+    const s = state.sortCol[tab];
+    if (!s) return data;
+    const col = columns.find(c => c.id === s.col);
+    if (!col) return data;
+    const dir = s.dir === 'asc' ? 1 : -1;
+    return [...data].sort((a, b) => {
+        let va = col.accessor(a), vb = col.accessor(b);
+        if (va === null || va === undefined) va = -Infinity;
+        if (vb === null || vb === undefined) vb = -Infinity;
+        if (typeof va === 'string') return va.localeCompare(vb) * dir;
+        return (va - vb) * dir;
+    });
+}
+
+function toggleSort(tab, colId) {
+    const cur = state.sortCol[tab];
+    if (cur && cur.col === colId) {
+        state.sortCol[tab] = { col: colId, dir: cur.dir === 'asc' ? 'desc' : 'asc' };
+    } else {
+        state.sortCol[tab] = { col: colId, dir: 'desc' };
+    }
+    render();
+}
+
+// ============================================================
+// RENDER
+// ============================================================
+let profitChart = null;
+
+function render() {
+    const filtered = getFilteredClients();
+    const withMetrics = getClientsWithMetrics(filtered);
+    const active = getActiveClients(withMetrics);
+    const teams = getTeamSummary(active);
+    
+    // Summary
+    const rev = active.reduce((s,c) => s + c._rev, 0);
+    const hrs = active.reduce((s,c) => s + c._hrs, 0);
+    const lc = active.reduce((s,c) => s + c._lc, 0);
+    const gm = rev - lc;
+    const mp = rev > 0 ? (gm / rev) * 100 : 0;
+    const rate = hrs > 0 ? rev / hrs : 0;
+
+    // Margin distribution
+    const rated = active.filter(c => c._mp !== null && c._hrs >= 5);
+    const negCount = rated.filter(c => c._mp < 0).length;
+    const lowCount = rated.filter(c => c._mp >= 0 && c._mp < 20).length;
+    const midCount = rated.filter(c => c._mp >= 20 && c._mp < 40).length;
+    const goodCount = rated.filter(c => c._mp >= 40 && c._mp < 60).length;
+    const greatCount = rated.filter(c => c._mp >= 60).length;
+
+    // All unique teams/employees for dropdowns
+    const allTeams = ['Accounting','Alpha','Papa','Tango','Unassigned'];
+    const allEmployees = [...new Set(allClients.flatMap(c => (c.staff || []).filter(s => s.h >= 10).map(s => s.n)))].sort();
+
+    const presetLabels = { '3m': '3 Months', '6m': '6 Months', '12m': '12 Months', 'ytd': 'YTD', 'all': 'All Time' };
+    const periodLabel = presetLabels[state.preset] || `${state.startMonth} to ${state.endMonth}`;
+
+    document.getElementById('app').innerHTML = `
+        <header>
+            <div class="header-top">
+                <div>
+                    <h1>Fee Analysis &amp; Profitability</h1>
+                    <div class="header-sub">${active.length} clients &middot; ${periodLabel} &middot; Updated ${D.generated_at}</div>
+                </div>
+                <div class="header-controls">
+                    <a href="index.html" class="nav-link">Automation Scorecard &rarr;</a>
+                    <a href="connections.html" class="nav-link">QBO Connections &rarr;</a>
+                    <button class="export-btn" onclick="exportCSV()">Export CSV &darr;</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Controls: Date Range -->
+        <div class="controls-row">
+            <span style="font-size:12px;color:var(--text-muted)">&#128197;</span>
+            ${Object.entries(presetLabels).map(([k,v]) =>
+                `<button class="preset-btn ${state.preset === k ? 'active' : ''}" onclick="setPreset('${k}')">${v}</button>`
+            ).join('')}
+            <input type="month" class="date-input" value="${state.startMonth}" onchange="setCustomRange(this.value, state.endMonth)">
+            <span style="font-size:12px;color:var(--text-muted)">to</span>
+            <input type="month" class="date-input" value="${state.endMonth}" onchange="setCustomRange(state.startMonth, this.value)">
+        </div>
+
+        <!-- Controls: Filters -->
+        <div class="controls-row">
+            <span style="font-size:12px;color:var(--text-muted)">&#128269;</span>
+            <div class="search-wrap">
+                <input type="text" class="search-input" placeholder="Search client, accountant, family..." value="${state.search}" oninput="setSearch(this.value)">
+            </div>
+            <select class="filter-select" onchange="setTeam(this.value)">
+                <option value="all"${state.teamFilter === 'all' ? ' selected' : ''}>All Teams</option>
+                ${allTeams.map(t => `<option value="${t}"${state.teamFilter === t ? ' selected' : ''}>${t}</option>`).join('')}
+            </select>
+            <select class="filter-select" onchange="setEmployee(this.value)" style="max-width:180px">
+                <option value="all"${state.employeeFilter === 'all' ? ' selected' : ''}>All Employees</option>
+                ${allEmployees.map(e => `<option value="${e}"${state.employeeFilter === e ? ' selected' : ''}>${cleanName(e)}</option>`).join('')}
+            </select>
+            <select class="filter-select" onchange="setStatus(this.value)">
+                <option value="all"${state.statusFilter === 'all' ? ' selected' : ''}>All Statuses</option>
+                <option value="active"${state.statusFilter === 'active' ? ' selected' : ''}>Active Only</option>
+                <option value="inactive"${state.statusFilter === 'inactive' ? ' selected' : ''}>Inactive Only</option>
+            </select>
+            ${(state.teamFilter !== 'all' || state.employeeFilter !== 'all' || state.search || state.statusFilter !== 'active')
+                ? `<button class="clear-btn" onclick="clearFilters()">&#x2716; Clear</button>
+                   <span style="font-size:12px;color:var(--text-muted)">${active.length} of ${allClients.length} clients</span>`
+                : ''}
+        </div>
+
+        <!-- KPI Cards -->
+        <div class="kpi-grid">
+            <div class="kpi-card"><div class="kpi-label">Revenue</div><div class="kpi-value">${fmt$(rev)}</div><div class="kpi-sub">${fmtNum(hrs)} hours tracked</div></div>
+            <div class="kpi-card"><div class="kpi-label">Effective Rate</div><div class="kpi-value">${fmt$dec(rate)}/hr</div><div class="kpi-sub">Avg across ${active.length} clients</div></div>
+            <div class="kpi-card"><div class="kpi-label">Labor Cost</div><div class="kpi-value">${fmt$(lc)}</div><div class="kpi-sub">${lc > 0 ? Math.round(lc/rev*100) + '% of revenue' : 'No staff data loaded'}</div></div>
+            <div class="kpi-card"><div class="kpi-label">Gross Margin</div><div class="kpi-value">${mp.toFixed(1)}%</div><div class="kpi-sub">${fmt$(gm)}</div></div>
+            <div class="kpi-card"><div class="kpi-label">Active Clients</div><div class="kpi-value">${active.length}</div><div class="kpi-sub">of ${allClients.length} total</div></div>
+        </div>
+
+        <!-- Profitability Trend Chart -->
+        <div class="chart-card full" style="margin-bottom:20px">
+            <div class="chart-title">Profitability Trend</div>
+            <canvas id="profitChart" height="260"></canvas>
+        </div>
+
+        <!-- Team Rate & Margin Distribution -->
+        <div class="chart-row">
+            <div class="chart-card">
+                <div class="chart-title">Effective Rate by Team</div>
+                ${renderTeamRateBars(teams)}
+                <div style="font-size:11px;color:var(--text-muted);margin-top:10px">${teams.reduce((s,t) => s + t.client_count, 0)} total clients &middot; Firm avg: ${fmt$dec(rate)}/hr</div>
+            </div>
+            <div class="chart-card">
+                <div class="chart-title">Gross Margin Distribution</div>
+                ${renderMarginDist(negCount, lowCount, midCount, goodCount, greatCount, rated.length)}
+            </div>
+        </div>
+
+        <!-- Drill Panel -->
+        <div id="drillPanel" class="drill-panel ${state.drillPanel ? 'open' : ''}">
+            ${state.drillPanel ? renderDrillPanel(active) : ''}
+        </div>
+
+        <!-- Team Quick Stats -->
+        <div class="team-grid">
+            ${teams.map(t => `
+                <div class="team-card" onclick="setTab('teams')">
+                    <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">${t.team}</div>
+                    <div style="font-size:22px;font-weight:700">${t.eff_rate ? fmt$dec(t.eff_rate) : '--'}<span style="font-size:12px;color:var(--text-muted)">/hr</span></div>
+                    <div style="font-size:11px;color:var(--text-muted);margin-top:4px">${t.client_count} clients &middot; ${marginBadge(t.margin_pct)}</div>
+                </div>
+            `).join('')}
+        </div>
+
+        <!-- Tabs -->
+        <div class="tab-bar">
+            ${['clients','families','workflows','staff','teams'].map(t =>
+                `<div class="tab ${state.tab === t ? 'active' : ''}" onclick="setTab('${t}')">${t.charAt(0).toUpperCase() + t.slice(1)}</div>`
+            ).join('')}
+        </div>
+
+        <!-- Tab Panels -->
+        ${renderClientsTab(active)}
+        ${renderFamiliesTab()}
+        ${renderWorkflowsTab(active)}
+        ${renderStaffTab(active)}
+        ${renderTeamsTab(teams, active)}
+    `;
+
+    // Render profitability chart
+    renderProfitChart(filtered);
+}
+
+function renderTeamRateBars(teams) {
+    const teamsWithRate = teams.filter(t => t.team !== 'Unassigned' && t.eff_rate);
+    const maxRate = Math.max(...teamsWithRate.map(t => t.eff_rate || 0));
+    const colors = { Alpha: '#10b981', Papa: '#8b5cf6', Tango: '#f59e0b', Accounting: '#06b6d4' };
+    return teamsWithRate.sort((a,b) => (b.eff_rate||0) - (a.eff_rate||0)).map(t => {
+        const pct = maxRate > 0 ? ((t.eff_rate || 0) / maxRate * 100) : 0;
+        return `<div class="rate-row" onclick="openDrill('team','${t.team}')">
+            <span class="rate-label">${t.team}</span>
+            <div class="rate-track"><div class="rate-fill" style="width:${pct}%;background:${colors[t.team] || '#64748b'}"></div></div>
+            <span class="rate-value">${t.eff_rate ? fmt$dec(t.eff_rate) : '--'}</span>
+            <span style="width:60px;text-align:right">${marginBadge(t.margin_pct)}</span>
+            <span style="color:var(--text-muted);font-size:14px">&#x203A;</span>
+        </div>`;
+    }).join('');
+}
+
+function renderMarginDist(neg, low, mid, good, great, total) {
+    const items = [
+        { label: 'Negative', count: neg, color: '#ff6b6b', filter: 'neg' },
+        { label: '0 - 20%', count: low, color: '#ff922b', filter: 'low' },
+        { label: '20 - 40%', count: mid, color: '#fcc419', filter: 'mid' },
+        { label: '40 - 60%', count: good, color: '#51cf66', filter: 'good' },
+        { label: 'Over 60%', count: great, color: '#10b981', filter: 'great' },
+    ];
+    return items.map(i => {
+        const pct = total > 0 ? (i.count / total * 100) : 0;
+        return `<div class="dist-row" onclick="openDrill('margin','${i.filter}')">
+            <span class="dist-label">${i.label}</span>
+            <div class="dist-track"><div class="dist-fill" style="width:${pct}%;background:${i.color}"></div></div>
+            <span class="dist-value">${i.count} <span style="color:var(--text-muted)">(${pct.toFixed(0)}%)</span></span>
+        </div>`;
+    }).join('');
+}
+
+function renderDrillPanel(active) {
+    const dp = state.drillPanel;
+    if (!dp) return '';
+    let drillClients;
+    if (dp.type === 'team') {
+        drillClients = active.filter(c => c.team === dp.label).sort((a,b) => b._rev - a._rev);
+    } else {
+        const filters = {
+            neg: c => c._mp !== null && c._mp < 0 && c._hrs >= 5,
+            low: c => c._mp !== null && c._mp >= 0 && c._mp < 20 && c._hrs >= 5,
+            mid: c => c._mp !== null && c._mp >= 20 && c._mp < 40 && c._hrs >= 5,
+            good: c => c._mp !== null && c._mp >= 40 && c._mp < 60 && c._hrs >= 5,
+            great: c => c._mp !== null && c._mp >= 60 && c._hrs >= 5,
+        };
+        drillClients = active.filter(filters[dp.label] || (() => false)).sort((a,b) => (a._mp||0) - (b._mp||0));
+    }
+    const drillRev = drillClients.reduce((s,c) => s + c._rev, 0);
+    const drillHrs = drillClients.reduce((s,c) => s + c._hrs, 0);
+    const drillLc = drillClients.reduce((s,c) => s + c._lc, 0);
+    const drillGm = drillRev - drillLc;
+    const drillMp = drillRev > 0 ? (drillGm / drillRev) * 100 : null;
+    const title = dp.type === 'team' ? dp.label : { neg:'Negative Margin', low:'0 - 20% Margin', mid:'20 - 40% Margin', good:'40 - 60% Margin', great:'Over 60% Margin' }[dp.label];
+
+    return `<div class="drill-header">
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+            <h3>${title}</h3>
+            <div class="drill-stats">
+                <span>${drillClients.length} clients</span>
+                <span>${fmt$(drillRev)} rev</span>
+                <span>${fmtNum(drillHrs)} hrs</span>
+                <span>${drillHrs > 0 ? fmt$dec(drillRev/drillHrs)+'/hr' : '--'}</span>
+                <span>${marginBadge(drillMp)}</span>
+            </div>
+        </div>
+        <button class="drill-close" onclick="closeDrill()">&#x2716;</button>
+    </div>
+    <div class="drill-body">
+        <table><thead><tr>
+            <th>Client</th><th>Accountant</th><th>Team</th><th class="text-right">Revenue</th>
+            <th class="text-right">Hours</th><th class="text-right">Eff Rate</th>
+            <th class="text-right">Labor</th><th class="text-right">Margin $</th><th class="text-center">Margin %</th>
+        </tr></thead><tbody>
+        ${drillClients.map(c => `<tr class="${c._mp !== null && c._mp < 0 ? 'row-neg' : c._mp !== null && c._mp < 20 ? 'row-low' : ''}">
+            <td><span class="truncate" title="${c.name}" style="font-weight:600">${c.name}</span></td>
+            <td style="color:var(--text-muted);font-size:12px">${cleanName(c.accountant)}</td>
+            <td>${teamBadge(c.team)}</td>
+            <td class="text-right font-mono">${fmt$(c._rev)}</td>
+            <td class="text-right font-mono">${fmtNum(c._hrs)}</td>
+            <td class="text-right font-mono font-bold">${c._rate ? fmt$dec(c._rate) : '--'}</td>
+            <td class="text-right font-mono">${fmt$(c._lc)}</td>
+            <td class="text-right font-mono">${fmt$(c._gm)}</td>
+            <td class="text-center">${marginBadge(c._mp)}</td>
+        </tr>`).join('')}
+        </tbody></table>
+    </div>`;
+}
+
+// ============================================================
+// TAB RENDERERS
+// ============================================================
+const clientCols = [
+    { id:'name', header:'Client', align:'left', accessor: c => c.name },
+    { id:'accountant', header:'Accountant', align:'left', accessor: c => c.accountant || '' },
+    { id:'team', header:'Team', align:'left', accessor: c => c.team || 'Unassigned' },
+    { id:'rev', header:'Revenue', align:'right', accessor: c => c._rev },
+    { id:'hrs', header:'Hours', align:'right', accessor: c => c._hrs },
+    { id:'rate', header:'Eff Rate', align:'right', accessor: c => c._rate },
+    { id:'lc', header:'Labor Cost', align:'right', accessor: c => c._lc },
+    { id:'gm', header:'Margin $', align:'right', accessor: c => c._gm },
+    { id:'mp', header:'Margin %', align:'center', accessor: c => c._mp },
+    { id:'family', header:'Family', align:'left', accessor: c => c.family_name || '' },
+];
+
+function renderClientsTab(active) {
+    if (state.tab !== 'clients') return '<div class="tab-panel" id="tab-clients"></div>';
+    
+    // Default sort by margin asc
+    if (!state.sortCol.clients) state.sortCol.clients = { col: 'mp', dir: 'asc' };
+    const sorted = sortData(active, 'clients', clientCols);
+    
+    return `<div class="tab-panel active" id="tab-clients">
+        <div class="table-wrap" style="max-height:700px;overflow-y:auto">
+        <table>
+            <thead><tr>
+                ${clientCols.map(col => {
+                    const s = state.sortCol.clients;
+                    const isSorted = s && s.col === col.id;
+                    const arrow = isSorted ? (s.dir === 'asc' ? '&#9650;' : '&#9660;') : '&#x21C5;';
+                    return `<th class="${isSorted ? 'sorted' : ''} ${col.align === 'right' ? 'text-right' : col.align === 'center' ? 'text-center' : ''}" onclick="toggleSort('clients','${col.id}')">${col.header} <span class="sort-arrow">${arrow}</span></th>`;
+                }).join('')}
+            </tr></thead>
+            <tbody>
+            ${sorted.map((c, i) => {
+                const rowCls = c._mp !== null && c._mp < 0 ? 'row-neg' : c._mp !== null && c._mp < 20 ? 'row-low' : '';
+                const expanded = state.expandedRows.has('c_' + c.cid);
+                return `<tr class="${rowCls}" style="cursor:pointer" onclick="toggleExpand('c_${c.cid}')">
+                    <td><span class="expand-toggle">${expanded ? '&#9660;' : '&#9654;'}</span> <span class="truncate" title="${c.name}" style="font-weight:600">${c.name}</span></td>
+                    <td style="font-size:12px">${cleanName(c.accountant)}</td>
+                    <td>${teamBadge(c.team)}</td>
+                    <td class="text-right font-mono">${fmt$(c._rev)}</td>
+                    <td class="text-right font-mono">${fmtNum(c._hrs)}</td>
+                    <td class="text-right font-mono font-bold">${c._rate ? fmt$dec(c._rate) : '--'}</td>
+                    <td class="text-right font-mono">${fmt$(c._lc)}</td>
+                    <td class="text-right font-mono">${fmt$(c._gm)}</td>
+                    <td class="text-center">${marginBadge(c._mp)}</td>
+                    <td style="color:var(--text-muted);font-size:12px" class="truncate" title="${c.family_name || ''}">${c.family_name || '--'}</td>
+                </tr>
+                <tr class="expand-row ${expanded ? 'open' : ''}" id="expand_c_${c.cid}">
+                    <td colspan="10">${expanded ? renderClientDetail(c) : ''}</td>
+                </tr>`;
+            }).join('')}
+            </tbody>
+        </table>
+        </div>
+    </div>`;
+}
+
+function renderClientDetail(c) {
+    const { startMonth, endMonth } = state;
+    const m = clientMetrics(c, startMonth, endMonth);
+    
+    const wfRows = (c.workflows || []).map(wf => {
+        const hrs = sumRecord(wf.hm, startMonth, endMonth);
+        const rev = sumRecord(wf.rm, startMonth, endMonth);
+        return { name: wf.w, hrs, rev };
+    }).filter(w => w.hrs > 0.1 || w.rev > 0).sort((a,b) => b.rev - a.rev);
+    
+    const staffRows = (c.staff || []).map(s => {
+        const hrs = sumRecord(s.mo, startMonth, endMonth);
+        return { name: s.n, hrs, rate: s.r, cost: hrs * s.r };
+    }).filter(s => s.hrs > 0.1).sort((a,b) => b.hrs - a.hrs);
+    
+    return `<div class="expand-content">
+        <div>
+            <h4>Period Summary</h4>
+            <div class="expand-detail"><span style="color:var(--text-muted)">Revenue</span><span class="font-mono font-bold">${fmt$(m.rev)}</span></div>
+            <div class="expand-detail"><span style="color:var(--text-muted)">Hours</span><span class="font-mono">${fmtNum(m.hrs)}</span></div>
+            <div class="expand-detail"><span style="color:var(--text-muted)">Eff Rate</span><span class="font-mono font-bold">${m.rate ? fmt$dec(m.rate)+'/hr' : '--'}</span></div>
+            <div class="expand-detail"><span style="color:var(--text-muted)">Labor Cost</span><span class="font-mono">${fmt$(m.lc)}</span></div>
+            <div class="expand-detail"><span style="color:var(--text-muted)">Gross Margin</span><span class="font-mono">${fmt$(m.gm)}</span></div>
+            <div class="expand-detail"><span style="color:var(--text-muted)">Margin %</span>${marginBadge(m.mp)}</div>
+        </div>
+        <div>
+            <h4>Workflows</h4>
+            ${wfRows.length > 0 ? wfRows.map(w => `<div class="expand-detail"><span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px">${w.name}</span><span class="font-mono" style="font-size:12px">${fmt$(w.rev)} &middot; ${fmtNum(w.hrs)}h</span></div>`).join('') : '<div style="color:var(--text-muted);font-size:13px">No workflow data in period</div>'}
+        </div>
+        <div>
+            <h4>Staff</h4>
+            ${staffRows.length > 0 ? staffRows.map(s => `<div class="expand-detail"><span>${cleanName(s.name)}</span><span class="font-mono" style="font-size:12px">${fmtNum(s.hrs)}h @ ${fmt$dec(s.rate)}</span></div>`).join('') : '<div style="color:var(--text-muted);font-size:13px">No staff data in period</div>'}
+        </div>
+    </div>`;
+}
+
+function renderFamiliesTab() {
+    if (state.tab !== 'families') return '<div class="tab-panel" id="tab-families"></div>';
+    
+    const families = getFamilySummary();
+    const famCols = [
+        { id:'name', header:'Family', align:'left', accessor: f => f.family_name },
+        { id:'members', header:'Members', align:'center', accessor: f => f.member_count },
+        { id:'rev', header:'Revenue', align:'right', accessor: f => f.total_rev },
+        { id:'hrs', header:'Hours', align:'right', accessor: f => f.total_hrs },
+        { id:'rate', header:'Eff Rate', align:'right', accessor: f => f.eff_rate },
+        { id:'mp', header:'Margin %', align:'center', accessor: f => f.margin_pct },
+    ];
+    if (!state.sortCol.families) state.sortCol.families = { col: 'rev', dir: 'desc' };
+    const sorted = sortData(families, 'families', famCols);
+    
+    return `<div class="tab-panel active" id="tab-families">
+        <div class="table-wrap" style="max-height:700px;overflow-y:auto">
+        <table>
+            <thead><tr>
+                ${famCols.map(col => {
+                    const s = state.sortCol.families;
+                    const isSorted = s && s.col === col.id;
+                    const arrow = isSorted ? (s.dir === 'asc' ? '&#9650;' : '&#9660;') : '&#x21C5;';
+                    return `<th class="${isSorted ? 'sorted' : ''} ${col.align === 'right' ? 'text-right' : col.align === 'center' ? 'text-center' : ''}" onclick="toggleSort('families','${col.id}')">${col.header} <span class="sort-arrow">${arrow}</span></th>`;
+                }).join('')}
+            </tr></thead>
+            <tbody>
+            ${sorted.map(f => {
+                const expanded = state.expandedRows.has('f_' + f.family_id);
+                return `<tr style="cursor:pointer" onclick="toggleExpand('f_${f.family_id}')">
+                    <td><span class="expand-toggle">${expanded ? '&#9660;' : '&#9654;'}</span> <span style="font-weight:600">${f.family_name}</span></td>
+                    <td class="text-center"><span class="badge" style="background:rgba(139,92,246,0.2);color:#a78bfa">${f.member_count}</span></td>
+                    <td class="text-right font-mono">${fmt$(f.total_rev)}</td>
+                    <td class="text-right font-mono">${fmtNum(f.total_hrs)}</td>
+                    <td class="text-right font-mono font-bold">${f.eff_rate ? fmt$dec(f.eff_rate) : '--'}</td>
+                    <td class="text-center">${marginBadge(f.margin_pct)}</td>
+                </tr>
+                <tr class="expand-row ${expanded ? 'open' : ''}" id="expand_f_${f.family_id}">
+                    <td colspan="6">${expanded ? renderFamilyDetail(f) : ''}</td>
+                </tr>`;
+            }).join('')}
+            </tbody>
+        </table>
+        </div>
+    </div>`;
+}
+
+function renderFamilyDetail(fam) {
+    const { startMonth, endMonth } = state;
+    const clientMap = new Map(allClients.map(c => [c.cid, c]));
+    const members = fam.members.map(m => clientMap.get(m.cid)).filter(Boolean).map(c => {
+        const cm = clientMetrics(c, startMonth, endMonth);
+        return { name: c.name, rev: cm.rev, hrs: cm.hrs, rate: cm.rate, mp: cm.mp };
+    }).sort((a,b) => b.rev - a.rev);
+    
+    return `<div style="padding:8px 0">
+        <h4 style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-secondary);margin-bottom:8px;font-weight:600">Family Members (${fam.member_count})</h4>
+        <table style="width:100%;font-size:13px">
+            <thead><tr style="color:var(--text-secondary)"><th style="text-align:left;padding:4px 8px">Member</th><th style="text-align:right;padding:4px 8px">Revenue</th><th style="text-align:right;padding:4px 8px">Hours</th><th style="text-align:right;padding:4px 8px">Rate</th><th style="text-align:center;padding:4px 8px">Margin</th></tr></thead>
+            <tbody>${members.map(m => `<tr><td style="padding:4px 8px">${m.name}</td><td class="text-right font-mono" style="padding:4px 8px">${fmt$(m.rev)}</td><td class="text-right font-mono" style="padding:4px 8px">${fmtNum(m.hrs)}</td><td class="text-right font-mono" style="padding:4px 8px">${m.rate ? fmt$dec(m.rate) : '--'}</td><td class="text-center" style="padding:4px 8px">${marginBadge(m.mp)}</td></tr>`).join('')}</tbody>
+        </table>
+    </div>`;
+}
+
+function renderWorkflowsTab(active) {
+    if (state.tab !== 'workflows') return '<div class="tab-panel" id="tab-workflows"></div>';
+    
+    const wfs = getWorkflowSummary(active);
+    const totalHrs = wfs.reduce((s,w) => s + w.total_hrs, 0);
+    const wfCols = [
+        { id:'workflow', header:'Workflow', align:'left', accessor: w => w.workflow },
+        { id:'rev', header:'Revenue', align:'right', accessor: w => w.total_rev },
+        { id:'hrs', header:'Hours', align:'right', accessor: w => w.total_hrs },
+        { id:'clients', header:'Clients', align:'right', accessor: w => w.client_count },
+        { id:'rate', header:'Eff Rate', align:'right', accessor: w => w.eff_rate },
+        { id:'pct', header:'% of Hours', align:'right', accessor: w => totalHrs > 0 ? w.total_hrs / totalHrs * 100 : 0 },
+    ];
+    if (!state.sortCol.workflows) state.sortCol.workflows = { col: 'hrs', dir: 'desc' };
+    const sorted = sortData(wfs, 'workflows', wfCols);
+    
+    return `<div class="tab-panel active" id="tab-workflows">
+        <div class="table-wrap" style="max-height:700px;overflow-y:auto">
+        <table>
+            <thead><tr>
+                ${wfCols.map(col => {
+                    const s = state.sortCol.workflows;
+                    const isSorted = s && s.col === col.id;
+                    const arrow = isSorted ? (s.dir === 'asc' ? '&#9650;' : '&#9660;') : '&#x21C5;';
+                    return `<th class="${isSorted ? 'sorted' : ''} ${col.align === 'right' ? 'text-right' : ''}" onclick="toggleSort('workflows','${col.id}')">${col.header} <span class="sort-arrow">${arrow}</span></th>`;
+                }).join('')}
+            </tr></thead>
+            <tbody>
+            ${sorted.map(w => {
+                const pct = totalHrs > 0 ? (w.total_hrs / totalHrs * 100) : 0;
+                const expanded = state.expandedRows.has('w_' + w.workflow);
+                return `<tr style="cursor:pointer" onclick="toggleExpand('w_${w.workflow}')">
+                    <td><span class="expand-toggle">${expanded ? '&#9660;' : '&#9654;'}</span> <span style="font-weight:600">${w.workflow}</span></td>
+                    <td class="text-right font-mono">${fmt$(w.total_rev)}</td>
+                    <td class="text-right font-mono">${fmtNum(w.total_hrs)}</td>
+                    <td class="text-right">${w.client_count}</td>
+                    <td class="text-right font-mono font-bold">${w.eff_rate ? fmt$dec(w.eff_rate)+'/hr' : '--'}</td>
+                    <td class="text-right"><div style="display:flex;align-items:center;gap:6px;justify-content:flex-end"><div style="flex:1;max-width:100px;height:16px;background:rgba(255,255,255,0.05);border-radius:8px;overflow:hidden"><div style="height:100%;border-radius:8px;background:rgba(74,144,226,0.5);width:${Math.min(pct,100)}%"></div></div><span style="font-size:11px;color:var(--text-muted);width:40px;text-align:right">${pct.toFixed(1)}%</span></div></td>
+                </tr>
+                <tr class="expand-row ${expanded ? 'open' : ''}" id="expand_w_${w.workflow}">
+                    <td colspan="6">${expanded ? renderWorkflowDetail(w.workflow, active) : ''}</td>
+                </tr>`;
+            }).join('')}
+            </tbody>
+        </table>
+        </div>
+    </div>`;
+}
+
+function renderWorkflowDetail(workflow, active) {
+    const { startMonth, endMonth } = state;
+    const wfClients = [];
+    for (const c of active) {
+        for (const wf of (c.workflows || [])) {
+            if (wf.w !== workflow) continue;
+            const wfHrs = sumRecord(wf.hm, startMonth, endMonth);
+            const wfRev = sumRecord(wf.rm, startMonth, endMonth);
+            if (wfHrs < 0.1 && wfRev < 1) continue;
+            wfClients.push({ name: c.name, accountant: c.accountant, wfHrs, wfRev, rev: c._rev, rate: c._rate, mp: c._mp });
+        }
+    }
+    wfClients.sort((a,b) => b.wfRev - a.wfRev);
+    return `<div style="padding:8px 0">
+        <h4 style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-secondary);margin-bottom:8px;font-weight:600">Client Breakdown - ${wfClients.length} clients</h4>
+        <div style="max-height:350px;overflow-y:auto">
+        <table style="width:100%;font-size:13px">
+            <thead><tr style="color:var(--text-secondary)"><th style="text-align:left;padding:4px 8px">Client</th><th style="text-align:left;padding:4px 8px">Accountant</th><th style="text-align:right;padding:4px 8px">WF Rev</th><th style="text-align:right;padding:4px 8px">WF Hours</th><th style="text-align:right;padding:4px 8px">Total Rev</th><th style="text-align:right;padding:4px 8px">Rate</th><th style="text-align:center;padding:4px 8px">Margin</th></tr></thead>
+            <tbody>${wfClients.map(wc => `<tr class="${wc.mp !== null && wc.mp < 0 ? 'row-neg' : wc.mp !== null && wc.mp < 20 ? 'row-low' : ''}">
+                <td style="padding:4px 8px;font-weight:600;max-width:200px;overflow:hidden;text-overflow:ellipsis" title="${wc.name}">${wc.name}</td>
+                <td style="padding:4px 8px;color:var(--text-muted);font-size:12px">${cleanName(wc.accountant)}</td>
+                <td class="text-right font-mono font-bold" style="padding:4px 8px">${fmt$(wc.wfRev)}</td>
+                <td class="text-right font-mono" style="padding:4px 8px">${fmtNum(wc.wfHrs)}</td>
+                <td class="text-right font-mono" style="padding:4px 8px">${fmt$(wc.rev)}</td>
+                <td class="text-right font-mono" style="padding:4px 8px">${wc.rate ? fmt$dec(wc.rate) : '--'}</td>
+                <td class="text-center" style="padding:4px 8px">${marginBadge(wc.mp)}</td>
+            </tr>`).join('')}</tbody>
+        </table>
+        </div>
+    </div>`;
+}
+
+function renderStaffTab(active) {
+    if (state.tab !== 'staff') return '<div class="tab-panel" id="tab-staff"></div>';
+    
+    const staff = getStaffSummary(active);
+    const sCols = [
+        { id:'name', header:'Name', align:'left', accessor: s => s.name },
+        { id:'cost_rate', header:'Cost Rate', align:'right', accessor: s => s.cost_rate },
+        { id:'hours', header:'Hours', align:'right', accessor: s => s.hours },
+        { id:'clients', header:'Clients', align:'right', accessor: s => s.client_count },
+        { id:'rev', header:'Alloc Revenue', align:'right', accessor: s => s.allocated_revenue },
+        { id:'rate', header:'Eff Rate', align:'right', accessor: s => s.effective_rate },
+        { id:'cost', header:'Cost', align:'right', accessor: s => s.cost },
+        { id:'margin', header:'Margin $', align:'right', accessor: s => s.margin },
+        { id:'mp', header:'Margin %', align:'center', accessor: s => s.margin_pct },
+    ];
+    if (!state.sortCol.staff) state.sortCol.staff = { col: 'rev', dir: 'desc' };
+    const sorted = sortData(staff, 'staff', sCols);
+    
+    return `<div class="tab-panel active" id="tab-staff">
+        <div class="table-wrap" style="max-height:700px;overflow-y:auto">
+        <table>
+            <thead><tr>
+                ${sCols.map(col => {
+                    const s = state.sortCol.staff;
+                    const isSorted = s && s.col === col.id;
+                    const arrow = isSorted ? (s.dir === 'asc' ? '&#9650;' : '&#9660;') : '&#x21C5;';
+                    return `<th class="${isSorted ? 'sorted' : ''} ${col.align === 'right' ? 'text-right' : col.align === 'center' ? 'text-center' : ''}" onclick="toggleSort('staff','${col.id}')">${col.header} <span class="sort-arrow">${arrow}</span></th>`;
+                }).join('')}
+            </tr></thead>
+            <tbody>
+            ${sorted.map(s => `<tr>
+                <td style="font-weight:600">${cleanName(s.name)}</td>
+                <td class="text-right font-mono">${fmt$dec(s.cost_rate)}/hr</td>
+                <td class="text-right font-mono">${fmtNum(s.hours)}</td>
+                <td class="text-right">${s.client_count}</td>
+                <td class="text-right font-mono">${fmt$(s.allocated_revenue)}</td>
+                <td class="text-right font-mono font-bold">${s.effective_rate ? fmt$dec(s.effective_rate)+'/hr' : '--'}</td>
+                <td class="text-right font-mono">${fmt$(s.cost)}</td>
+                <td class="text-right font-mono">${fmt$(s.margin)}</td>
+                <td class="text-center">${marginBadge(s.margin_pct)}</td>
+            </tr>`).join('')}
+            </tbody>
+        </table>
+        </div>
+    </div>`;
+}
+
+function renderTeamsTab(teams, active) {
+    if (state.tab !== 'teams') return '<div class="tab-panel" id="tab-teams"></div>';
+    
+    const tCols = [
+        { id:'team', header:'Team', align:'left', accessor: t => t.team },
+        { id:'clients', header:'Clients', align:'right', accessor: t => t.client_count },
+        { id:'hrs', header:'Hours', align:'right', accessor: t => t.total_hrs },
+        { id:'rev', header:'Revenue', align:'right', accessor: t => t.total_rev },
+        { id:'lc', header:'Labor Cost', align:'right', accessor: t => t.labor_cost },
+        { id:'gm', header:'Margin $', align:'right', accessor: t => t.gross_margin },
+        { id:'mp', header:'Margin %', align:'center', accessor: t => t.margin_pct },
+        { id:'rate', header:'Eff Rate', align:'right', accessor: t => t.eff_rate },
+    ];
+    if (!state.sortCol.teams) state.sortCol.teams = { col: 'rev', dir: 'desc' };
+    const sorted = sortData(teams, 'teams', tCols);
+    
+    // Team detail cards
+    const teamCards = teams.filter(t => t.client_count > 0).map(t => {
+        const teamClients = active.filter(c => c.team === t.team).sort((a,b) => b._rev - a._rev).slice(0, 5);
+        return `<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:8px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:12px"><div><div style="font-size:18px;font-weight:700">${t.team}</div><div style="font-size:12px;color:var(--text-muted)">${t.client_count} clients</div></div><div>${marginBadge(t.margin_pct)}</div></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+                <div><div style="font-size:10px;color:var(--text-muted)">Revenue</div><div style="font-size:16px;font-weight:700">${fmt$(t.total_rev)}</div></div>
+                <div><div style="font-size:10px;color:var(--text-muted)">Labor Cost</div><div style="font-size:16px;font-weight:700">${fmt$(t.labor_cost)}</div></div>
+                <div><div style="font-size:10px;color:var(--text-muted)">Hours</div><div style="font-size:16px;font-weight:700">${fmtNum(t.total_hrs)}</div></div>
+                <div><div style="font-size:10px;color:var(--text-muted)">Eff Rate</div><div style="font-size:16px;font-weight:700">${t.eff_rate ? fmt$dec(t.eff_rate)+'/hr' : '--'}</div></div>
+            </div>
+            <div style="font-size:10px;color:var(--text-muted);margin-bottom:6px">Top Clients</div>
+            ${teamClients.map(c => `<div style="display:flex;justify-content:space-between;font-size:12px;padding:2px 0"><span style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${c.name}</span><span class="font-mono">${fmt$(c._rev)} &middot; ${marginBadge(c._mp)}</span></div>`).join('')}
+        </div>`;
+    });
+    
+    return `<div class="tab-panel active" id="tab-teams">
+        <!-- Team table -->
+        <div class="table-wrap" style="margin-bottom:20px">
+        <table>
+            <thead><tr>
+                ${tCols.map(col => {
+                    const s = state.sortCol.teams;
+                    const isSorted = s && s.col === col.id;
+                    const arrow = isSorted ? (s.dir === 'asc' ? '&#9650;' : '&#9660;') : '&#x21C5;';
+                    return `<th class="${isSorted ? 'sorted' : ''} ${col.align === 'right' ? 'text-right' : col.align === 'center' ? 'text-center' : ''}" onclick="toggleSort('teams','${col.id}')">${col.header} <span class="sort-arrow">${arrow}</span></th>`;
+                }).join('')}
+            </tr></thead>
+            <tbody>
+            ${sorted.map(t => `<tr>
+                <td style="font-weight:600">${t.team}</td>
+                <td class="text-right">${t.client_count}</td>
+                <td class="text-right font-mono">${fmtNum(t.total_hrs)}</td>
+                <td class="text-right font-mono">${fmt$(t.total_rev)}</td>
+                <td class="text-right font-mono">${fmt$(t.labor_cost)}</td>
+                <td class="text-right font-mono">${fmt$(t.gross_margin)}</td>
+                <td class="text-center">${marginBadge(t.margin_pct)}</td>
+                <td class="text-right font-mono font-bold">${t.eff_rate ? fmt$dec(t.eff_rate)+'/hr' : '--'}</td>
+            </tr>`).join('')}
+            </tbody>
+        </table>
+        </div>
+
+        <!-- Team detail cards -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+            ${teamCards.join('')}
+        </div>
+    </div>`;
+}
+
+// ============================================================
+// PROFIT TREND CHART
+// ============================================================
+function renderProfitChart(clients) {
+    const { startMonth, endMonth } = state;
+    const monthMap = new Map();
+    for (const c of clients) {
+        for (const e of (c.monthly || [])) {
+            if (e.m < startMonth || e.m > endMonth) continue;
+            const ex = monthMap.get(e.m) || { rev:0, hrs:0, lc:0 };
+            ex.rev += e.r; ex.hrs += e.h;
+            monthMap.set(e.m, ex);
+        }
+        for (const s of (c.staff || [])) {
+            for (const [m, h] of Object.entries(s.mo || {})) {
+                if (m < startMonth || m > endMonth) continue;
+                const ex = monthMap.get(m) || { rev:0, hrs:0, lc:0 };
+                ex.lc += h * s.r;
+                monthMap.set(m, ex);
+            }
+        }
+    }
+    
+    const now = new Date().toISOString().slice(0, 7);
+    const chartData = Array.from(monthMap.entries())
+        .filter(([m]) => m < now)
+        .sort(([a],[b]) => a.localeCompare(b))
+        .map(([m, d]) => ({
+            label: new Date(m + '-15').toLocaleDateString('en-US', { month: 'short', year: '2-digit' }),
+            revenue: Math.round(d.rev),
+            labor_cost: Math.round(d.lc),
+            margin_pct: d.rev > 0 ? Math.round((d.rev - d.lc) / d.rev * 100) : 0
+        }));
+    
+    if (chartData.length < 2) return;
+    
+    const canvas = document.getElementById('profitChart');
+    if (!canvas) return;
+    if (profitChart) profitChart.destroy();
+    
+    profitChart = new Chart(canvas, {
+        type: 'bar',
+        data: {
+            labels: chartData.map(d => d.label),
+            datasets: [
+                { label: 'Revenue', data: chartData.map(d => d.revenue), backgroundColor: 'rgba(16,185,129,0.5)', borderRadius: 3, order: 2 },
+                { label: 'Labor Cost', data: chartData.map(d => d.labor_cost), backgroundColor: 'rgba(249,115,22,0.4)', borderRadius: 3, order: 3 },
+                { label: 'Margin %', data: chartData.map(d => d.margin_pct), type: 'line', borderColor: '#a78bfa', borderWidth: 2, pointRadius: 0, tension: 0.3, yAxisID: 'y1', order: 1 }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                legend: { labels: { color: '#888', font: { size: 11 } } },
+                tooltip: {
+                    backgroundColor: '#1a1a2e', borderColor: '#333', borderWidth: 1,
+                    callbacks: {
+                        label: function(ctx) {
+                            if (ctx.dataset.label === 'Margin %') return `Margin: ${ctx.parsed.y}%`;
+                            return `${ctx.dataset.label}: $${ctx.parsed.y.toLocaleString()}`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: { ticks: { color: '#888', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.04)' } },
+                y: { ticks: { color: '#888', font: { size: 10 }, callback: v => '$' + (v/1000).toFixed(0) + 'k' }, grid: { color: 'rgba(255,255,255,0.06)' } },
+                y1: { position: 'right', min: 0, max: 100, ticks: { color: '#888', font: { size: 10 }, callback: v => v + '%' }, grid: { display: false } }
+            }
+        }
+    });
+}
+
+// ============================================================
+// EVENT HANDLERS
+// ============================================================
+function setPreset(p) {
+    state.preset = p;
+    const [s, e] = getPresetRange(p);
+    state.startMonth = s; state.endMonth = e;
+    state.expandedRows.clear();
+    render();
+}
+
+function setCustomRange(s, e) {
+    state.preset = 'custom';
+    state.startMonth = s; state.endMonth = e;
+    state.expandedRows.clear();
+    render();
+}
+
+function setTab(t) { state.tab = t; state.expandedRows.clear(); render(); }
+function setTeam(t) { state.teamFilter = t; state.expandedRows.clear(); render(); }
+function setEmployee(e) { state.employeeFilter = e; state.expandedRows.clear(); render(); }
+function setStatus(s) { state.statusFilter = s; state.expandedRows.clear(); render(); }
+function setSearch(s) { state.search = s; render(); }
+
+function clearFilters() {
+    state.teamFilter = 'all'; state.employeeFilter = 'all'; state.search = ''; state.statusFilter = 'active';
+    state.expandedRows.clear(); render();
+}
+
+function openDrill(type, label) {
+    state.drillPanel = { type, label };
+    render();
+    document.getElementById('drillPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function closeDrill() { state.drillPanel = null; render(); }
+
+function toggleExpand(key) {
+    if (state.expandedRows.has(key)) state.expandedRows.delete(key);
+    else state.expandedRows.add(key);
+    render();
+}
+
+function exportCSV() {
+    const filtered = getFilteredClients();
+    const withMetrics = getClientsWithMetrics(filtered);
+    const active = getActiveClients(withMetrics);
+    
+    let csv = 'Client,Accountant,Bookkeeper,Team,Status,Family,Revenue,Hours,Eff Rate,Labor Cost,Gross Margin,Margin %\n';
+    for (const c of active) {
+        csv += `"${c.name}","${cleanName(c.accountant)}","${cleanName(c.bookkeeper)}","${c.team || 'Unassigned'}","${c.status}","${c.family_name || ''}",${c._rev.toFixed(2)},${c._hrs.toFixed(1)},${c._rate ? c._rate.toFixed(2) : ''},${c._lc.toFixed(2)},${c._gm.toFixed(2)},${c._mp !== null ? c._mp.toFixed(1) : ''}\n`;
+    }
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = `fee_analysis_${state.startMonth}_to_${state.endMonth}.csv`; a.click();
+}
+
+// ============================================================
+// INIT
+// ============================================================
+const [initStart, initEnd] = getPresetRange('12m');
+state.startMonth = initStart;
+state.endMonth = initEnd;
+render();
+</script>
+</body>
+</html>
