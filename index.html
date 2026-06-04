@@ -254,16 +254,14 @@
     </style>
 </head>
 <body>
+<nav style="display:flex;align-items:center;gap:8px;padding:12px 20px;background:rgba(26,31,46,0.95);border-bottom:1px solid rgba(74,144,226,0.2);"><span style="font-size:14px;font-weight:700;color:#fff;margin-right:16px;letter-spacing:-0.3px;">PATS Dashboards</span><a href="index.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#fff;background:rgba(74,144,226,0.15);border:1px solid rgba(74,144,226,0.3);">Automation Scorecard</a><a href="activity.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Monthly Activity</a><a href="connections.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">QBO Connections</a><a href="fee-analysis.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Fee Analysis</a></nav>
 <div class="container">
     <header>
         <div class="header-top">
             <h1>&#x1f4ca; Automation Scorecard</h1>
             <div class="header-controls">
                 <select class="month-selector" id="monthSelect"></select>
-                <button class="export-btn" onclick="exportCSV()">&#x2B07; Export CSV</button>
-                <a href="connections.html" style="padding:8px 14px;background:rgba(74,144,226,0.15);border:1px solid rgba(74,144,226,0.3);border-radius:6px;color:var(--accent);font-size:13px;font-weight:600;text-decoration:none;">QBO Connections</a>
-                <a href="fee-analysis.html" style="padding:8px 14px;background:rgba(74,144,226,0.15);border:1px solid rgba(74,144,226,0.3);border-radius:6px;color:var(--accent);font-size:13px;font-weight:600;text-decoration:none;">Fee Analysis &#x2192;</a>
-            </div>
+                <button class="export-btn" onclick="exportCSV()">&#x2B07; Export CSV</button></div>
         </div>
         <div class="tab-bar">
             <div class="tab active" data-tab="overview" onclick="switchTab('overview')">Overview</div>

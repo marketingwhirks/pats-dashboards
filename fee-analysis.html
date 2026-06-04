@@ -165,6 +165,7 @@
     </style>
 </head>
 <body>
+<nav style="display:flex;align-items:center;gap:8px;padding:12px 20px;background:rgba(26,31,46,0.95);border-bottom:1px solid rgba(74,144,226,0.2);"><span style="font-size:14px;font-weight:700;color:#fff;margin-right:16px;letter-spacing:-0.3px;">PATS Dashboards</span><a href="index.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Automation Scorecard</a><a href="activity.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Monthly Activity</a><a href="connections.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">QBO Connections</a><a href="fee-analysis.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#fff;background:rgba(74,144,226,0.15);border:1px solid rgba(74,144,226,0.3);">Fee Analysis</a></nav>
 <div class="container" id="app">
     <div class="loading">Loading fee analysis data...</div>
 </div>
@@ -441,10 +442,7 @@ function render() {
                     <h1>Fee Analysis &amp; Profitability</h1>
                     <div class="header-sub">${active.length} clients &middot; ${periodLabel} &middot; Updated ${D.generated_at}</div>
                 </div>
-                <div class="header-controls">
-                    <a href="index.html" class="nav-link">Automation Scorecard &rarr;</a>
-                    <a href="connections.html" class="nav-link">QBO Connections &rarr;</a>
-                    <button class="export-btn" onclick="exportCSV()">Export CSV &darr;</button>
+                <div class="header-controls"><button class="export-btn" onclick="exportCSV()">Export CSV &darr;</button>
                 </div>
             </div>
         </header>
