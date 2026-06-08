@@ -26,13 +26,20 @@
     box-shadow:0 8px 32px rgba(0,0,0,0.4);
   }
   .logo {
-    font-size:28px;
-    font-weight:800;
-    color:#fff;
-    letter-spacing:-0.5px;
     margin-bottom:8px;
   }
-  .logo span { color:#4a90e2; }
+  .logo img {
+    max-width:280px;
+    height:auto;
+  }
+  .logo-subtitle {
+    font-size:22px;
+    font-weight:700;
+    color:#8cb86e;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:4px;
+  }
   .subtitle {
     font-size:14px;
     color:#888;
@@ -78,8 +85,9 @@
 </head>
 <body>
 <div class="login-card">
-  <div class="logo"><span>PATS</span> Dashboards</div>
-  <div class="subtitle">Patrick Accounting Internal Dashboards</div>
+  <div class="logo"><img src="/assets/logo.png" alt="Patrick Accounting"></div>
+  <div class="logo-subtitle">Dashboards</div>
+  <div class="subtitle">Internal Dashboards</div>
 
   <div class="error-msg" id="errorMsg"></div>
 
