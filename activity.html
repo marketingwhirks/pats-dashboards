@@ -289,7 +289,7 @@ function renderSummary(d) {
             <div class="card-value" style="color:var(--green)">${s.doneClients}</div>
             <div class="card-sub"><span style="color:var(--green);font-family:monospace;font-weight:600">${fmtPct(donePct)}</span> of clients</div>
         </div>
-        <div class="card">
+        <div class="card card-clickable" onclick="openDrawerInProgress()">
             <div class="card-header"><span class="card-label">In Progress</span><span style="color:var(--text-muted)">⚡</span></div>
             <div class="card-value">${inProgress}</div>
             <div class="card-sub">${currentMonth} ${new Date().getFullYear()}</div>
@@ -329,7 +329,7 @@ function renderTeamCards(d) {
         const otd = t.otd || {pct40:0,pct75:0,pct95:0};
         const kb = t.data?.kickbackCount || 0;
         const kbPct = t.data?.kickbackPct || 0;
-        return `<div class="team-card" style="border-color: ${t.accent}30">
+        return `<div class="team-card" style="border-color: ${t.accent}30;cursor:pointer" onclick="openDrawerTeam('${t.name}')" title="Click to see ${t.name} clients">
             <div class="team-name" style="color:${t.accent}">${t.name}</div>
             <div class="team-stats">
                 <div class="team-stat"><div class="team-stat-value">${t.data?.clientCount || 0}</div><div style="color:var(--text-muted);font-size:11px">clients</div></div>
@@ -512,6 +512,45 @@ function openDrawer(statusFilter) {
                 <td style="font-size:12px">${c.prep || '—'}</td>
                 <td style="color:${STATUS_COLORS[c.status]||'var(--text-muted)'};font-size:12px">${c.status}</td>
                 <td class="font-mono" style="font-size:12px">${c.dollars > 0 ? fmtDollars(c.dollars) : '—'}</td>
+            </tr>`).join('')}</tbody>
+        </table>`;
+    document.getElementById('drawerOverlay').classList.add('open');
+}
+
+function openDrawerInProgress() {
+    const d = ACTIVITY_DATA[currentMonth];
+    if (!d || !d.clients) return;
+    const clients = d.clients.filter(c => c.status !== 'Done').sort((a,b) => a.company.localeCompare(b.company));
+    document.getElementById('drawerBody').innerHTML = `
+        <h2 style="font-size:18px;font-weight:700;margin-bottom:16px">In Progress (${clients.length})</h2>
+        <table>
+            <thead><tr><th>Company</th><th>Team</th><th>Prep</th><th>Status</th><th>$</th></tr></thead>
+            <tbody>${clients.map(c => `<tr>
+                <td style="font-weight:500">${c.company}</td>
+                <td style="color:${c.team==='ALPHA'?'#3b82f6':c.team==='PAPA'?'#a855f7':'#f59e0b'};font-size:11px">${c.team}</td>
+                <td style="font-size:12px">${c.prep || '\u2014'}</td>
+                <td style="color:${STATUS_COLORS[c.status]||'var(--text-muted)'};font-size:12px">${c.status}</td>
+                <td class="font-mono" style="font-size:12px">${c.dollars > 0 ? fmtDollars(c.dollars) : '\u2014'}</td>
+            </tr>`).join('')}</tbody>
+        </table>`;
+    document.getElementById('drawerOverlay').classList.add('open');
+}
+
+function openDrawerTeam(teamName) {
+    const d = ACTIVITY_DATA[currentMonth];
+    if (!d || !d.clients) return;
+    const clients = d.clients.filter(c => c.team === teamName).sort((a,b) => a.company.localeCompare(b.company));
+    document.getElementById('drawerBody').innerHTML = `
+        <h2 style="font-size:18px;font-weight:700;margin-bottom:16px">${teamName} Team (${clients.length})</h2>
+        <table>
+            <thead><tr><th>Company</th><th>Status</th><th>Prep</th><th>Manager</th><th>$</th><th>KB</th></tr></thead>
+            <tbody>${clients.map(c => `<tr>
+                <td style="font-weight:500">${c.company}</td>
+                <td style="color:${STATUS_COLORS[c.status]||'var(--text-muted)'};font-size:12px">${c.status}</td>
+                <td style="font-size:12px">${c.prep || '\u2014'}</td>
+                <td style="font-size:12px">${c.manager || '\u2014'}</td>
+                <td class="font-mono" style="font-size:12px">${c.dollars > 0 ? fmtDollars(c.dollars) : '\u2014'}</td>
+                <td>${c.kickback ? '<span class="kickback">KB</span>' : ''}</td>
             </tr>`).join('')}</tbody>
         </table>`;
     document.getElementById('drawerOverlay').classList.add('open');
