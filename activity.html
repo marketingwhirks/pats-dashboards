@@ -30,6 +30,7 @@
             background-repeat: no-repeat; background-position: right 10px center;
         }
         select:focus { outline: none; border-color: var(--accent); }
+        select option { background: #1e293b; color: #fff; font-size: 14px; padding: 8px; }
 
         .sync-badge {
             display: flex; align-items: center; gap: 6px; font-size: 11px;
@@ -170,7 +171,7 @@
         </div>
         <div class="header-right">
             <select id="monthSelect" onchange="switchMonth(this.value)">
-                <option value="January" >January 2026</option><option value="February" >February 2026</option><option value="March" >March 2026</option><option value="April" >April 2026</option><option value="May" selected>May 2026</option><option value="June" >June 2026</option>
+                <option value="June" selected>June 2026</option><option value="May" >May 2026</option><option value="April" >April 2026</option><option value="March" >March 2026</option><option value="February" >February 2026</option><option value="January" >January 2026</option>
             </select>
             <div class="sync-badge">🔄 Data refreshes daily from Qount</div>
         </div>
@@ -248,7 +249,7 @@ const MONTH_SHORT = {"January": "Jan", "February": "Feb", "March": "Mar", "April
 const STATUS_ORDER = ["Collect", "Prep", "Review", "Clear Notes", "Review #2", "Deliver", "Done"];
 const STATUS_COLORS = {"Collect": "#94a3b8", "Prep": "#3b82f6", "Review": "#f59e0b", "Clear Notes": "#f97316", "Review #2": "#a855f7", "Deliver": "#06b6d4", "Done": "#10b981"};
 
-let currentMonth = "May";
+let currentMonth = "June";
 
 function switchMonth(m) {
     currentMonth = m;

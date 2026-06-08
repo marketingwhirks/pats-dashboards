@@ -222,8 +222,14 @@
         }
         .table-filter-bar .search-input::placeholder { color: var(--text-muted); }
         .table-filter-bar .filter-select {
-            padding: 8px 12px; background: rgba(255,255,255,0.06); border: 1px solid var(--border);
-            border-radius: 6px; color: var(--text-primary); font-size: 13px; cursor: pointer;
+            padding: 8px 32px 8px 12px; background: #1a2332; border: 1px solid var(--border);
+            border-radius: 6px; color: #fff; font-size: 13px; font-weight: 600; cursor: pointer;
+            -webkit-appearance: none; -moz-appearance: none; appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%234a90e2' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 10px center;
+        }
+        .table-filter-bar .filter-select option {
+            background: #1a2332; color: #fff; font-size: 13px; font-weight: 500; padding: 8px;
         }
         .table-filter-bar .filter-count {
             font-size: 12px; color: var(--text-muted); margin-left: auto;
