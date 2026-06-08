@@ -280,6 +280,12 @@
 
     <!-- Tab: Overview -->
     <div class="tab-panel active" id="panel-overview">
+        <!-- Quick client search -->
+        <div style="margin-bottom:16px;position:relative">
+            <input type="text" id="overviewSearch" placeholder="&#x1F50D; Quick client search..." oninput="overviewClientSearch(this.value)"
+                style="width:100%;max-width:400px;padding:10px 14px;border-radius:10px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:14px;outline:none">
+            <div id="overviewSearchResults" style="position:absolute;top:44px;left:0;width:100%;max-width:400px;background:var(--card);border:1px solid var(--border);border-radius:10px;max-height:300px;overflow-y:auto;display:none;z-index:100;box-shadow:0 8px 24px rgba(0,0,0,0.3)"></div>
+        </div>
         <div class="tier-grid" id="tierGrid"></div>
         <div class="charts-row">
             <div class="chart-card">
@@ -372,6 +378,12 @@
                 <select class="filter-select" id="clientTeamFilter" onchange="filterClients()">
                     <option value="all">All Teams</option>
                 </select>
+                <select class="filter-select" id="clientIndustryFilter" onchange="filterClients()">
+                    <option value="all">All Industries</option>
+                </select>
+                <select class="filter-select" id="clientFamilyFilter" onchange="filterClients()">
+                    <option value="all">All Families</option>
+                </select>
                 <button class="sort-btn active" data-sort="rate-desc" onclick="sortClients('rate-desc')">&#x2B07; Rate</button>
                 <button class="sort-btn" data-sort="rate-asc" onclick="sortClients('rate-asc')">&#x2B06; Rate</button>
                 <button class="sort-btn" data-sort="manual-desc" onclick="sortClients('manual-desc')">&#x2B07; Manual Txns</button>
@@ -383,6 +395,8 @@
                     <tr>
                         <th onclick="sortClients('name')">Client</th>
                         <th onclick="sortClients('team')">Team</th>
+                        <th onclick="sortClients('industry')">Industry</th>
+                        <th onclick="sortClients('family')">Family</th>
                         <th onclick="sortClients('total-desc')" style="text-align:right">Total</th>
                         <th onclick="sortClients('auto-desc')" style="text-align:right">Auto</th>
                         <th onclick="sortClients('manual-desc')" style="text-align:right">Manual</th>
@@ -919,12 +933,16 @@ function renderTypeCharts(d) {
 
 // ─── Client Table ───
 function getFilteredClients(d) {
-    let clients = d.clients.slice(); // [name, auto, manual, total, rate, autoTypes, manualTypes, team, sources]
+    let clients = d.clients.slice(); // [name, auto, manual, total, rate, autoTypes, manualTypes, team, sources, industry, family]
     const search = document.getElementById('clientSearch')?.value?.toLowerCase() || '';
     if (search) clients = clients.filter(c => c[0].toLowerCase().includes(search));
     if (currentTierFilter) clients = clients.filter(c => tierOf(c[4]) === currentTierFilter);
     const teamFilter = document.getElementById('clientTeamFilter')?.value || 'all';
     if (teamFilter !== 'all') clients = clients.filter(c => (c[7] || 'Unassigned') === teamFilter);
+    const industryFilter = document.getElementById('clientIndustryFilter')?.value || 'all';
+    if (industryFilter !== 'all') clients = clients.filter(c => (c[9] || '') === industryFilter);
+    const familyFilter = document.getElementById('clientFamilyFilter')?.value || 'all';
+    if (familyFilter !== 'all') clients = clients.filter(c => (c[10] || '') === familyFilter);
 
     // Sort
     const [field, dir] = currentSort.split('-');
@@ -933,6 +951,8 @@ function getFilteredClients(d) {
         let va, vb;
         if (field === 'name') { va = a[0].toLowerCase(); vb = b[0].toLowerCase(); return desc ? vb.localeCompare(va) : va.localeCompare(vb); }
         if (field === 'team') { va = (a[7]||'').toLowerCase(); vb = (b[7]||'').toLowerCase(); return desc ? vb.localeCompare(va) : va.localeCompare(vb); }
+        if (field === 'industry') { va = (a[9]||'').toLowerCase(); vb = (b[9]||'').toLowerCase(); return desc ? vb.localeCompare(va) : va.localeCompare(vb); }
+        if (field === 'family') { va = (a[10]||'').toLowerCase(); vb = (b[10]||'').toLowerCase(); return desc ? vb.localeCompare(va) : va.localeCompare(vb); }
         if (field === 'rate') { va = a[4]; vb = b[4]; }
         else if (field === 'manual') { va = a[2]; vb = b[2]; }
         else if (field === 'auto') { va = a[1]; vb = b[1]; }
@@ -944,11 +964,21 @@ function getFilteredClients(d) {
 }
 
 function renderClients(d) {
-    // Populate team dropdown dynamically
+    // Populate filter dropdowns dynamically
     const teamSel = document.getElementById('clientTeamFilter');
     if (teamSel && teamSel.options.length <= 1) {
         const teams = [...new Set(d.clients.map(c => c[7] || 'Unassigned'))].sort();
         teams.forEach(t => { const o = document.createElement('option'); o.value = t; o.textContent = t; teamSel.appendChild(o); });
+    }
+    const indSel = document.getElementById('clientIndustryFilter');
+    if (indSel && indSel.options.length <= 1) {
+        const industries = [...new Set(d.clients.map(c => c[9] || '').filter(Boolean))].sort();
+        industries.forEach(t => { const o = document.createElement('option'); o.value = t; o.textContent = t; indSel.appendChild(o); });
+    }
+    const famSel = document.getElementById('clientFamilyFilter');
+    if (famSel && famSel.options.length <= 1) {
+        const families = [...new Set(d.clients.map(c => c[10] || '').filter(Boolean))].sort();
+        families.forEach(t => { const o = document.createElement('option'); o.value = t; o.textContent = t; famSel.appendChild(o); });
     }
     const clients = getFilteredClients(d);
     const totalPages = Math.ceil(clients.length / PAGE_SIZE);
@@ -966,10 +996,14 @@ function renderClients(d) {
         const topManual = manualTypes ? Object.keys(manualTypes).sort((a,b) => manualTypes[b] - manualTypes[a]).slice(0,3) : [];
         const manualTags = topManual.map(t => `<span class="opp-tag">${t} (${manualTypes[t]})</span>`).join('');
         const team = c[7] || 'Unassigned';
+        const industry = c[9] || '';
+        const family = c[10] || '';
 
         html += `<tr onclick="toggleExpand(${start+idx})" style="cursor:pointer" id="row-${start+idx}">
             <td style="font-weight:500">${name}</td>
             <td><span style="font-size:11px;color:var(--text-secondary)">${team}</span></td>
+            <td><span style="font-size:11px;color:var(--text-secondary)">${industry || '<span style="opacity:0.3">--</span>'}</span></td>
+            <td><span style="font-size:11px;color:var(--text-secondary)">${family || '<span style="opacity:0.3">--</span>'}</span></td>
             <td style="text-align:right">${formatNum(total)}</td>
             <td style="text-align:right;color:var(--green)">${formatNum(auto)}</td>
             <td style="text-align:right;color:var(--red)">${formatNum(manual)}</td>
@@ -978,7 +1012,7 @@ function renderClients(d) {
             <td>${manualTags || '<span style="color:var(--text-muted)">-</span>'}</td>
         </tr>`;
         // Expandable detail row
-        html += `<tr class="expand-row" id="expand-${start+idx}"><td colspan="8">
+        html += `<tr class="expand-row" id="expand-${start+idx}"><td colspan="10">
             <div class="expand-content">
                 <div class="mini-bar-grid">${renderMiniBreakdown(autoTypes, manualTypes)}</div>
             </div>
@@ -1038,6 +1072,44 @@ function toggleExpand(idx) {
 
 function filterClients() { clientPage = 1; renderClients(SCORECARD_DATA[currentMonth]); }
 function sortClients(s) { currentSort = s; clientPage = 1; renderClients(SCORECARD_DATA[currentMonth]); }
+
+// ─── Overview Quick Search ───
+function overviewClientSearch(q) {
+    const box = document.getElementById('overviewSearchResults');
+    if (!q || q.length < 2) { box.style.display = 'none'; return; }
+    const d = SCORECARD_DATA[currentMonth];
+    if (!d) { box.style.display = 'none'; return; }
+    const term = q.toLowerCase();
+    const matches = d.clients.filter(c => c[0].toLowerCase().includes(term)).slice(0, 8);
+    if (!matches.length) { box.innerHTML = '<div style="padding:12px;color:var(--text-muted);font-size:13px">No clients found</div>'; box.style.display = 'block'; return; }
+    box.innerHTML = matches.map(c => {
+        const color = rateColor(c[4]);
+        const team = c[7] || '';
+        const industry = c[9] || '';
+        return `<div style="padding:10px 14px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="jumpToClient('${c[0].replace(/'/g,"\\'")}')">
+            <div>
+                <div style="font-weight:600;font-size:13px">${c[0]}</div>
+                <div style="font-size:11px;color:var(--text-muted)">${[team, industry].filter(Boolean).join(' · ')}</div>
+            </div>
+            <div style="text-align:right">
+                <div style="font-weight:700;color:${color};font-size:14px">${c[4].toFixed(1)}%</div>
+                <div style="font-size:10px;color:var(--text-muted)">${formatNum(c[3])} txns</div>
+            </div>
+        </div>`;
+    }).join('');
+    box.style.display = 'block';
+}
+function jumpToClient(name) {
+    document.getElementById('overviewSearchResults').style.display = 'none';
+    document.getElementById('overviewSearch').value = '';
+    switchTab('clients');
+    const search = document.getElementById('clientSearch');
+    if (search) { search.value = name; filterClients(); }
+}
+document.addEventListener('click', e => {
+    const box = document.getElementById('overviewSearchResults');
+    if (box && !e.target.closest('#overviewSearch') && !e.target.closest('#overviewSearchResults')) box.style.display = 'none';
+});
 
 // ─── Transaction Type Drill-down ───
 function drillIntoType(typeName) {
@@ -1152,9 +1224,21 @@ function renderOpportunities(d) {
     const container = document.getElementById('oppList');
     let html = '';
 
+    // Build "first seen" map: when each client first appeared across all months
+    const firstSeen = {};
+    const monthKeys = Object.keys(SCORECARD_DATA).sort();
+    monthKeys.forEach(mk => {
+        const md = SCORECARD_DATA[mk];
+        if (!md || !md.clients) return;
+        md.clients.forEach(cl => {
+            if (!firstSeen[cl[0]]) firstSeen[cl[0]] = mk;
+        });
+    });
+
     shown.forEach(c => {
         const [name, auto, manual, total, rate, autoTypes, manualTypes, team] = c;
         const sources = c[8] || {};
+        const firstMonth = firstSeen[name] || currentMonth;
         const manualSorted = manualTypes ? Object.keys(manualTypes).sort((a,b) => manualTypes[b] - manualTypes[a]) : [];
         const impact = manual > 200 ? 'high' : manual > 100 ? 'medium' : 'low';
         const impactLabel = manual > 200 ? 'High Impact' : manual > 100 ? 'Medium Impact' : 'Lower Impact';
@@ -1197,10 +1281,16 @@ function renderOpportunities(d) {
         const sugHtml = suggestions.length > 0 ?
             `<div style="margin-top:6px;font-size:11px;color:var(--accent)">&#x1f4a1; ${suggestions.join(' &bull; ')}</div>` : '';
 
+        // First seen label
+        const monthLabel = firstMonth.replace('2026-','');
+        const monthNames = {  '01':'Jan','02':'Feb','03':'Mar','04':'Apr','05':'May','06':'Jun','07':'Jul','08':'Aug','09':'Sep','10':'Oct','11':'Nov','12':'Dec' };
+        const firstSeenLabel = 'Since ' + (monthNames[monthLabel] || monthLabel) + ' 2026';
+
         html += `<div class="opp-card">
             <div class="opp-header">
                 <span class="opp-name">${name}</span>
                 <span class="opp-badge ${impact}">${impactLabel}</span>
+                <span style="font-size:10px;color:var(--text-muted);background:rgba(255,255,255,0.05);padding:2px 8px;border-radius:4px;margin-left:6px">${firstSeenLabel}</span>
                 ${team ? `<span style="font-size:11px;color:var(--text-muted);margin-left:auto">${team}</span>` : ''}
             </div>
             <div class="opp-stats">
@@ -1224,10 +1314,10 @@ function renderOpportunities(d) {
 function exportCSV() {
     const d = SCORECARD_DATA[currentMonth];
     if (!d) return;
-    let csv = 'Client,Team,Total,Automated,Manual,Rate,PA_Rules,Integration,Bank_Feed,Manual_Entry,System\n';
+    let csv = 'Client,Team,Industry,Family,Total,Automated,Manual,Rate,PA_Rules,Integration,Bank_Feed,Manual_Entry,System\n';
     d.clients.forEach(c => {
         const src = c[8] || {};
-        csv += `"${c[0]}","${c[7] || ''}",${c[3]},${c[1]},${c[2]},${c[4]},${src.pa_rule||0},${src.integration||0},${src.bank_feed||0},${src.manual||0},${src.system||0}\n`;
+        csv += `"${c[0]}","${c[7] || ''}","${c[9] || ''}","${c[10] || ''}",${c[3]},${c[1]},${c[2]},${c[4]},${src.pa_rule||0},${src.integration||0},${src.bank_feed||0},${src.manual||0},${src.system||0}\n`;
     });
     const blob = new Blob([csv], { type: 'text/csv' });
     const a = document.createElement('a');
