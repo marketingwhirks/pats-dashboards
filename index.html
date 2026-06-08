@@ -271,6 +271,7 @@
             <div class="tab" data-tab="clients" onclick="switchTab('clients')">All Clients</div>
             <div class="tab" data-tab="opportunities" onclick="switchTab('opportunities')">Opportunities</div>
             <div class="tab" data-tab="teams" onclick="switchTab('teams')">&#x1F3C6; Team Leaderboard</div>
+            <div class="tab" data-tab="trends" onclick="switchTab('trends')">&#x1F4C8; Trends</div>
         </div>
     </header>
 
@@ -341,6 +342,14 @@
                 <tbody id="typeTableBody"></tbody>
             </table>
         </div>
+        <!-- Drill-down panel for selected transaction type -->
+        <div id="typeDrillPanel" style="display:none;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:16px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+                <h3 id="typeDrillTitle" style="font-size:15px;font-weight:700"></h3>
+                <button onclick="closeTypeDrill()" style="background:rgba(255,255,255,0.06);border:1px solid var(--border);border-radius:6px;color:var(--text-secondary);cursor:pointer;padding:4px 10px;font-size:13px">&times; Close</button>
+            </div>
+            <div id="typeDrillContent" style="max-height:400px;overflow-y:auto"></div>
+        </div>
         <div class="charts-row">
             <div class="chart-card">
                 <div class="chart-title">Automation Potential</div>
@@ -360,6 +369,9 @@
         <div class="chart-card full">
             <div class="client-controls">
                 <input type="text" class="search-input" id="clientSearch" placeholder="Search clients..." oninput="filterClients()">
+                <select class="filter-select" id="clientTeamFilter" onchange="filterClients()">
+                    <option value="all">All Teams</option>
+                </select>
                 <button class="sort-btn active" data-sort="rate-desc" onclick="sortClients('rate-desc')">&#x2B07; Rate</button>
                 <button class="sort-btn" data-sort="rate-asc" onclick="sortClients('rate-asc')">&#x2B06; Rate</button>
                 <button class="sort-btn" data-sort="manual-desc" onclick="sortClients('manual-desc')">&#x2B07; Manual Txns</button>
@@ -370,6 +382,7 @@
                 <thead>
                     <tr>
                         <th onclick="sortClients('name')">Client</th>
+                        <th onclick="sortClients('team')">Team</th>
                         <th onclick="sortClients('total-desc')" style="text-align:right">Total</th>
                         <th onclick="sortClients('auto-desc')" style="text-align:right">Auto</th>
                         <th onclick="sortClients('manual-desc')" style="text-align:right">Manual</th>
@@ -403,6 +416,9 @@
                     <option value="high">High Impact Only</option>
                     <option value="medium">Medium Impact Only</option>
                     <option value="low">Low Impact Only</option>
+                </select>
+                <select class="filter-select" id="oppTeamFilter" onchange="renderOpportunities(SCORECARD_DATA[currentMonth])">
+                    <option value="all">All Teams</option>
                 </select>
                 <span class="filter-count" id="oppCount"></span>
             </div>
@@ -439,6 +455,35 @@
                 <span class="filter-count" id="teamClientCount"></span>
             </div>
             <div id="teamClientDetail" style="margin-top:12px"></div>
+        </div>
+    </div>
+
+    <!-- Trends Tab -->
+    <div class="tab-panel" id="panel-trends">
+        <div class="chart-card full" style="margin-bottom:16px">
+            <div class="chart-title">Firm Automation Trends</div>
+            <div class="chart-subtitle">Track automation rate and transaction volume across months</div>
+            <canvas id="trendRateChart" height="260"></canvas>
+        </div>
+        <div class="charts-row">
+            <div class="chart-card">
+                <div class="chart-title">Monthly Volume: Automated vs Manual</div>
+                <canvas id="trendVolumeChart" height="260"></canvas>
+            </div>
+            <div class="chart-card">
+                <div class="chart-title">Tier Distribution Over Time</div>
+                <canvas id="trendTierChart" height="260"></canvas>
+            </div>
+        </div>
+        <div class="charts-row">
+            <div class="chart-card">
+                <div class="chart-title">Team Automation Trends</div>
+                <canvas id="trendTeamChart" height="260"></canvas>
+            </div>
+            <div class="chart-card">
+                <div class="chart-title">Top Transaction Types Over Time</div>
+                <canvas id="trendTypeChart" height="260"></canvas>
+            </div>
         </div>
     </div>
 
@@ -513,6 +558,7 @@ function render() {
     try { renderClients(d); } catch(e) { console.error('renderClients:', e); }
     try { renderOpportunities(d); } catch(e) { console.error('renderOpportunities:', e); }
     try { renderTeamLeaderboard(d); } catch(e) { console.error('renderTeamLeaderboard:', e); }
+    try { renderTrends(); } catch(e) { console.error('renderTrends:', e); }
 }
 
 function renderKPIs(d) {
@@ -790,7 +836,7 @@ function renderTypeTable(d) {
         const s = bt[t];
         const pct = s.rate ?? s.automation_rate ?? (s.total ? s.automated/s.total*100 : 0);
         const color = rateColor(pct);
-        html += '<tr>' +
+        html += '<tr onclick="drillIntoType(\'' + t.replace(/'/g,"\\'") + '\')" style="cursor:pointer" title="Click to see client breakdown">' +
             '<td style="font-weight:600">' + (t || '(empty)') + '</td>' +
             '<td style="text-align:right">' + formatNum(s.total) + '</td>' +
             '<td style="text-align:right;color:var(--green)">' + formatNum(s.automated) + '</td>' +
@@ -873,10 +919,12 @@ function renderTypeCharts(d) {
 
 // ─── Client Table ───
 function getFilteredClients(d) {
-    let clients = d.clients.slice(); // [name, auto, manual, total, rate, autoTypes, manualTypes]
+    let clients = d.clients.slice(); // [name, auto, manual, total, rate, autoTypes, manualTypes, team, sources]
     const search = document.getElementById('clientSearch')?.value?.toLowerCase() || '';
     if (search) clients = clients.filter(c => c[0].toLowerCase().includes(search));
     if (currentTierFilter) clients = clients.filter(c => tierOf(c[4]) === currentTierFilter);
+    const teamFilter = document.getElementById('clientTeamFilter')?.value || 'all';
+    if (teamFilter !== 'all') clients = clients.filter(c => (c[7] || 'Unassigned') === teamFilter);
 
     // Sort
     const [field, dir] = currentSort.split('-');
@@ -884,6 +932,7 @@ function getFilteredClients(d) {
     clients.sort((a, b) => {
         let va, vb;
         if (field === 'name') { va = a[0].toLowerCase(); vb = b[0].toLowerCase(); return desc ? vb.localeCompare(va) : va.localeCompare(vb); }
+        if (field === 'team') { va = (a[7]||'').toLowerCase(); vb = (b[7]||'').toLowerCase(); return desc ? vb.localeCompare(va) : va.localeCompare(vb); }
         if (field === 'rate') { va = a[4]; vb = b[4]; }
         else if (field === 'manual') { va = a[2]; vb = b[2]; }
         else if (field === 'auto') { va = a[1]; vb = b[1]; }
@@ -895,6 +944,12 @@ function getFilteredClients(d) {
 }
 
 function renderClients(d) {
+    // Populate team dropdown dynamically
+    const teamSel = document.getElementById('clientTeamFilter');
+    if (teamSel && teamSel.options.length <= 1) {
+        const teams = [...new Set(d.clients.map(c => c[7] || 'Unassigned'))].sort();
+        teams.forEach(t => { const o = document.createElement('option'); o.value = t; o.textContent = t; teamSel.appendChild(o); });
+    }
     const clients = getFilteredClients(d);
     const totalPages = Math.ceil(clients.length / PAGE_SIZE);
     if (clientPage > totalPages) clientPage = 1;
@@ -910,9 +965,11 @@ function renderClients(d) {
         const color = rateColor(rate);
         const topManual = manualTypes ? Object.keys(manualTypes).sort((a,b) => manualTypes[b] - manualTypes[a]).slice(0,3) : [];
         const manualTags = topManual.map(t => `<span class="opp-tag">${t} (${manualTypes[t]})</span>`).join('');
+        const team = c[7] || 'Unassigned';
 
         html += `<tr onclick="toggleExpand(${start+idx})" style="cursor:pointer" id="row-${start+idx}">
             <td style="font-weight:500">${name}</td>
+            <td><span style="font-size:11px;color:var(--text-secondary)">${team}</span></td>
             <td style="text-align:right">${formatNum(total)}</td>
             <td style="text-align:right;color:var(--green)">${formatNum(auto)}</td>
             <td style="text-align:right;color:var(--red)">${formatNum(manual)}</td>
@@ -921,7 +978,7 @@ function renderClients(d) {
             <td>${manualTags || '<span style="color:var(--text-muted)">-</span>'}</td>
         </tr>`;
         // Expandable detail row
-        html += `<tr class="expand-row" id="expand-${start+idx}"><td colspan="7">
+        html += `<tr class="expand-row" id="expand-${start+idx}"><td colspan="8">
             <div class="expand-content">
                 <div class="mini-bar-grid">${renderMiniBreakdown(autoTypes, manualTypes)}</div>
             </div>
@@ -982,15 +1039,88 @@ function toggleExpand(idx) {
 function filterClients() { clientPage = 1; renderClients(SCORECARD_DATA[currentMonth]); }
 function sortClients(s) { currentSort = s; clientPage = 1; renderClients(SCORECARD_DATA[currentMonth]); }
 
+// ─── Transaction Type Drill-down ───
+function drillIntoType(typeName) {
+    const d = SCORECARD_DATA[currentMonth];
+    const panel = document.getElementById('typeDrillPanel');
+    const title = document.getElementById('typeDrillTitle');
+    const content = document.getElementById('typeDrillContent');
+
+    // Gather per-client data for this type
+    const clientsForType = [];
+    d.clients.forEach(c => {
+        const autoCount = (c[5] && c[5][typeName]) || 0;
+        const manualCount = (c[6] && c[6][typeName]) || 0;
+        if (autoCount > 0 || manualCount > 0) {
+            const total = autoCount + manualCount;
+            clientsForType.push({ name: c[0], auto: autoCount, manual: manualCount, total, rate: total > 0 ? (autoCount/total*100) : 0, team: c[7] || 'Unassigned' });
+        }
+    });
+    clientsForType.sort((a,b) => b.manual - a.manual);
+
+    title.textContent = typeName + ' - Client Breakdown (' + clientsForType.length + ' clients)';
+
+    let html = '<table style="width:100%;border-collapse:collapse;font-size:13px">';
+    html += '<thead><tr><th style="padding:8px 12px;text-align:left;color:var(--text-secondary);font-size:11px;text-transform:uppercase;border-bottom:1px solid var(--border)">Client</th>';
+    html += '<th style="padding:8px 12px;text-align:left;color:var(--text-secondary);font-size:11px;text-transform:uppercase;border-bottom:1px solid var(--border)">Team</th>';
+    html += '<th style="padding:8px 12px;text-align:right;color:var(--text-secondary);font-size:11px;text-transform:uppercase;border-bottom:1px solid var(--border)">Total</th>';
+    html += '<th style="padding:8px 12px;text-align:right;color:var(--text-secondary);font-size:11px;text-transform:uppercase;border-bottom:1px solid var(--border)">Auto</th>';
+    html += '<th style="padding:8px 12px;text-align:right;color:var(--text-secondary);font-size:11px;text-transform:uppercase;border-bottom:1px solid var(--border)">Manual</th>';
+    html += '<th style="padding:8px 12px;text-align:right;color:var(--text-secondary);font-size:11px;text-transform:uppercase;border-bottom:1px solid var(--border)">Auto %</th>';
+    html += '<th style="padding:8px 12px;width:120px;color:var(--text-secondary);font-size:11px;text-transform:uppercase;border-bottom:1px solid var(--border)">Rate</th></tr></thead><tbody>';
+
+    clientsForType.forEach(c => {
+        const color = rateColor(c.rate);
+        html += '<tr style="border-bottom:1px solid rgba(255,255,255,0.03)">';
+        html += '<td style="padding:6px 12px;font-weight:500">' + c.name + '</td>';
+        html += '<td style="padding:6px 12px;font-size:11px;color:var(--text-secondary)">' + c.team + '</td>';
+        html += '<td style="padding:6px 12px;text-align:right">' + formatNum(c.total) + '</td>';
+        html += '<td style="padding:6px 12px;text-align:right;color:var(--green)">' + formatNum(c.auto) + '</td>';
+        html += '<td style="padding:6px 12px;text-align:right;color:var(--red)">' + formatNum(c.manual) + '</td>';
+        html += '<td style="padding:6px 12px;text-align:right;font-weight:600;color:' + color + '">' + c.rate.toFixed(1) + '%</td>';
+        html += '<td style="padding:6px 12px"><div class="rate-bar-bg"><div class="rate-bar-fill" style="width:' + c.rate + '%;background:' + color + '"></div></div></td>';
+        html += '</tr>';
+    });
+
+    // Totals row
+    const totT = clientsForType.reduce((a,c) => a + c.total, 0);
+    const totA = clientsForType.reduce((a,c) => a + c.auto, 0);
+    const totM = clientsForType.reduce((a,c) => a + c.manual, 0);
+    const totR = totT > 0 ? (totA/totT*100) : 0;
+    html += '<tr style="font-weight:700;border-top:2px solid var(--border)"><td style="padding:8px 12px">TOTAL</td><td></td>';
+    html += '<td style="padding:8px 12px;text-align:right">' + formatNum(totT) + '</td>';
+    html += '<td style="padding:8px 12px;text-align:right;color:var(--green)">' + formatNum(totA) + '</td>';
+    html += '<td style="padding:8px 12px;text-align:right;color:var(--red)">' + formatNum(totM) + '</td>';
+    html += '<td style="padding:8px 12px;text-align:right;color:' + rateColor(totR) + '">' + totR.toFixed(1) + '%</td><td></td></tr>';
+    html += '</tbody></table>';
+
+    content.innerHTML = html;
+    panel.style.display = 'block';
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function closeTypeDrill() {
+    document.getElementById('typeDrillPanel').style.display = 'none';
+}
+
 // ─── Opportunities ───
 function renderOpportunities(d) {
+    // Populate team dropdown
+    const oppTeamSel = document.getElementById('oppTeamFilter');
+    if (oppTeamSel && oppTeamSel.options.length <= 1) {
+        const teams = [...new Set(d.clients.map(c => c[7] || 'Unassigned'))].sort();
+        teams.forEach(t => { const o = document.createElement('option'); o.value = t; o.textContent = t; oppTeamSel.appendChild(o); });
+    }
+
     let clients = d.clients.slice();
     const search = (document.getElementById('oppSearch')?.value || '').toLowerCase();
     const sortVal = document.getElementById('oppSort')?.value || 'manual-desc';
     const impactFilter = document.getElementById('oppImpact')?.value || 'all';
+    const oppTeamFilter = document.getElementById('oppTeamFilter')?.value || 'all';
 
     if (search) clients = clients.filter(c => c[0].toLowerCase().includes(search));
     if (currentTierFilter) clients = clients.filter(c => tierOf(c[4]) === currentTierFilter);
+    if (oppTeamFilter !== 'all') clients = clients.filter(c => (c[7] || 'Unassigned') === oppTeamFilter);
 
     // Impact filter
     if (impactFilter !== 'all') {
@@ -1276,6 +1406,152 @@ function teamDetailSort(val) {
         }
     }
     renderTeamDetail();
+}
+
+// ─── Trends Tab ───
+function renderTrends() {
+    const months = Object.keys(SCORECARD_DATA).sort();
+    const labels = months.map(m => { const [y,mo] = m.split('-'); return ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+mo] + ' ' + y.slice(2); });
+
+    // Automation Rate over time
+    destroyChart('trendRateChart');
+    chartInstances.trendRateChart = new Chart(document.getElementById('trendRateChart'), {
+        type: 'line',
+        data: {
+            labels,
+            datasets: [{
+                label: 'Automation Rate',
+                data: months.map(m => SCORECARD_DATA[m].summary.automation_rate),
+                borderColor: '#4a90e2', backgroundColor: 'rgba(74,144,226,0.1)',
+                fill: true, tension: 0.3, pointRadius: 5, pointBackgroundColor: '#4a90e2'
+            }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { labels: { color: '#a0a0a0' } }, tooltip: { callbacks: { label: ctx => ctx.raw.toFixed(1) + '%' } } },
+            scales: {
+                y: { min: 0, max: 100, ticks: { color: '#666', callback: v => v + '%' }, grid: { color: 'rgba(255,255,255,0.04)' } },
+                x: { ticks: { color: '#a0a0a0' }, grid: { color: 'rgba(255,255,255,0.04)' } }
+            }
+        }
+    });
+
+    // Volume: Auto vs Manual
+    destroyChart('trendVolumeChart');
+    chartInstances.trendVolumeChart = new Chart(document.getElementById('trendVolumeChart'), {
+        type: 'bar',
+        data: {
+            labels,
+            datasets: [
+                { label: 'Automated', data: months.map(m => SCORECARD_DATA[m].summary.total_automated), backgroundColor: 'rgba(81,207,102,0.7)' },
+                { label: 'Manual', data: months.map(m => SCORECARD_DATA[m].summary.total_manual), backgroundColor: 'rgba(255,107,107,0.5)' },
+            ]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { labels: { color: '#a0a0a0', font: { size: 11 } } } },
+            scales: {
+                x: { stacked: true, ticks: { color: '#a0a0a0' }, grid: { color: 'rgba(255,255,255,0.04)' } },
+                y: { stacked: true, ticks: { color: '#666' }, grid: { color: 'rgba(255,255,255,0.04)' } }
+            }
+        }
+    });
+
+    // Tier distribution stacked bar
+    destroyChart('trendTierChart');
+    chartInstances.trendTierChart = new Chart(document.getElementById('trendTierChart'), {
+        type: 'bar',
+        data: {
+            labels,
+            datasets: [
+                { label: 'Elite (75-100%)', data: months.map(m => SCORECARD_DATA[m].tiers.elite), backgroundColor: 'rgba(81,207,102,0.7)' },
+                { label: 'Strong (50-74%)', data: months.map(m => SCORECARD_DATA[m].tiers.strong), backgroundColor: 'rgba(74,144,226,0.7)' },
+                { label: 'Developing (25-49%)', data: months.map(m => SCORECARD_DATA[m].tiers.developing), backgroundColor: 'rgba(252,196,25,0.7)' },
+                { label: 'Needs Work (0-24%)', data: months.map(m => SCORECARD_DATA[m].tiers.opportunity), backgroundColor: 'rgba(255,107,107,0.7)' },
+            ]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { labels: { color: '#a0a0a0', font: { size: 11 } } } },
+            scales: {
+                x: { stacked: true, ticks: { color: '#a0a0a0' }, grid: { color: 'rgba(255,255,255,0.04)' } },
+                y: { stacked: true, ticks: { color: '#666' }, grid: { color: 'rgba(255,255,255,0.04)' } }
+            }
+        }
+    });
+
+    // Team automation trends
+    const teamData = {};
+    months.forEach(m => {
+        const teams = {};
+        SCORECARD_DATA[m].clients.forEach(c => {
+            const t = c[7] || 'Unassigned';
+            if (!teams[t]) teams[t] = { auto: 0, total: 0 };
+            teams[t].auto += c[1]; teams[t].total += c[3];
+        });
+        Object.entries(teams).forEach(([t, v]) => {
+            if (!teamData[t]) teamData[t] = [];
+            teamData[t].push(v.total > 0 ? (v.auto / v.total * 100) : 0);
+        });
+        // Pad teams that don't exist in this month
+        Object.keys(teamData).forEach(t => {
+            if (teamData[t].length < months.indexOf(m) + 1) teamData[t].push(0);
+        });
+    });
+    const teamColors = { Alpha: '#3b82f6', Papa: '#a855f7', Tango: '#f59e0b', Accounting: '#06b6d4', Unassigned: '#6b7280' };
+    destroyChart('trendTeamChart');
+    chartInstances.trendTeamChart = new Chart(document.getElementById('trendTeamChart'), {
+        type: 'line',
+        data: {
+            labels,
+            datasets: Object.entries(teamData).filter(([t]) => t !== 'Unassigned').map(([t, data]) => ({
+                label: t, data, borderColor: teamColors[t] || '#888',
+                backgroundColor: 'transparent', tension: 0.3, pointRadius: 4
+            }))
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { labels: { color: '#a0a0a0', font: { size: 11 } } }, tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.raw.toFixed(1) + '%' } } },
+            scales: {
+                y: { min: 0, max: 100, ticks: { color: '#666', callback: v => v + '%' }, grid: { color: 'rgba(255,255,255,0.04)' } },
+                x: { ticks: { color: '#a0a0a0' }, grid: { color: 'rgba(255,255,255,0.04)' } }
+            }
+        }
+    });
+
+    // Top transaction types over time (manual count)
+    const topTypes = {};
+    months.forEach(m => {
+        const bt = SCORECARD_DATA[m].by_type;
+        Object.entries(bt).forEach(([t, v]) => {
+            if (!topTypes[t]) topTypes[t] = { totalManual: 0, byMonth: {} };
+            topTypes[t].totalManual += v.manual;
+            topTypes[t].byMonth[m] = v.manual;
+        });
+    });
+    const sortedTypes = Object.entries(topTypes).sort((a,b) => b[1].totalManual - a[1].totalManual).slice(0, 6);
+    const typeColors = ['#ff6b6b', '#fcc419', '#ff922b', '#b197fc', '#4a90e2', '#51cf66'];
+    destroyChart('trendTypeChart');
+    chartInstances.trendTypeChart = new Chart(document.getElementById('trendTypeChart'), {
+        type: 'line',
+        data: {
+            labels,
+            datasets: sortedTypes.map(([t, v], i) => ({
+                label: t.length > 18 ? t.slice(0,16)+'..' : t,
+                data: months.map(m => v.byMonth[m] || 0),
+                borderColor: typeColors[i], backgroundColor: 'transparent',
+                tension: 0.3, pointRadius: 3
+            }))
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { labels: { color: '#a0a0a0', font: { size: 10 } } } },
+            scales: {
+                y: { ticks: { color: '#666' }, grid: { color: 'rgba(255,255,255,0.04)' } },
+                x: { ticks: { color: '#a0a0a0' }, grid: { color: 'rgba(255,255,255,0.04)' } }
+            }
+        }
+    });
 }
 
 // Boot
