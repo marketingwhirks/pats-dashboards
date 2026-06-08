@@ -1144,9 +1144,10 @@ function renderOpportunities(d) {
         return sd === 'asc' ? va - vb : vb - va;
     });
 
-    const shown = clients.slice(0, 50);
+    const oppLimit = window._oppShowAll ? 999 : 50;
+    const shown = clients.slice(0, oppLimit);
     const countEl = document.getElementById('oppCount');
-    if (countEl) countEl.textContent = clients.length + ' clients' + (clients.length > 50 ? ' (showing 50)' : '');
+    if (countEl) countEl.textContent = clients.length + ' clients' + (clients.length > oppLimit ? ` (showing ${oppLimit})` : '');
 
     const container = document.getElementById('oppList');
     let html = '';
@@ -1213,6 +1214,9 @@ function renderOpportunities(d) {
         </div>`;
     });
 
+    if (clients.length > oppLimit) {
+        html += `<div style="text-align:center;padding:16px"><button onclick="window._oppShowAll=true;renderOpportunities(SCORECARD_DATA[currentMonth])" style="padding:8px 24px;border-radius:8px;background:rgba(74,144,226,0.15);border:1px solid rgba(74,144,226,0.3);color:var(--accent);font-size:13px;font-weight:600;cursor:pointer">Show All ${clients.length} Clients</button></div>`;
+    }
     container.innerHTML = html;
 }
 
