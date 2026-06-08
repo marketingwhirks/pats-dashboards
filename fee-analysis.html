@@ -220,10 +220,30 @@ function cleanName(n) { return (n || '--').replace(/@patrickaccounting\.com/g, '
 // Date helpers
 function getPresetRange(preset) {
     if (!availableMonths.length) return ['2020-01', '2026-12'];
-    const last = availableMonths[availableMonths.length - 1];
-    const first = availableMonths[0];
+    // Cap to current month - never default to future months
+    const now = new Date();
+    const curMonth = now.toISOString().slice(0, 7);
+    const validMonths = availableMonths.filter(m => m <= curMonth);
+    const last = validMonths.length ? validMonths[validMonths.length - 1] : curMonth;
+    const first = validMonths.length ? validMonths[0] : '2020-01';
     if (preset === 'all') return [first, last];
-    if (preset === 'ytd') { return [new Date().getFullYear() + '-01', last]; }
+    // YTD: Jan of current year through last completed month (current month - 1)
+    if (preset === 'ytd') {
+        const prevM = new Date(now.getFullYear(), now.getMonth() - 1, 15);
+        const endYtd = prevM.toISOString().slice(0, 7);
+        return [now.getFullYear() + '-01', endYtd > last ? last : endYtd];
+    }
+    // Last Month: just the previous month
+    if (preset === 'lm') {
+        const pm = new Date(now.getFullYear(), now.getMonth() - 1, 15);
+        const m = pm.toISOString().slice(0, 7);
+        return [m, m];
+    }
+    // Last Year: Jan-Dec of prior year
+    if (preset === 'ly') {
+        const yr = now.getFullYear() - 1;
+        return [yr + '-01', yr + '-12'];
+    }
     const n = preset === '3m' ? 3 : preset === '6m' ? 6 : 12;
     const d = new Date(last + '-15');
     d.setMonth(d.getMonth() - n + 1);
@@ -433,7 +453,7 @@ function render() {
     const allTeams = ['Accounting','Alpha','Papa','Tango','Unassigned'];
     const allEmployees = [...new Set(allClients.flatMap(c => (c.staff || []).filter(s => s.h >= 10).map(s => s.n)))].sort();
 
-    const presetLabels = { '3m': '3 Months', '6m': '6 Months', '12m': '12 Months', 'ytd': 'YTD', 'all': 'All Time' };
+    const presetLabels = { 'lm': 'Last Month', '3m': '3 Months', '6m': '6 Months', '12m': '12 Months', 'ytd': 'YTD', 'ly': 'Last Year', 'all': 'All Time' };
     const periodLabel = presetLabels[state.preset] || `${state.startMonth} to ${state.endMonth}`;
 
     document.getElementById('app').innerHTML = `
@@ -454,9 +474,17 @@ function render() {
             ${Object.entries(presetLabels).map(([k,v]) =>
                 `<button class="preset-btn ${state.preset === k ? 'active' : ''}" onclick="setPreset('${k}')">${v}</button>`
             ).join('')}
-            <input type="month" class="date-input" value="${state.startMonth}" onchange="setCustomRange(this.value, state.endMonth)">
+            <select class="date-input" onchange="setCustomRange(this.value, state.endMonth)" style="min-width:110px">
+                ${availableMonths.filter(m => m <= (new Date().toISOString().slice(0,7))).map(m => 
+                    '<option value="'+m+'"'+(m===state.startMonth?' selected':'')+'>'+m+'</option>'
+                ).join('')}
+            </select>
             <span style="font-size:12px;color:var(--text-muted)">to</span>
-            <input type="month" class="date-input" value="${state.endMonth}" onchange="setCustomRange(state.startMonth, this.value)">
+            <select class="date-input" onchange="setCustomRange(state.startMonth, this.value)" style="min-width:110px">
+                ${availableMonths.filter(m => m <= (new Date().toISOString().slice(0,7))).map(m => 
+                    '<option value="'+m+'"'+(m===state.endMonth?' selected':'')+'>'+m+'</option>'
+                ).join('')}
+            </select>
         </div>
 
         <!-- Controls: Filters -->
