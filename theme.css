@@ -1,0 +1,324 @@
+/*
+ * PATS Dashboard Theme Overrides
+ * 
+ * All dashboard pages default to dark. This file provides light mode
+ * overrides triggered by data-theme="light" on <html>.
+ *
+ * The connections page defaults to light, so we provide dark overrides there too.
+ */
+
+/* ============================================================
+   LIGHT MODE OVERRIDES (for dark-default pages)
+   ============================================================ */
+
+html[data-theme="light"] {
+  /* Override :root CSS variables used across pages */
+  --bg-primary: #f8f9fa !important;
+  --bg-secondary: #ffffff !important;
+  --bg: #f8f9fa !important;
+  --bg-card: rgba(0,0,0,0.02) !important;
+  --bg-hover: #f0f0f0 !important;
+  --surface: #ffffff !important;
+  --surface2: #f3f4f6 !important;
+  --border: rgba(0,0,0,0.1) !important;
+  --text-primary: #1a1a2e !important;
+  --text-secondary: #555 !important;
+  --text-muted: #888 !important;
+  --text: #1a1a2e !important;
+  --text2: #666 !important;
+  --card: #ffffff !important;
+  --card-bg: #ffffff !important;
+}
+
+/* Body */
+html[data-theme="light"] body {
+  background: #f5f6f8 !important;
+  color: #1a1a2e !important;
+}
+
+/* Nav bar - override inline styles */
+html[data-theme="light"] nav {
+  background: #ffffff !important;
+  border-bottom-color: #e0e0e0 !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+html[data-theme="light"] nav a {
+  color: #555 !important;
+}
+html[data-theme="light"] nav a[style*="color:#fff"],
+html[data-theme="light"] nav a[style*="background:rgba(74,144,226"] {
+  color: #2563eb !important;
+  background: rgba(37,99,235,0.08) !important;
+  border-color: rgba(37,99,235,0.2) !important;
+}
+
+/* Admin page nav */
+html[data-theme="light"] .nav {
+  background: #ffffff !important;
+  border-bottom-color: #e0e0e0 !important;
+}
+html[data-theme="light"] .nav-links a {
+  color: #555 !important;
+}
+html[data-theme="light"] .nav-links a:hover,
+html[data-theme="light"] .nav-links a.active {
+  color: #1a1a2e !important;
+  background: #f3f4f6 !important;
+}
+
+/* Headers */
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] .chart-title,
+html[data-theme="light"] .kpi-value {
+  color: #1a1a2e !important;
+}
+
+/* Cards & surfaces */
+html[data-theme="light"] .kpi-card,
+html[data-theme="light"] .chart-card,
+html[data-theme="light"] .tier-card,
+html[data-theme="light"] .panel,
+html[data-theme="light"] .section,
+html[data-theme="light"] .stat-card,
+html[data-theme="light"] .detail-card,
+html[data-theme="light"] .card {
+  background: #ffffff !important;
+  border-color: #e5e7eb !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+/* Tables */
+html[data-theme="light"] table {
+  color: #1a1a2e !important;
+}
+html[data-theme="light"] th {
+  background: #f9fafb !important;
+  color: #374151 !important;
+  border-color: #e5e7eb !important;
+}
+html[data-theme="light"] td {
+  border-color: #f0f0f0 !important;
+  color: #374151 !important;
+}
+html[data-theme="light"] tr:hover td {
+  background: rgba(0,0,0,0.02) !important;
+}
+
+/* Tabs */
+html[data-theme="light"] .tab {
+  color: #555 !important;
+  background: transparent !important;
+}
+html[data-theme="light"] .tab.active {
+  color: #2563eb !important;
+  background: rgba(37,99,235,0.06) !important;
+  border-color: rgba(37,99,235,0.2) !important;
+}
+
+/* Inputs, selects, buttons */
+html[data-theme="light"] select,
+html[data-theme="light"] input,
+html[data-theme="light"] .month-selector,
+html[data-theme="light"] .filter-select {
+  background: #ffffff !important;
+  color: #1a1a2e !important;
+  border-color: #d1d5db !important;
+}
+html[data-theme="light"] select option {
+  background: #ffffff !important;
+  color: #1a1a2e !important;
+}
+html[data-theme="light"] .export-btn {
+  background: rgba(22,163,74,0.08) !important;
+  border-color: rgba(22,163,74,0.3) !important;
+  color: #16a34a !important;
+}
+
+/* Search inputs */
+html[data-theme="light"] input[type="text"],
+html[data-theme="light"] input[type="search"],
+html[data-theme="light"] .search-input {
+  background: #ffffff !important;
+  color: #1a1a2e !important;
+  border-color: #d1d5db !important;
+}
+html[data-theme="light"] input::placeholder {
+  color: #9ca3af !important;
+}
+
+/* Modals/overlays */
+html[data-theme="light"] .modal-content,
+html[data-theme="light"] .overlay-content,
+html[data-theme="light"] .detail-panel,
+html[data-theme="light"] .drawer {
+  background: #ffffff !important;
+  color: #1a1a2e !important;
+  border-color: #e5e7eb !important;
+}
+
+/* Tooltips / popovers */
+html[data-theme="light"] .tooltip,
+html[data-theme="light"] .popover {
+  background: #1a1a2e !important;
+  color: #fff !important;
+}
+
+/* KPI labels and sub text */
+html[data-theme="light"] .kpi-label,
+html[data-theme="light"] .kpi-sub,
+html[data-theme="light"] .chart-subtitle,
+html[data-theme="light"] .subtitle {
+  color: #6b7280 !important;
+}
+
+/* Badge/tag colors - keep semantic colors visible on light */
+html[data-theme="light"] .badge,
+html[data-theme="light"] .status-badge,
+html[data-theme="light"] .tag {
+  border-color: rgba(0,0,0,0.1) !important;
+}
+
+/* Scrollbar for light mode */
+html[data-theme="light"] ::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+html[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+/* User badge in nav */
+html[data-theme="light"] nav span[style*="color:#aaa"] {
+  color: #555 !important;
+}
+html[data-theme="light"] nav button[style*="color:#888"] {
+  color: #666 !important;
+  border-color: rgba(0,0,0,0.15) !important;
+}
+
+/* Header border */
+html[data-theme="light"] header {
+  border-color: #e5e7eb !important;
+}
+
+/* Expandable rows / detail sections */
+html[data-theme="light"] .expand-row,
+html[data-theme="light"] .detail-row,
+html[data-theme="light"] .breakdown-row {
+  background: #f9fafb !important;
+}
+
+/* Override any remaining inline dark backgrounds on sections */
+html[data-theme="light"] [style*="background:#1a1f2e"],
+html[data-theme="light"] [style*="background: #1a1f2e"],
+html[data-theme="light"] [style*="background:rgba(26,31,46"] {
+  background: #ffffff !important;
+}
+html[data-theme="light"] [style*="background:#0f1419"],
+html[data-theme="light"] [style*="background: #0f1419"],
+html[data-theme="light"] [style*="background:#0f1219"],
+html[data-theme="light"] [style*="background:#0f1117"] {
+  background: #f5f6f8 !important;
+}
+html[data-theme="light"] [style*="color:#e0e0e0"],
+html[data-theme="light"] [style*="color: #e0e0e0"],
+html[data-theme="light"] [style*="color:#fff"],
+html[data-theme="light"] [style*="color:#e2e4e9"] {
+  color: #1a1a2e !important;
+}
+
+/* ============================================================
+   CONNECTIONS PAGE - Already light by default
+   Dark mode overrides
+   ============================================================ */
+
+html[data-theme="dark"] .connections-page {
+  background: #0f1419 !important;
+  color: #e0e0e0 !important;
+}
+
+/* ============================================================
+   THEME TOGGLE BUTTON 
+   ============================================================ */
+
+.theme-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: inherit;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+html[data-theme="dark"] .theme-toggle-btn {
+  color: #a0a0a0;
+  border-color: rgba(255,255,255,0.1);
+}
+html[data-theme="dark"] .theme-toggle-btn:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.2);
+}
+
+html[data-theme="light"] .theme-toggle-btn {
+  color: #555;
+  border-color: rgba(0,0,0,0.1);
+}
+html[data-theme="light"] .theme-toggle-btn:hover {
+  color: #1a1a2e;
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.2);
+}
+
+/* ============================================================
+   SMOOTH TRANSITION (after initial load)
+   ============================================================ */
+
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition: background-color 0.25s ease, color 0.15s ease, border-color 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+/* ============================================================
+   FEE ANALYSIS - specific overrides
+   ============================================================ */
+html[data-theme="light"] .fa-card,
+html[data-theme="light"] .summary-card,
+html[data-theme="light"] .fa-metric-card {
+  background: #ffffff !important;
+  border-color: #e5e7eb !important;
+}
+
+/* ============================================================
+   ACTIVITY PAGE - specific overrides  
+   ============================================================ */
+html[data-theme="light"] .pipeline-stage,
+html[data-theme="light"] .staff-card,
+html[data-theme="light"] .workflow-card {
+  background: #ffffff !important;
+  border-color: #e5e7eb !important;
+}
+
+/* ============================================================
+   ADMIN PAGE - specific overrides
+   ============================================================ */
+html[data-theme="light"] .admin-section,
+html[data-theme="light"] .user-card,
+html[data-theme="light"] .log-entry {
+  background: #ffffff !important;
+  border-color: #e5e7eb !important;
+}
+html[data-theme="light"] .admin-section h2,
+html[data-theme="light"] .admin-section h3 {
+  color: #1a1a2e !important;
+}

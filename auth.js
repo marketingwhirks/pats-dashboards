@@ -3,7 +3,7 @@
  *
  * Include this script at the top of every dashboard page.
  * It checks for a valid session and redirects to login if needed.
- * Also injects a user badge + logout button into the nav bar.
+ * Also injects a user badge + logout button + theme toggle into the nav bar.
  */
 (function() {
   "use strict";
@@ -47,7 +47,7 @@
       localStorage.setItem("pats_user", JSON.stringify(data.user));
       window.__PATS_USER = data.user;
       showPage();
-      injectUserBadge(data.user);
+      injectNavControls(data.user);
       applyRoleGating(data.user);
     } else {
       localStorage.removeItem("pats_session_token");
@@ -64,7 +64,7 @@
         var user = JSON.parse(cached);
         window.__PATS_USER = user;
         showPage();
-        injectUserBadge(user);
+        injectNavControls(user);
         applyRoleGating(user);
       } catch (e) {
         window.location.href = LOGIN_PATH + "?redirect=" + encodeURIComponent(currentPath);
@@ -76,41 +76,65 @@
 
   function showPage() {
     document.documentElement.style.opacity = "1";
+    // Enable smooth transitions after initial paint
+    setTimeout(function() {
+      document.documentElement.classList.add("theme-transition");
+    }, 300);
   }
 
-  function injectUserBadge(user) {
+  function injectNavControls(user) {
     // Find the nav bar
     var nav = document.querySelector("nav");
     if (!nav) return;
 
-    // Create user badge container
-    var badge = document.createElement("div");
-    badge.style.cssText = "display:flex;align-items:center;gap:8px;margin-left:auto;";
+    // Tag the nav logo for theme swapping
+    var navLogo = nav.querySelector("img");
+    if (navLogo && !navLogo.hasAttribute("data-logo")) {
+      navLogo.setAttribute("data-logo", "");
+      // Apply correct logo for current theme
+      var currentTheme = document.documentElement.getAttribute("data-theme") || "light";
+      navLogo.src = currentTheme === "dark" ? "/assets/logo-white.png" : "/assets/logo.png";
+    }
+
+    // Create controls container (right side of nav)
+    var controls = document.createElement("div");
+    controls.style.cssText = "display:flex;align-items:center;gap:8px;margin-left:auto;";
+
+    // Theme toggle button
+    var themeBtn = document.createElement("button");
+    themeBtn.className = "theme-toggle-btn";
+    var currentTheme = document.documentElement.getAttribute("data-theme") || "light";
+    themeBtn.innerHTML = currentTheme === "dark" ? window.patsTheme.SUN_ICON : window.patsTheme.MOON_ICON;
+    themeBtn.title = currentTheme === "dark" ? "Switch to light mode" : "Switch to dark mode";
+    themeBtn.addEventListener("click", function() {
+      window.patsTheme.toggle();
+    });
+    controls.appendChild(themeBtn);
 
     // Avatar
     if (user.avatarUrl) {
       var img = document.createElement("img");
       img.src = user.avatarUrl;
-      img.style.cssText = "width:28px;height:28px;border-radius:50%;border:1px solid rgba(74,144,226,0.3);";
+      img.style.cssText = "width:28px;height:28px;border-radius:50%;border:1px solid rgba(128,128,128,0.3);";
       img.alt = user.displayName;
-      badge.appendChild(img);
+      controls.appendChild(img);
     }
 
     // Name + role
     var nameEl = document.createElement("span");
-    nameEl.style.cssText = "font-size:12px;color:#aaa;";
+    nameEl.style.cssText = "font-size:12px;color:inherit;opacity:0.7;";
     nameEl.textContent = user.displayName;
     if (user.role === "owner") {
       nameEl.innerHTML += " <span style='color:#4a90e2;font-size:10px;background:rgba(74,144,226,0.15);padding:2px 6px;border-radius:4px;'>OWNER</span>";
     }
-    badge.appendChild(nameEl);
+    controls.appendChild(nameEl);
 
     // Logout button
     var logoutBtn = document.createElement("button");
     logoutBtn.textContent = "Sign Out";
-    logoutBtn.style.cssText = "background:transparent;border:1px solid rgba(255,255,255,0.15);color:#888;padding:4px 10px;border-radius:4px;font-size:11px;cursor:pointer;margin-left:4px;";
-    logoutBtn.addEventListener("mouseover", function() { this.style.borderColor = "rgba(255,59,48,0.5)"; this.style.color = "#ff6b6b"; });
-    logoutBtn.addEventListener("mouseout", function() { this.style.borderColor = "rgba(255,255,255,0.15)"; this.style.color = "#888"; });
+    logoutBtn.style.cssText = "background:transparent;border:1px solid rgba(128,128,128,0.2);color:inherit;opacity:0.5;padding:4px 10px;border-radius:4px;font-size:11px;cursor:pointer;margin-left:4px;transition:all 0.2s;";
+    logoutBtn.addEventListener("mouseover", function() { this.style.borderColor = "rgba(255,59,48,0.5)"; this.style.color = "#ff6b6b"; this.style.opacity = "1"; });
+    logoutBtn.addEventListener("mouseout", function() { this.style.borderColor = "rgba(128,128,128,0.2)"; this.style.color = "inherit"; this.style.opacity = "0.5"; });
     logoutBtn.addEventListener("click", function() {
       fetch(AUTH_BASE + "/auth/logout", {
         method: "POST",
@@ -121,9 +145,9 @@
       localStorage.removeItem("pats_user");
       window.location.href = "/login.html";
     });
-    badge.appendChild(logoutBtn);
+    controls.appendChild(logoutBtn);
 
-    nav.appendChild(badge);
+    nav.appendChild(controls);
   }
 
   function applyRoleGating(user) {
