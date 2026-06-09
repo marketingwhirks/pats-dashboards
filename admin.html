@@ -547,7 +547,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.appendChild(dl);
 });
 
-function waitForAuth(){if(window.__PATS_USER){init();}else{setTimeout(waitForAuth,100);}}
+function waitForAuth(){if(window.__PATS_USER && window.__PATS_USER.role){init();}else if(window.__PATS_USER && !window.__PATS_USER.role){console.warn('Auth user found but no role - waiting for role...',window.__PATS_USER);setTimeout(waitForAuth,200);}else{setTimeout(waitForAuth,100);}}
 if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>setTimeout(waitForAuth,100));}else{setTimeout(waitForAuth,100);}
 </script>
 </body>
