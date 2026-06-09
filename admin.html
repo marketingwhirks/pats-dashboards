@@ -134,10 +134,8 @@ td .team-badge.tango { background:rgba(245,197,66,.15); color:var(--yellow); }
       <a class="active" href="admin.html">Admin</a>
     </div>
   </div>
-  <div class="nav-right">
-    <span class="user-name" id="navUser"></span>
-    <img class="avatar" id="navAvatar" src="" style="display:none">
-    <button id="logoutBtn" onclick="window._authLogout && window._authLogout()">Logout</button>
+  <div class="nav-right" id="navRight">
+    <!-- Auth.js injects user badge + logout here -->
   </div>
 </nav>
 
@@ -207,7 +205,7 @@ function getToken() { return localStorage.getItem("pats_session_token") || ""; }
 
 // ── Load data ─────────────────────────────────────────────────────
 async function init() {
-  currentUser = window._authUser || {};
+  currentUser = window.__PATS_USER || {};
   if (currentUser.role !== "owner") {
     document.querySelector(".container").innerHTML = '<div class="empty-state"><h3>Access Denied</h3><p>Only owners can access the admin page.</p></div>';
     return;
@@ -547,11 +545,18 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.appendChild(dl);
 });
 
-// Init after auth
+// Wait for auth to complete before init
+function waitForAuth() {
+  if (window.__PATS_USER) {
+    init();
+  } else {
+    setTimeout(waitForAuth, 100);
+  }
+}
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => setTimeout(init, 300));
+  document.addEventListener('DOMContentLoaded', () => setTimeout(waitForAuth, 100));
 } else {
-  setTimeout(init, 300);
+  setTimeout(waitForAuth, 100);
 }
 </script>
 </body>
