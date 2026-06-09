@@ -6,6 +6,7 @@
 <title>Client Assignment | PATS Dashboards</title>
 <script src="dashboard_v2_jsdata.js"></script>
 <script src="mcl_reference.js"></script>
+<script src="industry_reference.js"></script>
 <style>
 :root {
   --bg: #0f1117;
@@ -91,6 +92,17 @@ td.client-name { font-weight:500; max-width:240px; white-space:nowrap; overflow:
 .changed-badge { display:inline-block; background:rgba(232,93,93,.15); color:var(--orange); font-size:10px; padding:1px 6px; border-radius:3px; margin-left:4px; }
 .row-actions { display:flex; gap:4px; align-items:center; }
 
+/* Industry dropdown */
+.ind-search-wrap { position:relative; }
+.ind-search-input { background:var(--surface2); border:1px solid var(--border); color:var(--text); padding:4px 8px; border-radius:6px; font-size:12px; width:180px; outline:none; }
+.ind-search-input:focus { border-color:var(--accent); }
+.ind-dropdown { display:none; position:absolute; top:100%; left:0; background:var(--surface); border:1px solid var(--border); border-radius:8px; max-height:240px; overflow-y:auto; z-index:100; width:260px; box-shadow:0 8px 24px rgba(0,0,0,.5); margin-top:4px; }
+.ind-dropdown.visible { display:block; }
+.ind-option { padding:6px 12px; cursor:pointer; font-size:12px; border-bottom:1px solid var(--border); }
+.ind-option:hover { background:var(--surface2); }
+.ind-option .count { color:var(--text2); font-size:11px; float:right; }
+.ind-option.add-new { color:var(--accent); font-style:italic; }
+
 /* MCL search dropdown */
 .mcl-search-wrap { position:relative; }
 .mcl-search-input { background:var(--surface2); border:1px solid var(--border); color:var(--text); padding:4px 8px; border-radius:6px; font-size:12px; width:220px; outline:none; }
@@ -173,6 +185,7 @@ td.client-name { font-weight:500; max-width:240px; white-space:nowrap; overflow:
         <tr>
           <th>QBO Client Name</th>
           <th>Team</th>
+          <th>Industry</th>
           <th>Map to MCL</th>
           <th>Prep</th>
           <th>Senior</th>
@@ -181,7 +194,7 @@ td.client-name { font-weight:500; max-width:240px; white-space:nowrap; overflow:
         </tr>
       </thead>
       <tbody id="clientTable">
-        <tr><td colspan="7" class="loading">Loading client data...</td></tr>
+        <tr><td colspan="8" class="loading">Loading client data...</td></tr>
       </tbody>
     </table>
   </div>
@@ -235,6 +248,7 @@ async function init() {
       for (const ov of (data.overrides || [])) {
         overridesMap[ov.qboName] = {
           mclCompany: ov.mclCompany||'', team: ov.team||'',
+          industry: ov.industry||'', industryRecordId: ov.industryRecordId||'',
           prep: ov.prep||'', seniorAcct: ov.seniorAcct||'', manager: ov.manager||'',
           syncedToAirtable: ov.syncedToAirtable||false,
         };
@@ -255,6 +269,7 @@ function getEffective(c) {
   const ov = overridesMap[c.name] || {};
   return {
     team: ov.team || c.team || '',
+    industry: ov.industry || c.industry || '',
     prep: ov.prep || c.prep || '',
     senior: ov.seniorAcct || c.senior || '',
     manager: ov.manager || c.manager || '',
@@ -329,7 +344,7 @@ function renderTable() {
   const filtered = getFiltered();
 
   if (!filtered.length) {
-    tbody.innerHTML = '<tr><td colspan="7" class="empty-state"><h3>No clients match</h3><p>Adjust your filters.</p></td></tr>';
+    tbody.innerHTML = '<tr><td colspan="8" class="empty-state"><h3>No clients match</h3><p>Adjust your filters.</p></td></tr>';
     return;
   }
 
@@ -342,6 +357,7 @@ function renderTable() {
 
     const eff = getEffective(c);
     const effTeam = pending.team !== undefined ? pending.team : eff.team;
+    const effIndustry = pending.industry !== undefined ? pending.industry : eff.industry;
     const effPrep = pending.prep !== undefined ? pending.prep : eff.prep;
     const effSenior = pending.seniorAcct !== undefined ? pending.seniorAcct : eff.senior;
     const effManager = pending.manager !== undefined ? pending.manager : eff.manager;
@@ -363,6 +379,13 @@ function renderTable() {
       html += '<option value="' + t + '"' + (effTeam === t ? ' selected' : '') + '>' + t.replace('Team ','') + '</option>';
     }
     html += '</select></td>';
+
+    // Industry dropdown
+    const indDdId = 'ind-dd-' + aName.replace(/[^a-zA-Z0-9]/g,'_');
+    html += '<td><div class="ind-search-wrap">';
+    html += '<input type="text" class="ind-search-input" placeholder="Search industry..." value="' + escHtml(effIndustry) + '" onfocus="openIndDropdown(this,\'' + aName + '\')" oninput="filterInd(this,\'' + aName + '\')">';
+    html += '<div class="ind-dropdown" id="' + indDdId + '"></div>';
+    html += '</div></td>';
 
     // MCL search
     html += '<td><div class="mcl-search-wrap">';
@@ -434,13 +457,55 @@ function selectMcl(clientName, m) {
   if (m.s) pendingChanges[clientName].seniorAcct = m.s;
   if (m.m) pendingChanges[clientName].manager = m.m;
   if (m.q && SQUAD_MAP[m.q]) pendingChanges[clientName].team = SQUAD_MAP[m.q];
+  if (m.i) { pendingChanges[clientName].industry = m.i; pendingChanges[clientName].industryRecordId = m.iid || ''; }
   closeAllDropdowns();
   renderTable();
   updateSaveAllBtn();
 }
 
-function closeAllDropdowns() { document.querySelectorAll('.mcl-dropdown.visible').forEach(d => d.classList.remove('visible')); }
-document.addEventListener('click', e => { if (!e.target.closest('.mcl-search-wrap')) closeAllDropdowns(); });
+// ── Industry dropdown ─────────────────────────────────────────────
+function openIndDropdown(input, clientName) {
+  closeAllDropdowns();
+  const ddId = 'ind-dd-' + clientName.replace(/[^a-zA-Z0-9]/g,'_');
+  const dd = document.getElementById(ddId);
+  if (!dd) return;
+  filterInd(input, clientName);
+  dd.classList.add('visible');
+}
+
+function filterInd(input, clientName) {
+  const ddId = 'ind-dd-' + clientName.replace(/[^a-zA-Z0-9]/g,'_');
+  const dd = document.getElementById(ddId);
+  if (!dd) return;
+  const q = input.value.toLowerCase().trim();
+  const industries = typeof INDUSTRY_DATA !== 'undefined' ? INDUSTRY_DATA : [];
+  const matches = industries.filter(i => i.n && i.n.toLowerCase().includes(q)).slice(0, 20);
+
+  let html = '';
+  for (const ind of matches) {
+    html += '<div class="ind-option" onclick="selectInd(\'' + escAttr(clientName) + '\',\'' + escAttr(ind.n) + '\',\'' + escAttr(ind.id) + '\')">' + escHtml(ind.n) + '</div>';
+  }
+  // Add "create new" option if typed text doesn't match exactly
+  if (q && !industries.some(i => i.n.toLowerCase() === q)) {
+    html += '<div class="ind-option add-new" onclick="selectInd(\'' + escAttr(clientName) + '\',\'' + escAttr(input.value.trim()) + '\',\'\')">+ Add: ' + escHtml(input.value.trim()) + '</div>';
+  }
+  if (!html) html = '<div class="ind-option" style="color:var(--text2)">No matches</div>';
+  dd.innerHTML = html;
+}
+
+function selectInd(clientName, indName, indRecordId) {
+  if (!pendingChanges[clientName]) pendingChanges[clientName] = {};
+  pendingChanges[clientName].industry = indName;
+  pendingChanges[clientName].industryRecordId = indRecordId;
+  closeAllDropdowns();
+  renderTable();
+  updateSaveAllBtn();
+}
+
+function closeAllDropdowns() {
+  document.querySelectorAll('.mcl-dropdown.visible, .ind-dropdown.visible').forEach(d => d.classList.remove('visible'));
+}
+document.addEventListener('click', e => { if (!e.target.closest('.mcl-search-wrap') && !e.target.closest('.ind-search-wrap')) closeAllDropdowns(); });
 
 // ── Editing ───────────────────────────────────────────────────────
 function markChanged(input) {
@@ -464,12 +529,17 @@ function buildSavePayload(clientName) {
   if (!row) return null;
   const sel = row.querySelector('.team-select');
   const mclInput = row.querySelector('.mcl-search-input');
-  const data = { qboName: clientName, team: sel ? sel.value : '', mclCompany: mclInput ? mclInput.value.trim() : '' };
+  const indInput = row.querySelector('.ind-search-input');
+  const data = { qboName: clientName, team: sel ? sel.value : '', mclCompany: mclInput ? mclInput.value.trim() : '', industry: indInput ? indInput.value.trim() : '' };
   row.querySelectorAll('.staff-input').forEach(inp => { data[inp.dataset.field] = inp.value.toUpperCase().trim(); });
-  // Carry forward MCL record ID if we have it
+  // Carry forward MCL record ID and industry record ID if we have them
   const pending = pendingChanges[clientName] || {};
   const ov = overridesMap[clientName] || {};
   data.mclRecordId = pending.mclRecordId || ov.mclRecordId || '';
+  // Match industry to its record ID
+  const indName = data.industry;
+  const indRec = (typeof INDUSTRY_DATA !== 'undefined' ? INDUSTRY_DATA : []).find(i => i.n === indName);
+  data.industryRecordId = indRec ? indRec.id : (pending.industryRecordId || ov.industryRecordId || '');
   return data;
 }
 
@@ -483,7 +553,7 @@ async function saveRow(clientName) {
       body: JSON.stringify(data),
     });
     if (!resp.ok) throw new Error("Save failed: " + resp.status);
-    overridesMap[clientName] = { mclCompany:data.mclCompany, mclRecordId:data.mclRecordId, team:data.team, prep:data.prep||'', seniorAcct:data.seniorAcct||'', manager:data.manager||'', syncedToAirtable:false };
+    overridesMap[clientName] = { mclCompany:data.mclCompany, mclRecordId:data.mclRecordId, team:data.team, industry:data.industry||'', industryRecordId:data.industryRecordId||'', prep:data.prep||'', seniorAcct:data.seniorAcct||'', manager:data.manager||'', syncedToAirtable:false };
     delete pendingChanges[clientName];
     updateStats(); renderTable(); updateSaveAllBtn(); renderQountBanner();
     showToast("Saved: " + clientName, "success");
@@ -508,7 +578,7 @@ async function saveAll() {
     if (!resp.ok) throw new Error("Bulk save failed");
     const result = await resp.json();
     for (const d of items) {
-      overridesMap[d.qboName] = { mclCompany:d.mclCompany, mclRecordId:d.mclRecordId||'', team:d.team, prep:d.prep||'', seniorAcct:d.seniorAcct||'', manager:d.manager||'', syncedToAirtable:false };
+      overridesMap[d.qboName] = { mclCompany:d.mclCompany, mclRecordId:d.mclRecordId||'', team:d.team, industry:d.industry||'', industryRecordId:d.industryRecordId||'', prep:d.prep||'', seniorAcct:d.seniorAcct||'', manager:d.manager||'', syncedToAirtable:false };
     }
     pendingChanges = {};
     updateStats(); renderTable(); updateSaveAllBtn(); renderQountBanner();
