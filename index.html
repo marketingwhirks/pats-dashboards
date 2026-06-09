@@ -385,6 +385,15 @@
                 <select class="filter-select" id="clientFamilyFilter" onchange="filterClients()">
                     <option value="all">All Families</option>
                 </select>
+                <select class="filter-select" id="clientPrepFilter" onchange="filterClients()">
+                    <option value="all">All Preps</option>
+                </select>
+                <select class="filter-select" id="clientSeniorFilter" onchange="filterClients()">
+                    <option value="all">All Seniors</option>
+                </select>
+                <select class="filter-select" id="clientManagerFilter" onchange="filterClients()">
+                    <option value="all">All Managers</option>
+                </select>
                 <button class="sort-btn active" data-sort="rate-desc" onclick="sortClients('rate-desc')">&#x2B07; Rate</button>
                 <button class="sort-btn" data-sort="rate-asc" onclick="sortClients('rate-asc')">&#x2B06; Rate</button>
                 <button class="sort-btn" data-sort="manual-desc" onclick="sortClients('manual-desc')">&#x2B07; Manual Txns</button>
@@ -398,6 +407,9 @@
                         <th onclick="sortClients('team')">Team</th>
                         <th onclick="sortClients('industry')">Industry</th>
                         <th onclick="sortClients('family')">Family</th>
+                        <th onclick="sortClients('prep')">Prep</th>
+                        <th onclick="sortClients('senior')">Senior</th>
+                        <th onclick="sortClients('manager')">Manager</th>
                         <th onclick="sortClients('total-desc')" style="text-align:right">Total</th>
                         <th onclick="sortClients('auto-desc')" style="text-align:right">Auto</th>
                         <th onclick="sortClients('manual-desc')" style="text-align:right">Manual</th>
@@ -475,6 +487,17 @@
 
     <!-- Trends Tab -->
     <div class="tab-panel" id="panel-trends">
+        <div class="table-filter-bar" style="margin-bottom:16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <span style="font-size:13px;color:var(--text-muted)">Date Range:</span>
+            <select class="filter-select" id="trendFromMonth" onchange="renderTrends()"></select>
+            <span style="font-size:13px;color:var(--text-muted)">to</span>
+            <select class="filter-select" id="trendToMonth" onchange="renderTrends()"></select>
+            <button class="sort-btn" onclick="setTrendRange('all')" style="font-size:11px">All</button>
+            <button class="sort-btn" onclick="setTrendRange('last3')" style="font-size:11px">Last 3</button>
+            <select class="filter-select" id="trendTeamFilter" onchange="renderTrends()">
+                <option value="all">All Teams</option>
+            </select>
+        </div>
         <div class="chart-card full" style="margin-bottom:16px">
             <div class="chart-title">Firm Automation Trends</div>
             <div class="chart-subtitle">Track automation rate and transaction volume across months</div>
@@ -934,7 +957,7 @@ function renderTypeCharts(d) {
 
 // ─── Client Table ───
 function getFilteredClients(d) {
-    let clients = d.clients.slice(); // [name, auto, manual, total, rate, autoTypes, manualTypes, team, sources, industry, family]
+    let clients = d.clients.slice(); // [name, auto, manual, total, rate, autoTypes, manualTypes, team, sources, industry, family, prep, seniorAcct, manager]
     const search = document.getElementById('clientSearch')?.value?.toLowerCase() || '';
     if (search) clients = clients.filter(c => c[0].toLowerCase().includes(search));
     if (currentTierFilter) clients = clients.filter(c => tierOf(c[4]) === currentTierFilter);
@@ -944,6 +967,12 @@ function getFilteredClients(d) {
     if (industryFilter !== 'all') clients = clients.filter(c => (c[9] || '') === industryFilter);
     const familyFilter = document.getElementById('clientFamilyFilter')?.value || 'all';
     if (familyFilter !== 'all') clients = clients.filter(c => (c[10] || '') === familyFilter);
+    const prepFilter = document.getElementById('clientPrepFilter')?.value || 'all';
+    if (prepFilter !== 'all') clients = clients.filter(c => (c[11] || '') === prepFilter);
+    const seniorFilter = document.getElementById('clientSeniorFilter')?.value || 'all';
+    if (seniorFilter !== 'all') clients = clients.filter(c => (c[12] || '') === seniorFilter);
+    const managerFilter = document.getElementById('clientManagerFilter')?.value || 'all';
+    if (managerFilter !== 'all') clients = clients.filter(c => (c[13] || '') === managerFilter);
 
     // Sort
     const [field, dir] = currentSort.split('-');
@@ -954,6 +983,9 @@ function getFilteredClients(d) {
         if (field === 'team') { va = (a[7]||'').toLowerCase(); vb = (b[7]||'').toLowerCase(); return desc ? vb.localeCompare(va) : va.localeCompare(vb); }
         if (field === 'industry') { va = (a[9]||'').toLowerCase(); vb = (b[9]||'').toLowerCase(); return desc ? vb.localeCompare(va) : va.localeCompare(vb); }
         if (field === 'family') { va = (a[10]||'').toLowerCase(); vb = (b[10]||'').toLowerCase(); return desc ? vb.localeCompare(va) : va.localeCompare(vb); }
+        if (field === 'prep') { va = (a[11]||'').toLowerCase(); vb = (b[11]||'').toLowerCase(); return desc ? vb.localeCompare(va) : va.localeCompare(vb); }
+        if (field === 'senior') { va = (a[12]||'').toLowerCase(); vb = (b[12]||'').toLowerCase(); return desc ? vb.localeCompare(va) : va.localeCompare(vb); }
+        if (field === 'manager') { va = (a[13]||'').toLowerCase(); vb = (b[13]||'').toLowerCase(); return desc ? vb.localeCompare(va) : va.localeCompare(vb); }
         if (field === 'rate') { va = a[4]; vb = b[4]; }
         else if (field === 'manual') { va = a[2]; vb = b[2]; }
         else if (field === 'auto') { va = a[1]; vb = b[1]; }
@@ -981,6 +1013,21 @@ function renderClients(d) {
         const families = [...new Set(d.clients.map(c => c[10] || '').filter(Boolean))].sort();
         families.forEach(t => { const o = document.createElement('option'); o.value = t; o.textContent = t; famSel.appendChild(o); });
     }
+    const prepSel = document.getElementById('clientPrepFilter');
+    if (prepSel && prepSel.options.length <= 1) {
+        const preps = [...new Set(d.clients.map(c => c[11] || '').filter(Boolean))].sort();
+        preps.forEach(t => { const o = document.createElement('option'); o.value = t; o.textContent = t; prepSel.appendChild(o); });
+    }
+    const seniorSel = document.getElementById('clientSeniorFilter');
+    if (seniorSel && seniorSel.options.length <= 1) {
+        const seniors = [...new Set(d.clients.map(c => c[12] || '').filter(Boolean))].sort();
+        seniors.forEach(t => { const o = document.createElement('option'); o.value = t; o.textContent = t; seniorSel.appendChild(o); });
+    }
+    const mgrSel = document.getElementById('clientManagerFilter');
+    if (mgrSel && mgrSel.options.length <= 1) {
+        const mgrs = [...new Set(d.clients.map(c => c[13] || '').filter(Boolean))].sort();
+        mgrs.forEach(t => { const o = document.createElement('option'); o.value = t; o.textContent = t; mgrSel.appendChild(o); });
+    }
     const clients = getFilteredClients(d);
     const totalPages = Math.ceil(clients.length / PAGE_SIZE);
     if (clientPage > totalPages) clientPage = 1;
@@ -999,12 +1046,18 @@ function renderClients(d) {
         const team = c[7] || 'Unassigned';
         const industry = c[9] || '';
         const family = c[10] || '';
+        const prep = c[11] || '';
+        const senior = c[12] || '';
+        const mgr = c[13] || '';
 
         html += `<tr onclick="toggleExpand(${start+idx})" style="cursor:pointer" id="row-${start+idx}">
             <td style="font-weight:500">${name}</td>
             <td><span style="font-size:11px;color:var(--text-secondary)">${team}</span></td>
             <td><span style="font-size:11px;color:var(--text-secondary)">${industry || '<span style="opacity:0.3">--</span>'}</span></td>
             <td><span style="font-size:11px;color:var(--text-secondary)">${family || '<span style="opacity:0.3">--</span>'}</span></td>
+            <td><span style="font-size:11px;color:var(--text-secondary)">${prep || '<span style="opacity:0.3">--</span>'}</span></td>
+            <td><span style="font-size:11px;color:var(--text-secondary)">${senior || '<span style="opacity:0.3">--</span>'}</span></td>
+            <td><span style="font-size:11px;color:var(--text-secondary)">${mgr || '<span style="opacity:0.3">--</span>'}</span></td>
             <td style="text-align:right">${formatNum(total)}</td>
             <td style="text-align:right;color:var(--green)">${formatNum(auto)}</td>
             <td style="text-align:right;color:var(--red)">${formatNum(manual)}</td>
@@ -1013,7 +1066,7 @@ function renderClients(d) {
             <td>${manualTags || '<span style="color:var(--text-muted)">-</span>'}</td>
         </tr>`;
         // Expandable detail row
-        html += `<tr class="expand-row" id="expand-${start+idx}"><td colspan="10">
+        html += `<tr class="expand-row" id="expand-${start+idx}"><td colspan="13">
             <div class="expand-content">
                 <div class="mini-bar-grid">${renderMiniBreakdown(autoTypes, manualTypes)}</div>
             </div>
@@ -1315,10 +1368,10 @@ function renderOpportunities(d) {
 function exportCSV() {
     const d = SCORECARD_DATA[currentMonth];
     if (!d) return;
-    let csv = 'Client,Team,Industry,Family,Total,Automated,Manual,Rate,PA_Rules,Integration,Bank_Feed,Manual_Entry,System\n';
+    let csv = 'Client,Team,Industry,Family,Prep,Senior,Manager,Total,Automated,Manual,Rate,PA_Rules,Integration,Bank_Feed,Manual_Entry,System\n';
     d.clients.forEach(c => {
         const src = c[8] || {};
-        csv += `"${c[0]}","${c[7] || ''}","${c[9] || ''}","${c[10] || ''}",${c[3]},${c[1]},${c[2]},${c[4]},${src.pa_rule||0},${src.integration||0},${src.bank_feed||0},${src.manual||0},${src.system||0}\n`;
+        csv += `"${c[0]}","${c[7] || ''}","${c[9] || ''}","${c[10] || ''}","${c[11] || ''}","${c[12] || ''}","${c[13] || ''}",${c[3]},${c[1]},${c[2]},${c[4]},${src.pa_rule||0},${src.integration||0},${src.bank_feed||0},${src.manual||0},${src.system||0}\n`;
     });
     const blob = new Blob([csv], { type: 'text/csv' });
     const a = document.createElement('a');
@@ -1504,9 +1557,61 @@ function teamDetailSort(val) {
 }
 
 // ─── Trends Tab ───
+function setTrendRange(preset) {
+    const allMonths = Object.keys(SCORECARD_DATA).sort();
+    const fromSel = document.getElementById('trendFromMonth');
+    const toSel = document.getElementById('trendToMonth');
+    if (preset === 'all') {
+        fromSel.value = allMonths[0];
+        toSel.value = allMonths[allMonths.length - 1];
+    } else if (preset === 'last3') {
+        fromSel.value = allMonths[Math.max(0, allMonths.length - 3)];
+        toSel.value = allMonths[allMonths.length - 1];
+    }
+    renderTrends();
+}
+
 function renderTrends() {
-    const months = Object.keys(SCORECARD_DATA).sort();
+    const allMonths = Object.keys(SCORECARD_DATA).sort();
+
+    // Populate date range selectors if empty
+    const fromSel = document.getElementById('trendFromMonth');
+    const toSel = document.getElementById('trendToMonth');
+    if (fromSel && fromSel.options.length === 0) {
+        allMonths.forEach(m => {
+            const o1 = document.createElement('option'); o1.value = m; o1.textContent = formatMonth(m); fromSel.appendChild(o1);
+            const o2 = document.createElement('option'); o2.value = m; o2.textContent = formatMonth(m); toSel.appendChild(o2);
+        });
+        fromSel.value = allMonths[0];
+        toSel.value = allMonths[allMonths.length - 1];
+    }
+    // Populate team filter
+    const trendTeamSel = document.getElementById('trendTeamFilter');
+    if (trendTeamSel && trendTeamSel.options.length <= 1) {
+        const teams = new Set();
+        allMonths.forEach(m => SCORECARD_DATA[m].clients.forEach(c => teams.add(c[7] || 'Unassigned')));
+        [...teams].sort().forEach(t => { const o = document.createElement('option'); o.value = t; o.textContent = t; trendTeamSel.appendChild(o); });
+    }
+
+    // Filter months by range
+    const fromVal = fromSel?.value || allMonths[0];
+    const toVal = toSel?.value || allMonths[allMonths.length - 1];
+    const months = allMonths.filter(m => m >= fromVal && m <= toVal);
+    if (months.length === 0) return;
+
+    const trendTeam = trendTeamSel?.value || 'all';
+
     const labels = months.map(m => { const [y,mo] = m.split('-'); return ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+mo] + ' ' + y.slice(2); });
+
+    // Compute filtered summaries (for team filter)
+    function getFilteredSummary(m) {
+        if (trendTeam === 'all') return SCORECARD_DATA[m].summary;
+        const clients = SCORECARD_DATA[m].clients.filter(c => (c[7] || 'Unassigned') === trendTeam);
+        const totalAuto = clients.reduce((s,c) => s + c[1], 0);
+        const totalManual = clients.reduce((s,c) => s + c[2], 0);
+        const totalAll = totalAuto + totalManual;
+        return { automation_rate: totalAll > 0 ? totalAuto / totalAll * 100 : 0, total_automated: totalAuto, total_manual: totalManual, total_transactions: totalAll };
+    }
 
     // Automation Rate over time
     destroyChart('trendRateChart');
@@ -1515,8 +1620,8 @@ function renderTrends() {
         data: {
             labels,
             datasets: [{
-                label: 'Automation Rate',
-                data: months.map(m => SCORECARD_DATA[m].summary.automation_rate),
+                label: 'Automation Rate' + (trendTeam !== 'all' ? ' (' + trendTeam + ')' : ''),
+                data: months.map(m => getFilteredSummary(m).automation_rate),
                 borderColor: '#4a90e2', backgroundColor: 'rgba(74,144,226,0.1)',
                 fill: true, tension: 0.3, pointRadius: 5, pointBackgroundColor: '#4a90e2'
             }]
@@ -1538,8 +1643,8 @@ function renderTrends() {
         data: {
             labels,
             datasets: [
-                { label: 'Automated', data: months.map(m => SCORECARD_DATA[m].summary.total_automated), backgroundColor: 'rgba(81,207,102,0.7)' },
-                { label: 'Manual', data: months.map(m => SCORECARD_DATA[m].summary.total_manual), backgroundColor: 'rgba(255,107,107,0.5)' },
+                { label: 'Automated', data: months.map(m => getFilteredSummary(m).total_automated), backgroundColor: 'rgba(81,207,102,0.7)' },
+                { label: 'Manual', data: months.map(m => getFilteredSummary(m).total_manual), backgroundColor: 'rgba(255,107,107,0.5)' },
             ]
         },
         options: {
