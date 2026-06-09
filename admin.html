@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Assignment | PATS Dashboards</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="dashboard_v2_jsdata.js"></script>
+<script src="mcl_reference.js"></script>
+<style>
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --surface2: #232733;
+  --border: #2d3142;
+  --text: #e2e4e9;
+  --text2: #9ca0ab;
+  --accent: #8cb86e;
+  --accent-dim: rgba(140,184,110,0.15);
+  --danger: #e85d5d;
+  --blue: #5b8def;
+  --yellow: #f5c542;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height:100vh; }
+
+/* Nav */
+.nav { display:flex; align-items:center; justify-content:space-between; padding:12px 24px; background:var(--surface); border-bottom:1px solid var(--border); }
+.nav-left { display:flex; align-items:center; gap:16px; }
+.nav-left img { height:28px; }
+.nav-links { display:flex; gap:4px; }
+.nav-links a { color:var(--text2); text-decoration:none; padding:6px 12px; border-radius:6px; font-size:13px; transition:all .15s; }
+.nav-links a:hover, .nav-links a.active { color:var(--text); background:var(--surface2); }
+.nav-right { display:flex; align-items:center; gap:12px; }
+.nav-right img.avatar { width:28px; height:28px; border-radius:50%; }
+.nav-right .user-name { font-size:13px; color:var(--text2); }
+#logoutBtn { background:none; border:none; color:var(--text2); cursor:pointer; font-size:12px; }
+#logoutBtn:hover { color:var(--text); }
+
+/* Main */
+.container { max-width:1400px; margin:0 auto; padding:24px; }
+.page-header { margin-bottom:24px; }
+.page-header h1 { font-size:22px; font-weight:600; margin-bottom:4px; }
+.page-header p { color:var(--text2); font-size:14px; }
+
+/* Stats bar */
+.stats-bar { display:flex; gap:16px; margin-bottom:24px; flex-wrap:wrap; }
+.stat-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px 20px; flex:1; min-width:150px; }
+.stat-card .label { font-size:12px; color:var(--text2); text-transform:uppercase; letter-spacing:.5px; margin-bottom:4px; }
+.stat-card .value { font-size:28px; font-weight:700; }
+.stat-card .value.green { color:var(--accent); }
+.stat-card .value.yellow { color:var(--yellow); }
+.stat-card .value.red { color:var(--danger); }
+
+/* Toolbar */
+.toolbar { display:flex; gap:12px; margin-bottom:16px; align-items:center; flex-wrap:wrap; }
+.search-box { background:var(--surface); border:1px solid var(--border); color:var(--text); padding:8px 14px; border-radius:8px; font-size:14px; width:280px; outline:none; }
+.search-box:focus { border-color:var(--accent); }
+.filter-select { background:var(--surface); border:1px solid var(--border); color:var(--text); padding:8px 12px; border-radius:8px; font-size:13px; outline:none; cursor:pointer; }
+.filter-select option { background:var(--surface); color:var(--text); }
+.btn { padding:8px 16px; border-radius:8px; border:none; font-size:13px; font-weight:500; cursor:pointer; transition:all .15s; }
+.btn-primary { background:var(--accent); color:#111; }
+.btn-primary:hover { background:#9cc67e; }
+.btn-primary:disabled { opacity:.5; cursor:not-allowed; }
+.btn-secondary { background:var(--surface2); color:var(--text); border:1px solid var(--border); }
+.btn-secondary:hover { border-color:var(--accent); }
+.btn-danger { background:rgba(232,93,93,.15); color:var(--danger); border:1px solid rgba(232,93,93,.3); }
+.btn-danger:hover { background:rgba(232,93,93,.25); }
+.btn-sm { padding:5px 10px; font-size:12px; }
+.save-status { font-size:13px; color:var(--accent); margin-left:auto; }
+
+/* Table */
+.table-wrap { background:var(--surface); border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+table { width:100%; border-collapse:collapse; }
+thead th { background:var(--surface2); padding:10px 12px; text-align:left; font-size:12px; font-weight:600; color:var(--text2); text-transform:uppercase; letter-spacing:.5px; border-bottom:1px solid var(--border); position:sticky; top:0; z-index:2; }
+tbody tr { border-bottom:1px solid var(--border); transition:background .1s; }
+tbody tr:hover { background:rgba(140,184,110,.05); }
+tbody tr.modified { background:rgba(140,184,110,.08); }
+tbody tr.modified:hover { background:rgba(140,184,110,.12); }
+td { padding:8px 12px; font-size:13px; vertical-align:middle; }
+td.client-name { font-weight:500; max-width:280px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+td .team-badge { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:600; }
+td .team-badge.alpha { background:rgba(91,141,239,.15); color:var(--blue); }
+td .team-badge.papa { background:rgba(140,184,110,.15); color:var(--accent); }
+td .team-badge.tango { background:rgba(245,197,66,.15); color:var(--yellow); }
+.mcl-select { background:var(--surface2); border:1px solid var(--border); color:var(--text); padding:5px 8px; border-radius:6px; font-size:12px; width:100%; max-width:250px; outline:none; }
+.mcl-select:focus { border-color:var(--accent); }
+.staff-input { background:var(--surface2); border:1px solid var(--border); color:var(--text); padding:5px 8px; border-radius:6px; font-size:12px; width:70px; outline:none; text-transform:uppercase; }
+.staff-input:focus { border-color:var(--accent); }
+.staff-current { color:var(--text2); font-size:12px; }
+.saved-badge { display:inline-block; background:rgba(140,184,110,.15); color:var(--accent); font-size:10px; padding:1px 6px; border-radius:3px; margin-left:6px; }
+.row-actions { display:flex; gap:6px; align-items:center; }
+.btn-save-row { padding:4px 10px; font-size:11px; }
+.btn-clear-row { padding:4px 8px; font-size:11px; }
+
+/* MCL search dropdown */
+.mcl-search-wrap { position:relative; }
+.mcl-search-input { background:var(--surface2); border:1px solid var(--border); color:var(--text); padding:5px 8px; border-radius:6px; font-size:12px; width:250px; outline:none; }
+.mcl-search-input:focus { border-color:var(--accent); }
+.mcl-dropdown { display:none; position:absolute; top:100%; left:0; background:var(--surface); border:1px solid var(--border); border-radius:8px; max-height:220px; overflow-y:auto; z-index:100; width:350px; box-shadow:0 8px 24px rgba(0,0,0,.4); margin-top:4px; }
+.mcl-dropdown.visible { display:block; }
+.mcl-option { padding:8px 12px; cursor:pointer; font-size:12px; border-bottom:1px solid var(--border); }
+.mcl-option:hover { background:var(--surface2); }
+.mcl-option .company { font-weight:500; }
+.mcl-option .staff { color:var(--text2); font-size:11px; margin-top:2px; }
+.mcl-option .nickname { color:var(--blue); font-size:11px; }
+
+/* Toast */
+.toast { position:fixed; bottom:24px; right:24px; padding:12px 20px; border-radius:8px; font-size:14px; z-index:1000; animation:slideIn .3s; }
+.toast.success { background:rgba(140,184,110,.9); color:#111; }
+.toast.error { background:rgba(232,93,93,.9); color:#fff; }
+@keyframes slideIn { from { transform:translateY(20px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+
+/* Empty state */
+.empty-state { text-align:center; padding:60px 20px; color:var(--text2); }
+.empty-state h3 { font-size:18px; margin-bottom:8px; color:var(--text); }
+
+/* Loading */
+.loading { text-align:center; padding:40px; color:var(--text2); }
+</style>
+</head>
+<body>
+<script src="auth.js"></script>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-left">
+    <a href="/"><img src="assets/logo.png" alt="Patrick Accounting"></a>
+    <div class="nav-links">
+      <a href="/">Scorecard</a>
+      <a href="activity.html">Activity</a>
+      <a href="connections.html">Connections</a>
+      <a href="fee-analysis.html">Fee Analysis</a>
+      <a class="active" href="admin.html">Admin</a>
+    </div>
+  </div>
+  <div class="nav-right">
+    <span class="user-name" id="navUser"></span>
+    <img class="avatar" id="navAvatar" src="" style="display:none">
+    <button id="logoutBtn" onclick="window._authLogout && window._authLogout()">Logout</button>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="page-header">
+    <h1>Client Assignment</h1>
+    <p>Map QBO clients to Airtable MCL records or manually assign staff. Changes are saved to the backend and applied on the next nightly refresh.</p>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stat-card"><div class="label">Total Clients</div><div class="value" id="statTotal">-</div></div>
+    <div class="stat-card"><div class="label">Fully Assigned</div><div class="value green" id="statAssigned">-</div></div>
+    <div class="stat-card"><div class="label">Needs Assignment</div><div class="value yellow" id="statNeeds">-</div></div>
+    <div class="stat-card"><div class="label">Overrides Saved</div><div class="value" id="statOverrides">-</div></div>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <input type="text" class="search-box" id="searchBox" placeholder="Search clients...">
+    <select class="filter-select" id="teamFilter">
+      <option value="">All Teams</option>
+      <option value="Team Alpha">Team Alpha</option>
+      <option value="Team Papa">Team Papa</option>
+      <option value="Team Tango">Team Tango</option>
+    </select>
+    <select class="filter-select" id="statusFilter">
+      <option value="needs">Needs Assignment</option>
+      <option value="all">All Clients</option>
+      <option value="overridden">Overrides Only</option>
+    </select>
+    <button class="btn btn-primary" id="saveAllBtn" disabled onclick="saveAll()">Save All Changes</button>
+    <span class="save-status" id="saveStatus"></span>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:25%">QBO Client Name</th>
+          <th style="width:8%">Team</th>
+          <th style="width:25%">Map to MCL Record</th>
+          <th style="width:8%">Prep</th>
+          <th style="width:8%">Senior</th>
+          <th style="width:8%">Manager</th>
+          <th style="width:10%">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="clientTable">
+        <tr><td colspan="7" class="loading">Loading client data...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+const API_BASE = "https://standing-malamute-183.convex.site";
+const STAFF_NAMES = ['AIXA','AJS','AMA','AMS','CD','CRP','DAW','DMP','JCJ','JLG','JRA','KAF','KMP','LMP','MAD','MKP','PTP','SEH','SLL','TJS'];
+
+let allClients = [];
+let overridesMap = {};   // qboName -> { mclCompany, prep, seniorAcct, manager }
+let pendingChanges = {}; // qboName -> { ... } unsaved
+let currentUser = null;
+
+function getToken() { return localStorage.getItem("pats_session_token") || ""; }
+
+// ── Load data ─────────────────────────────────────────────────────
+async function init() {
+  currentUser = window._authUser || {};
+  if (currentUser.role !== "owner") {
+    document.querySelector(".container").innerHTML = '<div class="empty-state"><h3>Access Denied</h3><p>Only owners can access the admin page.</p></div>';
+    return;
+  }
+
+  // Build client list from scorecard data (use all months for complete picture)
+  const clientMap = {};
+  if (typeof SCORECARD_DATA !== "undefined") {
+    const months = Object.keys(SCORECARD_DATA).sort();
+    for (const month of months) {
+      const md = SCORECARD_DATA[month];
+      for (const c of md.clients) {
+        const name = c[0];
+        if (!clientMap[name]) {
+          clientMap[name] = {
+            name: name,
+            team: c[7] || '',
+            industry: c[9] || '',
+            family: c[10] || '',
+            prep: c[11] || '',
+            senior: c[12] || '',
+            manager: c[13] || '',
+            months: 0,
+          };
+        }
+        clientMap[name].months++;
+        // Keep latest non-empty values
+        if (c[7]) clientMap[name].team = c[7];
+        if (c[11]) clientMap[name].prep = c[11];
+        if (c[12]) clientMap[name].senior = c[12];
+        if (c[13]) clientMap[name].manager = c[13];
+      }
+    }
+  }
+  allClients = Object.values(clientMap).sort((a,b) => a.name.localeCompare(b.name));
+
+  // Load existing overrides from backend
+  try {
+    const resp = await fetch(API_BASE + "/admin/overrides", {
+      headers: { "Authorization": "Bearer " + getToken() }
+    });
+    if (resp.ok) {
+      const data = await resp.json();
+      for (const ov of (data.overrides || [])) {
+        overridesMap[ov.qboName] = {
+          mclCompany: ov.mclCompany || '',
+          team: ov.team || '',
+          prep: ov.prep || '',
+          seniorAcct: ov.seniorAcct || '',
+          manager: ov.manager || '',
+        };
+      }
+    }
+  } catch(e) { console.error("Failed to load overrides:", e); }
+
+  updateStats();
+  renderTable();
+
+  // Wire up filters
+  document.getElementById("searchBox").addEventListener("input", renderTable);
+  document.getElementById("teamFilter").addEventListener("change", renderTable);
+  document.getElementById("statusFilter").addEventListener("change", renderTable);
+}
+
+function needsAssignment(c) {
+  const ov = overridesMap[c.name];
+  const hasPrep = c.prep || (ov && ov.prep);
+  const hasMgr = c.manager || (ov && ov.manager);
+  return !hasPrep && !hasMgr;
+}
+
+function updateStats() {
+  const total = allClients.length;
+  const needs = allClients.filter(c => needsAssignment(c)).length;
+  document.getElementById("statTotal").textContent = total;
+  document.getElementById("statAssigned").textContent = total - needs;
+  document.getElementById("statNeeds").textContent = needs;
+  document.getElementById("statOverrides").textContent = Object.keys(overridesMap).length;
+}
+
+function getFiltered() {
+  const search = document.getElementById("searchBox").value.toLowerCase();
+  const team = document.getElementById("teamFilter").value;
+  const status = document.getElementById("statusFilter").value;
+
+  return allClients.filter(c => {
+    if (search && !c.name.toLowerCase().includes(search)) return false;
+    if (team && c.team !== team) return false;
+    if (status === "needs" && !needsAssignment(c)) return false;
+    if (status === "overridden" && !overridesMap[c.name]) return false;
+    return true;
+  });
+}
+
+function renderTable() {
+  const tbody = document.getElementById("clientTable");
+  const filtered = getFiltered();
+
+  if (!filtered.length) {
+    tbody.innerHTML = '<tr><td colspan="7" class="empty-state"><h3>No clients found</h3><p>Try adjusting your filters.</p></td></tr>';
+    return;
+  }
+
+  let html = '';
+  for (const c of filtered) {
+    const ov = overridesMap[c.name] || {};
+    const pending = pendingChanges[c.name] || {};
+    const isModified = !!pendingChanges[c.name];
+    const isSaved = !!overridesMap[c.name];
+    const teamClass = c.team.toLowerCase().includes('alpha') ? 'alpha' : c.team.toLowerCase().includes('papa') ? 'papa' : 'tango';
+
+    const currentPrep = pending.prep !== undefined ? pending.prep : (ov.prep || c.prep || '');
+    const currentSenior = pending.seniorAcct !== undefined ? pending.seniorAcct : (ov.seniorAcct || c.senior || '');
+    const currentManager = pending.manager !== undefined ? pending.manager : (ov.manager || c.manager || '');
+    const currentMcl = pending.mclCompany !== undefined ? pending.mclCompany : (ov.mclCompany || '');
+
+    html += '<tr class="' + (isModified ? 'modified' : '') + '" data-name="' + escHtml(c.name) + '">';
+    html += '<td class="client-name" title="' + escHtml(c.name) + '">' + escHtml(c.name);
+    if (isSaved) html += '<span class="saved-badge">saved</span>';
+    html += '</td>';
+    html += '<td><span class="team-badge ' + teamClass + '">' + escHtml(c.team.replace('Team ','')) + '</span></td>';
+
+    // MCL search
+    html += '<td><div class="mcl-search-wrap">';
+    html += '<input type="text" class="mcl-search-input" placeholder="Search MCL..." value="' + escHtml(currentMcl) + '" onfocus="openMclDropdown(this, \'' + escAttr(c.name) + '\')" oninput="filterMcl(this, \'' + escAttr(c.name) + '\')">';
+    html += '<div class="mcl-dropdown" id="mcl-dd-' + escAttr(c.name).replace(/[^a-zA-Z0-9]/g,'_') + '"></div>';
+    html += '</div></td>';
+
+    // Staff inputs
+    html += '<td><input type="text" class="staff-input" value="' + escHtml(currentPrep) + '" data-field="prep" data-client="' + escAttr(c.name) + '" oninput="markChanged(this)" list="staff-list"></td>';
+    html += '<td><input type="text" class="staff-input" value="' + escHtml(currentSenior) + '" data-field="seniorAcct" data-client="' + escAttr(c.name) + '" oninput="markChanged(this)" list="staff-list"></td>';
+    html += '<td><input type="text" class="staff-input" value="' + escHtml(currentManager) + '" data-field="manager" data-client="' + escAttr(c.name) + '" oninput="markChanged(this)" list="staff-list"></td>';
+
+    // Actions
+    html += '<td class="row-actions">';
+    html += '<button class="btn btn-primary btn-sm btn-save-row" onclick="saveRow(\'' + escAttr(c.name) + '\')">Save</button>';
+    if (isSaved) html += ' <button class="btn btn-danger btn-sm btn-clear-row" onclick="clearRow(\'' + escAttr(c.name) + '\')">Clear</button>';
+    html += '</td>';
+    html += '</tr>';
+  }
+
+  tbody.innerHTML = html;
+}
+
+// ── MCL dropdown ──────────────────────────────────────────────────
+let activeDropdown = null;
+
+function openMclDropdown(input, clientName) {
+  closeAllDropdowns();
+  const ddId = 'mcl-dd-' + clientName.replace(/[^a-zA-Z0-9]/g,'_');
+  const dd = document.getElementById(ddId);
+  if (!dd) return;
+  filterMcl(input, clientName);
+  dd.classList.add('visible');
+  activeDropdown = dd;
+}
+
+function filterMcl(input, clientName) {
+  const ddId = 'mcl-dd-' + clientName.replace(/[^a-zA-Z0-9]/g,'_');
+  const dd = document.getElementById(ddId);
+  if (!dd) return;
+  const q = input.value.toLowerCase();
+  const matches = (typeof MCL_DATA !== 'undefined' ? MCL_DATA : []).filter(m => {
+    return m.c.toLowerCase().includes(q) || (m.n && m.n.toLowerCase().includes(q));
+  }).slice(0, 15);
+
+  let html = '';
+  for (const m of matches) {
+    html += '<div class="mcl-option" onclick="selectMcl(\'' + escAttr(clientName) + '\', ' + JSON.stringify(m).replace(/'/g, "\\'") + ', this)">';
+    html += '<div class="company">' + escHtml(m.c) + '</div>';
+    if (m.n) html += '<div class="nickname">' + escHtml(m.n) + '</div>';
+    html += '<div class="staff">Prep: ' + (m.p || '-') + ' | Senior: ' + (m.s || '-') + ' | Mgr: ' + (m.m || '-') + '</div>';
+    html += '</div>';
+  }
+  if (!matches.length) html = '<div class="mcl-option" style="color:var(--text2)">No matches found</div>';
+  dd.innerHTML = html;
+}
+
+function selectMcl(clientName, mclRecord, el) {
+  // Fill in the staff fields from MCL
+  if (!pendingChanges[clientName]) pendingChanges[clientName] = {};
+  pendingChanges[clientName].mclCompany = mclRecord.c;
+  if (mclRecord.p) pendingChanges[clientName].prep = mclRecord.p;
+  if (mclRecord.s) pendingChanges[clientName].seniorAcct = mclRecord.s;
+  if (mclRecord.m) pendingChanges[clientName].manager = mclRecord.m;
+
+  closeAllDropdowns();
+  renderTable();
+  updateSaveAllBtn();
+}
+
+function closeAllDropdowns() {
+  document.querySelectorAll('.mcl-dropdown.visible').forEach(d => d.classList.remove('visible'));
+  activeDropdown = null;
+}
+
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.mcl-search-wrap')) closeAllDropdowns();
+});
+
+// ── Editing ───────────────────────────────────────────────────────
+function markChanged(input) {
+  const clientName = input.dataset.client;
+  const field = input.dataset.field;
+  if (!pendingChanges[clientName]) pendingChanges[clientName] = {};
+  pendingChanges[clientName][field] = input.value.toUpperCase().trim();
+  input.closest('tr').classList.add('modified');
+  updateSaveAllBtn();
+}
+
+function updateSaveAllBtn() {
+  const btn = document.getElementById('saveAllBtn');
+  const count = Object.keys(pendingChanges).length;
+  btn.disabled = count === 0;
+  btn.textContent = count > 0 ? 'Save All (' + count + ')' : 'Save All Changes';
+}
+
+// ── Save ──────────────────────────────────────────────────────────
+async function saveRow(clientName) {
+  const row = document.querySelector('tr[data-name="' + CSS.escape(clientName) + '"]');
+  if (!row) return;
+
+  const inputs = row.querySelectorAll('.staff-input');
+  const mclInput = row.querySelector('.mcl-search-input');
+  const data = {
+    qboName: clientName,
+    mclCompany: mclInput ? mclInput.value.trim() : '',
+  };
+  inputs.forEach(inp => { data[inp.dataset.field] = inp.value.toUpperCase().trim(); });
+
+  try {
+    const resp = await fetch(API_BASE + "/admin/overrides", {
+      method: "POST",
+      headers: { "Authorization": "Bearer " + getToken(), "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    if (!resp.ok) throw new Error("Save failed");
+    overridesMap[clientName] = {
+      mclCompany: data.mclCompany,
+      prep: data.prep || '',
+      seniorAcct: data.seniorAcct || '',
+      manager: data.manager || '',
+    };
+    delete pendingChanges[clientName];
+    updateStats();
+    renderTable();
+    updateSaveAllBtn();
+    showToast("Saved: " + clientName, "success");
+  } catch(e) {
+    showToast("Failed to save: " + e.message, "error");
+  }
+}
+
+async function saveAll() {
+  const items = Object.entries(pendingChanges).map(([name, changes]) => {
+    const ov = overridesMap[name] || {};
+    return {
+      qboName: name,
+      mclCompany: changes.mclCompany !== undefined ? changes.mclCompany : (ov.mclCompany || ''),
+      prep: changes.prep !== undefined ? changes.prep : (ov.prep || ''),
+      seniorAcct: changes.seniorAcct !== undefined ? changes.seniorAcct : (ov.seniorAcct || ''),
+      manager: changes.manager !== undefined ? changes.manager : (ov.manager || ''),
+    };
+  });
+
+  if (!items.length) return;
+  document.getElementById("saveAllBtn").disabled = true;
+  document.getElementById("saveStatus").textContent = "Saving " + items.length + " changes...";
+
+  try {
+    const resp = await fetch(API_BASE + "/admin/overrides/bulk", {
+      method: "POST",
+      headers: { "Authorization": "Bearer " + getToken(), "Content-Type": "application/json" },
+      body: JSON.stringify({ overrides: items }),
+    });
+    if (!resp.ok) throw new Error("Bulk save failed");
+    const result = await resp.json();
+
+    for (const item of items) {
+      overridesMap[item.qboName] = {
+        mclCompany: item.mclCompany,
+        prep: item.prep,
+        seniorAcct: item.seniorAcct,
+        manager: item.manager,
+      };
+    }
+    pendingChanges = {};
+    updateStats();
+    renderTable();
+    updateSaveAllBtn();
+    document.getElementById("saveStatus").textContent = "";
+    showToast("Saved " + result.saved + " overrides", "success");
+  } catch(e) {
+    document.getElementById("saveStatus").textContent = "";
+    showToast("Bulk save failed: " + e.message, "error");
+    document.getElementById("saveAllBtn").disabled = false;
+  }
+}
+
+async function clearRow(clientName) {
+  if (!confirm("Remove saved override for " + clientName + "?")) return;
+  try {
+    const resp = await fetch(API_BASE + "/admin/overrides", {
+      method: "DELETE",
+      headers: { "Authorization": "Bearer " + getToken(), "Content-Type": "application/json" },
+      body: JSON.stringify({ qboName: clientName }),
+    });
+    if (!resp.ok) throw new Error("Delete failed");
+    delete overridesMap[clientName];
+    delete pendingChanges[clientName];
+    updateStats();
+    renderTable();
+    updateSaveAllBtn();
+    showToast("Cleared: " + clientName, "success");
+  } catch(e) {
+    showToast("Failed to clear: " + e.message, "error");
+  }
+}
+
+// ── Helpers ───────────────────────────────────────────────────────
+function escHtml(s) { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+function escAttr(s) { return (s || '').replace(/'/g, "\\'").replace(/"/g, '&quot;'); }
+
+function showToast(msg, type) {
+  const t = document.createElement('div');
+  t.className = 'toast ' + type;
+  t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 3000);
+}
+
+// Staff datalist
+document.addEventListener('DOMContentLoaded', () => {
+  const dl = document.createElement('datalist');
+  dl.id = 'staff-list';
+  STAFF_NAMES.forEach(n => { const o = document.createElement('option'); o.value = n; dl.appendChild(o); });
+  document.body.appendChild(dl);
+});
+
+// Init after auth
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => setTimeout(init, 300));
+} else {
+  setTimeout(init, 300);
+}
+</script>
+</body>
+</html>
