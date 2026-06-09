@@ -447,6 +447,12 @@
                 <select class="filter-select" id="oppTeamFilter" onchange="renderOpportunities(SCORECARD_DATA[currentMonth])">
                     <option value="all">All Teams</option>
                 </select>
+                <select class="filter-select" id="oppManagerFilter" onchange="renderOpportunities(SCORECARD_DATA[currentMonth])">
+                    <option value="all">All Managers</option>
+                </select>
+                <select class="filter-select" id="oppIndustryFilter" onchange="renderOpportunities(SCORECARD_DATA[currentMonth])">
+                    <option value="all">All Industries</option>
+                </select>
                 <span class="filter-count" id="oppCount"></span>
             </div>
         </div>
@@ -1053,7 +1059,7 @@ function renderClients(d) {
         html += `<tr onclick="toggleExpand(${start+idx})" style="cursor:pointer" id="row-${start+idx}">
             <td style="font-weight:500">${name}</td>
             <td><span style="font-size:11px;color:var(--text-secondary)">${team}</span></td>
-            <td><span style="font-size:11px;color:var(--text-secondary)">${industry || '<span style="opacity:0.3">--</span>'}</span></td>
+            <td class="ind-cell"><span style="font-size:11px;color:var(--text-secondary);cursor:pointer" onclick="event.stopPropagation();editIndustry('${name.replace(/'/g,"\\'")}','${(industry||'').replace(/'/g,"\\'")}',this.parentElement)">${industry ? industry + ' &#x270E;' : '<span style="opacity:0.3">-- &#x270E;</span>'}</span></td>
             <td><span style="font-size:11px;color:var(--text-secondary)">${family || '<span style="opacity:0.3">--</span>'}</span></td>
             <td><span style="font-size:11px;color:var(--text-secondary)">${prep || '<span style="opacity:0.3">--</span>'}</span></td>
             <td><span style="font-size:11px;color:var(--text-secondary)">${senior || '<span style="opacity:0.3">--</span>'}</span></td>
@@ -1231,11 +1237,21 @@ function closeTypeDrill() {
 
 // ─── Opportunities ───
 function renderOpportunities(d) {
-    // Populate team dropdown
+    // Populate filter dropdowns
     const oppTeamSel = document.getElementById('oppTeamFilter');
     if (oppTeamSel && oppTeamSel.options.length <= 1) {
         const teams = [...new Set(d.clients.map(c => c[7] || 'Unassigned'))].sort();
         teams.forEach(t => { const o = document.createElement('option'); o.value = t; o.textContent = t; oppTeamSel.appendChild(o); });
+    }
+    const oppMgrSel = document.getElementById('oppManagerFilter');
+    if (oppMgrSel && oppMgrSel.options.length <= 1) {
+        const mgrs = [...new Set(d.clients.map(c => c[13] || '').filter(Boolean))].sort();
+        mgrs.forEach(t => { const o = document.createElement('option'); o.value = t; o.textContent = t; oppMgrSel.appendChild(o); });
+    }
+    const oppIndSel = document.getElementById('oppIndustryFilter');
+    if (oppIndSel && oppIndSel.options.length <= 1) {
+        const inds = [...new Set(d.clients.map(c => c[9] || '').filter(Boolean))].sort();
+        inds.forEach(t => { const o = document.createElement('option'); o.value = t; o.textContent = t; oppIndSel.appendChild(o); });
     }
 
     let clients = d.clients.slice();
@@ -1243,10 +1259,14 @@ function renderOpportunities(d) {
     const sortVal = document.getElementById('oppSort')?.value || 'manual-desc';
     const impactFilter = document.getElementById('oppImpact')?.value || 'all';
     const oppTeamFilter = document.getElementById('oppTeamFilter')?.value || 'all';
+    const oppMgrFilter = document.getElementById('oppManagerFilter')?.value || 'all';
+    const oppIndFilter = document.getElementById('oppIndustryFilter')?.value || 'all';
 
     if (search) clients = clients.filter(c => c[0].toLowerCase().includes(search));
     if (currentTierFilter) clients = clients.filter(c => tierOf(c[4]) === currentTierFilter);
     if (oppTeamFilter !== 'all') clients = clients.filter(c => (c[7] || 'Unassigned') === oppTeamFilter);
+    if (oppMgrFilter !== 'all') clients = clients.filter(c => (c[13] || '') === oppMgrFilter);
+    if (oppIndFilter !== 'all') clients = clients.filter(c => (c[9] || '') === oppIndFilter);
 
     // Impact filter
     if (impactFilter !== 'all') {
@@ -1754,8 +1774,51 @@ function renderTrends() {
     });
 }
 
+// ─── Industry Editing ───
+// Overrides stored in localStorage, applied on top of data
+function getIndustryOverrides() {
+    try { return JSON.parse(localStorage.getItem('pats_industry_overrides') || '{}'); } catch(e) { return {}; }
+}
+function saveIndustryOverride(clientName, industry) {
+    const overrides = getIndustryOverrides();
+    if (industry) overrides[clientName] = industry;
+    else delete overrides[clientName];
+    localStorage.setItem('pats_industry_overrides', JSON.stringify(overrides));
+    // Apply to current data
+    Object.values(SCORECARD_DATA).forEach(d => {
+        d.clients.forEach(c => { if (c[0] === clientName) c[9] = industry; });
+    });
+}
+function editIndustry(clientName, currentVal, el) {
+    if (window.__PATS_ROLE !== 'owner') return; // Only owner can edit
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = currentVal;
+    input.style.cssText = 'background:#1a1f2e;border:1px solid var(--accent);color:#fff;padding:2px 6px;border-radius:4px;font-size:11px;width:120px;';
+    input.addEventListener('blur', function() {
+        const newVal = this.value.trim();
+        saveIndustryOverride(clientName, newVal);
+        el.innerHTML = newVal ? `<span style="font-size:11px;color:var(--text-secondary);cursor:pointer" onclick="editIndustry('${clientName.replace(/'/g,"\\'")}','${newVal.replace(/'/g,"\\'")}',this.parentElement)">${newVal} &#x270E;</span>` : `<span style="opacity:0.3;cursor:pointer" onclick="editIndustry('${clientName.replace(/'/g,"\\'")}','',this.parentElement)">-- &#x270E;</span>`;
+    });
+    input.addEventListener('keydown', function(e) { if (e.key === 'Enter') this.blur(); if (e.key === 'Escape') { this.value = currentVal; this.blur(); } });
+    el.innerHTML = '';
+    el.appendChild(input);
+    input.focus();
+    input.select();
+}
+function applyIndustryOverrides() {
+    const overrides = getIndustryOverrides();
+    if (Object.keys(overrides).length === 0) return;
+    Object.values(SCORECARD_DATA).forEach(d => {
+        d.clients.forEach(c => { if (overrides[c[0]]) c[9] = overrides[c[0]]; });
+    });
+}
+
 // Boot
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', function() {
+    applyIndustryOverrides();
+    init();
+});
 
 </script>
 </body>
