@@ -174,6 +174,37 @@
             border-radius: 3px; margin: 2px 4px 2px 0; font-size: 11px;
         }
 
+        /* Rule recommendation cards */
+        .rule-card {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+            padding: 16px; margin-bottom: 10px; cursor: pointer; transition: border-color 0.2s;
+        }
+        .rule-card:hover { border-color: var(--accent); }
+        .rule-card.expanded { border-color: var(--accent); }
+        .rule-header { display: flex; justify-content: space-between; align-items: center; }
+        .rule-client { font-weight: 600; color: #fff; font-size: 14px; }
+        .rule-meta { display: flex; gap: 16px; font-size: 12px; color: var(--text-secondary); }
+        .rule-vendors {
+            margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06);
+            display: none;
+        }
+        .rule-card.expanded .rule-vendors { display: block; }
+        .rule-vendor-row {
+            display: grid; grid-template-columns: 2fr 80px 100px 1.5fr 60px; gap: 8px;
+            padding: 6px 0; font-size: 12px; border-bottom: 1px solid rgba(255,255,255,0.03);
+            align-items: center;
+        }
+        .rule-vendor-row.header { color: var(--text-muted); font-weight: 600; font-size: 11px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .rule-vendor-name { color: var(--text-primary); font-weight: 500; }
+        .rule-vendor-count { text-align: right; color: var(--orange); font-weight: 600; }
+        .rule-vendor-amount { text-align: right; color: var(--text-secondary); }
+        .rule-vendor-types { color: var(--text-muted); font-size: 11px; }
+        .rule-partial { color: var(--yellow); font-size: 10px; font-weight: 600; }
+        .rule-summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+        .rule-summary-stat { text-align: center; }
+        .rule-summary-stat .big { font-size: 28px; font-weight: 800; color: var(--accent); }
+        .rule-summary-stat .label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
         /* Pagination */
         .pagination { display: flex; gap: 6px; justify-content: center; margin-top: 12px; }
         .page-btn {
@@ -274,6 +305,7 @@
             <div class="tab" data-tab="clients" onclick="switchTab('clients')">All Clients</div>
             <div class="tab" data-tab="opportunities" onclick="switchTab('opportunities')">Opportunities</div>
             <div class="tab" data-tab="teams" onclick="switchTab('teams')">&#x1F3C6; Team Leaderboard</div>
+            <div class="tab" data-tab="rules" onclick="switchTab('rules')">&#x1F527; Rule Recommendations</div>
             <div class="tab" data-tab="trends" onclick="switchTab('trends')">&#x1F4C8; Trends</div>
         </div>
     </header>
@@ -494,6 +526,32 @@
     </div>
 
     <!-- Trends Tab -->
+    <!-- Tab: Rule Recommendations -->
+    <div class="tab-panel" id="panel-rules">
+        <div class="chart-card full" style="margin-bottom:16px">
+            <div class="chart-title">&#x1F527; Rule Recommendations</div>
+            <div class="chart-subtitle">Specific vendors to create bank rules for. Sorted by impact (most manual transactions first).</div>
+            <div class="table-filter-bar" style="margin-top:12px">
+                <input type="text" class="search-input" id="ruleSearch" placeholder="Search clients or vendors..." oninput="renderRules()">
+                <select class="filter-select" id="ruleTeamFilter" onchange="renderRules()">
+                    <option value="all">All Teams</option>
+                </select>
+                <select class="filter-select" id="rulePrepFilter" onchange="renderRules()">
+                    <option value="all">All Prep Staff</option>
+                </select>
+                <select class="filter-select" id="ruleImpact" onchange="renderRules()">
+                    <option value="all">All Impact</option>
+                    <option value="high">High (200+ rule-able)</option>
+                    <option value="medium">Medium (50-199)</option>
+                    <option value="low">Low (&lt;50)</option>
+                </select>
+                <span class="filter-count" id="ruleCount"></span>
+            </div>
+        </div>
+        <div class="chart-card full" id="ruleSummaryCard" style="margin-bottom:16px"></div>
+        <div id="ruleList"></div>
+    </div>
+
     <div class="tab-panel" id="panel-trends">
         <div class="table-filter-bar" style="margin-bottom:16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
             <span style="font-size:13px;color:var(--text-muted)">Date Range:</span>
@@ -538,7 +596,7 @@
     </footer>
 </div>
 
-<script src="dashboard_v2_jsdata.js?v=1780962904"></script>
+<script src="dashboard_v2_jsdata.js?v=1781317855"></script>
 <script>
 
 // ─── State ───
@@ -603,6 +661,7 @@ function render() {
     try { renderTypeCharts(d); } catch(e) { console.error('renderTypeCharts:', e); }
     try { renderClients(d); } catch(e) { console.error('renderClients:', e); }
     try { renderOpportunities(d); } catch(e) { console.error('renderOpportunities:', e); }
+    try { renderRules(); } catch(e) { console.error('renderRules:', e); }
     try { renderTeamLeaderboard(d); } catch(e) { console.error('renderTeamLeaderboard:', e); }
     try { renderTrends(); } catch(e) { console.error('renderTrends:', e); }
 }
@@ -1591,6 +1650,115 @@ function setTrendRange(preset) {
         toSel.value = allMonths[allMonths.length - 1];
     }
     renderTrends();
+}
+
+function renderRules() {
+    const d = SCORECARD_DATA[currentMonth];
+    if (!d) return;
+
+    // Populate filter dropdowns once
+    const teamSel = document.getElementById('ruleTeamFilter');
+    if (teamSel && teamSel.options.length <= 1) {
+        [...new Set(d.clients.map(c => c[7] || 'Unassigned'))].sort().forEach(t => {
+            const o = document.createElement('option'); o.value = t; o.textContent = t; teamSel.appendChild(o);
+        });
+    }
+    const prepSel = document.getElementById('rulePrepFilter');
+    if (prepSel && prepSel.options.length <= 1) {
+        [...new Set(d.clients.map(c => c[11] || '').filter(Boolean))].sort().forEach(t => {
+            const o = document.createElement('option'); o.value = t; o.textContent = t; prepSel.appendChild(o);
+        });
+    }
+
+    // Filter clients to those with rule candidates
+    let clients = d.clients.filter(c => c[14] && c[14].length > 0);
+    const search = (document.getElementById('ruleSearch')?.value || '').toLowerCase();
+    const teamFilter = document.getElementById('ruleTeamFilter')?.value || 'all';
+    const prepFilter = document.getElementById('rulePrepFilter')?.value || 'all';
+    const impactFilter = document.getElementById('ruleImpact')?.value || 'all';
+
+    if (search) clients = clients.filter(c => {
+        if (c[0].toLowerCase().includes(search)) return true;
+        return c[14].some(r => r.v.toLowerCase().includes(search));
+    });
+    if (teamFilter !== 'all') clients = clients.filter(c => (c[7] || 'Unassigned') === teamFilter);
+    if (prepFilter !== 'all') clients = clients.filter(c => (c[11] || '') === prepFilter);
+
+    // Calculate ruleable per client
+    clients.forEach(c => { c._ruleable = c[14].reduce((s, r) => s + r.c, 0); });
+
+    if (impactFilter !== 'all') {
+        clients = clients.filter(c => {
+            if (impactFilter === 'high') return c._ruleable >= 200;
+            if (impactFilter === 'medium') return c._ruleable >= 50 && c._ruleable < 200;
+            return c._ruleable < 50;
+        });
+    }
+
+    // Sort by ruleable desc
+    clients.sort((a, b) => b._ruleable - a._ruleable);
+
+    // Summary card
+    const totalRuleable = clients.reduce((s, c) => s + c._ruleable, 0);
+    const totalVendors = clients.reduce((s, c) => s + c[14].length, 0);
+    const summaryEl = document.getElementById('ruleSummaryCard');
+    if (summaryEl) {
+        summaryEl.innerHTML = '<div class="rule-summary-grid">' +
+            '<div class="rule-summary-stat"><div class="big">' + clients.length + '</div><div class="label">Clients with Opportunities</div></div>' +
+            '<div class="rule-summary-stat"><div class="big">' + totalVendors + '</div><div class="label">Vendor Rule Candidates</div></div>' +
+            '<div class="rule-summary-stat"><div class="big" style="color:var(--orange)">' + totalRuleable.toLocaleString() + '</div><div class="label">Transactions to Automate</div></div>' +
+            '<div class="rule-summary-stat"><div class="big" style="color:var(--green)">' + (d.summary.total_manual > 0 ? Math.round(totalRuleable / d.summary.total_manual * 100) : 0) + '%</div><div class="label">of Manual Txns Addressable</div></div>' +
+        '</div>';
+    }
+
+    const countEl = document.getElementById('ruleCount');
+    if (countEl) countEl.textContent = clients.length + ' clients';
+
+    // Render client cards
+    const container = document.getElementById('ruleList');
+    const shown = clients.slice(0, 50);
+    let html = '';
+    shown.forEach((c, idx) => {
+        const [name, auto, manual, total, rate] = c;
+        const rules = c[14];
+        const ruleable = c._ruleable;
+        const prep = c[11] || '';
+        const team = c[7] || 'Unassigned';
+        const impact = ruleable >= 200 ? 'high' : ruleable >= 50 ? 'medium' : 'low';
+        const impactLabel = ruleable >= 200 ? 'High Impact' : ruleable >= 50 ? 'Medium' : 'Lower';
+
+        html += '<div class="rule-card" onclick="this.classList.toggle(\'expanded\')">';
+        html += '<div class="rule-header">';
+        html += '<div><span class="rule-client">' + name + '</span>';
+        if (prep) html += ' <span style="color:var(--text-muted);font-size:11px">(' + prep + ')</span>';
+        html += '</div>';
+        html += '<div class="rule-meta">';
+        html += '<span><span class="opp-badge ' + impact + '">' + impactLabel + '</span></span>';
+        html += '<span style="color:var(--orange);font-weight:700">' + ruleable + ' txns to automate</span>';
+        html += '<span>' + rules.length + ' vendors</span>';
+        html += '<span>Current: ' + rate + '% auto</span>';
+        html += '</div></div>';
+
+        // Expandable vendor list
+        html += '<div class="rule-vendors">';
+        html += '<div class="rule-vendor-row header"><div>Vendor</div><div style="text-align:right">Manual Txns</div><div style="text-align:right">$ Amount</div><div>Types</div><div>Status</div></div>';
+        rules.forEach(r => {
+            const types = Object.entries(r.t).sort((a,b) => b[1]-a[1]).map(([t,n]) => t + ':' + n).join(', ');
+            html += '<div class="rule-vendor-row">';
+            html += '<div class="rule-vendor-name">' + r.v + '</div>';
+            html += '<div class="rule-vendor-count">' + r.c + '</div>';
+            html += '<div class="rule-vendor-amount">$' + r.a.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) + '</div>';
+            html += '<div class="rule-vendor-types">' + types + '</div>';
+            html += '<div>' + (r.p ? '<span class="rule-partial">PARTIAL</span>' : '<span style="color:var(--red);font-size:10px;font-weight:600">NEW</span>') + '</div>';
+            html += '</div>';
+        });
+        html += '</div></div>';
+    });
+
+    if (clients.length > 50) {
+        html += '<div style="text-align:center;padding:16px;color:var(--text-muted)">Showing 50 of ' + clients.length + ' clients</div>';
+    }
+    container.innerHTML = html;
 }
 
 function renderTrends() {
