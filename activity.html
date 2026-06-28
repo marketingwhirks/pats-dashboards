@@ -6,7 +6,8 @@
     <script src="/theme.js"></script>
     <link rel="stylesheet" href="/theme.css">
     <script src="/auth.js"></script>
-    <title>Monthly Activity - PATS Dashboards</title>
+    <script src="/nav.js"></script>
+    <title>Monthly Activity | PATS Dashboards</title>
     <style>
         :root {
             --bg: #0f1219; --bg-card: #1a1f2e; --bg-hover: #232a3b;
@@ -164,7 +165,7 @@
     </style>
 </head>
 <body>
-<nav style="display:flex;align-items:center;gap:8px;padding:12px 20px;background:rgba(26,31,46,0.95);border-bottom:1px solid rgba(74,144,226,0.2);"><a href="/" style="margin-right:16px;display:flex;align-items:center;text-decoration:none;"><img data-logo src="/assets/logo.png" alt="Patrick Accounting" style="height:28px;"></a><a href="index.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Automation Scorecard</a><a href="activity.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#fff;background:rgba(74,144,226,0.15);border:1px solid rgba(74,144,226,0.3);">Monthly Activity</a><a href="connections.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">QBO Connections</a><a href="fee-analysis.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Fee Analysis</a><a href="admin.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Admin</a></nav>
+<!-- Nav injected by nav.js -->
 <div class="container">
     <!-- Header -->
     <div class="header">
@@ -174,7 +175,7 @@
         </div>
         <div class="header-right">
             <select id="monthSelect" onchange="switchMonth(this.value)">
-                <option value="June" selected>June 2026</option><option value="May" >May 2026</option><option value="April" >April 2026</option><option value="March" >March 2026</option><option value="February" >February 2026</option><option value="January" >January 2026</option>
+                <!-- Populated dynamically from data -->
             </select>
             <div class="sync-badge">🔄 Data refreshes daily from Qount</div>
         </div>
@@ -252,7 +253,24 @@ const MONTH_SHORT = {"January": "Jan", "February": "Feb", "March": "Mar", "April
 const STATUS_ORDER = ["Collect", "Prep", "Review", "Clear Notes", "Review #2", "Deliver", "Done"];
 const STATUS_COLORS = {"Collect": "#94a3b8", "Prep": "#3b82f6", "Review": "#f59e0b", "Clear Notes": "#f97316", "Review #2": "#a855f7", "Deliver": "#06b6d4", "Done": "#10b981"};
 
-let currentMonth = "May";
+let currentMonth = null;
+
+function populateMonthSelector() {
+    const sel = document.getElementById('monthSelect');
+    if (!sel || !window.ACTIVITY_DATA) return;
+    const available = Object.keys(ACTIVITY_DATA).filter(m => ACTIVITY_DATA[m] && ACTIVITY_DATA[m].summary);
+    // Sort by MONTHS order (reverse for most recent first)
+    available.sort((a, b) => MONTHS.indexOf(b) - MONTHS.indexOf(a));
+    sel.innerHTML = '';
+    available.forEach(m => {
+        const opt = document.createElement('option');
+        opt.value = m;
+        opt.textContent = m + ' 2026';
+        sel.appendChild(opt);
+    });
+    currentMonth = available[0] || 'June';
+    sel.value = currentMonth;
+}
 
 function switchMonth(m) {
     currentMonth = m;
@@ -575,6 +593,7 @@ function render() {
     renderClients();
 }
 
+populateMonthSelector();
 render();
 </script>
 <script>
