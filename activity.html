@@ -582,9 +582,57 @@ function closeDrawer(e) {
     }
 }
 
+// Compute statusCounts from client data if not already present
+function ensureStatusCounts(d) {
+    if (d.statusCounts) return;
+    const sc = {};
+    const statusMap = {"review2":"Review #2","clear notes":"Clear Notes","done":"Done","collect":"Collect","prep":"Prep","review":"Review","deliver":"Deliver"};
+    (d.clients || []).forEach(c => {
+        let s = (c.status || "").trim();
+        if (!s) return; // blank = not started
+        const key = statusMap[s.toLowerCase()] || s;
+        sc[key] = (sc[key] || 0) + 1;
+    });
+    d.statusCounts = sc;
+}
+
+// Compute OTD percentages from client completeDates if not in summary
+function ensureOtdData(d) {
+    if (d.summary.otdAlpha) return;
+    const teams = {ALPHA: [], PAPA: [], TANGO: []};
+    (d.clients || []).forEach(c => {
+        if (teams[c.team]) teams[c.team].push(c);
+    });
+    // Alpha/Papa deadlines: 40% by 14th, 75% by 21st, 95% by 25th
+    // Tango deadlines: 40% by 21st, 75% by 25th, 95% by EOM
+    const deadlines = {
+        ALPHA: [14, 21, 25],
+        PAPA: [14, 21, 25],
+        TANGO: [21, 25, 31],
+    };
+    for (const [team, clients] of Object.entries(teams)) {
+        if (!clients.length) { d.summary["otd"+team.charAt(0)+team.slice(1).toLowerCase()] = {pct40:0,pct75:0,pct95:0}; continue; }
+        const dl = deadlines[team];
+        const total = clients.length;
+        const doneBefore = (day) => clients.filter(c => {
+            if (!c.completeDate) return false;
+            const dd = parseInt(c.completeDate.split("-")[2], 10);
+            return dd <= day;
+        }).length;
+        const key = "otd" + team.charAt(0) + team.slice(1).toLowerCase();
+        d.summary[key] = {
+            pct40: doneBefore(dl[0]) / total,
+            pct75: doneBefore(dl[1]) / total,
+            pct95: doneBefore(dl[2]) / total,
+        };
+    }
+}
+
 function render() {
     const d = ACTIVITY_DATA[currentMonth];
     if (!d) return;
+    ensureStatusCounts(d);
+    ensureOtdData(d);
     renderSummary(d);
     renderStatusPipeline(d);
     renderTeamCards(d);
