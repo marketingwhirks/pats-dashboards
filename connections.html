@@ -6,7 +6,8 @@
     <script src="/theme.js"></script>
     <link rel="stylesheet" href="/theme.css">
     <script src="/auth.js"></script>
-    <title>QBO Connections — PATS Dashboards</title>
+    <script src="/nav.js"></script>
+    <title>QBO Connections | PATS Dashboards</title>
     <style>
         * {
             margin: 0;
@@ -16,8 +17,42 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
+            background-color: var(--conn-bg, #f5f5f5);
+            color: var(--conn-text, #333);
+        }
+
+        /* Theme-aware color variables */
+        :root {
+            --conn-bg: #f5f5f5;
+            --conn-text: #333;
+            --conn-card-bg: white;
+            --conn-header-bg: #1a3a5c;
+            --conn-instruction-bg: #e8f0f7;
+            --conn-instruction-border: #1a3a5c;
+            --conn-instruction-text: #1a3a5c;
+            --conn-input-bg: white;
+            --conn-input-border: #ddd;
+            --conn-border: #eee;
+            --conn-hover-bg: #fafafa;
+            --conn-pill-bg: #e0e0e0;
+            --conn-row-alt: #f8f8f8;
+            --conn-row-success: #f0f8f4;
+        }
+        html[data-theme="dark"] {
+            --conn-bg: #0f1219;
+            --conn-text: #e0e0e0;
+            --conn-card-bg: #1a1f2e;
+            --conn-header-bg: #111720;
+            --conn-instruction-bg: rgba(74, 144, 226, 0.08);
+            --conn-instruction-border: rgba(74, 144, 226, 0.4);
+            --conn-instruction-text: #a0c4e8;
+            --conn-input-bg: #1a1f2e;
+            --conn-input-border: rgba(255,255,255,0.15);
+            --conn-border: rgba(255,255,255,0.08);
+            --conn-hover-bg: rgba(255,255,255,0.04);
+            --conn-pill-bg: rgba(255,255,255,0.1);
+            --conn-row-alt: rgba(255,255,255,0.02);
+            --conn-row-success: rgba(16,185,129,0.06);
         }
 
         .container {
@@ -27,7 +62,7 @@
         }
 
         header {
-            background-color: #1a3a5c;
+            background-color: var(--conn-header-bg);
             color: white;
             padding: 40px 20px;
             margin: -20px -20px 30px -20px;
@@ -52,20 +87,20 @@
         }
 
         .instructions {
-            background-color: #e8f0f7;
-            border-left: 4px solid #1a3a5c;
+            background-color: var(--conn-instruction-bg);
+            border-left: 4px solid var(--conn-instruction-border);
             padding: 16px;
             margin-bottom: 30px;
             border-radius: 4px;
             font-size: 14px;
             line-height: 1.6;
-            color: #1a3a5c;
+            color: var(--conn-instruction-text);
         }
 
         .instructions strong {
             display: block;
             margin-bottom: 8px;
-            color: #0f2438;
+            color: inherit;
         }
 
         .instructions p {
@@ -92,10 +127,10 @@
         .search-box input {
             width: 100%;
             padding: 10px 12px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--conn-input-border);
             border-radius: 4px;
             font-size: 14px;
-            background-color: white;
+            background-color: var(--conn-input-bg);
         }
 
         .search-box input:focus {
@@ -117,8 +152,8 @@
 
         button {
             padding: 10px 16px;
-            border: 1px solid #ddd;
-            background-color: white;
+            border: 1px solid var(--conn-input-border);
+            background-color: var(--conn-input-bg);
             border-radius: 4px;
             cursor: pointer;
             font-size: 14px;
@@ -127,7 +162,7 @@
         }
 
         button:hover {
-            background-color: #f0f0f0;
+            background-color: var(--conn-pill-bg);
             border-color: #999;
         }
 
@@ -144,7 +179,7 @@
         }
 
         .refresh-btn:hover {
-            background-color: #0f2438;
+            background-color: var(--conn-header-bg); opacity: 0.85;
             border-color: #0f2438;
         }
 
@@ -156,7 +191,7 @@
         }
 
         .summary-card {
-            background-color: white;
+            background-color: var(--conn-card-bg);
             padding: 16px;
             border-radius: 4px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -182,7 +217,7 @@
         .summary-card.missing .count { color: #c62828; }
 
         .progress-bar {
-            background-color: white;
+            background-color: var(--conn-card-bg);
             padding: 16px;
             border-radius: 4px;
             margin-bottom: 20px;
@@ -201,7 +236,7 @@
         .progress-fill {
             flex: 1;
             height: 8px;
-            background-color: #e0e0e0;
+            background-color: var(--conn-pill-bg);
             border-radius: 4px;
             overflow: hidden;
         }
@@ -275,7 +310,7 @@
         }
 
         .table-wrapper {
-            background-color: white;
+            background-color: var(--conn-card-bg);
             border-radius: 4px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             overflow: hidden;
@@ -287,7 +322,7 @@
         }
 
         thead {
-            background-color: #f8f8f8;
+            background-color: var(--conn-row-alt);
             border-bottom: 2px solid #e0e0e0;
         }
 
@@ -312,11 +347,11 @@
         }
 
         tbody tr:hover {
-            background-color: #fafafa;
+            background-color: var(--conn-hover-bg);
         }
 
         tbody tr.completed {
-            background-color: #f0f8f4;
+            background-color: var(--conn-row-success);
             opacity: 0.8;
         }
 
@@ -404,7 +439,7 @@
         .skip-btn {
             padding: 6px 10px;
             background-color: #f5f5f5;
-            border: 1px solid #ddd;
+            border: 1px solid var(--conn-input-border);
             color: #666;
             border-radius: 3px;
             cursor: pointer;
@@ -429,7 +464,7 @@
         }
 
         .skip-counter {
-            background-color: white;
+            background-color: var(--conn-card-bg);
             padding: 12px 16px;
             border-radius: 4px;
             margin-bottom: 20px;
@@ -479,32 +514,32 @@
             }
         }
 
-        /* Top Nav */
-        .pats-nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            background: #111720;
-            border-bottom: 1px solid rgba(74, 144, 226, 0.25);
-            padding: 0 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 48px;
-        }
-        .pats-nav .brand { display: flex; align-items: center; }
-        .pats-nav .brand img { height: 28px; width: auto; }
-        .pats-nav .nav-link {
-            color: #a0aec0; text-decoration: none; font-size: 13px; font-weight: 500;
-            background: rgba(74, 144, 226, 0.1); border: 1px solid rgba(74, 144, 226, 0.25);
-            padding: 6px 14px; border-radius: 6px; transition: all 0.2s ease;
-        }
-        .pats-nav .nav-link:hover { background: rgba(74, 144, 226, 0.2); color: #fff; }
-        body { padding-top: 64px !important; }
+        /* Body padding removed - old pats-nav was fixed position */
+
+        /* Dark mode text & border overrides */
+        html[data-theme="dark"] .container { color: var(--conn-text); }
+        html[data-theme="dark"] .subtitle,
+        html[data-theme="dark"] .source-info,
+        html[data-theme="dark"] .summary-card .label,
+        html[data-theme="dark"] .filter-tag,
+        html[data-theme="dark"] .timestamp,
+        html[data-theme="dark"] .modal-content p,
+        html[data-theme="dark"] .details-full td { color: #a0aec0; }
+        html[data-theme="dark"] .summary-card.total .count,
+        html[data-theme="dark"] .summary-card h3,
+        html[data-theme="dark"] h1, html[data-theme="dark"] h2,
+        html[data-theme="dark"] .modal-content h2 { color: #e0e0e0; }
+        html[data-theme="dark"] .connect-btn { background-color: rgba(74,144,226,0.15); border-color: rgba(74,144,226,0.4); }
+        html[data-theme="dark"] .connect-btn:hover { background-color: rgba(74,144,226,0.25); }
+        html[data-theme="dark"] .modal-content { background: #1a1f2e; color: #e0e0e0; }
+        html[data-theme="dark"] .filter-tag { background: rgba(255,255,255,0.08); color: #a0aec0; }
+        html[data-theme="dark"] .filter-tag.active { background: rgba(74,144,226,0.2); color: #fff; }
+        html[data-theme="dark"] input[type="text"],
+        html[data-theme="dark"] .search-filter input { background: var(--conn-input-bg); color: var(--conn-text); border-color: var(--conn-input-border); }
     </style>
 </head>
 <body>
-<nav style="display:flex;align-items:center;gap:8px;padding:12px 20px;background:rgba(26,31,46,0.95);border-bottom:1px solid rgba(74,144,226,0.2);"><a href="/" style="margin-right:16px;display:flex;align-items:center;text-decoration:none;"><img data-logo src="/assets/logo.png" alt="Patrick Accounting" style="height:28px;"></a><a href="index.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Automation Scorecard</a><a href="activity.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Monthly Activity</a><a href="connections.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#fff;background:rgba(74,144,226,0.15);border:1px solid rgba(74,144,226,0.3);">QBO Connections</a><a href="fee-analysis.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Fee Analysis</a><a href="admin.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Admin</a></nav>
-    <nav class="pats-nav">
-        <span class="brand"><img src="https://patrickaccounting.com/hubfs/patrick/logos/patrick-accounting-logo-color.svg" alt="Patrick Accounting"></span></nav>
+<!-- Nav injected by nav.js -->
     <div class="container">
         <header>
             <h1>PATS QBO OAuth Authorization Dashboard</h1>

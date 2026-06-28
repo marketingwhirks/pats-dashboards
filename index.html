@@ -6,8 +6,9 @@
     <script src="/theme.js"></script>
     <link rel="stylesheet" href="/theme.css">
     <script src="/auth.js"></script>
-    <title>Automation Scorecard — PATS Dashboards</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <title>Automation Scorecard | PATS Dashboards</title>
+    <script src="/nav.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js" integrity="sha384-FcQlsUOd0TJjROrBxhJdUhXTUgNJQxTMcxZe6nHbaEfFL1zjQ+bq/uRoBQxb0KMo" crossorigin="anonymous"></script>
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
         :root {
@@ -290,13 +291,14 @@
     </style>
 </head>
 <body>
-<nav style="display:flex;align-items:center;gap:8px;padding:12px 20px;background:rgba(26,31,46,0.95);border-bottom:1px solid rgba(74,144,226,0.2);"><a href="/" style="margin-right:16px;display:flex;align-items:center;text-decoration:none;"><img data-logo src="/assets/logo.png" alt="Patrick Accounting" style="height:28px;"></a><a href="index.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#fff;background:rgba(74,144,226,0.15);border:1px solid rgba(74,144,226,0.3);">Automation Scorecard</a><a href="activity.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Monthly Activity</a><a href="connections.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">QBO Connections</a><a href="fee-analysis.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Fee Analysis</a><a href="admin.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Admin</a></nav>
+<!-- Nav injected by nav.js -->
 <div class="container">
     <header>
         <div class="header-top">
             <h1>&#x1f4ca; Automation Scorecard</h1>
             <div class="header-controls">
                 <select class="month-selector" id="monthSelect"></select>
+                <span id="dataFreshness" style="font-size:11px;color:var(--text-muted);background:rgba(255,255,255,0.04);padding:5px 10px;border-radius:6px;display:none"></span>
                 <button class="export-btn" onclick="exportCSV()">&#x2B07; Export CSV</button></div>
         </div>
         <div class="tab-bar">
@@ -441,9 +443,6 @@
                         <th onclick="sortClients('team')">Team</th>
                         <th onclick="sortClients('industry')">Industry</th>
                         <th onclick="sortClients('family')">Family</th>
-                        <th onclick="sortClients('prep')">Prep</th>
-                        <th onclick="sortClients('senior')">Senior</th>
-                        <th onclick="sortClients('manager')">Manager</th>
                         <th onclick="sortClients('total-desc')" style="text-align:right">Total</th>
                         <th onclick="sortClients('auto-desc')" style="text-align:right">Auto</th>
                         <th onclick="sortClients('manual-desc')" style="text-align:right">Manual</th>
@@ -592,7 +591,7 @@
     </div>
 
     <footer>
-        Automation Scorecard v2 &mdash; Patrick Accounting &mdash; Powered by Viktor
+        Automation Scorecard v2 | Patrick Accounting | Powered by Viktor
     </footer>
 </div>
 
@@ -617,8 +616,16 @@ function init() {
         opt.textContent = formatMonth(m);
         sel.appendChild(opt);
     });
-    sel.addEventListener('change', e => { currentMonth = e.target.value; render(); });
-    currentMonth = months[0];
+    sel.addEventListener('change', e => { currentMonth = e.target.value; resetFilters(); render(); updateURL(); });
+    // Restore state from URL if present
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('month') && SCORECARD_DATA[params.get('month')]) {
+        currentMonth = params.get('month');
+        sel.value = currentMonth;
+    } else {
+        currentMonth = months[0];
+    }
+    if (params.get('tab')) { switchTab(params.get('tab')); }
     render();
 }
 
@@ -644,16 +651,53 @@ function tierOf(rate) {
     return 'opportunity';
 }
 
+// ─── Filter reset (on month change) ───
+function resetFilters() {
+    // Reset all filter dropdowns to default
+    ['clientTeamFilter','clientIndustryFilter','clientFamilyFilter','clientPrepFilter','clientSeniorFilter','clientManagerFilter','oppTeamFilter','oppManagerFilter','oppIndustryFilter'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) { el.innerHTML = '<option value="all">' + el.options[0]?.textContent + '</option>'; }
+    });
+    const search = document.getElementById('clientSearch');
+    if (search) search.value = '';
+    const oppSearch = document.getElementById('oppSearch');
+    if (oppSearch) oppSearch.value = '';
+    currentTierFilter = null;
+    clientPage = 1;
+    window._oppShowAll = false;
+}
+
+// ─── URL state (#11) ───
+function updateURL() {
+    const tab = document.querySelector('.tab.active')?.dataset?.tab || 'overview';
+    const params = new URLSearchParams();
+    if (currentMonth) params.set('month', currentMonth);
+    if (tab !== 'overview') params.set('tab', tab);
+    const url = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
+    history.replaceState(null, '', url);
+}
+
 // ─── Tab switching ───
 function switchTab(tab) {
     document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + tab));
+    updateURL();
 }
 
 // ─── Render ───
 function render() {
     const d = SCORECARD_DATA[currentMonth];
-    if (!d) return;
+    if (!d || !d.clients || d.clients.length === 0) {
+        document.getElementById('kpiGrid').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:48px;color:var(--text-muted);font-size:16px">No data available for ' + formatMonth(currentMonth) + '. Data may still be processing.</div>';
+        return;
+    }
+    // Show data freshness timestamp
+    const freshEl = document.getElementById('dataFreshness');
+    if (freshEl && d.generated_at) {
+        const dt = new Date(d.generated_at);
+        freshEl.textContent = '\uD83D\uDD04 Updated ' + dt.toLocaleDateString('en-US', {month:'short',day:'numeric'}) + ' ' + dt.toLocaleTimeString('en-US', {hour:'numeric',minute:'2-digit'});
+        freshEl.style.display = 'inline-block';
+    } else if (freshEl) { freshEl.style.display = 'none'; }
     try { renderKPIs(d); } catch(e) { console.error('renderKPIs:', e); }
     try { renderTiers(d); } catch(e) { console.error('renderTiers:', e); }
     try { renderOverviewCharts(d); } catch(e) { console.error('renderOverviewCharts:', e); }
@@ -1122,9 +1166,6 @@ function renderClients(d) {
             <td><span style="font-size:11px;color:var(--text-secondary)">${team}</span></td>
             <td class="ind-cell"><span style="font-size:11px;color:var(--text-secondary);cursor:pointer" onclick="event.stopPropagation();editIndustry('${name.replace(/'/g,"\\'")}','${(industry||'').replace(/'/g,"\\'")}',this.parentElement)">${industry ? industry + ' &#x270E;' : '<span style="opacity:0.3">-- &#x270E;</span>'}</span></td>
             <td><span style="font-size:11px;color:var(--text-secondary)">${family || '<span style="opacity:0.3">--</span>'}</span></td>
-            <td><span style="font-size:11px;color:var(--text-secondary)">${prep || '<span style="opacity:0.3">--</span>'}</span></td>
-            <td><span style="font-size:11px;color:var(--text-secondary)">${senior || '<span style="opacity:0.3">--</span>'}</span></td>
-            <td><span style="font-size:11px;color:var(--text-secondary)">${mgr || '<span style="opacity:0.3">--</span>'}</span></td>
             <td style="text-align:right">${formatNum(total)}</td>
             <td style="text-align:right;color:var(--green)">${formatNum(auto)}</td>
             <td style="text-align:right;color:var(--red)">${formatNum(manual)}</td>
@@ -1132,9 +1173,11 @@ function renderClients(d) {
             <td><div class="rate-bar-bg" style="width:100%"><div class="rate-bar-fill" style="width:${rate}%;background:${color}"></div></div></td>
             <td>${manualTags || '<span style="color:var(--text-muted)">-</span>'}</td>
         </tr>`;
-        // Expandable detail row
-        html += `<tr class="expand-row" id="expand-${start+idx}"><td colspan="13">
+        // Expandable detail row (includes staff assignment info)
+        const staffHtml = [prep && 'Prep: '+prep, senior && 'Senior: '+senior, mgr && 'Manager: '+mgr].filter(Boolean).map(s => '<span style="font-size:11px;color:var(--text-secondary);background:rgba(255,255,255,0.05);padding:2px 8px;border-radius:4px">'+s+'</span>').join(' ') || '<span style="font-size:11px;color:var(--text-muted)">No staff assigned</span>';
+        html += `<tr class="expand-row" id="expand-${start+idx}"><td colspan="10">
             <div class="expand-content">
+                <div style="margin-bottom:8px">${staffHtml}</div>
                 <div class="mini-bar-grid">${renderMiniBreakdown(autoTypes, manualTypes)}</div>
             </div>
         </td></tr>`;
@@ -1958,6 +2001,15 @@ function saveIndustryOverride(clientName, industry) {
     Object.values(SCORECARD_DATA).forEach(d => {
         d.clients.forEach(c => { if (c[0] === clientName) c[9] = industry; });
     });
+    // Sync to Convex backend (same API as admin page)
+    const token = localStorage.getItem('pats_session_token');
+    if (token) {
+        fetch('https://standing-malamute-183.convex.site/admin/overrides', {
+            method: 'POST',
+            headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ qboName: clientName, industry: industry || '' })
+        }).catch(function(e) { console.warn('Industry sync failed:', e); });
+    }
 }
 function editIndustry(clientName, currentVal, el) {
     if (window.__PATS_ROLE !== 'owner') return; // Only owner can edit

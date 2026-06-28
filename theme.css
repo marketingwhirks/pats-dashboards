@@ -322,3 +322,93 @@ html[data-theme="light"] .admin-section h2,
 html[data-theme="light"] .admin-section h3 {
   color: #1a1a2e !important;
 }
+
+/* ============================================================
+   MOBILE RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+  /* Nav stacks on mobile */
+  #pats-main-nav {
+    flex-wrap: wrap !important;
+    gap: 4px !important;
+    padding: 8px 12px !important;
+  }
+  #pats-main-nav a {
+    font-size: 11px !important;
+    padding: 4px 8px !important;
+  }
+
+  /* KPI grid: 2 columns on tablet, 1 on phone */
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  /* Chart cards full width */
+  .chart-card, .chart-card.full {
+    min-width: 0 !important;
+  }
+
+  /* Tables scroll horizontally */
+  .client-table, table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Client controls wrap */
+  .client-controls {
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+  .client-controls .search-input,
+  .client-controls .filter-select {
+    min-width: 120px !important;
+    flex: 1 1 calc(50% - 6px) !important;
+  }
+
+  /* Header controls stack */
+  .header-controls {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+  .header-top {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+
+  /* Tab bar scrolls */
+  .tab-bar {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap !important;
+    gap: 2px !important;
+  }
+  .tab {
+    white-space: nowrap !important;
+    font-size: 12px !important;
+    padding: 6px 10px !important;
+  }
+
+  /* Connections container */
+  .container {
+    padding: 12px !important;
+  }
+
+  /* Activity page: stack staff cards */
+  .staff-grid, .pipeline-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .kpi-grid {
+    grid-template-columns: 1fr !important;
+  }
+  #pats-main-nav a[href="/admin.html"],
+  #pats-main-nav a[href="/connections.html"] {
+    display: none !important;
+  }
+}
