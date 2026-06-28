@@ -2001,6 +2001,15 @@ function saveIndustryOverride(clientName, industry) {
     Object.values(SCORECARD_DATA).forEach(d => {
         d.clients.forEach(c => { if (c[0] === clientName) c[9] = industry; });
     });
+    // Sync to Convex backend (same API as admin page)
+    const token = localStorage.getItem('pats_session_token');
+    if (token) {
+        fetch('https://standing-malamute-183.convex.site/admin/overrides', {
+            method: 'POST',
+            headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ qboName: clientName, industry: industry || '' })
+        }).catch(function(e) { console.warn('Industry sync failed:', e); });
+    }
 }
 function editIndustry(clientName, currentVal, el) {
     if (window.__PATS_ROLE !== 'owner') return; // Only owner can edit
