@@ -245,9 +245,8 @@
     </div>
 </div>
 
-<script src="activity_data.js?v=1783034934"></script>
+<script src="activity_data.js?v=1783692144"></script>
 <script>
-// OTD_TRENDS now loaded from activity_data.js (no longer inline)
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const MONTH_SHORT = {"January": "Jan", "February": "Feb", "March": "Mar", "April": "Apr", "May": "May", "June": "Jun", "July": "Jul", "August": "Aug", "September": "Sep", "October": "Oct", "November": "Nov", "December": "Dec"};
 const STATUS_ORDER = ["Collect", "Prep", "Review", "Clear Notes", "Review #2", "Deliver", "Done"];
@@ -268,16 +267,7 @@ function populateMonthSelector() {
         opt.textContent = m + ' 2026';
         sel.appendChild(opt);
     });
-    // Default to previous month (how accountants think — you're reviewing last month's work)
-    var now = new Date();
-    var prevMonthIdx = now.getMonth() - 1; // 0-based, -1 = December
-    if (prevMonthIdx < 0) prevMonthIdx = 11;
-    var prevMonthName = MONTHS[prevMonthIdx];
-    if (available.indexOf(prevMonthName) >= 0) {
-        currentMonth = prevMonthName;
-    } else {
-        currentMonth = available[0] || 'June';
-    }
+    currentMonth = available[0] || 'June';
     sel.value = currentMonth;
 }
 
@@ -385,28 +375,11 @@ function renderOtdRow(label, pct, target) {
 }
 
 function renderOtdTrends() {
-    // Build OTD_TRENDS from ACTIVITY_DATA if not loaded from activity_data.js
-    var trends = (typeof OTD_TRENDS !== 'undefined' && OTD_TRENDS && OTD_TRENDS.length > 0) ? OTD_TRENDS : [];
-    if (trends.length === 0 && window.ACTIVITY_DATA) {
-        MONTHS.forEach(function(m) {
-            var md = ACTIVITY_DATA[m];
-            if (!md || !md.summary) return;
-            ['ALPHA','PAPA','TANGO'].forEach(function(team) {
-                var key = 'otd' + team.charAt(0) + team.slice(1).toLowerCase();
-                var otd = md.summary[key];
-                if (otd && (otd.pct40 > 0 || otd.pct75 > 0 || otd.pct95 > 0)) {
-                    trends.push({month: m, team: team, pct40: otd.pct40, pct75: otd.pct75, pct95: otd.pct95});
-                }
-            });
-        });
-    }
-    if (!trends || trends.length === 0) {
+    if (!OTD_TRENDS || OTD_TRENDS.length === 0) {
         document.getElementById('otdTrendsTitle').style.display = 'none';
         document.getElementById('otdTrends').innerHTML = '';
         return;
     }
-    // Use trends instead of OTD_TRENDS throughout this function
-    var OTD_TRENDS_LOCAL = trends;
     document.getElementById('otdTrendsTitle').style.display = 'flex';
     
     const teams = [null, "ALPHA", "PAPA", "TANGO"];
@@ -415,7 +388,7 @@ function renderOtdTrends() {
     
     // Group by month
     const byMonth = {};
-    OTD_TRENDS_LOCAL.forEach(t => {
+    OTD_TRENDS.forEach(t => {
         if (!byMonth[t.month]) byMonth[t.month] = {};
         byMonth[t.month][t.team] = t;
     });
@@ -623,10 +596,8 @@ function ensureStatusCounts(d) {
 }
 
 // Compute OTD percentages from client completeDates if not in summary
-// (fallback only — workbook OTD values are loaded from activity_data.js)
 function ensureOtdData(d) {
-    if (d.summary.otdAlpha && (d.summary.otdAlpha.pct40 > 0 || d.summary.otdAlpha.pct75 > 0 || d.summary.otdAlpha.pct95 > 0)) return;
-    if (d.summary.otdPapa && (d.summary.otdPapa.pct40 > 0 || d.summary.otdPapa.pct75 > 0 || d.summary.otdPapa.pct95 > 0)) return;
+    if (d.summary.otdAlpha) return;
     const teams = {ALPHA: [], PAPA: [], TANGO: []};
     (d.clients || []).forEach(c => {
         if (teams[c.team]) teams[c.team].push(c);
