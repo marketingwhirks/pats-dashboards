@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-07-10T05:45:00Z",
-  "count": 283,
+  "last_updated": "2026-07-10T16:06:23.687764+00:00",
+  "count": 312,
   "clients": [
     {
       "sn": "117001",
@@ -9,6 +9,10 @@
     {
       "sn": "1531945",
       "name": "1539 CAPE LLC"
+    },
+    {
+      "sn": "1708714",
+      "name": "1708 BELLEVILLE LLC"
     },
     {
       "sn": "1SO001",
@@ -47,6 +51,10 @@
       "name": "901 COFFEE LLC"
     },
     {
+      "sn": "9012756",
+      "name": "901 COMICS LLC"
+    },
+    {
       "sn": "901002",
       "name": "901 GAMES, LLC"
     },
@@ -61,6 +69,10 @@
     {
       "sn": "AOP001",
       "name": "A-ONE-PLUS HOME HEALTH CARE AGENCY"
+    },
+    {
+      "sn": "ABG0726",
+      "name": "ABG HOLDINGS LLC"
     },
     {
       "sn": "ABL0655",
@@ -79,8 +91,16 @@
       "name": "ADVANCED POOLS, INC"
     },
     {
+      "sn": "ADV4819",
+      "name": "ADVANCED RESCUE SOLUTIONS"
+    },
+    {
       "sn": "AER001",
       "name": "AEROQUEST, LLC"
+    },
+    {
+      "sn": "AHH017",
+      "name": "AGAVE HOME HEALTH, LLC"
     },
     {
       "sn": "ALL9293",
@@ -97,6 +117,10 @@
     {
       "sn": "ARJ6345",
       "name": "ARJOSA LLC"
+    },
+    {
+      "sn": "ARJ4352",
+      "name": "ARJOSAMA"
     },
     {
       "sn": "ASA001",
@@ -117,6 +141,10 @@
     {
       "sn": "AUM001",
       "name": "AUM Enterprises, Inc"
+    },
+    {
+      "sn": "ACL001",
+      "name": "AURUM CARE, LLC"
     },
     {
       "sn": "BAK005",
@@ -155,6 +183,10 @@
       "name": "BAYOU CAKES, LLC"
     },
     {
+      "sn": "BEA003",
+      "name": "BEARMAN GOLDEN GARDENS, INC."
+    },
+    {
       "sn": "PIM3014",
       "name": "BELLE MEADE SOCIAL LLC"
     },
@@ -169,6 +201,14 @@
     {
       "sn": "BET001",
       "name": "BETTER BUSINESS BUREAU OF THE MID-SOUTH"
+    },
+    {
+      "sn": "BFH003",
+      "name": "BEYONDFAITH HOSPICE LUBBOCK, LLC"
+    },
+    {
+      "sn": "BFH004",
+      "name": "BEYONDFAITH HOSPICE OF GARLAND, LLC"
     },
     {
       "sn": "BHS0289",
@@ -195,8 +235,20 @@
       "name": "BOSTON NURSING CARE & CONSULTING INC"
     },
     {
+      "sn": "BRA014",
+      "name": "BRAMBLY PARK, LLC"
+    },
+    {
+      "sn": "BRI3150",
+      "name": "BRIC FITNESS, LLC"
+    },
+    {
       "sn": "BRI005",
       "name": "BRICKHOUSE BUFFETS, LLC"
+    },
+    {
+      "sn": "BRI0344",
+      "name": "BRIDGEWAY HOSPICE, LLC"
     },
     {
       "sn": "BRI8930",
@@ -217,6 +269,10 @@
     {
       "sn": "BAR8915",
       "name": "Barbian Management LLC"
+    },
+    {
+      "sn": "ECI003",
+      "name": "CARE HOSPICE LLC"
     },
     {
       "sn": "CAR014",
@@ -241,6 +297,18 @@
     {
       "sn": "CEL3679",
       "name": "CELEBRATING RENEE, LLC"
+    },
+    {
+      "sn": "CHI6300",
+      "name": "CHILDREN'S HOME CARE LLC"
+    },
+    {
+      "sn": "CHO1251",
+      "name": "CHOICE FARMS LLC"
+    },
+    {
+      "sn": "CIT001",
+      "name": "CITY & STATE RETAIL"
     },
     {
       "sn": "CLA004",
@@ -291,6 +359,10 @@
       "name": "CYNOSURE DENTAL LABORATORY, LLC"
     },
     {
+      "sn": "DKT001",
+      "name": "DAISY KIDS THERAPY LLC"
+    },
+    {
       "sn": "DAN011",
       "name": "DANVER'S LLC"
     },
@@ -309,6 +381,10 @@
     {
       "sn": "DEE4553",
       "name": "DEERE DEVELOPMENT COMPANY LLC"
+    },
+    {
+      "sn": "DEMO1",
+      "name": "DELICIOUS, FICTITIOUS AND OUTRAGEOUS"
     },
     {
       "sn": "DHC8906",
@@ -385,6 +461,10 @@
     {
       "sn": "FIR0656",
       "name": "FIRST BAPTIST CHURCH KENSETT"
+    },
+    {
+      "sn": "FLY5825",
+      "name": "FLYBOYS FITNESS LLC"
     },
     {
       "sn": "FOR7340",
@@ -493,6 +573,10 @@
     {
       "sn": "HIL006",
       "name": "HILL CAPITAL PARTNERS INC"
+    },
+    {
+      "sn": "HIL1926",
+      "name": "HILL INVESTMENT HOLDINGS LLC"
     },
     {
       "sn": "HKM7117",
@@ -751,6 +835,10 @@
       "name": "MEMPHIS TURNKEY PROPERTIES GP"
     },
     {
+      "sn": "MH002",
+      "name": "MERIT HOSPICE, LLC"
+    },
+    {
       "sn": "MID1689",
       "name": "MIDSOUTH SENIOR CONSULT INC"
     },
@@ -797,6 +885,18 @@
     {
       "sn": "NUT3674",
       "name": "NUTRITION CENTER"
+    },
+    {
+      "sn": "PAT001",
+      "name": "PATRICK ACCOUNTING"
+    },
+    {
+      "sn": "PAT7191",
+      "name": "PATRICK FL REAL ESTATE LLC"
+    },
+    {
+      "sn": "PAT012",
+      "name": "PATRICK REAL ESTATE LLC"
     },
     {
       "sn": "WIS001",
@@ -855,6 +955,10 @@
       "name": "RELIANT PROPERTY SERVICES, LP"
     },
     {
+      "sn": "7684",
+      "name": "RESILIENT ASSET MANAGEMENT, LLC"
+    },
+    {
       "sn": "RGG7611",
       "name": "RGGC Flooring LLC"
     },
@@ -867,8 +971,16 @@
       "name": "RIDE OR DIE 219 LLC"
     },
     {
+      "sn": "RMR001",
+      "name": "RMR COMM PROPERTIES, LLC"
+    },
+    {
       "sn": "ROB012",
       "name": "ROBBINS SOLID SOLUTIONS, LLC"
+    },
+    {
+      "sn": "ROT1657",
+      "name": "ROTTER ENTERPRISES LLC"
     },
     {
       "sn": "RSC001",
@@ -1057,6 +1169,10 @@
     {
       "sn": "U362393",
       "name": "U360 PC"
+    },
+    {
+      "sn": "UBI7524",
+      "name": "UBIQUISOFT TECHNOLOGIES, LLC"
     },
     {
       "sn": "UNB1501",
