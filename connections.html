@@ -6,8 +6,7 @@
     <script src="/theme.js"></script>
     <link rel="stylesheet" href="/theme.css">
     <script src="/auth.js"></script>
-    <script src="/nav.js"></script>
-    <title>QBO Connections | PATS Dashboards</title>
+    <title>QBO Connections — PATS Dashboards</title>
     <style>
         * {
             margin: 0;
@@ -17,42 +16,8 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: var(--conn-bg, #f5f5f5);
-            color: var(--conn-text, #333);
-        }
-
-        /* Theme-aware color variables */
-        :root {
-            --conn-bg: #f5f5f5;
-            --conn-text: #333;
-            --conn-card-bg: white;
-            --conn-header-bg: #1a3a5c;
-            --conn-instruction-bg: #e8f0f7;
-            --conn-instruction-border: #1a3a5c;
-            --conn-instruction-text: #1a3a5c;
-            --conn-input-bg: white;
-            --conn-input-border: #ddd;
-            --conn-border: #eee;
-            --conn-hover-bg: #fafafa;
-            --conn-pill-bg: #e0e0e0;
-            --conn-row-alt: #f8f8f8;
-            --conn-row-success: #f0f8f4;
-        }
-        html[data-theme="dark"] {
-            --conn-bg: #0f1219;
-            --conn-text: #e0e0e0;
-            --conn-card-bg: #1a1f2e;
-            --conn-header-bg: #111720;
-            --conn-instruction-bg: rgba(74, 144, 226, 0.08);
-            --conn-instruction-border: rgba(74, 144, 226, 0.4);
-            --conn-instruction-text: #a0c4e8;
-            --conn-input-bg: #1a1f2e;
-            --conn-input-border: rgba(255,255,255,0.15);
-            --conn-border: rgba(255,255,255,0.08);
-            --conn-hover-bg: rgba(255,255,255,0.04);
-            --conn-pill-bg: rgba(255,255,255,0.1);
-            --conn-row-alt: rgba(255,255,255,0.02);
-            --conn-row-success: rgba(16,185,129,0.06);
+            background-color: #f5f5f5;
+            color: #333;
         }
 
         .container {
@@ -62,7 +27,7 @@
         }
 
         header {
-            background-color: var(--conn-header-bg);
+            background-color: #1a3a5c;
             color: white;
             padding: 40px 20px;
             margin: -20px -20px 30px -20px;
@@ -87,20 +52,20 @@
         }
 
         .instructions {
-            background-color: var(--conn-instruction-bg);
-            border-left: 4px solid var(--conn-instruction-border);
+            background-color: #e8f0f7;
+            border-left: 4px solid #1a3a5c;
             padding: 16px;
             margin-bottom: 30px;
             border-radius: 4px;
             font-size: 14px;
             line-height: 1.6;
-            color: var(--conn-instruction-text);
+            color: #1a3a5c;
         }
 
         .instructions strong {
             display: block;
             margin-bottom: 8px;
-            color: inherit;
+            color: #0f2438;
         }
 
         .instructions p {
@@ -127,10 +92,10 @@
         .search-box input {
             width: 100%;
             padding: 10px 12px;
-            border: 1px solid var(--conn-input-border);
+            border: 1px solid #ddd;
             border-radius: 4px;
             font-size: 14px;
-            background-color: var(--conn-input-bg);
+            background-color: white;
         }
 
         .search-box input:focus {
@@ -152,8 +117,8 @@
 
         button {
             padding: 10px 16px;
-            border: 1px solid var(--conn-input-border);
-            background-color: var(--conn-input-bg);
+            border: 1px solid #ddd;
+            background-color: white;
             border-radius: 4px;
             cursor: pointer;
             font-size: 14px;
@@ -162,7 +127,7 @@
         }
 
         button:hover {
-            background-color: var(--conn-pill-bg);
+            background-color: #f0f0f0;
             border-color: #999;
         }
 
@@ -179,7 +144,7 @@
         }
 
         .refresh-btn:hover {
-            background-color: var(--conn-header-bg); opacity: 0.85;
+            background-color: #0f2438;
             border-color: #0f2438;
         }
 
@@ -191,7 +156,7 @@
         }
 
         .summary-card {
-            background-color: var(--conn-card-bg);
+            background-color: white;
             padding: 16px;
             border-radius: 4px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -217,7 +182,7 @@
         .summary-card.missing .count { color: #c62828; }
 
         .progress-bar {
-            background-color: var(--conn-card-bg);
+            background-color: white;
             padding: 16px;
             border-radius: 4px;
             margin-bottom: 20px;
@@ -236,7 +201,7 @@
         .progress-fill {
             flex: 1;
             height: 8px;
-            background-color: var(--conn-pill-bg);
+            background-color: #e0e0e0;
             border-radius: 4px;
             overflow: hidden;
         }
@@ -310,7 +275,7 @@
         }
 
         .table-wrapper {
-            background-color: var(--conn-card-bg);
+            background-color: white;
             border-radius: 4px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             overflow: hidden;
@@ -322,7 +287,7 @@
         }
 
         thead {
-            background-color: var(--conn-row-alt);
+            background-color: #f8f8f8;
             border-bottom: 2px solid #e0e0e0;
         }
 
@@ -347,11 +312,11 @@
         }
 
         tbody tr:hover {
-            background-color: var(--conn-hover-bg);
+            background-color: #fafafa;
         }
 
         tbody tr.completed {
-            background-color: var(--conn-row-success);
+            background-color: #f0f8f4;
             opacity: 0.8;
         }
 
@@ -439,7 +404,7 @@
         .skip-btn {
             padding: 6px 10px;
             background-color: #f5f5f5;
-            border: 1px solid var(--conn-input-border);
+            border: 1px solid #ddd;
             color: #666;
             border-radius: 3px;
             cursor: pointer;
@@ -464,7 +429,7 @@
         }
 
         .skip-counter {
-            background-color: var(--conn-card-bg);
+            background-color: white;
             padding: 12px 16px;
             border-radius: 4px;
             margin-bottom: 20px;
@@ -514,37 +479,37 @@
             }
         }
 
-        /* Body padding removed - old pats-nav was fixed position */
-
-        /* Dark mode text & border overrides */
-        html[data-theme="dark"] .container { color: var(--conn-text); }
-        html[data-theme="dark"] .subtitle,
-        html[data-theme="dark"] .source-info,
-        html[data-theme="dark"] .summary-card .label,
-        html[data-theme="dark"] .filter-tag,
-        html[data-theme="dark"] .timestamp,
-        html[data-theme="dark"] .modal-content p,
-        html[data-theme="dark"] .details-full td { color: #a0aec0; }
-        html[data-theme="dark"] .summary-card.total .count,
-        html[data-theme="dark"] .summary-card h3,
-        html[data-theme="dark"] h1, html[data-theme="dark"] h2,
-        html[data-theme="dark"] .modal-content h2 { color: #e0e0e0; }
-        html[data-theme="dark"] .connect-btn { background-color: rgba(74,144,226,0.15); border-color: rgba(74,144,226,0.4); }
-        html[data-theme="dark"] .connect-btn:hover { background-color: rgba(74,144,226,0.25); }
-        html[data-theme="dark"] .modal-content { background: #1a1f2e; color: #e0e0e0; }
-        html[data-theme="dark"] .filter-tag { background: rgba(255,255,255,0.08); color: #a0aec0; }
-        html[data-theme="dark"] .filter-tag.active { background: rgba(74,144,226,0.2); color: #fff; }
-        html[data-theme="dark"] input[type="text"],
-        html[data-theme="dark"] .search-filter input { background: var(--conn-input-bg); color: var(--conn-text); border-color: var(--conn-input-border); }
+        /* Top Nav */
+        .pats-nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: #111720;
+            border-bottom: 1px solid rgba(74, 144, 226, 0.25);
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 48px;
+        }
+        .pats-nav .brand { display: flex; align-items: center; }
+        .pats-nav .brand img { height: 28px; width: auto; }
+        .pats-nav .nav-link {
+            color: #a0aec0; text-decoration: none; font-size: 13px; font-weight: 500;
+            background: rgba(74, 144, 226, 0.1); border: 1px solid rgba(74, 144, 226, 0.25);
+            padding: 6px 14px; border-radius: 6px; transition: all 0.2s ease;
+        }
+        .pats-nav .nav-link:hover { background: rgba(74, 144, 226, 0.2); color: #fff; }
+        body { padding-top: 64px !important; }
     </style>
 </head>
 <body>
-<!-- Nav injected by nav.js -->
+<nav style="display:flex;align-items:center;gap:8px;padding:12px 20px;background:rgba(26,31,46,0.95);border-bottom:1px solid rgba(74,144,226,0.2);"><a href="/" style="margin-right:16px;display:flex;align-items:center;text-decoration:none;"><img data-logo src="/assets/logo.png" alt="Patrick Accounting" style="height:28px;"></a><a href="index.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Automation Scorecard</a><a href="activity.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Monthly Activity</a><a href="connections.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#fff;background:rgba(74,144,226,0.15);border:1px solid rgba(74,144,226,0.3);">QBO Connections</a><a href="fee-analysis.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Fee Analysis</a><a href="admin.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Admin</a></nav>
+    <nav class="pats-nav">
+        <span class="brand"><img src="https://patrickaccounting.com/hubfs/patrick/logos/patrick-accounting-logo-color.svg" alt="Patrick Accounting"></span></nav>
     <div class="container">
         <header>
             <h1>PATS QBO OAuth Authorization Dashboard</h1>
             <p class="subtitle">Master List from Qount &middot; Status from Airtable</p>
-            <p class="source-info">269 Active QBO-tagged clients &middot; Last synced from Qount: April 7, 2026</p>
+            <p class="source-info">283 Active QBO-tagged clients &middot; Last synced from Qount: July 10, 2026</p>
         </header>
 
         <div class="instructions">
@@ -655,257 +620,272 @@
         // =====================================================
         // MASTER CLIENT LIST — sourced from Qount Redshift
         // Active clients with "Tech: QBO" label
-        // Last pulled: April 7, 2026
+        // Last pulled: July 10, 2026
         // =====================================================
         const QOUNT_MASTER_LIST = [
-            {sn:"10099",name:"HERITAGE PROPERTIES"},
             {sn:"117001",name:"117 PRIME"},
             {sn:"1531945",name:"1539 CAPE LLC"},
+            {sn:"1SO001",name:"1SOURCEVEND, INC."},
             {sn:"294001",name:"294 WASHINGTON LAW FIRM"},
-            {sn:"3354",name:"DEERE BUILDERS, LLC"},
-            {sn:"3355",name:"DEERE CONSTRUCTION, LLC"},
-            {sn:"3DN1519",name:"3D NY0009 LLC"},
             {sn:"3DN3486",name:"3D NY0007 LLC"},
+            {sn:"3DN1519",name:"3D NY0009 LLC"},
+            {sn:"3DN7719",name:"3DNYC Corp"},
             {sn:"4158430",name:"4155 EAST RAINES RD LLC"},
-            {sn:"4CI001",name:"4CI PROPERTY INVESTMENTS, LLC"},
-            {sn:"6838",name:"NET WORTH FINANCIAL INC."},
+            {sn:"4CI001",name:"4CI Property Investments LLC"},
             {sn:"69P9951",name:"69 PONTOTOC, LLC"},
-            {sn:"901002",name:"901 GAMES, LLC"},
             {sn:"9013233",name:"901 COFFEE LLC"},
+            {sn:"901002",name:"901 GAMES, LLC"},
             {sn:"9014644",name:"901 TOYS LLC"},
-            {sn:"AAH002",name:"ARCY AT HOME"},
+            {sn:"ALP3352",name:"A&L PARTNERSHIP"},
+            {sn:"AOP001",name:"A-ONE-PLUS HOME HEALTH CARE AGENCY"},
             {sn:"ABL0655",name:"ABLE ADVERTISING LLC"},
             {sn:"ABO7708",name:"ABOVE AND BEYOND ELECTRIC COMPANY INC"},
             {sn:"ACC8345",name:"ACCURATE LAW ENFORCEMENT-GOVERNMENT SALES"},
-            {sn:"ADV001",name:"Advanced Pools, Inc"},
+            {sn:"ADV001",name:"ADVANCED POOLS, INC"},
             {sn:"AER001",name:"AEROQUEST, LLC"},
-            {sn:"AHC006",name:"ASPEN HOSPICE SERVICES, INC."},
-            {sn:"AHS002",name:"ASPEN HEALTHCARE SERVICES, INC."},
             {sn:"ALL9293",name:"ALLSTAR HOSPICE INC"},
-            {sn:"ALP3352",name:"A&L PARTNERSHIP"},
-            {sn:"AOP001",name:"A-ONE PLUS HOME HEALTH CARE, LLC"},
-            {sn:"ARC4203",name:"THE ARCADE RESTAURANT, LLC"},
+            {sn:"APP4953",name:"APPLEWHITE HEALTH CARE GROUP, INC"},
+            {sn:"AAH002",name:"ARCY AT HOME"},
             {sn:"ARJ6345",name:"ARJOSA LLC"},
             {sn:"ASA001",name:"ASAPP PROPERTIES, LLC"},
+            {sn:"AHS002",name:"ASPEN HEALTHCARE SERVICES, INC."},
+            {sn:"AHC006",name:"ASPEN HOSPICE SERVICES, INC."},
             {sn:"ATL001",name:"AT LAST, INC."},
-            {sn:"AUM001",name:"AUM ENTERPRISES, INC"},
-            {sn:"AlexCraig",name:"MEMPHIS TURNKEY PROPERTIES GP"},
-            {sn:"BAI3056",name:"GREER INJURY LAWYERS PLLC"},
+            {sn:"AUM001",name:"AUM Enterprises, Inc"},
             {sn:"BAK005",name:"BAKING A DIFFERENCE, LLC"},
             {sn:"BAK1033",name:"BAKING JOY, LLC"},
-            {sn:"BAK7927",name:"BAKE LIFE SWEET, LLC"},
-            {sn:"BAR015",name:"BARON'S MAN CAVE, LLC"},
             {sn:"BAR1657",name:"BARCAS ENTERPRISES LLC"},
-            {sn:"BAR2487",name:"BARONS BAR MEMPHIS LLC"},
             {sn:"BAR2732",name:"BARNES219 LLC"},
+            {sn:"BAR015",name:"BARON\'S MAN CAVE, LLC"},
+            {sn:"BAR2487",name:"BARONS BAR MEMPHIS LLC"},
             {sn:"BAR2819",name:"BARONS BARBERSHOP MEMPHIS LLC"},
-            {sn:"BAR6289",name:"RIDE OR DIE 219 LLC"},
             {sn:"BAS4935",name:"BASSJENKINS LLC"},
             {sn:"BAY001",name:"BAYOU CAKES, LLC"},
+            {sn:"PIM3014",name:"BELLE MEADE SOCIAL LLC"},
             {sn:"BEN1977",name:"BENCHMARK ATLANTIC HEALTHCARE INC"},
             {sn:"BEN3035",name:"BENCHMARK ATLANTIC HEALTHCARE MEMPHIS INC"},
             {sn:"BET001",name:"BETTER BUSINESS BUREAU OF THE MID-SOUTH"},
-            {sn:"BHH004TAX",name:"WICHITA HHS - HHA"},
             {sn:"BHS0289",name:"BHS HOLDINGS LLC"},
-            {sn:"BIG6317",name:"BIG RIVER MARKET, LLC"},
-            {sn:"BLU004",name:"BLUES CITY PSYCHIATRY, PLLC"},
             {sn:"BLU005",name:"BLUEBONNET CAKES, LLC"},
+            {sn:"BLU004",name:"BLUES CITY PSYCHIATRY, PLLC"},
             {sn:"BON9517",name:"BONK INTERNAL MEDICINE INC"},
             {sn:"BOO8844",name:"BOOYAS INC"},
+            {sn:"BOS8992",name:"BOSTON NURSING CARE & CONSULTING INC"},
             {sn:"BRI005",name:"BRICKHOUSE BUFFETS, LLC"},
+            {sn:"BRI8930",name:"BRIMHALL MAINTENANCE SERVICES LLC"},
             {sn:"BSP001",name:"BS PROPERTIES II, LLC"},
             {sn:"BST001",name:"BST HOLDINGS, LLC"},
             {sn:"BYS001",name:"BYS PROPERTIES, LLC"},
+            {sn:"BAR8915",name:"Barbian Management LLC"},
             {sn:"CAR014",name:"CARR PROPERTY MANAGEMENT LLC"},
-            {sn:"CAR4892",name:"JACOB SCHORR III"},
             {sn:"CAS5198",name:"CASH JEWELRY LOANS INC"},
+            {sn:"CBP001",name:"CB PROPERTIES OF MEMPHIS LLC"},
             {sn:"CBB001",name:"CBBQ PROPERTIES, LLC"},
             {sn:"CDL8629",name:"CDL-AMZ LLC"},
             {sn:"CEL3679",name:"CELEBRATING RENEE, LLC"},
-            {sn:"CFO3176",name:"CFO ACCOUNTING LLC"},
-            {sn:"CHE005",name:"CHERRY ROAD BAPTIST CHURCH, INC."},
             {sn:"CLA004",name:"CLAIBORNE FERGUSON LAW FIRM, P.A."},
             {sn:"CLI0772",name:"CLIPPERS OF KNOXVILLE, LLC"},
+            {sn:"CLI4608",name:"CLIPPERS OF THE MID-SOUTH LLC"},
             {sn:"COA4898",name:"COASTAL CAR CARE INC"},
-            {sn:"COL003",name:"COLLIERVILLE EYECARE, PLLC"},
             {sn:"CON4410",name:"CONCORD ACADEMY INC"},
-            {sn:"COP001",name:"COPPER WELL RETREAT LLC"},
             {sn:"COP002",name:"COPPER COLLAR GROUP LLC"},
+            {sn:"COP001",name:"COPPER WELL RETREAT LLC"},
             {sn:"COZ1256",name:"COZY CORNER RESTAURANTS INC."},
             {sn:"CTI3416",name:"CTI PROFESSIONAL FLIGHT TRAINING, LLC"},
             {sn:"CUL003",name:"CULLISON EYE CARE, PLLC"},
             {sn:"CUR7815",name:"CURA BEATUS INCORPORATED"},
             {sn:"CYN001",name:"CYNOSURE DENTAL LABORATORY, LLC"},
-            {sn:"DAN005",name:"THE DANIEL LAW FIRM"},
-            {sn:"DAN011",name:"DANVER'S LLC"},
+            {sn:"DAN011",name:"DANVER\'S LLC"},
             {sn:"DAR004",name:"DARK HORSE EDUCATION & ENTERTAINMENT, LLC"},
+            {sn:"3354",name:"DEERE BUILDERS, LLC"},
+            {sn:"3355",name:"DEERE CONSTRUCTION, LLC"},
             {sn:"DEE4553",name:"DEERE DEVELOPMENT COMPANY LLC"},
             {sn:"DHC8906",name:"DIGNITY HEALTHCARE LLC"},
             {sn:"DIG4618",name:"DIGNITY INVESTMENTS LLC"},
             {sn:"ECC0342",name:"ECCO ON OVERTON PARK, LLC"},
-            {sn:"ECC9968",name:"SABINE DORIS BACHMANN"},
-            {sn:"ECO1964",name:"ECONOMIST BREWING COMPANY, LLC"},
             {sn:"ECO4244",name:"ECO ERA LLC"},
+            {sn:"ECO1964",name:"ECONOMIST BREWING COMPANY, LLC"},
             {sn:"EDW003",name:"EDWARDS LAW GROUP, LLC"},
+            {sn:"ELM002",name:"EL MERO, INC"},
             {sn:"ELI001",name:"ELITE ELECTRIC &LIGHTING, INC."},
             {sn:"ELI4384",name:"ELITE INFUSION SERVICES, LLC"},
-            {sn:"ELI4615",name:"ELITE PREMIER NURSING SERVICES OF NAPLES LLC"},
             {sn:"ELI8017",name:"ELITE PREMIER NURSING SERVICES LLC"},
-            {sn:"ELM002",name:"EL MERO, INC"},
-            {sn:"EMI0022",name:"EMILY CAROL INVESTMENTS, LLC"},
+            {sn:"ELI4615",name:"ELITE PREMIER NURSING SERVICES OF NAPLES LLC"},
+            {sn:"ELL1635",name:"ELLIANOS STORES LLC"},
             {sn:"ENF2469",name:"ENFINITY SUPPLY LLC"},
-            {sn:"EPS001",name:"EPSTEIN'S LOAN OFFICE, INC."},
-            {sn:"ESC9938",name:"THE ESCAPE ROOM TENNESSEE LLC"},
-            {sn:"FAR008",name:"FARWINDS PARTNERSHIP"},
+            {sn:"EPS001",name:"EPSTEIN\'S LOAN OFFICE, INC."},
             {sn:"FFH003",name:"FAMILY FIRST HOME HEALTH, LLC"},
             {sn:"FFH004",name:"FAMILY FIRST HOSPICE, LLC"},
-            {sn:"FIR0656",name:"FIRST BAPTIST CHURCH KENSETT"},
+            {sn:"FAR008",name:"FARWINDS PARTNERSHIP"},
             {sn:"FIR5934",name:"FIREWHEEL CAKES LLC"},
+            {sn:"FIR0656",name:"FIRST BAPTIST CHURCH KENSETT"},
             {sn:"FOR7340",name:"FORTUNE FOODS LLC"},
-            {sn:"FOU003",name:"FOUNDATION FOR CHIROPRACTIC PROGRESS"},
             {sn:"FOU004",name:"FOUNDATION FOR CHIROPRACTIC EDUCATION"},
-            {sn:"GAG1223",name:"GAGLIANO GROUP LLC"},
-            {sn:"GAH001",name:"GOLDEN AGE HEALTH, INC."},
+            {sn:"FOU003",name:"FOUNDATION FOR CHIROPRACTIC PROGRESS"},
             {sn:"GAL2584",name:"GA LEASING LLC"},
-            {sn:"GOO0908",name:"THE GOOD VIKING LLC"},
+            {sn:"GAG1223",name:"GAGLIANO GROUP LLC"},
+            {sn:"HEA001",name:"GERMANTOWN CHRISTIAN COUNSELING"},
+            {sn:"GAH001",name:"GOLDEN AGE HEALTH, INC."},
             {sn:"GOO3487",name:"GOOD FORTUNE COMPANY MEMPHIS LLC"},
             {sn:"GOP001",name:"GOPAL, LLC"},
             {sn:"GOR3052",name:"GORDIN HOLDINGS LLC"},
-            {sn:"GOU003",name:"GOURMET YOUR WAY, LLC"},
             {sn:"GRA6371",name:"GRAWE HAUL AND INSTALL LLC"},
-            {sn:"GRE0601",name:"GREGORY T. WILKINSON DDS PC"},
-            {sn:"GRE5131",name:"GREENWAVE INVESTMENT GROUP, LLC"},
+            {sn:"GRE4920",name:"GREEN FAMILY VENTURES, LLC"},
             {sn:"GRE6867",name:"GREEN FROG COFFEE COMPANY LLC"},
+            {sn:"GRE5131",name:"GREENWAVE INVESTMENT GROUP, LLC"},
+            {sn:"BAI3056",name:"GREER INJURY LAWYERS PLLC"},
+            {sn:"GRE0601",name:"GREGORY T. WILKINSON DDS PC"},
             {sn:"GRU1101",name:"GRUDZIENA INC"},
-            {sn:"GUA0916",name:"GUARDIAN TITLE, LLC"},
             {sn:"GUA4477",name:"GUARDIAN INSURANCE GROUP, LLC"},
-            {sn:"GUA4879",name:"GUAC, INC"},
-            {sn:"HAR027",name:"HARPER-AVERY INSURANCE, LLC"},
-            {sn:"HEA001",name:"GERMANTOWN CHRISTIAN COUNSELING"},
-            {sn:"HEA008",name:"HEALING PAWS ANIMAL HOSPITAL"},
-            {sn:"HER009",name:"HERITAGE CONVALESCENT CENTER LTD"},
+            {sn:"GUA0916",name:"GUARDIAN TITLE, LLC"},
             {sn:"HHL001",name:"HARBOUR HOSPICE OF BEXAR COUNTY, LLC"},
+            {sn:"HAR027",name:"HARPER-AVERY INSURANCE, LLC"},
+            {sn:"HEA008",name:"HEALING PAWS ANIMAL HOSPITAL"},
+            {sn:"WRR001",name:"HERITAGE LAND AND DEVELOPMENT, LLC"},
+            {sn:"10099",name:"HERITAGE PROPERTIES"},
             {sn:"HIC8630",name:"HICKS CONVENTION SERVICES AND SPECIAL EVENTS INC"},
-            {sn:"HIL006",name:"HILL CAPITAL PARTNERS, INC."},
+            {sn:"HIG0886",name:"HIGHERVISIBILITY LLC"},
+            {sn:"HIL006",name:"HILL CAPITAL PARTNERS INC"},
             {sn:"HKM7117",name:"HK MEM LLC"},
             {sn:"HNH8271",name:"HN HOSPITALITY, LLC"},
             {sn:"HOL2528",name:"HOLISTIC CARE HOME HEALTH AGENCY INC"},
             {sn:"HOM001",name:"HOME SURETY TITLE & ESCROW LLC"},
             {sn:"HOS3683",name:"HOSPICE SPECIALISTS LLC"},
             {sn:"HOU004",name:"HOUSE OF AGLAIA SALON, LLC"},
-            {sn:"HOW5988",name:"HOWARD'S CUSTOM WINDOW TINT"},
+            {sn:"HOW5988",name:"HOWARD\'S CUSTOM WINDOW TINT"},
             {sn:"HSB6558",name:"HSB SHIV, LLC"},
             {sn:"HUB3664",name:"HUB ATHLETICS LLC"},
+            {sn:"PAT015",name:"HYDRA FIRE PROTECTION, LLC"},
+            {sn:"HER009",name:"Heritage Convalescent Center LTD"},
             {sn:"INS005",name:"INSPIRE HOSPICE AND PALLIATIVE CARE, INC."},
             {sn:"INT6095",name:"INTEGRITY FIRST CAREGIVERS, LLC"},
+            {sn:"ISA002",name:"ISABELLE CATHERINE LLC"},
+            {sn:"JJJ001",name:"J & J JOYBITES, LLC"},
+            {sn:"JHS2847",name:"J.H. SHOEMAKER COMPANY INC"},
+            {sn:"CAR4892",name:"JACOB SCHORR III"},
+            {sn:"JAM4184",name:"JAMES H. SHOEMAKER & PARTNERS"},
+            {sn:"TIN001",name:"JAMES J & TERESA A KNAUS PTR"},
             {sn:"JEF001",name:"JEFFREY THOMAS, LLC"},
             {sn:"JEH2421",name:"JEHL LAW GROUP PLLC"},
-            {sn:"JHS2847",name:"J.H. SHOEMAKER COMPANY INC"},
             {sn:"JIM003",name:"JIM ROBBINS & ASSOCIATES, INC."},
-            {sn:"JJJ001",name:"J & J JOYBITES, LLC"},
             {sn:"JON010",name:"JONES-WILLEY CORPORATION"},
-            {sn:"JOS001",name:"JOSEPH VOLNER DDS PLLC"},
             {sn:"JOY4375",name:"JOY MCDANIEL ACADEMY OF DANCE & GYMNASTICS, INC"},
+            {sn:"JZD0217",name:"JZDH LLC"},
+            {sn:"KCH6624",name:"K CONCEPTS LLC"},
             {sn:"KAI5639",name:"KAIZEN WELLNESS LLC"},
             {sn:"KCE1729",name:"KC EATERY LLC"},
-            {sn:"KCH6624",name:"K CONCEPTS LLC"},
-            {sn:"KGR1062",name:"KGR WHITEHAVEN LLC"},
-            {sn:"KGR1614",name:"KGR SOUTH MAIN LLC"},
-            {sn:"KGR5426",name:"KGR POPLAR LLC"},
-            {sn:"KGR5917",name:"KGR- AMERICAN WAY LLC"},
             {sn:"KGR7665",name:"KGR COOPER LLC"},
-            {sn:"KH54904",name:"KH525 LLC"},
+            {sn:"KGR5426",name:"KGR POPLAR LLC"},
+            {sn:"KGR1614",name:"KGR SOUTH MAIN LLC"},
+            {sn:"KGR1062",name:"KGR WHITEHAVEN LLC"},
+            {sn:"KGR5917",name:"KGR- AMERICAN WAY LLC"},
             {sn:"KHE7022",name:"KH EXECUTIVE SECURITY CONSULTANTS LLC"},
+            {sn:"KH54904",name:"KH525 LLC"},
             {sn:"KOL8642",name:"KOLB DEVELOPMENTS, LLC"},
-            {sn:"LAN7985",name:"LANDMARK HEATING & AIR CONDITIONING, INC"},
+            {sn:"LAI003",name:"LAINE REAL ESTATE LLC"},
             {sn:"LAN9053",name:"LAND ACADEMY INC"},
+            {sn:"LAN7985",name:"LANDMARK HEATING & AIR CONDITIONING, INC"},
             {sn:"LAT4878",name:"LATINO MEMPHIS INC"},
+            {sn:"LMT001",name:"LAWSON MUTUAL OF TEXAS, LLC"},
             {sn:"LEE9124",name:"LEE HEALTHCARE, INC"},
-            {sn:"LET001",name:"LETTUCE EAT, LLC"},
             {sn:"LET7956",name:"LETTUCE EAT MIDTOWN, LLC"},
+            {sn:"LET001",name:"LETTUCE EAT, LLC"},
             {sn:"LIV003",name:"LIVE HAUL PRODUCTS, INC."},
             {sn:"LLA001",name:"LLANO ESTACADO HEALTHCARE LLC"},
-            {sn:"LMT001",name:"LAWSON MUTUAL OF TEXAS, LLC"},
             {sn:"LOF001",name:"LOFLIN YARD, LLC"},
             {sn:"LON001",name:"LONE STAR CAKES, LLC"},
             {sn:"LOV002",name:"LOVE MARKERS, LLC"},
-            {sn:"LSU001",name:"LSUB, LLC"},
             {sn:"LSU003",name:"LSUB SD, LLC"},
             {sn:"LSU004",name:"LSUB SV, LLC"},
+            {sn:"LSU001",name:"LSUB, LLC"},
             {sn:"LSU005",name:"LSUB-MILL, LLC"},
             {sn:"LWL7532",name:"LWL - HELLO, LLC"},
+            {sn:"MWE001",name:"M.W.ESCUE COMPANY, INC."},
             {sn:"MAN7663",name:"MANGO SHEET METAL LLC"},
+            {sn:"6287",name:"MAUMELLE GYMNASTICS"},
             {sn:"MCE001",name:"MCEVOY, JEFFREY & EMILY"},
             {sn:"ME30755",name:"ME3 CAPITAL, LLC"},
-            {sn:"MED0266",name:"MEDIPLAN PROPERTIES LLC"},
             {sn:"MED9575",name:"MEDIPLAN HOLDINGS LLC"},
+            {sn:"MED0266",name:"MEDIPLAN PROPERTIES LLC"},
             {sn:"MEM1682",name:"MEMPHIS PSYCHIATRY PLLC"},
-            {sn:"MID0432",name:"MID-SOUTH NEPHROLOGY CONSULTANTS PLLC"},
-            {sn:"MID1689",name:"MIDSOUTH SENIOR CONSULT INC"},
-            {sn:"MOS7850",name:"MOSELEY'S AUTOMOTIVE SERVICES & SALES LLC"},
             {sn:"MRA001",name:"MEMPHIS RESTAURANT ASSOCIATION"},
-            {sn:"MRA002",name:"MRA POLITICAL ACTION COMMITTEE"},
-            {sn:"MTP001",name:"MOUNT PLEASANT SC-BAKERY CORPORATION"},
+            {sn:"AlexCraig",name:"MEMPHIS TURNKEY PROPERTIES GP"},
+            {sn:"MID1689",name:"MIDSOUTH SENIOR CONSULT INC"},
+            {sn:"MOS7850",name:"MOSELEY\'S AUTOMOTIVE SERVICES & SALES LLC"},
             {sn:"MTP809",name:"MOUNT PLEASANT SC BAKERY CORPORATION - CHARLESTON"},
+            {sn:"MTP001",name:"MOUNT PLEASANT SC-BAKERY CORPORATION"},
+            {sn:"MRA002",name:"MRA POLITICAL ACTION COMMITTEE"},
             {sn:"MVA6013",name:"MVAG INC."},
-            {sn:"MWE001",name:"M.W.ESCUE COMPANY, INC."},
+            {sn:"NOR004",name:"NAHL II LLC"},
             {sn:"NBC3625",name:"NBC BILLINGS LLC"},
+            {sn:"6838",name:"NET WORTH FINANCIAL INC."},
             {sn:"NEW1960",name:"NEW URBAN MEDIA"},
-            {sn:"NOR004",name:"NAHL II, LLC"},
-            {sn:"NOR4656",name:"THE NORTH END, LLC"},
+            {sn:"NOR6792",name:"NORTH PARKWAY REVIVAL LLC"},
             {sn:"NUT3674",name:"NUTRITION CENTER"},
-            {sn:"PAT015",name:"HYDRA FIRE PROTECTION, LLC"},
+            {sn:"WIS001",name:"PATTERSON BRAY PLLC"},
             {sn:"PED002",name:"PEDIATRIC PARTNERS OF NASHVILLE PLLC"},
-            {sn:"PHC002",name:"PRESIDENTE HOME CARE, INC"},
-            {sn:"PIL002",name:"PILLAR BUILDING SOLUTIONS, LLC"},
-            {sn:"PIM3014",name:"BELLE MEADE SOCIAL LLC"},
             {sn:"PIN7883",name:"PINK FLAMINGO LLC"},
+            {sn:"PLA9382",name:"PLAYA COLLIERVILLE, LLC"},
             {sn:"PLA2134",name:"PLAYA EAST MEMPHIS LLC"},
             {sn:"PRA002",name:"PRAVINCHANDRA P PATEL MD PC"},
+            {sn:"PHC002",name:"PRESIDENTE HOME CARE, INC"},
             {sn:"PUZ1455",name:"PUZZOL CREATIVE CONSULTING LLC"},
             {sn:"PUZ2621",name:"PUZZOL HOLDINGS LLC"},
-            {sn:"PUZ2860",name:"THE ESCAPE ROOM ALABAMA, LLC"},
             {sn:"QUA6056",name:"QUALITY HOME HEALTH CARE INC"},
-            {sn:"RAM1111",name:"RAMBLIN' JOE'S"},
-            {sn:"REL6043",name:"RELIANT PROPERTY SERVICES, LP"},
-            {sn:"REL8723",name:"RELEASE COATINGS LLC"},
-            {sn:"RGG7611",name:"RGGC FLOORING"},
-            {sn:"RIC004",name:"RICH-WAY LANDSCAPE, INC."},
             {sn:"RNE5277",name:"R N ENTERPRISE INC"},
+            {sn:"RAM1111",name:"RAMBLIN\' JOE\'S"},
+            {sn:"REL8723",name:"RELEASE COATINGS LLC"},
+            {sn:"REL6043",name:"RELIANT PROPERTY SERVICES, LP"},
+            {sn:"RGG7611",name:"RGGC Flooring LLC"},
+            {sn:"RIC004",name:"RICH-WAY LANDSCAPE, INC."},
+            {sn:"BAR6289",name:"RIDE OR DIE 219 LLC"},
             {sn:"ROB012",name:"ROBBINS SOLID SOLUTIONS, LLC"},
             {sn:"RSC001",name:"RSCB HOLDINGS, LLC - FKA- CENTRAL BBQ"},
             {sn:"RTK4369",name:"RTK COMPONENTS, LLC"},
             {sn:"RYA9696",name:"RYANJEN219 LLC"},
-            {sn:"SCA2019",name:"SCARY GARY 2, INC"},
-            {sn:"SCA3419",name:"SCARY GARY LLC"},
+            {sn:"ECC9968",name:"SABINE DORIS BACHMANN"},
+            {sn:"SRH003",name:"SAN RAFAEL HEALTHCARE, INC."},
+            {sn:"SDC9408",name:"SD COFFEE HOLDINGS LLC"},
             {sn:"SEN004",name:"SENATOBIA DENTAL STUDIO, PLLC"},
+            {sn:"SER5721",name:"SERV HOMECARE LLC"},
             {sn:"SHO2053",name:"SHOEMAKER INSURANCE SOLUTIONS INC"},
             {sn:"SID002",name:"SIDDIHIVINAYAK, INC."},
             {sn:"SLB9389",name:"SLB ENTERPRISE INC"},
             {sn:"SOL5321",name:"SOL 2 SOUL YOGA, LLC"},
-            {sn:"SOM4671",name:"SOMETHING DESI LLC"},
             {sn:"SOU6458",name:"SOUTHERN PEDIATRICS, LLC"},
             {sn:"SPA1352",name:"SPANOW, LLC"},
-            {sn:"SRH003",name:"SAN RAFAEL HEALTHCARE, INC."},
             {sn:"STA1111",name:"STAGE LEFT"},
             {sn:"STE1111",name:"STEAK ESCAPE COLLIERVILLE"},
             {sn:"STE1112",name:"STEAK ESCAPE JACKSON"},
-            {sn:"SUN002TN",name:"SUNRISE CENTRAL, LLC DBA SUNRISE MEMPHIS"},
+            {sn:"STO004",name:"STONED IMMACULATE"},
             {sn:"SUN004",name:"SUNFLOWER BAKEHOUSE, LLC"},
+            {sn:"SUN002",name:"SUNRISE CENTRAL LLC - TN"},
+            {sn:"SUN002TN",name:"SUNRISE CENTRAL, LLC DBA SUNRISE MEMPHIS"},
             {sn:"SUN6209",name:"SUNRISE POPLAR, LLC"},
             {sn:"SWE003",name:"SWEETRENEE, LLC"},
-            {sn:"TAM5258",name:"TAMBOLI'S LLC"},
+            {sn:"SOM4671",name:"Something Desi LLC"},
+            {sn:"TAM5258",name:"TAMBOLI\'S LLC"},
             {sn:"TDJ7794",name:"TDJ 77 LLC"},
             {sn:"TEA9817",name:"TEAMWEAR GRAPHICS LLC"},
+            {sn:"TEN5679",name:"TEN4 INVESTMENTS LLC"},
             {sn:"TER007",name:"TERREL I INVESTMENTS, LLC"},
-            {sn:"TER008",name:"TERREL II INVESTMENTS, LLC"},
+            {sn:"TER9632",name:"TERREL III INVESTMENTS LLC"},
             {sn:"TEX3021",name:"TEXAS STORM GROUP LLC"},
-            {sn:"TIN001",name:"JAMES J & TERESA A KNAUS PTR"},
-            {sn:"TON6012",name:"TONICA LLC"},
+            {sn:"ARC4203",name:"THE ARCADE RESTAURANT, LLC"},
+            {sn:"DAN005",name:"THE DANIEL LAW FIRM"},
+            {sn:"PUZ2860",name:"THE ESCAPE ROOM ALABAMA, LLC"},
+            {sn:"ESC9938",name:"THE ESCAPE ROOM TENNESSEE LLC"},
+            {sn:"GOO0908",name:"THE GOOD VIKING LLC"},
+            {sn:"NOR4656",name:"THE NORTH END, LLC"},
             {sn:"TRA003",name:"THE TRANSFORMATION CENTER FOR WOMEN, LLC"},
+            {sn:"VAL0062",name:"THE VALLEY EVENT SPACE LLC"},
+            {sn:"TKP0969",name:"TKP MANAGEMENT LLC"},
+            {sn:"TON6012",name:"TONICA LLC"},
             {sn:"TRI003",name:"TRILOGY MARKETING, INC."},
             {sn:"TTK9883",name:"TTKBG INC."},
+            {sn:"TUR1111",name:"TURNER BARBER COMPANY, LLC"},
             {sn:"TWO1977",name:"TWO RIVERS POWER, LLC"},
+            {sn:"TER008",name:"Terrel II Investments LLC"},
             {sn:"U362393",name:"U360 PC"},
             {sn:"UNB1501",name:"UNBROKEN219 LLC"},
             {sn:"UNB8167",name:"UNBROKEN220 LLC"},
@@ -914,16 +894,15 @@
             {sn:"VCR9528",name:"VC RESTAURANT GROUP, LLC"},
             {sn:"VEC001",name:"VECTAIR USA, LLC"},
             {sn:"VEN001",name:"VENTURE MOTOR LINES, LLC"},
-            {sn:"VIL2554",name:"VILONIA METAL WORKS, INC"},
             {sn:"VIL9528",name:"VILLA CASTRIOTI - LAKE DISTRICT"},
+            {sn:"VIL2554",name:"VILONIA METAL WORKS, INC"},
             {sn:"VRS001",name:"VRSSSE PROPERTIES, LLC"},
             {sn:"WEC002",name:"WECARE PROPERTIES LLC"},
             {sn:"WES003",name:"WEST STONE WORKS CO, INC."},
-            {sn:"WIL5900",name:"JOSHUA CREWS"},
-            {sn:"WIS001",name:"PATTERSON BRAY PLLC"},
+            {sn:"WHI003",name:"WHITE LIGHTNING ENTERPRISES, LLC"},
+            {sn:"BHH004TAX",name:"WICHITA HHS - HHA"},
             {sn:"WOL003",name:"WOLF RIVER CONSERVANCY, INC."},
-            {sn:"WRR001",name:"HERITAGE LAND AND DEVELOPMENT, LLC"},
-            {sn:"YXG2520",name:"YX GIVES"},
+            {sn:"YXG2520",name:"YX Gives"},
             {sn:"ZAP5075",name:"ZAP LLC"},
             {sn:"ZEN3796",name:"ZENFIRE ATL LLC"},
             {sn:"ZON4300",name:"ZONKHEAD, LLC"}
