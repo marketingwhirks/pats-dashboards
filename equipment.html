@@ -248,6 +248,22 @@ tbody td { padding:10px 14px; font-size:13px; vertical-align:middle; }
   </div>
 </div>
 
+<!-- QR Code Modal -->
+<div class="modal-overlay" id="qrModal">
+  <div class="modal" style="text-align:center;">
+    <h2>QR Code</h2>
+    <p style="color:var(--text2);font-size:13px;margin-bottom:14px;" id="qrDeviceLabel"></p>
+    <div id="qrImageWrap" style="background:#fff;display:inline-block;padding:12px;border-radius:8px;margin-bottom:12px;">
+      <img id="qrImage" style="width:200px;height:200px;" alt="QR Code">
+    </div>
+    <p style="color:var(--text2);font-size:12px;margin-bottom:14px;">Scan this QR or save the image to print on your Niimbot label maker.</p>
+    <div style="display:flex;gap:6px;justify-content:center;flex-wrap:wrap;">
+      <a id="qrDownload" class="btn btn-primary" download style="text-decoration:none;display:inline-block;">Save QR Image</a>
+      <button class="btn btn-outline" onclick="closeModal('qrModal')">Close</button>
+    </div>
+  </div>
+</div>
+
 <!-- Toast -->
 <div class="toast" id="toast"></div>
 
@@ -346,7 +362,7 @@ tbody td { padding:10px 14px; font-size:13px; vertical-align:middle; }
       var since = d.checkedOutAt ? formatDate(d.checkedOutAt) : "-";
       var notes = d.notes || "";
 
-      var actions = "";
+      var actions = '<button class="btn btn-sm btn-outline" onclick="openQR(\'' + escAttr(d.deviceNumber) + '\', \'' + escAttr(d.deviceName) + '\')" title="QR Code" style="padding:3px 8px;">QR</button> ';
       if (d.status === "available") {
         actions += '<button class="btn btn-sm btn-blue" onclick="openCheckout(\'' + d._id + '\')">Check Out</button>';
       } else {
@@ -588,6 +604,23 @@ tbody td { padding:10px 14px; font-size:13px; vertical-align:middle; }
         loadDevices();
       })
       .catch(function() { showToast("Failed to delete", "error"); });
+  };
+
+  // ── QR Code ─────────────────────────────────────────────────────
+
+  window.openQR = function(deviceNumber, deviceName) {
+    var checkoutUrl = "https://dashboards.patrickaccounting.com/checkout.html?d=" + encodeURIComponent(deviceNumber);
+    var qrApiUrl = "https://api.qrserver.com/v1/create-qr-code/?size=400x400&margin=8&data=" + encodeURIComponent(checkoutUrl);
+
+    document.getElementById("qrDeviceLabel").textContent = deviceNumber + " - " + deviceName;
+    var img = document.getElementById("qrImage");
+    img.src = qrApiUrl;
+
+    var downloadLink = document.getElementById("qrDownload");
+    downloadLink.href = qrApiUrl;
+    downloadLink.download = "QR-" + deviceNumber + ".png";
+
+    openModal("qrModal");
   };
 
   // ── Modals ─────────────────────────────────────────────────────
