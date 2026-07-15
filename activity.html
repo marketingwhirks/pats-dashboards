@@ -6,8 +6,7 @@
     <script src="/theme.js"></script>
     <link rel="stylesheet" href="/theme.css">
     <script src="/auth.js"></script>
-    <script src="/nav.js"></script>
-    <title>Monthly Activity | PATS Dashboards</title>
+    <title>Monthly Activity - PATS Dashboards</title>
     <style>
         :root {
             --bg: #0f1219; --bg-card: #1a1f2e; --bg-hover: #232a3b;
@@ -165,7 +164,7 @@
     </style>
 </head>
 <body>
-<!-- Nav injected by nav.js -->
+<nav style="display:flex;align-items:center;gap:8px;padding:12px 20px;background:rgba(26,31,46,0.95);border-bottom:1px solid rgba(74,144,226,0.2);"><a href="/" style="margin-right:16px;display:flex;align-items:center;text-decoration:none;"><img data-logo src="/assets/logo.png" alt="Patrick Accounting" style="height:28px;"></a><a href="index.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Automation Scorecard</a><a href="activity.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#fff;background:rgba(74,144,226,0.15);border:1px solid rgba(74,144,226,0.3);">Monthly Activity</a><a href="connections.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">QBO Connections</a><a href="fee-analysis.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Fee Analysis</a><a href="admin.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Admin</a><a href="equipment.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Equipment</a></nav>
 <div class="container">
     <!-- Header -->
     <div class="header">
@@ -175,7 +174,7 @@
         </div>
         <div class="header-right">
             <select id="monthSelect" onchange="switchMonth(this.value)">
-                <!-- Populated dynamically from data -->
+                <option value="June" selected>June 2026</option><option value="May" >May 2026</option><option value="April" >April 2026</option><option value="March" >March 2026</option><option value="February" >February 2026</option><option value="January" >January 2026</option>
             </select>
             <div class="sync-badge">🔄 Data refreshes daily from Qount</div>
         </div>
@@ -245,31 +244,15 @@
     </div>
 </div>
 
-<script src="activity_data.js?v=1783692144"></script>
+<script src="activity_data.js?v=1780965000"></script>
 <script>
+const OTD_TRENDS = [{"month": "April", "team": "ALPHA", "pct40": 0.3939393939393939, "pct75": 0.7777777777777778, "pct95": 0.8888888888888888}, {"month": "April", "team": "PAPA", "pct40": 0.3739130434782609, "pct75": 0.6782608695652174, "pct95": 0.782608695652174}, {"month": "April", "team": "TANGO", "pct40": 0.18518518518518517, "pct75": 0.24074074074074073, "pct95": 0.8703703703703703}, {"month": "February", "team": "ALPHA", "pct40": 0.42424242424242425, "pct75": 0.6565656565656566, "pct95": 0.9393939393939394}, {"month": "February", "team": "PAPA", "pct40": 0.29310344827586204, "pct75": 0.6896551724137931, "pct95": 0.9655172413793104}, {"month": "February", "team": "TANGO", "pct40": 0.4716981132075472, "pct75": 0.7358490566037735, "pct95": 0.8867924528301887}, {"month": "January", "team": "ALPHA", "pct40": 0.36082474226804123, "pct75": 0.5257731958762887, "pct95": 0.6804123711340206}, {"month": "January", "team": "PAPA", "pct40": 0.27350427350427353, "pct75": 0.5982905982905983, "pct95": 0.8034188034188035}, {"month": "January", "team": "TANGO", "pct40": 0.4807692307692308, "pct75": 0.6153846153846154, "pct95": 0.6730769230769231}, {"month": "June", "team": "ALPHA", "pct40": 0.0, "pct75": 0.0, "pct95": 0.0}, {"month": "June", "team": "PAPA", "pct40": 0.0, "pct75": 0.0, "pct95": 0.0}, {"month": "June", "team": "TANGO", "pct40": 0.0, "pct75": 0.0, "pct95": 0.0}, {"month": "March", "team": "ALPHA", "pct40": 0.1919191919191919, "pct75": 0.47474747474747475, "pct95": 0.8282828282828283}, {"month": "March", "team": "PAPA", "pct40": 0.11403508771929824, "pct75": 0.38596491228070173, "pct95": 0.6842105263157895}, {"month": "March", "team": "TANGO", "pct40": 0.19230769230769232, "pct75": 0.4807692307692308, "pct95": 0.7884615384615384}, {"month": "May", "team": "ALPHA", "pct40": 0.0, "pct75": 0.0, "pct95": 0.0}, {"month": "May", "team": "PAPA", "pct40": 0.0, "pct75": 0.0, "pct95": 0.0}, {"month": "May", "team": "TANGO", "pct40": 0.0, "pct75": 0.0, "pct95": 0.0}];
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const MONTH_SHORT = {"January": "Jan", "February": "Feb", "March": "Mar", "April": "Apr", "May": "May", "June": "Jun", "July": "Jul", "August": "Aug", "September": "Sep", "October": "Oct", "November": "Nov", "December": "Dec"};
 const STATUS_ORDER = ["Collect", "Prep", "Review", "Clear Notes", "Review #2", "Deliver", "Done"];
 const STATUS_COLORS = {"Collect": "#94a3b8", "Prep": "#3b82f6", "Review": "#f59e0b", "Clear Notes": "#f97316", "Review #2": "#a855f7", "Deliver": "#06b6d4", "Done": "#10b981"};
 
-let currentMonth = null;
-
-function populateMonthSelector() {
-    const sel = document.getElementById('monthSelect');
-    if (!sel || !window.ACTIVITY_DATA) return;
-    const available = Object.keys(ACTIVITY_DATA).filter(m => ACTIVITY_DATA[m] && ACTIVITY_DATA[m].summary);
-    // Sort by MONTHS order (reverse for most recent first)
-    available.sort((a, b) => MONTHS.indexOf(b) - MONTHS.indexOf(a));
-    sel.innerHTML = '';
-    available.forEach(m => {
-        const opt = document.createElement('option');
-        opt.value = m;
-        opt.textContent = m + ' 2026';
-        sel.appendChild(opt);
-    });
-    currentMonth = available[0] || 'June';
-    sel.value = currentMonth;
-}
+let currentMonth = "May";
 
 function switchMonth(m) {
     currentMonth = m;
@@ -581,57 +564,9 @@ function closeDrawer(e) {
     }
 }
 
-// Compute statusCounts from client data if not already present
-function ensureStatusCounts(d) {
-    if (d.statusCounts) return;
-    const sc = {};
-    const statusMap = {"review2":"Review #2","clear notes":"Clear Notes","done":"Done","collect":"Collect","prep":"Prep","review":"Review","deliver":"Deliver"};
-    (d.clients || []).forEach(c => {
-        let s = (c.status || "").trim();
-        if (!s) return; // blank = not started
-        const key = statusMap[s.toLowerCase()] || s;
-        sc[key] = (sc[key] || 0) + 1;
-    });
-    d.statusCounts = sc;
-}
-
-// Compute OTD percentages from client completeDates if not in summary
-function ensureOtdData(d) {
-    if (d.summary.otdAlpha) return;
-    const teams = {ALPHA: [], PAPA: [], TANGO: []};
-    (d.clients || []).forEach(c => {
-        if (teams[c.team]) teams[c.team].push(c);
-    });
-    // Alpha/Papa deadlines: 40% by 14th, 75% by 21st, 95% by 25th
-    // Tango deadlines: 40% by 21st, 75% by 25th, 95% by EOM
-    const deadlines = {
-        ALPHA: [14, 21, 25],
-        PAPA: [14, 21, 25],
-        TANGO: [21, 25, 31],
-    };
-    for (const [team, clients] of Object.entries(teams)) {
-        if (!clients.length) { d.summary["otd"+team.charAt(0)+team.slice(1).toLowerCase()] = {pct40:0,pct75:0,pct95:0}; continue; }
-        const dl = deadlines[team];
-        const total = clients.length;
-        const doneBefore = (day) => clients.filter(c => {
-            if (!c.completeDate) return false;
-            const dd = parseInt(c.completeDate.split("-")[2], 10);
-            return dd <= day;
-        }).length;
-        const key = "otd" + team.charAt(0) + team.slice(1).toLowerCase();
-        d.summary[key] = {
-            pct40: doneBefore(dl[0]) / total,
-            pct75: doneBefore(dl[1]) / total,
-            pct95: doneBefore(dl[2]) / total,
-        };
-    }
-}
-
 function render() {
     const d = ACTIVITY_DATA[currentMonth];
     if (!d) return;
-    ensureStatusCounts(d);
-    ensureOtdData(d);
     renderSummary(d);
     renderStatusPipeline(d);
     renderTeamCards(d);
@@ -640,7 +575,6 @@ function render() {
     renderClients();
 }
 
-populateMonthSelector();
 render();
 </script>
 <script>
