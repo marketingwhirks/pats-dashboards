@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-14T16:02:45.057128+00:00",
+  "last_updated": "2026-07-15T16:03:01.075759+00:00",
   "count": 312,
   "clients": [
     {
@@ -1215,10 +1215,6 @@
       "name": "VRSSSE PROPERTIES, LLC"
     },
     {
-      "sn": "WEC002",
-      "name": "WECARE PROPERTIES LLC"
-    },
-    {
       "sn": "WES003",
       "name": "WEST STONE WORKS CO, INC."
     },
@@ -1233,6 +1229,10 @@
     {
       "sn": "WOL003",
       "name": "WOLF RIVER CONSERVANCY, INC."
+    },
+    {
+      "sn": "WEC002",
+      "name": "WeCare Properties LLC"
     },
     {
       "sn": "YXG2520",
