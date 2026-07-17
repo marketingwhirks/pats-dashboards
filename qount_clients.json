@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-16T16:03:00.955509+00:00",
+  "last_updated": "2026-07-17T16:03:12.788699+00:00",
   "count": 313,
   "clients": [
     {
@@ -1135,10 +1135,6 @@
       "name": "THE NORTH END, LLC"
     },
     {
-      "sn": "TRA003",
-      "name": "THE TRANSFORMATION CENTER FOR WOMEN, LLC"
-    },
-    {
       "sn": "VAL0062",
       "name": "THE VALLEY EVENT SPACE LLC"
     },
@@ -1169,6 +1165,10 @@
     {
       "sn": "TER008",
       "name": "Terrel II Investments LLC"
+    },
+    {
+      "sn": "TRA003",
+      "name": "The Transformation Center for Women, LLC"
     },
     {
       "sn": "U362393",
