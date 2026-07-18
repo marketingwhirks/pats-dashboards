@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-17T16:03:12.788699+00:00",
+  "last_updated": "2026-07-18T16:01:31.232542+00:00",
   "count": 313,
   "clients": [
     {
@@ -367,10 +367,6 @@
       "name": "DANVER'S LLC"
     },
     {
-      "sn": "DAR004",
-      "name": "DARK HORSE EDUCATION & ENTERTAINMENT, LLC"
-    },
-    {
       "sn": "3354",
       "name": "DEERE BUILDERS, LLC"
     },
@@ -393,6 +389,10 @@
     {
       "sn": "DIG4618",
       "name": "DIGNITY INVESTMENTS LLC"
+    },
+    {
+      "sn": "DAR004",
+      "name": "Dark Horse Education & Entertainment, LLC"
     },
     {
       "sn": "ECC0342",
