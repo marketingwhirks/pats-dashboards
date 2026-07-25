@@ -193,7 +193,7 @@
         </div>
     </div>
 
-    <script src="connections_data.js?v=1784955970"></script>
+    <script src="connections_data.js?v=1784956030"></script>
     <script>
         const OAUTH_BASE_URL = "https://appcenter.intuit.com/connect/oauth2?client_id=AB7MyQslNgsncbRDGAJhdXPCICBvfgLAWkONkgzQyukHXHExzW&redirect_uri=https://hook.us1.make.com/98y8xjh2or1bm2aw48w0n3w5sb6t1zh3&response_type=code&scope=com.intuit.quickbooks.accounting";
 
@@ -201,6 +201,17 @@
         const skippedState = {};
         let currentFilter = 'all';
         let currentSearch = '';
+
+        // Optimistic UI: track manually-connected clients in localStorage
+        const MANUAL_KEY = 'qbo_manual_connected';
+        function getManualConnected() {
+            try { return JSON.parse(localStorage.getItem(MANUAL_KEY) || '{}'); } catch { return {}; }
+        }
+        function markManualConnected(sn) {
+            const m = getManualConnected();
+            m[sn] = new Date().toISOString();
+            localStorage.setItem(MANUAL_KEY, JSON.stringify(m));
+        }
 
         function getTimeAgo(dateStr) {
             const date = new Date(dateStr);
@@ -235,15 +246,26 @@
                     });
                 });
 
-                // Unconnected clients
+                // Unconnected clients (check localStorage for manual connections)
+                const manual = getManualConnected();
                 (data.unconnected || []).forEach(c => {
-                    allClients.push({
-                        id: 'pending_' + c.sn,
-                        company_name: c.name,
-                        serial_number: c.sn,
-                        status: 'Unconnected',
-                        realm_id: ''
-                    });
+                    if (manual[c.sn]) {
+                        allClients.push({
+                            id: 'manual_' + c.sn,
+                            company_name: c.name,
+                            serial_number: c.sn,
+                            status: 'Connected',
+                            realm_id: ''
+                        });
+                    } else {
+                        allClients.push({
+                            id: 'pending_' + c.sn,
+                            company_name: c.name,
+                            serial_number: c.sn,
+                            status: 'Unconnected',
+                            realm_id: ''
+                        });
+                    }
                 });
 
                 allClients.sort((a, b) => a.company_name.localeCompare(b.company_name));
@@ -357,7 +379,24 @@
 
         function openOAuth(sn) {
             const oauthUrl = `${OAUTH_BASE_URL}&state=SN_${encodeURIComponent(sn)}`;
-            window.open(oauthUrl, '_blank', 'width=800,height=600');
+            const popup = window.open(oauthUrl, '_blank', 'width=800,height=600');
+            // Monitor popup - when it closes, mark as connected
+            if (popup) {
+                const check = setInterval(() => {
+                    if (popup.closed) {
+                        clearInterval(check);
+                        markManualConnected(sn);
+                        // Update the client in allClients
+                        const client = allClients.find(c => c.serial_number === sn);
+                        if (client) {
+                            client.status = 'Connected';
+                            client.id = 'manual_' + sn;
+                        }
+                        renderTable();
+                        updateSummary();
+                    }
+                }, 500);
+            }
         }
 
         // Event listeners
