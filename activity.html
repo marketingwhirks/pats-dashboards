@@ -174,7 +174,14 @@
         </div>
         <div class="header-right">
             <select id="monthSelect" onchange="switchMonth(this.value)"></select>
-            <div class="sync-badge">🔄 Data refreshes daily from Qount</div>
+            <button id="refreshBtn" onclick="requestRefresh()" style="
+                background: rgba(74,144,226,0.15); color: var(--accent); border: 1px solid rgba(74,144,226,0.3);
+                border-radius: 8px; padding: 7px 14px; font-size: 13px; cursor: pointer; font-weight: 600;
+                display: flex; align-items: center; gap: 6px; transition: all 0.2s;
+            " onmouseover="this.style.background='rgba(74,144,226,0.25)'" onmouseout="this.style.background='rgba(74,144,226,0.15)'">
+                🔄 Refresh Now
+            </button>
+            <div class="sync-badge" id="syncBadge">🕐 Loading...</div>
         </div>
     </div>
 
@@ -384,11 +391,19 @@ function renderOtdTrends() {
     const labels = {"null": "ALL OPS", "ALPHA": "ALPHA", "PAPA": "PAPA", "TANGO": "TANGO"};
     const accents = {"null":"#fff","ALPHA":"#3b82f6","PAPA":"#a855f7","TANGO":"#f59e0b"};
     
-    // Group by month
+    // Group by month — handle nested format {month, alpha:{}, papa:{}, tango:{}}
     const byMonth = {};
     OTD_TRENDS.forEach(t => {
         if (!byMonth[t.month]) byMonth[t.month] = {};
-        byMonth[t.month][t.team] = t;
+        if (t.team) {
+            // Flat format: {month, team, pct40, pct75, pct95}
+            byMonth[t.month][t.team] = t;
+        } else {
+            // Nested format: {month, alpha:{pct40,...}, papa:{...}, tango:{...}}
+            ['alpha','papa','tango'].forEach(team => {
+                if (t[team]) byMonth[t.month][team.toUpperCase()] = t[team];
+            });
+        }
     });
     const monthsInOrder = MONTHS.filter(m => byMonth[m]);
     
@@ -588,6 +603,60 @@ function render() {
     renderOtdTrends();
     renderStaff(d);
     renderClients();
+}
+
+// === Last Refresh Timestamp ===
+(function() {
+    const badge = document.getElementById('syncBadge');
+    if (typeof ACTIVITY_META !== 'undefined' && ACTIVITY_META.lastRefreshed) {
+        const d = new Date(ACTIVITY_META.lastRefreshed);
+        const fmt = d.toLocaleString('en-US', {
+            month: 'short', day: 'numeric', hour: 'numeric',
+            minute: '2-digit', hour12: true, timeZone: 'America/Chicago'
+        });
+        badge.textContent = '🕐 Last refresh: ' + fmt + ' CT';
+    } else {
+        badge.textContent = '🕐 Refreshes daily from Qount';
+    }
+})();
+
+// === Refresh Now Button ===
+const CONVEX_URL = 'https://dynamic-zebra-957.convex.cloud';
+
+async function requestRefresh() {
+    const btn = document.getElementById('refreshBtn');
+    btn.disabled = true;
+    btn.innerHTML = '⏳ Requesting...';
+    btn.style.opacity = '0.7';
+    try {
+        const resp = await fetch(CONVEX_URL + '/__activity_refresh', { method: 'POST' });
+        const data = await resp.json();
+        if (data.ok) {
+            btn.innerHTML = '✅ Queued — updating within 10 min';
+            btn.style.background = 'rgba(16,185,129,0.15)';
+            btn.style.color = '#10b981';
+            btn.style.borderColor = 'rgba(16,185,129,0.3)';
+            setTimeout(() => {
+                btn.innerHTML = '🔄 Refresh Now';
+                btn.style.background = 'rgba(74,144,226,0.15)';
+                btn.style.color = 'var(--accent)';
+                btn.style.borderColor = 'rgba(74,144,226,0.3)';
+                btn.disabled = false;
+                btn.style.opacity = '1';
+            }, 30000);
+        } else {
+            throw new Error('Request failed');
+        }
+    } catch (e) {
+        btn.innerHTML = '❌ Failed — try again';
+        btn.style.color = '#ef4444';
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        setTimeout(() => {
+            btn.innerHTML = '🔄 Refresh Now';
+            btn.style.color = 'var(--accent)';
+        }, 5000);
+    }
 }
 
 render();
