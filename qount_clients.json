@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-27T16:03:17.288157+00:00",
+  "last_updated": "2026-07-28T16:04:26.710476+00:00",
   "count": 314,
   "clients": [
     {
@@ -527,10 +527,6 @@
       "name": "GREENWAVE INVESTMENT GROUP, LLC"
     },
     {
-      "sn": "BAI3056",
-      "name": "GREER INJURY LAWYERS PLLC"
-    },
-    {
       "sn": "GRE0601",
       "name": "GREGORY T. WILKINSON DDS PC"
     },
@@ -545,6 +541,10 @@
     {
       "sn": "GUA0916",
       "name": "GUARDIAN TITLE, LLC"
+    },
+    {
+      "sn": "BAI3056",
+      "name": "Greer Injury Lawyers PLLC"
     },
     {
       "sn": "HHL001",
