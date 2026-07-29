@@ -72,6 +72,7 @@
     <b>Not on QBO</b> = R365 or manual books, should not carry the Tech:QBO label.
     <b>Dropped client</b> = terminated, Viktor revokes and deletes the token.
     <b>Needs connection</b> = genuinely missing, keep chasing.
+    Rows marked <b>Two QBO files on one client</b> mean one client has two authorized QBO files: pick the live one and Viktor revokes the other.
   </div>
 
   <div class="cards">
@@ -91,6 +92,7 @@
     <input type="text" id="search" placeholder="Search a client or QBO file name...">
     <button class="filter active" data-f="open">Undecided</button>
     <button class="filter" data-f="all">All</button>
+    <button class="filter" data-f="duplicate_token">Duplicate QBO files</button>
     <button class="filter" data-f="orphan_token">QBO files with no Qount match</button>
     <button class="filter" data-f="unconnected_client">Qount clients with no connection</button>
     <button class="filter" data-f="decided">Decided</button>
@@ -112,7 +114,7 @@
   </div>
 </div>
 
-<script src="connections_review_data.js?v=1"></script>
+<script src="connections_review_data.js?v=1785361500"></script>
 <script>
 var API_BASE = "https://standing-malamute-183.convex.site";
 var DATA = typeof CONNECTIONS_REVIEW_DATA !== "undefined" ? CONNECTIONS_REVIEW_DATA : { items: [] };
@@ -137,6 +139,12 @@ var SUGGESTION_TO_DECISION = {
   review: ""
 };
 
+var KIND_LABEL = {
+  duplicate_token: "Two QBO files on one client",
+  orphan_token: "QBO file with no Qount client",
+  unconnected_client: "Qount client with no connection"
+};
+
 var SUGGESTION_BADGE = {
   pin: ["b-pin", "Pin"],
   pin_match: ["b-pin", "Pin"],
@@ -151,13 +159,22 @@ function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function 
 
 function itemName(it) { return it.kind === "orphan_token" ? it.qbo_name : it.qount_name; }
 
+function headerCounts() {
+  var byKind = {};
+  DATA.items.forEach(function (it) { byKind[it.kind] = (byKind[it.kind] || 0) + 1; });
+  return byKind;
+}
+
 function current(key) { return pending[key] || saved[key] || null; }
 
 async function init() {
   var user = window.__PATS_USER || {};
   document.getElementById("whoami").textContent = user.displayName || user.email || "unknown";
   document.getElementById("genInfo").textContent =
-    DATA.items.length + " exceptions from the " + (DATA.generated || "") + " sync";
+    DATA.items.length + " exceptions from the " + (DATA.generated || "") + " sync \u00b7 " +
+    (headerCounts().duplicate_token || 0) + " duplicate files \u00b7 " +
+    (headerCounts().orphan_token || 0) + " unmatched QBO files \u00b7 " +
+    (headerCounts().unconnected_client || 0) + " clients with no connection";
 
   try {
     var resp = await fetch(API_BASE + "/connections/registry", { headers: { Authorization: "Bearer " + token() } });
@@ -189,9 +206,17 @@ function visibleItems() {
     var has = !!current(it.id);
     if (filter === "open") return !has;
     if (filter === "decided") return has;
-    if (filter === "orphan_token" || filter === "unconnected_client") return it.kind === filter;
+    if (filter === "orphan_token" || filter === "unconnected_client" || filter === "duplicate_token") return it.kind === filter;
     return true;
   });
+}
+
+function realmOptions(it, selectedRealm) {
+  var out = [];
+  (it.realm_options || []).forEach(function (o) {
+    out.push('<option value="' + esc(o.realm) + '"' + (o.realm === selectedRealm ? " selected" : "") + ">" + esc(o.label) + "</option>");
+  });
+  return out.join("");
 }
 
 function parentOptions(it, selected) {
@@ -222,6 +247,7 @@ function render() {
       var sub = it.kind === "orphan_token"
         ? 'QBO file &middot; realm <span class="realm">' + esc(it.realm_id) + "</span>" + (it.stale ? '<span class="badge b-stale">token failing</span>' : "")
         : "Qount client &middot; " + esc(it.sn || "no serial");
+      sub += ' &middot; ' + esc(KIND_LABEL[it.kind] || "");
       html += '<tr class="' + (decision ? "decided" : "") + '" data-key="' + esc(it.id) + '">' +
         '<td>' + (idx + 1) + '</td>' +
         '<td><div class="name">' + esc(itemName(it)) + '</div><div class="sub">' + sub + '</div></td>' +
@@ -232,7 +258,9 @@ function render() {
             return '<option value="' + d + '"' + (d === decision ? " selected" : "") + ">" + DECISION_LABEL[d] + "</option>";
           }).join("") +
         '</select></td>' +
-        '<td><select class="par">' + parentOptions(it, parent) + '</select></td>' +
+        '<td>' + (it.realm_options
+            ? '<select class="realm">' + realmOptions(it, cur.realmId || it.suggested_realm || "") + '</select>'
+            : '<select class="par">' + parentOptions(it, parent) + '</select>') + '</td>' +
         '<td><input class="note" type="text" value="' + esc(cur.note || "") + '" placeholder="optional"></td>' +
         '<td>' + (SUGGESTION_TO_DECISION[it.suggestion] ? '<button class="accept">Accept</button>' : "") + '</td>' +
         '</tr>';
@@ -243,7 +271,8 @@ function render() {
       var key = tr.dataset.key;
       var it = DATA.items.filter(function (x) { return x.id === key; })[0];
       tr.querySelector(".dec").addEventListener("change", function () { stage(it, tr); });
-      tr.querySelector(".par").addEventListener("change", function () { stage(it, tr); });
+      var parSel = tr.querySelector(".par") || tr.querySelector(".realm");
+      if (parSel) parSel.addEventListener("change", function () { stage(it, tr); });
       tr.querySelector(".note").addEventListener("input", function () { stage(it, tr); });
       var acc = tr.querySelector(".accept");
       if (acc) acc.addEventListener("click", function () {
@@ -266,8 +295,8 @@ function stage(it, tr) {
     qountName: it.qount_name || "",
     qountSn: it.sn || "",
     qboName: it.qbo_name || "",
-    realmId: it.realm_id || "",
-    parentName: tr.querySelector(".par").value || "",
+    parentName: tr.querySelector(".par") ? tr.querySelector(".par").value : "",
+    realmId: tr.querySelector(".realm") ? tr.querySelector(".realm").value : (it.realm_id || ""),
     note: tr.querySelector(".note").value || ""
   };
   tr.classList.add("decided");
