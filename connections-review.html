@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="/theme.js"></script>
+<link rel="stylesheet" href="/theme.css">
+<script src="/auth.js"></script>
+<title>Connection Reconciliation — PATS Dashboards</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; background:#f5f5f5; color:#333; }
+  .container { max-width:1400px; margin:0 auto; padding:20px; }
+  header { background:#1a3a5c; color:#fff; padding:32px 20px; margin:-20px -20px 24px -20px; text-align:center; }
+  h1 { font-size:26px; font-weight:600; margin-bottom:8px; }
+  .subtitle { font-size:15px; opacity:.95; }
+  .source-info { font-size:13px; opacity:.75; margin-top:6px; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin-bottom:18px; }
+  .card { background:#fff; padding:14px; border-radius:4px; box-shadow:0 1px 3px rgba(0,0,0,.1); text-align:center; }
+  .card .count { font-size:26px; font-weight:700; color:#1a3a5c; }
+  .card .label { font-size:12px; color:#666; text-transform:uppercase; letter-spacing:.5px; margin-top:2px; }
+  .card.done .count { color:#155724; }
+  .card.left .count { color:#856404; }
+  .controls { display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-bottom:16px; }
+  .controls input[type=text] { flex:1; min-width:220px; padding:9px 12px; border:1px solid #ddd; border-radius:4px; font-size:14px; }
+  button { padding:9px 14px; border:1px solid #ddd; background:#fff; border-radius:4px; cursor:pointer; font-size:13px; font-weight:500; }
+  button:hover { background:#f0f0f0; }
+  button.active { background:#1a3a5c; color:#fff; border-color:#1a3a5c; }
+  button.primary { background:#1a3a5c; color:#fff; border-color:#1a3a5c; }
+  button.primary:disabled { opacity:.45; cursor:not-allowed; }
+  .savebar { position:sticky; top:0; z-index:50; background:#fff; border:1px solid #e0e0e0; border-radius:4px;
+             padding:12px 16px; margin-bottom:16px; display:flex; align-items:center; gap:14px; box-shadow:0 2px 6px rgba(0,0,0,.06); }
+  .savebar .msg { font-size:13px; color:#666; }
+  .table-wrapper { background:#fff; border-radius:4px; box-shadow:0 1px 3px rgba(0,0,0,.1); overflow:hidden; }
+  table { width:100%; border-collapse:collapse; }
+  thead { background:#f8f8f8; border-bottom:2px solid #e0e0e0; }
+  th { padding:12px 14px; text-align:left; font-size:12px; font-weight:600; color:#1a3a5c; text-transform:uppercase; letter-spacing:.5px; }
+  td { padding:12px 14px; border-bottom:1px solid #e8e8e8; font-size:14px; vertical-align:top; }
+  tr.decided { background:#f0f8f4; }
+  .name { font-weight:600; color:#1a3a5c; }
+  .sub { font-size:12px; color:#777; margin-top:3px; }
+  .realm { font-family:'Courier New',monospace; font-size:12px; color:#888; }
+  .badge { display:inline-block; padding:3px 9px; border-radius:11px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.4px; }
+  .b-pin { background:#d4edda; color:#155724; }
+  .b-rollup { background:#dbe7f5; color:#1a3a5c; }
+  .b-dropped { background:#f8d7da; color:#842029; }
+  .b-review { background:#fff3cd; color:#856404; }
+  .b-needs { background:#eee; color:#555; }
+  .b-stale { background:#f8d7da; color:#842029; margin-left:6px; }
+  select, input.note { padding:7px 8px; border:1px solid #ddd; border-radius:4px; font-size:13px; width:100%; max-width:260px; background:#fff; }
+  .reason { font-size:12px; color:#666; max-width:340px; line-height:1.45; }
+  .accept { padding:5px 10px; font-size:12px; }
+  .empty { text-align:center; padding:50px; color:#999; }
+  .legend { background:#fff; border-radius:4px; padding:14px 16px; margin-bottom:16px; font-size:13px; color:#555; line-height:1.6; box-shadow:0 1px 3px rgba(0,0,0,.1); }
+  .legend b { color:#1a3a5c; }
+  @media (max-width:900px){ td,th{padding:9px 10px;font-size:13px;} }
+</style>
+</head>
+<body>
+<nav style="display:flex;align-items:center;gap:8px;padding:12px 20px;background:rgba(26,31,46,0.95);border-bottom:1px solid rgba(74,144,226,0.2);"><a href="/" style="margin-right:16px;display:flex;align-items:center;text-decoration:none;"><img data-logo src="/assets/logo.png" alt="Patrick Accounting" style="height:28px;"></a><a href="index.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Automation Scorecard</a><a href="activity.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Monthly Activity</a><a href="connections.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">QBO Connections</a><a href="connections-review.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#fff;background:rgba(74,144,226,0.15);border:1px solid rgba(74,144,226,0.3);">Reconciliation</a><a href="fee-analysis.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Fee Analysis</a><a href="admin.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Admin</a></nav>
+
+<div class="container">
+  <header>
+    <h1>QBO Connection Reconciliation</h1>
+    <p class="subtitle">Every Qount client that does not cleanly tie to a QBO company file</p>
+    <p class="source-info" id="genInfo">Loading...</p>
+  </header>
+
+  <div class="legend">
+    <b>Pinned</b> = this Qount client is this QBO file; we lock the Realm ID so renames never break the match again.
+    <b>Rolls up into parent</b> = books live inside another entity's QBO file; shows as "covered by parent" and leaves the connection chase list.
+    <b>Not on QBO</b> = R365 or manual books, should not carry the Tech:QBO label.
+    <b>Dropped client</b> = terminated, Viktor revokes and deletes the token.
+    <b>Needs connection</b> = genuinely missing, keep chasing.
+  </div>
+
+  <div class="cards">
+    <div class="card"><div class="count" id="cTotal">0</div><div class="label">Exceptions</div></div>
+    <div class="card done"><div class="count" id="cDone">0</div><div class="label">Decided</div></div>
+    <div class="card left"><div class="count" id="cLeft">0</div><div class="label">Remaining</div></div>
+    <div class="card"><div class="count" id="cUnsaved">0</div><div class="label">Unsaved</div></div>
+  </div>
+
+  <div class="savebar">
+    <button class="primary" id="saveBtn" disabled>Save decisions</button>
+    <button id="acceptAllBtn">Accept all suggestions on screen</button>
+    <span class="msg" id="saveMsg">Signed in as <span id="whoami">...</span></span>
+  </div>
+
+  <div class="controls">
+    <input type="text" id="search" placeholder="Search a client or QBO file name...">
+    <button class="filter active" data-f="open">Undecided</button>
+    <button class="filter" data-f="all">All</button>
+    <button class="filter" data-f="orphan_token">QBO files with no Qount match</button>
+    <button class="filter" data-f="unconnected_client">Qount clients with no connection</button>
+    <button class="filter" data-f="decided">Decided</button>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead><tr>
+        <th style="width:40px">#</th>
+        <th>Client / QBO file</th>
+        <th>Viktor's read</th>
+        <th style="width:220px">Decision</th>
+        <th style="width:250px">Parent / QBO file</th>
+        <th style="width:170px">Note</th>
+        <th style="width:90px"></th>
+      </tr></thead>
+      <tbody id="tbody"><tr><td colspan="7" class="empty">Loading...</td></tr></tbody>
+    </table>
+  </div>
+</div>
+
+<script src="connections_review_data.js?v=1"></script>
+<script>
+var API_BASE = "https://standing-malamute-183.convex.site";
+var DATA = typeof CONNECTIONS_REVIEW_DATA !== "undefined" ? CONNECTIONS_REVIEW_DATA : { items: [] };
+var saved = {};      // key -> saved entry from Convex
+var pending = {};    // key -> unsaved entry
+var filter = "open";
+
+var DECISION_LABEL = {
+  pinned: "Pinned to QBO file",
+  rolled_up: "Rolls up into parent",
+  not_qbo: "Not on QBO",
+  dropped: "Dropped client",
+  needs_connection: "Needs connection"
+};
+
+var SUGGESTION_TO_DECISION = {
+  pin: "pinned",
+  pin_match: "pinned",
+  rollup: "rolled_up",
+  dropped: "dropped",
+  needs_connection: "needs_connection",
+  review: ""
+};
+
+var SUGGESTION_BADGE = {
+  pin: ["b-pin", "Pin"],
+  pin_match: ["b-pin", "Pin"],
+  rollup: ["b-rollup", "Roll up"],
+  dropped: ["b-dropped", "Dropped"],
+  needs_connection: ["b-needs", "Needs connection"],
+  review: ["b-review", "Your call"]
+};
+
+function token() { return localStorage.getItem("pats_session_token") || ""; }
+function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]; }); }
+
+function itemName(it) { return it.kind === "orphan_token" ? it.qbo_name : it.qount_name; }
+
+function current(key) { return pending[key] || saved[key] || null; }
+
+async function init() {
+  var user = window.__PATS_USER || {};
+  document.getElementById("whoami").textContent = user.displayName || user.email || "unknown";
+  document.getElementById("genInfo").textContent =
+    DATA.items.length + " exceptions from the " + (DATA.generated || "") + " sync";
+
+  try {
+    var resp = await fetch(API_BASE + "/connections/registry", { headers: { Authorization: "Bearer " + token() } });
+    if (resp.ok) {
+      var body = await resp.json();
+      (body.entries || []).forEach(function (e) { saved[e.key] = e; });
+    }
+  } catch (e) { console.error(e); }
+
+  document.getElementById("search").addEventListener("input", render);
+  document.querySelectorAll(".filter").forEach(function (b) {
+    b.addEventListener("click", function () {
+      document.querySelectorAll(".filter").forEach(function (x) { x.classList.remove("active"); });
+      b.classList.add("active");
+      filter = b.dataset.f;
+      render();
+    });
+  });
+  document.getElementById("saveBtn").addEventListener("click", save);
+  document.getElementById("acceptAllBtn").addEventListener("click", acceptAllVisible);
+  render();
+}
+
+function visibleItems() {
+  var q = (document.getElementById("search").value || "").toLowerCase();
+  return DATA.items.filter(function (it) {
+    var hay = (itemName(it) + " " + (it.reason || "")).toLowerCase();
+    if (q && hay.indexOf(q) === -1) return false;
+    var has = !!current(it.id);
+    if (filter === "open") return !has;
+    if (filter === "decided") return has;
+    if (filter === "orphan_token" || filter === "unconnected_client") return it.kind === filter;
+    return true;
+  });
+}
+
+function parentOptions(it, selected) {
+  var names = it.kind === "orphan_token"
+    ? (it.candidates || []).map(function (c) { return c.name; }).concat(DATA.qount_names || [])
+    : (it.parent_candidates || []).concat(DATA.connected_names || []);
+  var seen = {}, out = ['<option value="">-- none --</option>'];
+  names.forEach(function (n) {
+    if (!n || seen[n]) return;
+    seen[n] = 1;
+    out.push('<option value="' + esc(n) + '"' + (n === selected ? " selected" : "") + ">" + esc(n) + "</option>");
+  });
+  return out.join("");
+}
+
+function render() {
+  var items = visibleItems();
+  var tbody = document.getElementById("tbody");
+  if (!items.length) {
+    tbody.innerHTML = '<tr><td colspan="7" class="empty">Nothing here. Try another filter.</td></tr>';
+  } else {
+    var html = "";
+    items.forEach(function (it, idx) {
+      var cur = current(it.id) || {};
+      var decision = cur.decision || "";
+      var parent = cur.parentName || (it.suggestion === "pin_match" ? it.pin_qbo_name : (it.kind === "orphan_token" ? (it.candidates && it.candidates[0] && it.candidates[0].name) : (it.parent_candidates && it.parent_candidates[0]))) || "";
+      var badge = SUGGESTION_BADGE[it.suggestion] || SUGGESTION_BADGE.review;
+      var sub = it.kind === "orphan_token"
+        ? 'QBO file &middot; realm <span class="realm">' + esc(it.realm_id) + "</span>" + (it.stale ? '<span class="badge b-stale">token failing</span>' : "")
+        : "Qount client &middot; " + esc(it.sn || "no serial");
+      html += '<tr class="' + (decision ? "decided" : "") + '" data-key="' + esc(it.id) + '">' +
+        '<td>' + (idx + 1) + '</td>' +
+        '<td><div class="name">' + esc(itemName(it)) + '</div><div class="sub">' + sub + '</div></td>' +
+        '<td><span class="badge ' + badge[0] + '">' + badge[1] + '</span><div class="reason">' + esc(it.reason || "") + '</div></td>' +
+        '<td><select class="dec">' +
+          '<option value=""' + (decision ? "" : " selected") + ">-- choose --</option>" +
+          Object.keys(DECISION_LABEL).map(function (d) {
+            return '<option value="' + d + '"' + (d === decision ? " selected" : "") + ">" + DECISION_LABEL[d] + "</option>";
+          }).join("") +
+        '</select></td>' +
+        '<td><select class="par">' + parentOptions(it, parent) + '</select></td>' +
+        '<td><input class="note" type="text" value="' + esc(cur.note || "") + '" placeholder="optional"></td>' +
+        '<td>' + (SUGGESTION_TO_DECISION[it.suggestion] ? '<button class="accept">Accept</button>' : "") + '</td>' +
+        '</tr>';
+    });
+    tbody.innerHTML = html;
+
+    tbody.querySelectorAll("tr[data-key]").forEach(function (tr) {
+      var key = tr.dataset.key;
+      var it = DATA.items.filter(function (x) { return x.id === key; })[0];
+      tr.querySelector(".dec").addEventListener("change", function () { stage(it, tr); });
+      tr.querySelector(".par").addEventListener("change", function () { stage(it, tr); });
+      tr.querySelector(".note").addEventListener("input", function () { stage(it, tr); });
+      var acc = tr.querySelector(".accept");
+      if (acc) acc.addEventListener("click", function () {
+        tr.querySelector(".dec").value = SUGGESTION_TO_DECISION[it.suggestion];
+        stage(it, tr);
+        render();
+      });
+    });
+  }
+  updateCounts();
+}
+
+function stage(it, tr) {
+  var decision = tr.querySelector(".dec").value;
+  if (!decision) { delete pending[it.id]; updateCounts(); return; }
+  pending[it.id] = {
+    key: it.id,
+    kind: it.kind,
+    decision: decision,
+    qountName: it.qount_name || "",
+    qountSn: it.sn || "",
+    qboName: it.qbo_name || "",
+    realmId: it.realm_id || "",
+    parentName: tr.querySelector(".par").value || "",
+    note: tr.querySelector(".note").value || ""
+  };
+  tr.classList.add("decided");
+  updateCounts();
+}
+
+function acceptAllVisible() {
+  var rows = document.querySelectorAll("#tbody tr[data-key]");
+  rows.forEach(function (tr) {
+    var it = DATA.items.filter(function (x) { return x.id === tr.dataset.key; })[0];
+    var d = SUGGESTION_TO_DECISION[it.suggestion];
+    if (!d) return;
+    if (current(it.id)) return;
+    tr.querySelector(".dec").value = d;
+    stage(it, tr);
+  });
+  render();
+}
+
+function updateCounts() {
+  var total = DATA.items.length;
+  var done = DATA.items.filter(function (it) { return !!current(it.id); }).length;
+  var unsaved = Object.keys(pending).length;
+  document.getElementById("cTotal").textContent = total;
+  document.getElementById("cDone").textContent = done;
+  document.getElementById("cLeft").textContent = total - done;
+  document.getElementById("cUnsaved").textContent = unsaved;
+  document.getElementById("saveBtn").disabled = unsaved === 0;
+}
+
+async function save() {
+  var entries = Object.keys(pending).map(function (k) { return pending[k]; });
+  if (!entries.length) return;
+  var btn = document.getElementById("saveBtn");
+  var msg = document.getElementById("saveMsg");
+  btn.disabled = true;
+  msg.textContent = "Saving " + entries.length + "...";
+  try {
+    var resp = await fetch(API_BASE + "/connections/registry/save", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Authorization: "Bearer " + token() },
+      body: JSON.stringify({ entries: entries })
+    });
+    var body = await resp.json();
+    if (!resp.ok || body.error) throw new Error(body.error || "save failed");
+    entries.forEach(function (e) { saved[e.key] = e; });
+    pending = {};
+    msg.textContent = "Saved " + body.saved + ". Viktor picks these up on the next refresh.";
+  } catch (e) {
+    msg.textContent = "Save failed: " + e.message + ". Nothing was lost, try again.";
+    btn.disabled = false;
+    return;
+  }
+  render();
+}
+
+function waitForAuth() {
+  if (window.__PATS_USER) { init(); } else { setTimeout(waitForAuth, 120); }
+}
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", function () { setTimeout(waitForAuth, 100); });
+} else { setTimeout(waitForAuth, 100); }
+</script>
+</body>
+</html>
