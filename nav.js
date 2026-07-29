@@ -12,6 +12,7 @@
     { href: "/index.html", label: "Automation Scorecard", aliases: ["/", "/index.html"] },
     { href: "/activity.html", label: "Monthly Activity" },
     { href: "/connections.html", label: "QBO Connections" },
+    { href: "/connections-review.html", label: "Reconciliation" },
     { href: "/fee-analysis.html", label: "Fee Analysis" },
     { href: "/admin.html", label: "Admin" },
   ];
