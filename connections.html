@@ -77,6 +77,9 @@
         .status-badge { display: inline-block; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
         .status-pending { background-color: #fff3cd; color: #856404; }
         .status-active { background-color: #d4edda; color: #155724; }
+        .status-resolved { background-color: #e2e3e5; color: #41464b; }
+        .summary-card.covered .count { color: #41464b; }
+        .resolved-note { color: #666; font-size: 13px; }
         .actions { display: flex; gap: 10px; align-items: center; }
         .authorize-btn {
             padding: 8px 16px; background-color: #1a3a5c; color: white; border: none;
@@ -147,6 +150,7 @@
                     <button id="filterAll" class="filter-btn active" data-filter="all">All</button>
                     <button id="filterPending" class="filter-btn" data-filter="pending">Unconnected</button>
                     <button id="filterCompleted" class="filter-btn" data-filter="completed">Connected</button>
+                    <button id="filterCovered" class="filter-btn" data-filter="covered">Covered by parent</button>
                 </div>
             </div>
 
@@ -162,6 +166,10 @@
                 <div class="summary-card pending">
                     <div class="count" id="pendingCount">0</div>
                     <div class="label">Unconnected</div>
+                </div>
+                <div class="summary-card covered">
+                    <div class="count" id="coveredCount">0</div>
+                    <div class="label">Covered by parent</div>
                 </div>
             </div>
 
@@ -268,6 +276,30 @@
                     }
                 });
 
+                // Rolled up into a parent entity's QBO file (reconciliation registry)
+                (data.covered || []).forEach(c => {
+                    allClients.push({
+                        id: 'covered_' + c.sn,
+                        company_name: c.name,
+                        serial_number: c.sn,
+                        status: 'Covered by parent',
+                        parent: c.parent || '',
+                        realm_id: ''
+                    });
+                });
+
+                // Not on QBO at all (R365, manual books, or dropped)
+                (data.excluded || []).forEach(c => {
+                    allClients.push({
+                        id: 'excluded_' + c.sn,
+                        company_name: c.name,
+                        serial_number: c.sn,
+                        status: c.reason === 'dropped' ? 'Dropped' : 'Not on QBO',
+                        parent: '',
+                        realm_id: ''
+                    });
+                });
+
                 allClients.sort((a, b) => a.company_name.localeCompare(b.company_name));
 
                 const total = data.total || allClients.length;
@@ -305,6 +337,7 @@
                                      client.serial_number.toLowerCase().includes(currentSearch.toLowerCase());
                 if (currentFilter === 'completed') return matchesSearch && client.status === 'Connected';
                 if (currentFilter === 'pending') return matchesSearch && client.status === 'Unconnected';
+                if (currentFilter === 'covered') return matchesSearch && client.status === 'Covered by parent';
                 return matchesSearch;
             });
         }
@@ -313,16 +346,20 @@
             const visible = allClients.filter(c => !skippedState[c.id]);
             const connected = visible.filter(c => c.status === 'Connected').length;
             const pending = visible.filter(c => c.status === 'Unconnected').length;
+            const covered = visible.filter(c => c.status === 'Covered by parent').length;
+            const inScope = connected + pending;
             const total = visible.length;
 
             document.getElementById('totalCount').textContent = total;
             document.getElementById('connectedCount').textContent = connected;
             document.getElementById('pendingCount').textContent = pending;
+            const coveredEl = document.getElementById('coveredCount');
+            if (coveredEl) coveredEl.textContent = covered;
             document.getElementById('completedCountBar').textContent = connected;
-            document.getElementById('totalCountBar').textContent = total;
+            document.getElementById('totalCountBar').textContent = inScope;
 
-            if (total > 0) {
-                document.getElementById('progressFill').style.width = ((connected / total) * 100) + '%';
+            if (inScope > 0) {
+                document.getElementById('progressFill').style.width = ((connected / inScope) * 100) + '%';
             }
         }
 
@@ -354,11 +391,19 @@
             let rowNum = 1;
             tbody.innerHTML = filtered.map(client => {
                 const isConnected = client.status === 'Connected';
-                const rowClass = isConnected ? 'completed' : '';
-                const statusClass = isConnected ? 'status-active' : 'status-pending';
-                const actionHtml = isConnected
-                    ? '<span class="connected-badge"><span class="checkmark">&#10003;</span>Connected</span>'
-                    : `<button class="authorize-btn" onclick="openOAuth('${escapeHtml(client.serial_number)}')">Authorize</button>`;
+                const needsAuth = client.status === 'Unconnected';
+                const rowClass = isConnected || !needsAuth ? 'completed' : '';
+                const statusClass = isConnected ? 'status-active' : (needsAuth ? 'status-pending' : 'status-resolved');
+                let actionHtml;
+                if (isConnected) {
+                    actionHtml = '<span class="connected-badge"><span class="checkmark">&#10003;</span>Connected</span>';
+                } else if (needsAuth) {
+                    actionHtml = `<button class="authorize-btn" onclick="openOAuth('${escapeHtml(client.serial_number)}')">Authorize</button>`;
+                } else if (client.status === 'Covered by parent') {
+                    actionHtml = `<span class="resolved-note">Books in ${escapeHtml(client.parent || 'parent entity')}</span>`;
+                } else {
+                    actionHtml = '<span class="resolved-note">No connection needed</span>';
+                }
 
                 return `
                     <tr class="${rowClass}" data-client-id="${escapeHtml(client.id)}">
