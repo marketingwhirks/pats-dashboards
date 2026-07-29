@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-07-28T21:47:47Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-07-29T12:06:40Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -18242,18 +18242,18 @@ var ACTIVITY_DATA = {
   },
   "June": {
     "summary": {
-      "totalClients": 285,
-      "totalDollars": 294824.5,
-      "doneClients": 238,
-      "doneDollars": 246479.5,
-      "inReviewClients": 24,
-      "inReviewDollars": 29429.0,
+      "totalClients": 284,
+      "totalDollars": 294674.5,
+      "doneClients": 241,
+      "doneDollars": 250279.5,
+      "inReviewClients": 21,
+      "inReviewDollars": 25629.0,
       "blankClients": 0,
       "alpha": {
-        "clientCount": 107,
-        "dollars": 99121.5,
+        "clientCount": 106,
+        "dollars": 98971.5,
         "kickbackCount": 15,
-        "kickbackPct": 14.0
+        "kickbackPct": 14.2
       },
       "papa": {
         "clientCount": 118,
@@ -18268,9 +18268,9 @@ var ACTIVITY_DATA = {
         "kickbackPct": 11.9
       },
       "otdAlpha": {
-        "pct40": 0.3209,
-        "pct75": 0.6334,
-        "pct95": 0.9002
+        "pct40": 0.3214,
+        "pct75": 0.6343,
+        "pct95": 0.9016
       },
       "otdPapa": {
         "pct40": 0.3266,
@@ -18284,12 +18284,12 @@ var ACTIVITY_DATA = {
       }
     },
     "statusCounts": {
-      "Done": 238,
-      "Review #2": 7,
-      "Prep": 11,
+      "Done": 241,
+      "Review #2": 6,
+      "Prep": 10,
       "Collect": 12,
-      "Review": 12,
-      "Clear Notes": 4,
+      "Review": 11,
+      "Clear Notes": 3,
       "Deliver": 1
     },
     "clients": [
@@ -19256,7 +19256,7 @@ var ACTIVITY_DATA = {
         "completeDate": "2026-07-13"
       },
       {
-        "company": "CYNOSURE DENTAL LABORATORY, LLC",
+        "company": "Cynosure Dental Laboratory, LLC",
         "team": "ALPHA",
         "prep": "Reinart Botha",
         "seniorAcct": "Kevin Flores",
@@ -19653,10 +19653,10 @@ var ACTIVITY_DATA = {
         "manager": "DAW",
         "wuFrequency": "M",
         "dollars": 2620.0,
-        "status": "Clear Notes",
+        "status": "Done",
         "kickback": true,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-07-28"
       },
       {
         "company": "GREEN FROG COFFEE COMPANY LLC",
@@ -20283,19 +20283,6 @@ var ACTIVITY_DATA = {
         "completeDate": "2026-07-06"
       },
       {
-        "company": "LAINE REAL ESTATE LLC",
-        "team": "ALPHA",
-        "prep": "Lani Pavao",
-        "seniorAcct": "",
-        "manager": "CRP",
-        "wuFrequency": "M",
-        "dollars": 150.0,
-        "status": "Prep",
-        "kickback": false,
-        "staffCommitDate": "",
-        "completeDate": ""
-      },
-      {
         "company": "LAND ACADEMY INC",
         "team": "ALPHA",
         "prep": "Kevin Flores",
@@ -20394,10 +20381,10 @@ var ACTIVITY_DATA = {
         "manager": "DAW",
         "wuFrequency": "M",
         "dollars": 375.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": true,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-07-28"
       },
       {
         "company": "LIVE HAUL PRODUCTS, INC.",
@@ -20602,10 +20589,10 @@ var ACTIVITY_DATA = {
         "manager": "DAW",
         "wuFrequency": "M",
         "dollars": 805.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-07-28"
       },
       {
         "company": "MIDSOUTH SENIOR CONSULT INC",
@@ -22005,9 +21992,9 @@ var ACTIVITY_DATA = {
       "totalClients": 293,
       "totalDollars": 299770.5,
       "doneClients": 13,
-      "doneDollars": 19847.0,
+      "doneDollars": 19207.0,
       "inReviewClients": 3,
-      "inReviewDollars": 3035.0,
+      "inReviewDollars": 3675.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 111,
@@ -22018,8 +22005,8 @@ var ACTIVITY_DATA = {
       "papa": {
         "clientCount": 119,
         "dollars": 109743.0,
-        "kickbackCount": 6,
-        "kickbackPct": 5.0
+        "kickbackCount": 4,
+        "kickbackPct": 3.4
       },
       "tango": {
         "clientCount": 62,
@@ -22045,9 +22032,8 @@ var ACTIVITY_DATA = {
     },
     "statusCounts": {
       "Collect": 277,
-      "Review #2": 2,
-      "Done": 13,
-      "Deliver": 1
+      "Deliver": 3,
+      "Done": 13
     },
     "clients": [
       {
@@ -23039,7 +23025,7 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
-        "company": "CYNOSURE DENTAL LABORATORY, LLC",
+        "company": "Cynosure Dental Laboratory, LLC",
         "team": "ALPHA",
         "prep": "Reinart Botha",
         "seniorAcct": "Kevin Flores",
@@ -25659,7 +25645,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Review #2",
+        "status": "Deliver",
         "kickback": true,
         "staffCommitDate": "",
         "completeDate": "2026-06-27"
@@ -25698,7 +25684,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Review #2",
+        "status": "Deliver",
         "kickback": true,
         "staffCommitDate": "",
         "completeDate": "2026-06-27"
@@ -25711,8 +25697,8 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "W",
         "dollars": 585.0,
-        "status": "Deliver",
-        "kickback": true,
+        "status": "Done",
+        "kickback": false,
         "staffCommitDate": "",
         "completeDate": "2026-07-02"
       },
@@ -25789,7 +25775,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Done",
+        "status": "Deliver",
         "kickback": true,
         "staffCommitDate": "",
         "completeDate": "2026-06-27"
@@ -25829,7 +25815,7 @@ var ACTIVITY_DATA = {
         "wuFrequency": "W",
         "dollars": 1227.0,
         "status": "Done",
-        "kickback": true,
+        "kickback": false,
         "staffCommitDate": "",
         "completeDate": "2026-06-29"
       },
@@ -25956,9 +25942,9 @@ var OTD_TRENDS = [
   {
     "month": "June",
     "alpha": {
-      "pct40": 0.3209,
-      "pct75": 0.6334,
-      "pct95": 0.9002
+      "pct40": 0.3214,
+      "pct75": 0.6343,
+      "pct95": 0.9016
     },
     "papa": {
       "pct40": 0.3266,
