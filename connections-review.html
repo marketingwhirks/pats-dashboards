@@ -95,6 +95,7 @@
     <button class="filter" data-f="duplicate_token">Duplicate QBO files</button>
     <button class="filter" data-f="orphan_token">QBO files with no Qount match</button>
     <button class="filter" data-f="unconnected_client">Qount clients with no connection</button>
+    <button class="filter" data-f="suspect_pair">Name mismatches</button>
     <button class="filter" data-f="decided">Decided</button>
   </div>
 
@@ -114,7 +115,7 @@
   </div>
 </div>
 
-<script src="connections_review_data.js?v=1785438500"></script>
+<script src="connections_review_data.js?v=1785439700"></script>
 <script>
 var API_BASE = "https://standing-malamute-183.convex.site";
 var DATA = typeof CONNECTIONS_REVIEW_DATA !== "undefined" ? CONNECTIONS_REVIEW_DATA : { items: [] };
@@ -142,7 +143,8 @@ var SUGGESTION_TO_DECISION = {
 var KIND_LABEL = {
   duplicate_token: "Two QBO files on one client",
   orphan_token: "QBO file with no Qount client",
-  unconnected_client: "Qount client with no connection"
+  unconnected_client: "Qount client with no connection",
+  suspect_pair: "Name mismatch on a connected client"
 };
 
 var SUGGESTION_BADGE = {
@@ -206,7 +208,7 @@ function visibleItems() {
     var has = !!current(it.id);
     if (filter === "open") return !has;
     if (filter === "decided") return has;
-    if (filter === "orphan_token" || filter === "unconnected_client" || filter === "duplicate_token") return it.kind === filter;
+    if (filter === "orphan_token" || filter === "unconnected_client" || filter === "duplicate_token" || filter === "suspect_pair") return it.kind === filter;
     return true;
   });
 }
@@ -252,7 +254,9 @@ function render() {
       var decision = cur.decision || "";
       var parent = cur.parentName || (it.suggestion === "pin_match" ? it.pin_qbo_name : (it.kind === "orphan_token" ? (it.candidates && it.candidates[0] && it.candidates[0].name) : (it.parent_candidates && it.parent_candidates[0]))) || "";
       var badge = SUGGESTION_BADGE[it.suggestion] || SUGGESTION_BADGE.review;
-      var sub = it.kind === "orphan_token"
+      var sub = it.kind === "suspect_pair"
+        ? "Qount client " + esc(it.sn || "no serial") + ' &middot; connected to <b>' + esc(it.qbo_name) + '</b> &middot; realm <span class="realm">' + esc(it.realm_id) + "</span>"
+        : it.kind === "orphan_token"
         ? 'QBO file &middot; realm <span class="realm">' + esc(it.realm_id) + "</span>" + (it.stale ? '<span class="badge b-stale">token failing</span>' : "")
         : "Qount client &middot; " + esc(it.sn || "no serial");
       sub += ' &middot; ' + esc(KIND_LABEL[it.kind] || "");
