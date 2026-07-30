@@ -115,7 +115,7 @@
   </div>
 </div>
 
-<script src="connections_review_data.js?v=1785439700"></script>
+<script src="connections_review_data.js?v=1785441200"></script>
 <script>
 var API_BASE = "https://standing-malamute-183.convex.site";
 var DATA = typeof CONNECTIONS_REVIEW_DATA !== "undefined" ? CONNECTIONS_REVIEW_DATA : { items: [] };
@@ -291,7 +291,10 @@ function render() {
       tr.querySelector(".note").addEventListener("input", function () { stage(it, tr); });
       var acc = tr.querySelector(".accept");
       if (acc) acc.addEventListener("click", function () {
-        tr.querySelector(".dec").value = SUGGESTION_TO_DECISION[it.suggestion];
+        var sel = tr.querySelector(".dec");
+        // Only fall back to the suggested decision when the user hasn't picked one.
+        // Accept must never overwrite a decision Kim already selected.
+        if (!sel.value) sel.value = SUGGESTION_TO_DECISION[it.suggestion];
         stage(it, tr);
         render();
       });
