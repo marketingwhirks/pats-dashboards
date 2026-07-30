@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-07-29T15:58:31Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-07-30T12:08:43Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -18244,10 +18244,10 @@ var ACTIVITY_DATA = {
     "summary": {
       "totalClients": 284,
       "totalDollars": 294674.5,
-      "doneClients": 242,
-      "doneDollars": 250864.5,
-      "inReviewClients": 23,
-      "inReviewDollars": 28518.0,
+      "doneClients": 251,
+      "doneDollars": 265115.5,
+      "inReviewClients": 18,
+      "inReviewDollars": 19354.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 106,
@@ -18258,8 +18258,8 @@ var ACTIVITY_DATA = {
       "papa": {
         "clientCount": 118,
         "dollars": 106307.0,
-        "kickbackCount": 28,
-        "kickbackPct": 23.7
+        "kickbackCount": 30,
+        "kickbackPct": 25.4
       },
       "tango": {
         "clientCount": 59,
@@ -18280,16 +18280,17 @@ var ACTIVITY_DATA = {
       "otdTango": {
         "pct40": 0.2915,
         "pct75": 0.5398,
-        "pct95": 0.7057
+        "pct95": 0.8214
       }
     },
     "statusCounts": {
-      "Done": 242,
-      "Review #2": 7,
-      "Prep": 7,
+      "Done": 251,
+      "Prep": 3,
+      "Review": 3,
       "Collect": 12,
       "Clear Notes": 8,
-      "Review": 8
+      "Review #2": 5,
+      "Deliver": 2
     },
     "clients": [
       {
@@ -18326,10 +18327,10 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "M",
         "dollars": 1084.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": true,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-07-29"
       },
       {
         "company": "4CI Property Investments LLC",
@@ -18430,7 +18431,7 @@ var ACTIVITY_DATA = {
         "manager": "DAW",
         "wuFrequency": "M",
         "dollars": 585.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -18690,7 +18691,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "M",
         "dollars": 540.0,
-        "status": "Review",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -18729,10 +18730,10 @@ var ACTIVITY_DATA = {
         "manager": "DAW",
         "wuFrequency": "M",
         "dollars": 1515.0,
-        "status": "Prep",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-07-29"
       },
       {
         "company": "BASSJENKINS LLC",
@@ -18755,10 +18756,10 @@ var ACTIVITY_DATA = {
         "manager": "KMP",
         "wuFrequency": "M",
         "dollars": 2485.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-07-29"
       },
       {
         "company": "BEARMAN GOLDEN GARDENS, INC.",
@@ -18976,10 +18977,10 @@ var ACTIVITY_DATA = {
         "manager": "KMP",
         "wuFrequency": "M",
         "dollars": 1705.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-07-29"
       },
       {
         "company": "BST HOLDINGS, LLC",
@@ -19275,10 +19276,10 @@ var ACTIVITY_DATA = {
         "manager": "KMP",
         "wuFrequency": "M",
         "dollars": 2256.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-07-29"
       },
       {
         "company": "DAISY KIDS THERAPY LLC",
@@ -19327,7 +19328,7 @@ var ACTIVITY_DATA = {
         "manager": "KMP",
         "wuFrequency": "M",
         "dollars": 2129.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -19717,7 +19718,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "M",
         "dollars": 720.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -19873,7 +19874,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "M",
         "dollars": 825.0,
-        "status": "Review",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -20484,10 +20485,10 @@ var ACTIVITY_DATA = {
         "manager": "JAL",
         "wuFrequency": "M",
         "dollars": 405.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-07-29"
       },
       {
         "company": "M & M COMMISSARY",
@@ -20666,7 +20667,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "M",
         "dollars": 1105.0,
-        "status": "Review #2",
+        "status": "Deliver",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -20731,10 +20732,10 @@ var ACTIVITY_DATA = {
         "manager": "JAL",
         "wuFrequency": "M",
         "dollars": 489.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-07-29"
       },
       {
         "company": "NASHVILLE SUNFLOWER CAFE, LLC",
@@ -20952,10 +20953,10 @@ var ACTIVITY_DATA = {
         "manager": "KMP",
         "wuFrequency": "M",
         "dollars": 2267.0,
-        "status": "Prep",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-07-30"
       },
       {
         "company": "PUZZOL HOLDINGS LLC",
@@ -21160,7 +21161,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "M",
         "dollars": 380.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -21251,10 +21252,10 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "M",
         "dollars": 1000.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-07-29"
       },
       {
         "company": "SUNRISE CENTRAL, LLC DBA SUNRISE MEMPHIS",
@@ -21641,10 +21642,10 @@ var ACTIVITY_DATA = {
         "manager": "KMP",
         "wuFrequency": "M",
         "dollars": 1630.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-07-29"
       },
       {
         "company": "VILONIA METAL WORKS, INC",
@@ -21785,7 +21786,7 @@ var ACTIVITY_DATA = {
         "wuFrequency": "W",
         "dollars": 1225.0,
         "status": "Done",
-        "kickback": false,
+        "kickback": true,
         "staffCommitDate": "",
         "completeDate": "2026-05-30"
       },
@@ -21888,8 +21889,8 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "W",
         "dollars": 585.0,
-        "status": "Done",
-        "kickback": false,
+        "status": "Deliver",
+        "kickback": true,
         "staffCommitDate": "",
         "completeDate": "2026-06-06"
       },
@@ -21990,10 +21991,10 @@ var ACTIVITY_DATA = {
     "summary": {
       "totalClients": 293,
       "totalDollars": 299770.5,
-      "doneClients": 14,
-      "doneDollars": 20432.0,
-      "inReviewClients": 2,
-      "inReviewDollars": 2450.0,
+      "doneClients": 15,
+      "doneDollars": 21657.0,
+      "inReviewClients": 1,
+      "inReviewDollars": 1225.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 111,
@@ -22004,8 +22005,8 @@ var ACTIVITY_DATA = {
       "papa": {
         "clientCount": 119,
         "dollars": 109743.0,
-        "kickbackCount": 5,
-        "kickbackPct": 4.2
+        "kickbackCount": 4,
+        "kickbackPct": 3.4
       },
       "tango": {
         "clientCount": 62,
@@ -22031,8 +22032,8 @@ var ACTIVITY_DATA = {
     },
     "statusCounts": {
       "Collect": 277,
-      "Deliver": 2,
-      "Done": 14
+      "Deliver": 1,
+      "Done": 15
     },
     "clients": [
       {
@@ -25774,8 +25775,8 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Deliver",
-        "kickback": true,
+        "status": "Done",
+        "kickback": false,
         "staffCommitDate": "",
         "completeDate": "2026-06-27"
       },
@@ -25953,7 +25954,7 @@ var OTD_TRENDS = [
     "tango": {
       "pct40": 0.2915,
       "pct75": 0.5398,
-      "pct95": 0.7057
+      "pct95": 0.8214
     }
   },
   {
