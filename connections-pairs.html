@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="/theme.js"></script>
+<link rel="stylesheet" href="/theme.css">
+<script src="/auth.js"></script>
+<title>Connection Pairings &mdash; PATS Dashboards</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; background:#f5f5f5; color:#333; }
+  .container { max-width:1400px; margin:0 auto; padding:20px; }
+  header { background:#1a3a5c; color:#fff; padding:32px 20px; margin:-20px -20px 24px -20px; text-align:center; }
+  h1 { font-size:26px; font-weight:600; margin-bottom:8px; }
+  .subtitle { font-size:15px; opacity:.95; }
+  .source-info { font-size:13px; opacity:.75; margin-top:6px; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin-bottom:18px; }
+  .card { background:#fff; padding:14px; border-radius:4px; box-shadow:0 1px 3px rgba(0,0,0,.1); text-align:center; }
+  .card .count { font-size:26px; font-weight:700; color:#1a3a5c; }
+  .card .label { font-size:12px; color:#666; text-transform:uppercase; letter-spacing:.5px; margin-top:2px; }
+  .card.warn .count { color:#856404; }
+  .card.bad .count { color:#842029; }
+  .controls { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:16px; }
+  .controls input[type=text] { flex:1; min-width:220px; padding:9px 12px; border:1px solid #ddd; border-radius:4px; font-size:14px; }
+  button { padding:9px 14px; border:1px solid #ddd; background:#fff; border-radius:4px; cursor:pointer; font-size:13px; font-weight:500; }
+  button:hover { background:#f0f0f0; }
+  button.active { background:#1a3a5c; color:#fff; border-color:#1a3a5c; }
+  .table-wrapper { background:#fff; border-radius:4px; box-shadow:0 1px 3px rgba(0,0,0,.1); overflow:hidden; }
+  table { width:100%; border-collapse:collapse; }
+  thead { background:#f8f8f8; border-bottom:2px solid #e0e0e0; }
+  th { padding:12px 14px; text-align:left; font-size:12px; font-weight:600; color:#1a3a5c; text-transform:uppercase; letter-spacing:.5px; }
+  td { padding:11px 14px; border-bottom:1px solid #e8e8e8; font-size:14px; vertical-align:top; }
+  tr.flagged { background:#fffdf3; }
+  tr.badrow { background:#fdf2f2; }
+  .name { font-weight:600; color:#1a3a5c; }
+  .sub { font-size:12px; color:#777; margin-top:3px; }
+  .realm { font-family:'Courier New',monospace; font-size:12px; color:#888; }
+  .badge { display:inline-block; padding:3px 9px; border-radius:11px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.4px; }
+  .b-ok { background:#d4edda; color:#155724; }
+  .b-pin { background:#dbe7f5; color:#1a3a5c; }
+  .b-fuzzy { background:#fff3cd; color:#856404; }
+  .b-weak { background:#f8d7da; color:#842029; }
+  .b-none { background:#eee; color:#555; }
+  .note { font-size:12px; color:#666; max-width:320px; line-height:1.45; }
+  .legend { background:#fff; border-radius:4px; padding:14px 16px; margin-bottom:16px; font-size:13px; color:#555; line-height:1.6; box-shadow:0 1px 3px rgba(0,0,0,.1); }
+  .legend b { color:#1a3a5c; }
+  .empty { text-align:center; padding:50px; color:#999; }
+</style>
+</head>
+<body>
+<nav style="display:flex;align-items:center;gap:8px;padding:12px 20px;background:rgba(26,31,46,0.95);border-bottom:1px solid rgba(74,144,226,0.2);"><a href="/" style="margin-right:16px;display:flex;align-items:center;text-decoration:none;"><img data-logo src="/assets/logo.png" alt="Patrick Accounting" style="height:28px;"></a><a href="index.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Automation Scorecard</a><a href="activity.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Monthly Activity</a><a href="connections.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">QBO Connections</a><a href="connections-review.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Reconciliation</a><a href="connections-pairs.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#fff;background:rgba(74,144,226,0.15);border:1px solid rgba(74,144,226,0.3);">Pairings</a><a href="fee-analysis.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Fee Analysis</a><a href="admin.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Admin</a></nav>
+
+<div class="container">
+  <header>
+    <h1>Qount &harr; QBO Pairings</h1>
+    <p class="subtitle">Every authorized QBO company file and the Qount client it is tied to</p>
+    <p class="source-info" id="genInfo">Loading...</p>
+  </header>
+
+  <div class="legend">
+    <b>Exact</b> = QBO file name and Qount client name agree.
+    <b>Pinned</b> = a human locked this pairing by Realm ID.
+    <b>Name mismatch</b> = matched on partial name only &mdash; worth a look.
+    <b>Likely wrong</b> = names barely overlap; check before trusting any data from this file.
+    <b>No Qount client</b> = authorized file with nothing to attach to.
+    Fix anything wrong on the <a href="connections-review.html">Reconciliation</a> tab (pick the file + set Decision + Save), or tell Viktor the pair and he will re-pin it.
+  </div>
+
+  <div class="cards">
+    <div class="card"><div class="count" id="cTotal">0</div><div class="label">QBO files</div></div>
+    <div class="card"><div class="count" id="cOk">0</div><div class="label">Clean pairs</div></div>
+    <div class="card warn"><div class="count" id="cFuzzy">0</div><div class="label">Name mismatch</div></div>
+    <div class="card bad"><div class="count" id="cWeak">0</div><div class="label">Likely wrong</div></div>
+    <div class="card bad"><div class="count" id="cNone">0</div><div class="label">No Qount client</div></div>
+    <div class="card warn"><div class="count" id="cNoFile">0</div><div class="label">Clients w/o file</div></div>
+  </div>
+
+  <div class="controls">
+    <input type="text" id="search" placeholder="Search a Qount client, QBO file or realm ID...">
+    <button class="filter active" data-f="all">All pairs</button>
+    <button class="filter" data-f="issues">Needs review</button>
+    <button class="filter" data-f="pinned">Pinned</button>
+    <button class="filter" data-f="unmatched">No Qount client</button>
+    <button class="filter" data-f="nofile">Clients with no QBO file</button>
+    <button id="csvBtn">Download CSV</button>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead><tr>
+        <th style="width:40px">#</th>
+        <th>Qount client</th>
+        <th>QBO company file</th>
+        <th style="width:150px">Match</th>
+        <th style="width:130px">Last refreshed</th>
+        <th>Note</th>
+      </tr></thead>
+      <tbody id="tbody"><tr><td colspan="6" class="empty">Loading...</td></tr></tbody>
+    </table>
+  </div>
+</div>
+
+<script src="connections_pairs_data.js?v=1785438600"></script>
+<script>
+var D = typeof CONNECTIONS_PAIRS_DATA !== "undefined" ? CONNECTIONS_PAIRS_DATA : { rows: [], qount_no_file: [] };
+var filter = "all";
+var BADGE = { exact:["b-ok","Exact"], pinned:["b-pin","Pinned"], fuzzy:["b-fuzzy","Name mismatch"], weak:["b-weak","Likely wrong"], unmatched:["b-none","No Qount client"] };
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"})[c];}); }
+
+function counts(){
+  var c={exact:0,pinned:0,fuzzy:0,weak:0,unmatched:0};
+  D.rows.forEach(function(r){ c[r.status]=(c[r.status]||0)+1; });
+  return c;
+}
+
+function visible(){
+  var q=(document.getElementById("search").value||"").toLowerCase();
+  if (filter==="nofile") {
+    return (D.qount_no_file||[]).filter(function(n){ return !q || n.toLowerCase().indexOf(q)>-1; })
+      .map(function(n){ return { qount_name:n, qbo_name:"", realm_id:"", status:"unmatched", score:0, last_refreshed:"", flag:"Qount client tagged Tech:QBO with no authorized QBO file" }; });
+  }
+  return D.rows.filter(function(r){
+    var hay=(r.qount_name+" "+r.qbo_name+" "+r.realm_id).toLowerCase();
+    if (q && hay.indexOf(q)===-1) return false;
+    if (filter==="issues") return r.status==="fuzzy"||r.status==="weak"||r.status==="unmatched";
+    if (filter==="pinned") return r.status==="pinned";
+    if (filter==="unmatched") return r.status==="unmatched";
+    return true;
+  });
+}
+
+function render(){
+  var rows=visible(), tb=document.getElementById("tbody");
+  if(!rows.length){ tb.innerHTML='<tr><td colspan="6" class="empty">Nothing here. Try another filter.</td></tr>'; return; }
+  tb.innerHTML = rows.map(function(r,i){
+    var b=BADGE[r.status]||BADGE.exact;
+    var cls = r.status==="weak"||r.status==="unmatched" ? "badrow" : (r.status==="fuzzy" ? "flagged" : "");
+    return '<tr class="'+cls+'">'+
+      '<td>'+(i+1)+'</td>'+
+      '<td><div class="name">'+esc(r.qount_name||"\u2014")+'</div><div class="sub">'+esc(r.sn||"")+'</div></td>'+
+      '<td><div class="name">'+esc(r.qbo_name||"\u2014")+'</div><div class="sub realm">'+esc(r.realm_id||"")+'</div></td>'+
+      '<td><span class="badge '+b[0]+'">'+b[1]+'</span><div class="sub">'+(r.score?("similarity "+r.score):"")+'</div></td>'+
+      '<td class="sub">'+esc(r.last_refreshed||"\u2014")+'</td>'+
+      '<td class="note">'+esc(r.flag||"")+'</td></tr>';
+  }).join("");
+}
+
+function csv(){
+  var head=["Qount client","Serial","QBO file","Realm ID","Match","Similarity","Last refreshed","Note"];
+  var lines=[head.join(",")];
+  D.rows.forEach(function(r){
+    lines.push([r.qount_name,r.sn,r.qbo_name,r.realm_id,r.status,r.score,r.last_refreshed,r.flag].map(function(v){
+      return '"'+String(v==null?"":v).replace(/"/g,'""')+'"'; }).join(","));
+  });
+  (D.qount_no_file||[]).forEach(function(n){ lines.push('"'+n+'","","","","no_qbo_file","","","Qount client tagged Tech:QBO with no authorized QBO file"'); });
+  var a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([lines.join("\n")],{type:"text/csv"}));
+  a.download="qount_qbo_pairings.csv"; a.click();
+}
+
+function init(){
+  var c=counts();
+  document.getElementById("cTotal").textContent=D.rows.length;
+  document.getElementById("cOk").textContent=(c.exact||0)+(c.pinned||0);
+  document.getElementById("cFuzzy").textContent=c.fuzzy||0;
+  document.getElementById("cWeak").textContent=c.weak||0;
+  document.getElementById("cNone").textContent=c.unmatched||0;
+  document.getElementById("cNoFile").textContent=(D.qount_no_file||[]).length;
+  document.getElementById("genInfo").textContent=D.rows.length+" authorized QBO files \u00b7 "+(D.qount_total||0)+" Qount QBO-tagged clients \u00b7 synced "+String(D.generated||"").slice(0,16).replace("T"," ")+" UTC";
+  document.getElementById("search").addEventListener("input",render);
+  document.getElementById("csvBtn").addEventListener("click",csv);
+  document.querySelectorAll(".filter").forEach(function(b){
+    b.addEventListener("click",function(){
+      document.querySelectorAll(".filter").forEach(function(x){x.classList.remove("active");});
+      b.classList.add("active"); filter=b.dataset.f; render();
+    });
+  });
+  render();
+}
+function waitForAuth() {
+  if (window.__PATS_USER) { init(); } else { setTimeout(waitForAuth, 120); }
+}
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", function () { setTimeout(waitForAuth, 100); });
+} else { setTimeout(waitForAuth, 100); }
+</script>
+</body>
+</html>

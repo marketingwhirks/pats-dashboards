@@ -57,7 +57,7 @@
 </style>
 </head>
 <body>
-<nav style="display:flex;align-items:center;gap:8px;padding:12px 20px;background:rgba(26,31,46,0.95);border-bottom:1px solid rgba(74,144,226,0.2);"><a href="/" style="margin-right:16px;display:flex;align-items:center;text-decoration:none;"><img data-logo src="/assets/logo.png" alt="Patrick Accounting" style="height:28px;"></a><a href="index.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Automation Scorecard</a><a href="activity.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Monthly Activity</a><a href="connections.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">QBO Connections</a><a href="connections-review.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#fff;background:rgba(74,144,226,0.15);border:1px solid rgba(74,144,226,0.3);">Reconciliation</a><a href="fee-analysis.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Fee Analysis</a><a href="admin.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Admin</a></nav>
+<nav style="display:flex;align-items:center;gap:8px;padding:12px 20px;background:rgba(26,31,46,0.95);border-bottom:1px solid rgba(74,144,226,0.2);"><a href="/" style="margin-right:16px;display:flex;align-items:center;text-decoration:none;"><img data-logo src="/assets/logo.png" alt="Patrick Accounting" style="height:28px;"></a><a href="index.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Automation Scorecard</a><a href="activity.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Monthly Activity</a><a href="connections.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">QBO Connections</a><a href="connections-review.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#fff;background:rgba(74,144,226,0.15);border:1px solid rgba(74,144,226,0.3);">Reconciliation</a><a href="connections-pairs.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Pairings</a><a href="fee-analysis.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Fee Analysis</a><a href="admin.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Admin</a></nav>
 
 <div class="container">
   <header>
@@ -114,7 +114,7 @@
   </div>
 </div>
 
-<script src="connections_review_data.js?v=1785361500"></script>
+<script src="connections_review_data.js?v=1785438500"></script>
 <script>
 var API_BASE = "https://standing-malamute-183.convex.site";
 var DATA = typeof CONNECTIONS_REVIEW_DATA !== "undefined" ? CONNECTIONS_REVIEW_DATA : { items: [] };
@@ -232,6 +232,14 @@ function parentOptions(it, selected) {
   return out.join("");
 }
 
+function allFileOptions(selectedRealm) {
+  var out = ['<option value="">-- none --</option>'];
+  (DATA.all_qbo_files || []).forEach(function (o) {
+    out.push('<option value="' + esc(o.realm) + '"' + (o.realm === selectedRealm ? " selected" : "") + '>' + esc(o.label) + '</option>');
+  });
+  return out.join("");
+}
+
 function render() {
   var items = visibleItems();
   var tbody = document.getElementById("tbody");
@@ -260,7 +268,10 @@ function render() {
         '</select></td>' +
         '<td>' + (it.realm_options
             ? '<select class="realm">' + realmOptions(it, cur.realmId || it.suggested_realm || "") + '</select>'
-            : '<select class="par">' + parentOptions(it, parent) + '</select>') + '</td>' +
+            : '<select class="par">' + parentOptions(it, parent) + '</select>' +
+              (it.kind === "unconnected_client"
+                ? '<div class="sub">or pin to any authorized QBO file:</div><select class="realm">' + allFileOptions(cur.realmId || "") + '</select>'
+                : "")) + '</td>' +
         '<td><input class="note" type="text" value="' + esc(cur.note || "") + '" placeholder="optional"></td>' +
         '<td>' + (SUGGESTION_TO_DECISION[it.suggestion] ? '<button class="accept">Accept</button>' : "") + '</td>' +
         '</tr>';
