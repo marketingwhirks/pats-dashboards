@@ -72,6 +72,7 @@
     <b>Not on QBO</b> = R365 or manual books, should not carry the Tech:QBO label.
     <b>Dropped client</b> = terminated, Viktor revokes and deletes the token.
     <b>Needs connection</b> = genuinely missing, keep chasing.
+    The two dropdowns are different lists: <b>parent</b> lists every Qount client (connected or not), while the <b>QBO file</b> list only has files whose token is authorized in Viktor - so a client can be missing from the file list and still show up as a parent option on other rows.
     Rows marked <b>Two QBO files on one client</b> mean one client has two authorized QBO files: pick the live one and Viktor revokes the other.
   </div>
 
@@ -276,11 +277,10 @@ function render() {
           (it.realm_options
             ? '<select class="realm">' + realmOptions(it, cur.realmId || it.suggested_realm || "") + '</select>'
             : "") +
-          (it.kind === "orphan_token" || !it.realm_options
-            ? "" : '<div class="sub">or roll up into a parent entity:</div>') +
+          '<div class="sub">Roll up into parent (any Qount client):</div>' +
           '<select class="par">' + parentOptions(it, parent) + '</select>' +
           (it.kind === "unconnected_client" && !it.realm_options
-            ? '<div class="sub">or pin to any authorized QBO file:</div><select class="realm">' + allFileOptions(cur.realmId || "") + '</select>'
+            ? '<div class="sub">or pin to a QBO file (only the 219 files authorized in Viktor):</div><select class="realm">' + allFileOptions(cur.realmId || "") + '</select>'
             : "") +
         '</td>' +
         '<td><input class="note" type="text" value="' + esc(cur.note || "") + '" placeholder="optional"></td>' +
