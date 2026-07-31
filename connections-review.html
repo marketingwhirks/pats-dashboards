@@ -222,9 +222,11 @@ function realmOptions(it, selectedRealm) {
 }
 
 function parentOptions(it, selected) {
+  var self = itemName(it);
   var names = it.kind === "orphan_token"
     ? (it.candidates || []).map(function (c) { return c.name; }).concat(DATA.qount_names || [])
-    : (it.parent_candidates || []).concat(DATA.connected_names || []);
+    : (it.parent_candidates || []).concat(DATA.connected_names || []).concat(DATA.qount_names || []);
+  names = names.filter(function (n) { return n && n !== self; });
   var seen = {}, out = ['<option value="">-- none --</option>'];
   names.forEach(function (n) {
     if (!n || seen[n]) return;
@@ -270,12 +272,17 @@ function render() {
             return '<option value="' + d + '"' + (d === decision ? " selected" : "") + ">" + DECISION_LABEL[d] + "</option>";
           }).join("") +
         '</select></td>' +
-        '<td>' + (it.realm_options
+        '<td>' +
+          (it.realm_options
             ? '<select class="realm">' + realmOptions(it, cur.realmId || it.suggested_realm || "") + '</select>'
-            : '<select class="par">' + parentOptions(it, parent) + '</select>' +
-              (it.kind === "unconnected_client"
-                ? '<div class="sub">or pin to any authorized QBO file:</div><select class="realm">' + allFileOptions(cur.realmId || "") + '</select>'
-                : "")) + '</td>' +
+            : "") +
+          (it.kind === "orphan_token" || !it.realm_options
+            ? "" : '<div class="sub">or roll up into a parent entity:</div>') +
+          '<select class="par">' + parentOptions(it, parent) + '</select>' +
+          (it.kind === "unconnected_client" && !it.realm_options
+            ? '<div class="sub">or pin to any authorized QBO file:</div><select class="realm">' + allFileOptions(cur.realmId || "") + '</select>'
+            : "") +
+        '</td>' +
         '<td><input class="note" type="text" value="' + esc(cur.note || "") + '" placeholder="optional"></td>' +
         '<td>' + (SUGGESTION_TO_DECISION[it.suggestion] ? '<button class="accept">Accept</button>' : "") + '</td>' +
         '</tr>';
@@ -286,8 +293,9 @@ function render() {
       var key = tr.dataset.key;
       var it = DATA.items.filter(function (x) { return x.id === key; })[0];
       tr.querySelector(".dec").addEventListener("change", function () { stage(it, tr); });
-      var parSel = tr.querySelector(".par") || tr.querySelector(".realm");
-      if (parSel) parSel.addEventListener("change", function () { stage(it, tr); });
+      tr.querySelectorAll(".par, .realm").forEach(function (sel) {
+        sel.addEventListener("change", function () { stage(it, tr); });
+      });
       tr.querySelector(".note").addEventListener("input", function () { stage(it, tr); });
       var acc = tr.querySelector(".accept");
       if (acc) acc.addEventListener("click", function () {
@@ -314,7 +322,9 @@ function stage(it, tr) {
     qountSn: it.sn || "",
     qboName: it.qbo_name || "",
     parentName: tr.querySelector(".par") ? tr.querySelector(".par").value : "",
-    realmId: tr.querySelector(".realm") ? tr.querySelector(".realm").value : (it.realm_id || ""),
+    realmId: (decision === "rolled_up" && tr.querySelector(".par") && tr.querySelector(".par").value)
+      ? ""
+      : (tr.querySelector(".realm") ? tr.querySelector(".realm").value : (it.realm_id || "")),
     note: tr.querySelector(".note").value || ""
   };
   tr.classList.add("decided");
