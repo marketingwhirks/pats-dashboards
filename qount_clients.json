@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-07-30T16:04:47.964230+00:00",
-  "count": 314,
+  "last_updated": "2026-07-31T16:04:27.395418+00:00",
+  "count": 340,
   "clients": [
     {
       "sn": "117001",
@@ -107,6 +107,14 @@
       "name": "ALLSTAR HOSPICE INC"
     },
     {
+      "sn": "AMA001",
+      "name": "AMANDA EAVES PSYCHIATRIC MENTAL HEALTH NURSE PRACTITIONER, LLC"
+    },
+    {
+      "sn": "1440",
+      "name": "AMERICAN LEAK DETECTION OF ARK"
+    },
+    {
       "sn": "APP4953",
       "name": "APPLEWHITE HEALTH CARE GROUP, INC"
     },
@@ -183,6 +191,10 @@
       "name": "BAYOU CAKES, LLC"
     },
     {
+      "sn": "BEH001",
+      "name": "BE HEALTHY AT HOME LLC"
+    },
+    {
       "sn": "BEA003",
       "name": "BEARMAN GOLDEN GARDENS, INC."
     },
@@ -211,6 +223,14 @@
       "name": "BEYONDFAITH HOSPICE OF GARLAND, LLC"
     },
     {
+      "sn": "BFH002",
+      "name": "BEYONDFAITH HOSPICE OF JACKSBORO, LLC"
+    },
+    {
+      "sn": "BFH001",
+      "name": "BEYONDFAITH HOSPICE, LLC"
+    },
+    {
       "sn": "BHS0289",
       "name": "BHS HOLDINGS LLC"
     },
@@ -221,6 +241,10 @@
     {
       "sn": "BLU004",
       "name": "BLUES CITY PSYCHIATRY, PLLC"
+    },
+    {
+      "sn": "2240",
+      "name": "BOBBIE AND ED ENTERPRISES, LLC"
     },
     {
       "sn": "BON9517",
@@ -359,6 +383,10 @@
       "name": "Cynosure Dental Laboratory, LLC"
     },
     {
+      "sn": "DCH001",
+      "name": "DAISY CHILDRENS HOMEHEALTH, LLC"
+    },
+    {
       "sn": "DKT001",
       "name": "DAISY KIDS THERAPY LLC"
     },
@@ -383,12 +411,20 @@
       "name": "DELICIOUS, FICTITIOUS AND OUTRAGEOUS"
     },
     {
+      "sn": "DHH003",
+      "name": "DEVOTED HEALTHCARE & HOSPICE SERVICES, LLC"
+    },
+    {
       "sn": "DHC8906",
       "name": "DIGNITY HEALTHCARE LLC"
     },
     {
       "sn": "DIG4618",
       "name": "DIGNITY INVESTMENTS LLC"
+    },
+    {
+      "sn": "DOO6400",
+      "name": "DOOLEY COMPANY INC."
     },
     {
       "sn": "DAR004",
@@ -503,6 +539,10 @@
       "name": "GOOD FORTUNE COMPANY MEMPHIS LLC"
     },
     {
+      "sn": "GOO002",
+      "name": "GOODWILL HOMES COMMUNITY SERVICES"
+    },
+    {
       "sn": "GOP001",
       "name": "GOPAL, LLC"
     },
@@ -525,6 +565,10 @@
     {
       "sn": "GRE5131",
       "name": "GREENWAVE INVESTMENT GROUP, LLC"
+    },
+    {
+      "sn": "GRE4891",
+      "name": "GREER ORTHOTICS & PROSTHETICS INC"
     },
     {
       "sn": "GRE0601",
@@ -553,6 +597,10 @@
     {
       "sn": "HAR027",
       "name": "HARPER-AVERY INSURANCE, LLC"
+    },
+    {
+      "sn": "HAV2745",
+      "name": "HAVEN ROOFING AND EXTERIORS LLC"
     },
     {
       "sn": "HEA008",
@@ -619,6 +667,10 @@
       "name": "HUB ATHLETICS LLC"
     },
     {
+      "sn": "HUM2216",
+      "name": "HUMAN TECHNOLOGY INC"
+    },
+    {
       "sn": "PAT015",
       "name": "HYDRA FIRE PROTECTION, LLC"
     },
@@ -659,6 +711,10 @@
       "name": "JAMES J & TERESA A KNAUS PTR"
     },
     {
+      "sn": "INN2808",
+      "name": "JASON K LONG"
+    },
+    {
       "sn": "JEF001",
       "name": "JEFFREY THOMAS, LLC"
     },
@@ -675,6 +731,10 @@
       "name": "JONES-WILLEY CORPORATION"
     },
     {
+      "sn": "JOS2654",
+      "name": "JOSEPH W CHRISTIAN"
+    },
+    {
       "sn": "JOY4375",
       "name": "JOY MCDANIEL ACADEMY OF DANCE & GYMNASTICS, INC"
     },
@@ -689,6 +749,14 @@
     {
       "sn": "KAI5639",
       "name": "KAIZEN WELLNESS LLC"
+    },
+    {
+      "sn": "KAQ002",
+      "name": "KAREN ANN QUINLAN HOSPICE - CHARITABLE FOUNDATION"
+    },
+    {
+      "sn": "KAQ001",
+      "name": "KAREN ANN QUINLAN HOSPICE - MEMORIAL FOUNDATION"
     },
     {
       "sn": "KCE1729",
@@ -747,6 +815,10 @@
       "name": "LAWSON MUTUAL OF TEXAS, LLC"
     },
     {
+      "sn": "LDT3751",
+      "name": "LDT BRANDS, INC"
+    },
+    {
       "sn": "LEE9124",
       "name": "LEE HEALTHCARE, INC"
     },
@@ -761,6 +833,10 @@
     {
       "sn": "LIV003",
       "name": "LIVE HAUL PRODUCTS, INC."
+    },
+    {
+      "sn": "LIV1009",
+      "name": "LIVEWELL ASSOCIATES LLC"
     },
     {
       "sn": "LLA001",
@@ -847,8 +923,16 @@
       "name": "MIDSOUTH SENIOR CONSULT INC"
     },
     {
+      "sn": "MON3357",
+      "name": "MONCLA ASSOCIATES LLC"
+    },
+    {
       "sn": "MOS7850",
       "name": "MOSELEY'S AUTOMOTIVE SERVICES & SALES LLC"
+    },
+    {
+      "sn": "MOS2816",
+      "name": "MOSES AND JOHNSON THERAPY ASSOCIATES , LLC"
     },
     {
       "sn": "MTP809",
@@ -861,6 +945,10 @@
     {
       "sn": "MRA002",
       "name": "MRA POLITICAL ACTION COMMITTEE"
+    },
+    {
+      "sn": "MUR5052",
+      "name": "MURPHY'S ORTHOPEDIC & FOOTCARE INC"
     },
     {
       "sn": "MVA6013",
@@ -1051,6 +1139,10 @@
       "name": "STAGE LEFT"
     },
     {
+      "sn": "STA009",
+      "name": "STATLINK MD, LLC"
+    },
+    {
       "sn": "STE1111",
       "name": "STEAK ESCAPE COLLIERVILLE"
     },
@@ -1087,6 +1179,10 @@
       "name": "Something Desi LLC"
     },
     {
+      "sn": "8900",
+      "name": "TAD L BEENE DDS PA"
+    },
+    {
       "sn": "TAM5258",
       "name": "TAMBOLI'S LLC"
     },
@@ -1109,6 +1205,10 @@
     {
       "sn": "TER9632",
       "name": "TERREL III INVESTMENTS LLC"
+    },
+    {
+      "sn": "TEX3110",
+      "name": "TEXAS COACTION CONSULTANTS, LLC"
     },
     {
       "sn": "TEX3021",
@@ -1209,6 +1309,10 @@
     {
       "sn": "VEN001",
       "name": "VENTURE MOTOR LINES, LLC"
+    },
+    {
+      "sn": "VIB2915",
+      "name": "VIBRANT LIVING SERVICES, LLC"
     },
     {
       "sn": "VIL9528",
