@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-07-30T12:08:43Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-07-31T12:18:16Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -18244,53 +18244,52 @@ var ACTIVITY_DATA = {
     "summary": {
       "totalClients": 284,
       "totalDollars": 294674.5,
-      "doneClients": 251,
-      "doneDollars": 265115.5,
-      "inReviewClients": 18,
-      "inReviewDollars": 19354.0,
+      "doneClients": 260,
+      "doneDollars": 276075.5,
+      "inReviewClients": 9,
+      "inReviewDollars": 8394.0,
       "blankClients": 0,
       "alpha": {
-        "clientCount": 106,
-        "dollars": 98971.5,
-        "kickbackCount": 15,
-        "kickbackPct": 14.2
+        "clientCount": 129,
+        "dollars": 126459.5,
+        "kickbackCount": 21,
+        "kickbackPct": 16.3
       },
       "papa": {
-        "clientCount": 118,
-        "dollars": 106307.0,
-        "kickbackCount": 30,
-        "kickbackPct": 25.4
+        "clientCount": 94,
+        "dollars": 78269.0,
+        "kickbackCount": 24,
+        "kickbackPct": 25.5
       },
       "tango": {
-        "clientCount": 59,
-        "dollars": 89396.0,
+        "clientCount": 60,
+        "dollars": 89946.0,
         "kickbackCount": 7,
-        "kickbackPct": 11.9
+        "kickbackPct": 11.7
       },
       "otdAlpha": {
-        "pct40": 0.3214,
-        "pct75": 0.6343,
-        "pct95": 0.9016
+        "pct40": 0.3144,
+        "pct75": 0.5792,
+        "pct95": 0.923
       },
       "otdPapa": {
-        "pct40": 0.3266,
-        "pct75": 0.4409,
-        "pct95": 0.8569
+        "pct40": 0.3419,
+        "pct75": 0.4652,
+        "pct95": 0.8057
       },
       "otdTango": {
-        "pct40": 0.2915,
-        "pct75": 0.5398,
-        "pct95": 0.8214
+        "pct40": 0.2897,
+        "pct75": 0.5427,
+        "pct95": 0.8789
       }
     },
     "statusCounts": {
-      "Done": 251,
+      "Done": 260,
       "Prep": 3,
-      "Review": 3,
       "Collect": 12,
-      "Clear Notes": 8,
-      "Review #2": 5,
-      "Deliver": 2
+      "Review #2": 7,
+      "Review": 1,
+      "Deliver": 1
     },
     "clients": [
       {
@@ -18431,10 +18430,10 @@ var ACTIVITY_DATA = {
         "manager": "DAW",
         "wuFrequency": "M",
         "dollars": 585.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-07-30"
       },
       {
         "company": "A-ONE-PLUS HOME HEALTH CARE AGENCY",
@@ -18613,10 +18612,10 @@ var ACTIVITY_DATA = {
         "manager": "AJS",
         "wuFrequency": "M",
         "dollars": 2425.0,
-        "status": "Clear Notes",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-07-30"
       },
       {
         "company": "ARJOSAMA",
@@ -18678,10 +18677,10 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "M",
         "dollars": 680.0,
-        "status": "Clear Notes",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-07-30"
       },
       {
         "company": "BAKING JOY, LLC",
@@ -18691,10 +18690,10 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "M",
         "dollars": 540.0,
-        "status": "Clear Notes",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-07-30"
       },
       {
         "company": "BARCAS ENTERPRISES LLC",
@@ -18814,19 +18813,6 @@ var ACTIVITY_DATA = {
         "completeDate": "2026-07-10"
       },
       {
-        "company": "BEYONDFAITH HOSPICE  OF JACKSBORO, LLC",
-        "team": "TANGO",
-        "prep": "Cornel van Bosch",
-        "seniorAcct": "MAN",
-        "manager": "AJS",
-        "wuFrequency": "M",
-        "dollars": 820.0,
-        "status": "Done",
-        "kickback": false,
-        "staffCommitDate": "",
-        "completeDate": "2026-07-22"
-      },
-      {
         "company": "BEYONDFAITH HOSPICE LUBBOCK, LLC",
         "team": "TANGO",
         "prep": "Cornel van Bosch",
@@ -18841,6 +18827,19 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "BEYONDFAITH HOSPICE OF GARLAND, LLC",
+        "team": "TANGO",
+        "prep": "Cornel van Bosch",
+        "seniorAcct": "MAN",
+        "manager": "AJS",
+        "wuFrequency": "M",
+        "dollars": 820.0,
+        "status": "Done",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": "2026-07-22"
+      },
+      {
+        "company": "BEYONDFAITH HOSPICE OF JACKSBORO, LLC",
         "team": "TANGO",
         "prep": "Cornel van Bosch",
         "seniorAcct": "MAN",
@@ -19016,10 +19015,10 @@ var ACTIVITY_DATA = {
         "manager": "KMP",
         "wuFrequency": "M",
         "dollars": 500.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-07-30"
       },
       {
         "company": "CASH JEWELRY LOANS INC",
@@ -19101,7 +19100,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "CLIPPERS OF KNOXVILLE, LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Lani Pavao",
         "seniorAcct": "",
         "manager": "TJS",
@@ -19114,7 +19113,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "CLIPPERS OF THE MID-SOUTH LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Lani Pavao",
         "seniorAcct": "",
         "manager": "TJS",
@@ -19192,7 +19191,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "COZY CORNER RESTAURANTS INC.",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Jaxon Ammons",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
@@ -19335,7 +19334,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "DOOLEY COMPANY INC.",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Nini Dinh",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
@@ -19406,7 +19405,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "M",
         "dollars": 725.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -19491,7 +19490,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "FARWINDS PARTNERSHIP",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Nini Dinh",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
@@ -19673,7 +19672,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "GREENWAVE INVESTMENT GROUP, LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Lani Pavao",
         "seniorAcct": "",
         "manager": "TJS",
@@ -19738,7 +19737,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "GUARDIAN INSURANCE GROUP, LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Nini Dinh",
         "seniorAcct": "",
         "manager": "TJS",
@@ -19751,7 +19750,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "GUARDIAN TITLE, LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Analytix 360",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "CRP",
@@ -19874,14 +19873,14 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "M",
         "dollars": 825.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
       },
       {
         "company": "HK MEM LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Jean Cherie Jordaan",
         "seniorAcct": "",
         "manager": "TJS",
@@ -20043,7 +20042,7 @@ var ACTIVITY_DATA = {
         "manager": "DAW",
         "wuFrequency": "M",
         "dollars": 0.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -20167,7 +20166,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "JZDH LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Jaxon Ammons",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
@@ -20180,7 +20179,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "K CONCEPTS LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Jean Cherie Jordaan",
         "seniorAcct": "",
         "manager": "TJS",
@@ -20232,7 +20231,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "KC EATERY LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Jean Cherie Jordaan",
         "seniorAcct": "",
         "manager": "TJS",
@@ -20245,7 +20244,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "KH EXECUTIVE SECURITY CONSULTANTS LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Kevin Flores",
         "seniorAcct": "",
         "manager": "TJS",
@@ -20336,7 +20335,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "LDT BRANDS, INC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Amber Alexander",
         "seniorAcct": "",
         "manager": "CRP",
@@ -20537,10 +20536,10 @@ var ACTIVITY_DATA = {
         "manager": "AJS",
         "wuFrequency": "M",
         "dollars": 2150.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-07-30"
       },
       {
         "company": "MEDIPLAN HOLDINGS LLC",
@@ -20571,9 +20570,9 @@ var ACTIVITY_DATA = {
       {
         "company": "MEMPHIS RESTAURANT ASSOCIATION",
         "team": "PAPA",
-        "prep": "Analytix 360",
+        "prep": "",
         "seniorAcct": "",
-        "manager": "Tucker Stock",
+        "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 440.0,
         "status": "Done",
@@ -20667,10 +20666,10 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "M",
         "dollars": 1105.0,
-        "status": "Deliver",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-07-30"
       },
       {
         "company": "MRA POLITICAL ACTION COMMITTEE",
@@ -20700,7 +20699,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "MVAG INC.",
-        "team": "PAPA",
+        "team": "TANGO",
         "prep": "Jean Cherie Jordaan",
         "seniorAcct": "",
         "manager": "TJS",
@@ -20843,7 +20842,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "PATTERSON BRAY PLLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Mason Patrick",
         "seniorAcct": "Robert Peiffer",
         "manager": "TJS",
@@ -20895,7 +20894,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "PILLER HOSPITALITY LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Lani Pavao",
         "seniorAcct": "",
         "manager": "TJS",
@@ -20908,7 +20907,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "PINK FLAMINGO LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Jean Cherie Jordaan",
         "seniorAcct": "",
         "manager": "TJS",
@@ -20960,7 +20959,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "PUZZOL HOLDINGS LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Nini Dinh",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
@@ -21026,7 +21025,7 @@ var ACTIVITY_DATA = {
       {
         "company": "RSCB HOLDINGS, LLC - FKA- CENTRAL BBQ",
         "team": "PAPA",
-        "prep": "Asher Silbermann",
+        "prep": "Lani Pavao",
         "seniorAcct": "",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -21213,7 +21212,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "M",
         "dollars": 1980.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -21324,7 +21323,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "TDJ 77 LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Nini Dinh",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
@@ -21395,14 +21394,14 @@ var ACTIVITY_DATA = {
         "manager": "JAL",
         "wuFrequency": "M",
         "dollars": 2000.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": true,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-07-30"
       },
       {
         "company": "THE ARCADE RESTAURANT, LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Nini Dinh",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
@@ -21480,7 +21479,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "TTKBG INC.",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Jaxon Ammons",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
@@ -21545,7 +21544,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "UBIQUISOFT TECHNOLOGIES, LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Jaxon Ammons",
         "seniorAcct": "",
         "manager": "CRP",
@@ -21564,10 +21563,10 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "M",
         "dollars": 975.0,
-        "status": "Clear Notes",
+        "status": "Done",
         "kickback": true,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-07-30"
       },
       {
         "company": "V&R HEALTH CARE SERVICES LLC",
@@ -21766,7 +21765,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "ZONKHEAD, LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Jaxon Ammons",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
@@ -21989,40 +21988,40 @@ var ACTIVITY_DATA = {
   },
   "July": {
     "summary": {
-      "totalClients": 293,
-      "totalDollars": 299770.5,
-      "doneClients": 15,
-      "doneDollars": 21657.0,
-      "inReviewClients": 1,
-      "inReviewDollars": 1225.0,
+      "totalClients": 292,
+      "totalDollars": 297132.5,
+      "doneClients": 13,
+      "doneDollars": 19207.0,
+      "inReviewClients": 3,
+      "inReviewDollars": 3675.0,
       "blankClients": 0,
       "alpha": {
-        "clientCount": 111,
-        "dollars": 107430.0,
+        "clientCount": 135,
+        "dollars": 135950.0,
         "kickbackCount": 0,
         "kickbackPct": 0.0
       },
       "papa": {
-        "clientCount": 119,
-        "dollars": 109743.0,
-        "kickbackCount": 4,
-        "kickbackPct": 3.4
+        "clientCount": 95,
+        "dollars": 80658.0,
+        "kickbackCount": 5,
+        "kickbackPct": 5.3
       },
       "tango": {
-        "clientCount": 62,
-        "dollars": 82597.5,
+        "clientCount": 61,
+        "dollars": 80524.5,
         "kickbackCount": 0,
         "kickbackPct": 0.0
       },
       "otdAlpha": {
-        "pct40": 0.0582,
-        "pct75": 0.0582,
-        "pct95": 0.0582
+        "pct40": 0.046,
+        "pct75": 0.046,
+        "pct95": 0.046
       },
       "otdPapa": {
-        "pct40": 0.1516,
-        "pct75": 0.1516,
-        "pct95": 0.1516
+        "pct40": 0.2062,
+        "pct75": 0.2062,
+        "pct95": 0.2062
       },
       "otdTango": {
         "pct40": 0.0,
@@ -22031,9 +22030,10 @@ var ACTIVITY_DATA = {
       }
     },
     "statusCounts": {
-      "Collect": 277,
-      "Deliver": 1,
-      "Done": 15
+      "Collect": 276,
+      "Review #2": 1,
+      "Done": 13,
+      "Deliver": 2
     },
     "clients": [
       {
@@ -22557,19 +22557,6 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
-        "company": "BEYONDFAITH HOSPICE  OF JACKSBORO, LLC",
-        "team": "TANGO",
-        "prep": "Cornel van Bosch",
-        "seniorAcct": "MAN",
-        "manager": "AJS",
-        "wuFrequency": "M",
-        "dollars": 0.0,
-        "status": "Collect",
-        "kickback": false,
-        "staffCommitDate": "",
-        "completeDate": ""
-      },
-      {
         "company": "BEYONDFAITH HOSPICE LUBBOCK, LLC",
         "team": "TANGO",
         "prep": "Cornel van Bosch",
@@ -22584,6 +22571,19 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "BEYONDFAITH HOSPICE OF GARLAND, LLC",
+        "team": "TANGO",
+        "prep": "Cornel van Bosch",
+        "seniorAcct": "MAN",
+        "manager": "AJS",
+        "wuFrequency": "M",
+        "dollars": 0.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "BEYONDFAITH HOSPICE OF JACKSBORO, LLC",
         "team": "TANGO",
         "prep": "Cornel van Bosch",
         "seniorAcct": "MAN",
@@ -22870,7 +22870,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "CLIPPERS OF KNOXVILLE, LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Lani Pavao",
         "seniorAcct": "",
         "manager": "TJS",
@@ -22883,7 +22883,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "CLIPPERS OF THE MID-SOUTH LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Lani Pavao",
         "seniorAcct": "",
         "manager": "TJS",
@@ -22961,7 +22961,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "COZY CORNER RESTAURANTS INC.",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Jaxon Ammons",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
@@ -23104,7 +23104,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "DOOLEY COMPANY INC.",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Nini Dinh",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
@@ -23259,34 +23259,8 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
-        "company": "FAMILY FIRST HOME HEALTH, LLC",
-        "team": "TANGO",
-        "prep": "Johandre Slabbert",
-        "seniorAcct": "Ashley Bailine",
-        "manager": "KMP",
-        "wuFrequency": "M",
-        "dollars": 1791.0,
-        "status": "Collect",
-        "kickback": false,
-        "staffCommitDate": "",
-        "completeDate": ""
-      },
-      {
-        "company": "FAMILY FIRST HOSPICE, LLC",
-        "team": "TANGO",
-        "prep": "Johandre Slabbert",
-        "seniorAcct": "Ashley Bailine",
-        "manager": "KMP",
-        "wuFrequency": "M",
-        "dollars": 847.0,
-        "status": "Collect",
-        "kickback": false,
-        "staffCommitDate": "",
-        "completeDate": ""
-      },
-      {
         "company": "FARWINDS PARTNERSHIP",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Nini Dinh",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
@@ -23468,7 +23442,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "GREENWAVE INVESTMENT GROUP, LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Lani Pavao",
         "seniorAcct": "",
         "manager": "TJS",
@@ -23533,7 +23507,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "GUARDIAN INSURANCE GROUP, LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Nini Dinh",
         "seniorAcct": "",
         "manager": "TJS",
@@ -23546,7 +23520,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "GUARDIAN TITLE, LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Analytix 360",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "CRP",
@@ -23676,7 +23650,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "HK MEM LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Jean Cherie Jordaan",
         "seniorAcct": "",
         "manager": "TJS",
@@ -23831,6 +23805,19 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
+        "company": "Integrity Construction of Arkansas, Inc",
+        "team": "ALPHA",
+        "prep": "Allyson Simmons",
+        "seniorAcct": "Kevin Flores",
+        "manager": "DAW",
+        "wuFrequency": "M",
+        "dollars": 0.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
         "company": "J & J JOYBITES, LLC",
         "team": "ALPHA",
         "prep": "Analytix 360",
@@ -23949,7 +23936,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "JZDH LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Jaxon Ammons",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
@@ -23962,7 +23949,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "K CONCEPTS LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Jean Cherie Jordaan",
         "seniorAcct": "",
         "manager": "TJS",
@@ -24014,7 +24001,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "KC EATERY LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Jean Cherie Jordaan",
         "seniorAcct": "",
         "manager": "TJS",
@@ -24027,7 +24014,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "KH EXECUTIVE SECURITY CONSULTANTS LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Kevin Flores",
         "seniorAcct": "",
         "manager": "TJS",
@@ -24131,7 +24118,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "LDT BRANDS, INC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Amber Alexander",
         "seniorAcct": "",
         "manager": "CRP",
@@ -24379,9 +24366,9 @@ var ACTIVITY_DATA = {
       {
         "company": "MEMPHIS RESTAURANT ASSOCIATION",
         "team": "PAPA",
-        "prep": "Analytix 360",
+        "prep": "",
         "seniorAcct": "",
-        "manager": "Tucker Stock",
+        "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 470.0,
         "status": "Collect",
@@ -24521,7 +24508,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "MVAG INC.",
-        "team": "PAPA",
+        "team": "TANGO",
         "prep": "Jean Cherie Jordaan",
         "seniorAcct": "",
         "manager": "TJS",
@@ -24664,7 +24651,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "PATTERSON BRAY PLLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Mason Patrick",
         "seniorAcct": "Robert Peiffer",
         "manager": "TJS",
@@ -24716,7 +24703,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "PILLER HOSPITALITY LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Lani Pavao",
         "seniorAcct": "",
         "manager": "TJS",
@@ -24729,7 +24716,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "PINK FLAMINGO LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Jean Cherie Jordaan",
         "seniorAcct": "",
         "manager": "TJS",
@@ -24781,7 +24768,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "PUZZOL HOLDINGS LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Nini Dinh",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
@@ -24847,7 +24834,7 @@ var ACTIVITY_DATA = {
       {
         "company": "RSCB HOLDINGS, LLC - FKA- CENTRAL BBQ",
         "team": "PAPA",
-        "prep": "Asher Silbermann",
+        "prep": "Lani Pavao",
         "seniorAcct": "",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -25158,7 +25145,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "TDJ 77 LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Nini Dinh",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
@@ -25249,7 +25236,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "THE ARCADE RESTAURANT, LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Nini Dinh",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
@@ -25340,7 +25327,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "TTKBG INC.",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Jaxon Ammons",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
@@ -25405,7 +25392,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "UBIQUISOFT TECHNOLOGIES, LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Jaxon Ammons",
         "seniorAcct": "",
         "manager": "CRP",
@@ -25626,7 +25613,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "ZONKHEAD, LLC",
-        "team": "PAPA",
+        "team": "ALPHA",
         "prep": "Jaxon Ammons",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
@@ -25645,7 +25632,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Deliver",
+        "status": "Review #2",
         "kickback": true,
         "staffCommitDate": "",
         "completeDate": "2026-06-27"
@@ -25684,7 +25671,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Done",
+        "status": "Deliver",
         "kickback": true,
         "staffCommitDate": "",
         "completeDate": "2026-06-27"
@@ -25775,8 +25762,8 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Done",
-        "kickback": false,
+        "status": "Deliver",
+        "kickback": true,
         "staffCommitDate": "",
         "completeDate": "2026-06-27"
       },
@@ -25942,32 +25929,32 @@ var OTD_TRENDS = [
   {
     "month": "June",
     "alpha": {
-      "pct40": 0.3214,
-      "pct75": 0.6343,
-      "pct95": 0.9016
+      "pct40": 0.3144,
+      "pct75": 0.5792,
+      "pct95": 0.923
     },
     "papa": {
-      "pct40": 0.3266,
-      "pct75": 0.4409,
-      "pct95": 0.8569
+      "pct40": 0.3419,
+      "pct75": 0.4652,
+      "pct95": 0.8057
     },
     "tango": {
-      "pct40": 0.2915,
-      "pct75": 0.5398,
-      "pct95": 0.8214
+      "pct40": 0.2897,
+      "pct75": 0.5427,
+      "pct95": 0.8789
     }
   },
   {
     "month": "July",
     "alpha": {
-      "pct40": 0.0582,
-      "pct75": 0.0582,
-      "pct95": 0.0582
+      "pct40": 0.046,
+      "pct75": 0.046,
+      "pct95": 0.046
     },
     "papa": {
-      "pct40": 0.1516,
-      "pct75": 0.1516,
-      "pct95": 0.1516
+      "pct40": 0.2062,
+      "pct75": 0.2062,
+      "pct95": 0.2062
     },
     "tango": {
       "pct40": 0.0,
