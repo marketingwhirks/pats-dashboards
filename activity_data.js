@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-07-31T12:18:16Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-08-01T12:04:44Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -21990,10 +21990,10 @@ var ACTIVITY_DATA = {
     "summary": {
       "totalClients": 292,
       "totalDollars": 297132.5,
-      "doneClients": 13,
-      "doneDollars": 19207.0,
-      "inReviewClients": 3,
-      "inReviewDollars": 3675.0,
+      "doneClients": 12,
+      "doneDollars": 18622.0,
+      "inReviewClients": 4,
+      "inReviewDollars": 4260.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 135,
@@ -22004,8 +22004,8 @@ var ACTIVITY_DATA = {
       "papa": {
         "clientCount": 95,
         "dollars": 80658.0,
-        "kickbackCount": 5,
-        "kickbackPct": 5.3
+        "kickbackCount": 6,
+        "kickbackPct": 6.3
       },
       "tango": {
         "clientCount": 61,
@@ -22031,8 +22031,8 @@ var ACTIVITY_DATA = {
     },
     "statusCounts": {
       "Collect": 276,
-      "Review #2": 1,
-      "Done": 13,
+      "Review #2": 2,
+      "Done": 12,
       "Deliver": 2
     },
     "clients": [
@@ -25684,8 +25684,8 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "W",
         "dollars": 585.0,
-        "status": "Done",
-        "kickback": false,
+        "status": "Deliver",
+        "kickback": true,
         "staffCommitDate": "",
         "completeDate": "2026-07-02"
       },
@@ -25762,7 +25762,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Deliver",
+        "status": "Review #2",
         "kickback": true,
         "staffCommitDate": "",
         "completeDate": "2026-06-27"
@@ -25831,6 +25831,267 @@ var ACTIVITY_DATA = {
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": "2026-07-22"
+      }
+    ]
+  },
+  "August": {
+    "summary": {
+      "totalClients": 16,
+      "totalDollars": 22882.0,
+      "doneClients": 9,
+      "doneDollars": 10467.0,
+      "inReviewClients": 2,
+      "inReviewDollars": 2450.0,
+      "blankClients": 0,
+      "alpha": {
+        "clientCount": 1,
+        "dollars": 6250.0,
+        "kickbackCount": 0,
+        "kickbackPct": 0.0
+      },
+      "papa": {
+        "clientCount": 15,
+        "dollars": 16632.0,
+        "kickbackCount": 1,
+        "kickbackPct": 6.7
+      },
+      "tango": {
+        "clientCount": 0,
+        "dollars": 0,
+        "kickbackCount": 0,
+        "kickbackPct": 0.0
+      },
+      "otdAlpha": {
+        "pct40": 0.0,
+        "pct75": 0.0,
+        "pct95": 0.0
+      },
+      "otdPapa": {
+        "pct40": 0.703,
+        "pct75": 0.703,
+        "pct95": 0.703
+      },
+      "otdTango": {
+        "pct40": 0,
+        "pct75": 0,
+        "pct95": 0
+      }
+    },
+    "statusCounts": {
+      "Done": 9,
+      "Collect": 3,
+      "Clear Notes": 1,
+      "Prep": 2,
+      "Review": 1
+    },
+    "clients": [
+      {
+        "company": "SAM'S SPORTS GRILL - HENDERSONVILLE, LLC #6368",
+        "team": "PAPA",
+        "prep": "Amber Alexander",
+        "seniorAcct": "",
+        "manager": "CRP",
+        "wuFrequency": "W",
+        "dollars": 1225.0,
+        "status": "Done",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": "2026-07-31"
+      },
+      {
+        "company": "SAM'S SPORTS GRILL - FLORENCE, LLC #6371",
+        "team": "PAPA",
+        "prep": "Amber Alexander",
+        "seniorAcct": "",
+        "manager": "CRP",
+        "wuFrequency": "W",
+        "dollars": 1225.0,
+        "status": "Done",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": "2026-07-31"
+      },
+      {
+        "company": "SAM'S SPORTS GRILL - WESTGATE, LLC #6366",
+        "team": "PAPA",
+        "prep": "Amber Alexander",
+        "seniorAcct": "",
+        "manager": "CRP",
+        "wuFrequency": "W",
+        "dollars": 1225.0,
+        "status": "Done",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": "2026-07-31"
+      },
+      {
+        "company": "THE OVERLAND LLC",
+        "team": "PAPA",
+        "prep": "Jaxon Ammons",
+        "seniorAcct": "Amber Alexander",
+        "manager": "CRP",
+        "wuFrequency": "W",
+        "dollars": 1100.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "SPERRY'S RESTAURANTS - COOL SPRINGS, LLC",
+        "team": "PAPA",
+        "prep": "Amber Alexander",
+        "seniorAcct": "",
+        "manager": "CRP",
+        "wuFrequency": "W",
+        "dollars": 1225.0,
+        "status": "Done",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": "2026-07-31"
+      },
+      {
+        "company": "SPERRY'S RESTAURANTS, INC.",
+        "team": "PAPA",
+        "prep": "Amber Alexander",
+        "seniorAcct": "",
+        "manager": "CRP",
+        "wuFrequency": "W",
+        "dollars": 1225.0,
+        "status": "Clear Notes",
+        "kickback": true,
+        "staffCommitDate": "",
+        "completeDate": "2026-08-01"
+      },
+      {
+        "company": "PYRO'S COMPANY",
+        "team": "ALPHA",
+        "prep": "Amber Alexander",
+        "seniorAcct": "",
+        "manager": "DAW",
+        "wuFrequency": "W",
+        "dollars": 6250.0,
+        "status": "Prep",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "SPERRYS MERCANTILE - BELLEVUE, LLC",
+        "team": "PAPA",
+        "prep": "Amber Alexander",
+        "seniorAcct": "",
+        "manager": "CRP",
+        "wuFrequency": "W",
+        "dollars": 585.0,
+        "status": "Prep",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "SAM'S SPORTS GRILL - OLD HICKORY, LLC #6367",
+        "team": "PAPA",
+        "prep": "Amber Alexander",
+        "seniorAcct": "",
+        "manager": "CRP",
+        "wuFrequency": "W",
+        "dollars": 1225.0,
+        "status": "Done",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": "2026-07-31"
+      },
+      {
+        "company": "BELLE MEADE SOCIAL LLC",
+        "team": "PAPA",
+        "prep": "Jean Cherie Jordaan",
+        "seniorAcct": "Lani Pavao",
+        "manager": "TJS",
+        "wuFrequency": "W",
+        "dollars": 730.0,
+        "status": "Done",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": "2026-07-27"
+      },
+      {
+        "company": "MOONDANCE-THORNWOOD, LLC",
+        "team": "PAPA",
+        "prep": "Jaxon Ammons",
+        "seniorAcct": "Amber Alexander",
+        "manager": "CRP",
+        "wuFrequency": "W",
+        "dollars": 1050.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "SAM'S SPORTS GRILL -  NIPPERS CORNER, LLC",
+        "team": "PAPA",
+        "prep": "Amber Alexander",
+        "seniorAcct": "",
+        "manager": "CRP",
+        "wuFrequency": "W",
+        "dollars": 1225.0,
+        "status": "Review",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "SAM'S SPORTS GRILL - MURFREESBORO, LLC #6369",
+        "team": "PAPA",
+        "prep": "Amber Alexander",
+        "seniorAcct": "",
+        "manager": "CRP",
+        "wuFrequency": "W",
+        "dollars": 1225.0,
+        "status": "Done",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": "2026-07-31"
+      },
+      {
+        "company": "MKT, INC",
+        "team": "PAPA",
+        "prep": "Jean Cherie Jordaan",
+        "seniorAcct": "",
+        "manager": "TJS",
+        "wuFrequency": "W",
+        "dollars": 1227.0,
+        "status": "Done",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": "2026-07-27"
+      },
+      {
+        "company": "LOFLIN YARD, LLC",
+        "team": "PAPA",
+        "prep": "Jaxon Ammons",
+        "seniorAcct": "Amber Alexander",
+        "manager": "CRP",
+        "wuFrequency": "W",
+        "dollars": 1160.0,
+        "status": "Done",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": "2026-07-31"
+      },
+      {
+        "company": "LAFAYETTE'S MUSIC ROOM LLC",
+        "team": "PAPA",
+        "prep": "Jaxon Ammons",
+        "seniorAcct": "Amber Alexander",
+        "manager": "CRP",
+        "wuFrequency": "W",
+        "dollars": 980.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
       }
     ]
   }
@@ -25960,6 +26221,24 @@ var OTD_TRENDS = [
       "pct40": 0.0,
       "pct75": 0.0,
       "pct95": 0.0
+    }
+  },
+  {
+    "month": "August",
+    "alpha": {
+      "pct40": 0.0,
+      "pct75": 0.0,
+      "pct95": 0.0
+    },
+    "papa": {
+      "pct40": 0.703,
+      "pct75": 0.703,
+      "pct95": 0.703
+    },
+    "tango": {
+      "pct40": 0,
+      "pct75": 0,
+      "pct95": 0
     }
   }
 ];
