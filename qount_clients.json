@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-07-31T16:04:27.395418+00:00",
-  "count": 340,
+  "last_updated": "2026-08-01T16:02:26.764218+00:00",
+  "count": 331,
   "clients": [
     {
       "sn": "117001",
@@ -21,14 +21,6 @@
     {
       "sn": "294001",
       "name": "294 WASHINGTON LAW FIRM"
-    },
-    {
-      "sn": "3DN3486",
-      "name": "3D NY0007 LLC"
-    },
-    {
-      "sn": "3DN1519",
-      "name": "3D NY0009 LLC"
     },
     {
       "sn": "3DN7719",
@@ -121,10 +113,6 @@
     {
       "sn": "AAH002",
       "name": "ARCY AT HOME"
-    },
-    {
-      "sn": "ARJ6345",
-      "name": "ARJOSA LLC"
     },
     {
       "sn": "ARJ4352",
@@ -483,10 +471,6 @@
       "name": "FAMILY FIRST HOME HEALTH, LLC"
     },
     {
-      "sn": "FFH004",
-      "name": "FAMILY FIRST HOSPICE, LLC"
-    },
-    {
       "sn": "FAR008",
       "name": "FARWINDS PARTNERSHIP"
     },
@@ -643,10 +627,6 @@
       "name": "HOLISTIC CARE HOME HEALTH AGENCY INC"
     },
     {
-      "sn": "HOM001",
-      "name": "HOME SURETY TITLE & ESCROW LLC"
-    },
-    {
       "sn": "HOS3683",
       "name": "HOSPICE SPECIALISTS LLC"
     },
@@ -713,10 +693,6 @@
     {
       "sn": "INN2808",
       "name": "JASON K LONG"
-    },
-    {
-      "sn": "JEF001",
-      "name": "JEFFREY THOMAS, LLC"
     },
     {
       "sn": "JEH2421",
@@ -1147,16 +1123,8 @@
       "name": "STEAK ESCAPE COLLIERVILLE"
     },
     {
-      "sn": "STE1112",
-      "name": "STEAK ESCAPE JACKSON"
-    },
-    {
       "sn": "STO004",
       "name": "STONED IMMACULATE"
-    },
-    {
-      "sn": "SUN004",
-      "name": "SUNFLOWER BAKEHOUSE, LLC"
     },
     {
       "sn": "SUN002",
@@ -1173,10 +1141,6 @@
     {
       "sn": "SWE003",
       "name": "SWEETRENEE, LLC"
-    },
-    {
-      "sn": "SOM4671",
-      "name": "Something Desi LLC"
     },
     {
       "sn": "8900",
