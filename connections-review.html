@@ -116,7 +116,7 @@
   </div>
 </div>
 
-<script src="connections_review_data.js?v=1785527782"></script>
+<script src="connections_review_data.js?v=1785795500"></script>
 <script>
 var API_BASE = "https://standing-malamute-183.convex.site";
 var DATA = typeof CONNECTIONS_REVIEW_DATA !== "undefined" ? CONNECTIONS_REVIEW_DATA : { items: [] };
@@ -280,7 +280,7 @@ function render() {
           '<div class="sub">Roll up into parent (any Qount client):</div>' +
           '<select class="par">' + parentOptions(it, parent) + '</select>' +
           (it.kind === "unconnected_client" && !it.realm_options
-            ? '<div class="sub">or pin to a QBO file (only the 219 files authorized in Viktor):</div><select class="realm">' + allFileOptions(cur.realmId || "") + '</select>'
+            ? '<div class="sub">or pin to a QBO file (only the ' + (DATA.all_qbo_files||[]).length + ' files authorized in Viktor):</div><select class="realm">' + allFileOptions(cur.realmId || "") + '</select>'
             : "") +
         '</td>' +
         '<td><input class="note" type="text" value="' + esc(cur.note || "") + '" placeholder="optional"></td>' +
