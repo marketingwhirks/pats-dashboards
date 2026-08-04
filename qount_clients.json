@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-08-02T16:02:23.530714+00:00",
-  "count": 331,
+  "last_updated": "2026-08-04T16:02:39.135562+00:00",
+  "count": 315,
   "clients": [
     {
       "sn": "117001",
@@ -119,10 +119,6 @@
       "name": "ARJOSAMA"
     },
     {
-      "sn": "ASA001",
-      "name": "ASAPP PROPERTIES, LLC"
-    },
-    {
       "sn": "AHS002",
       "name": "ASPEN HEALTHCARE SERVICES, INC."
     },
@@ -155,16 +151,8 @@
       "name": "BARCAS ENTERPRISES LLC"
     },
     {
-      "sn": "BAR2732",
-      "name": "BARNES219 LLC"
-    },
-    {
       "sn": "BAR015",
       "name": "BARON'S MAN CAVE, LLC"
-    },
-    {
-      "sn": "BAR2487",
-      "name": "BARONS BAR MEMPHIS LLC"
     },
     {
       "sn": "BAR2819",
@@ -503,10 +491,6 @@
       "name": "GA LEASING LLC"
     },
     {
-      "sn": "GAG1223",
-      "name": "GAGLIANO GROUP LLC"
-    },
-    {
       "sn": "HEA001",
       "name": "GERMANTOWN CHRISTIAN COUNSELING"
     },
@@ -589,10 +573,6 @@
     {
       "sn": "HEA008",
       "name": "HEALING PAWS ANIMAL HOSPITAL"
-    },
-    {
-      "sn": "WRR001",
-      "name": "HERITAGE LAND AND DEVELOPMENT, LLC"
     },
     {
       "sn": "10099",
@@ -703,10 +683,6 @@
       "name": "JIM ROBBINS & ASSOCIATES, INC."
     },
     {
-      "sn": "JON010",
-      "name": "JONES-WILLEY CORPORATION"
-    },
-    {
       "sn": "JOS2654",
       "name": "JOSEPH W CHRISTIAN"
     },
@@ -737,26 +713,6 @@
     {
       "sn": "KCE1729",
       "name": "KC EATERY LLC"
-    },
-    {
-      "sn": "KGR7665",
-      "name": "KGR COOPER LLC"
-    },
-    {
-      "sn": "KGR5426",
-      "name": "KGR POPLAR LLC"
-    },
-    {
-      "sn": "KGR1614",
-      "name": "KGR SOUTH MAIN LLC"
-    },
-    {
-      "sn": "KGR1062",
-      "name": "KGR WHITEHAVEN LLC"
-    },
-    {
-      "sn": "KGR5917",
-      "name": "KGR- AMERICAN WAY LLC"
     },
     {
       "sn": "KHE7022",
@@ -1035,10 +991,6 @@
       "name": "RICH-WAY LANDSCAPE, INC."
     },
     {
-      "sn": "BAR6289",
-      "name": "RIDE OR DIE 219 LLC"
-    },
-    {
       "sn": "RMR001",
       "name": "RMR COMM PROPERTIES, LLC"
     },
@@ -1057,10 +1009,6 @@
     {
       "sn": "RTK4369",
       "name": "RTK COMPONENTS, LLC"
-    },
-    {
-      "sn": "RYA9696",
-      "name": "RYANJEN219 LLC"
     },
     {
       "sn": "ECC9968",
@@ -1119,16 +1067,8 @@
       "name": "STATLINK MD, LLC"
     },
     {
-      "sn": "STE1111",
-      "name": "STEAK ESCAPE COLLIERVILLE"
-    },
-    {
       "sn": "STO004",
       "name": "STONED IMMACULATE"
-    },
-    {
-      "sn": "SUN002",
-      "name": "SUNRISE CENTRAL LLC - TN"
     },
     {
       "sn": "SUN002TN",
@@ -1277,10 +1217,6 @@
     {
       "sn": "VIB2915",
       "name": "VIBRANT LIVING SERVICES, LLC"
-    },
-    {
-      "sn": "VIL9528",
-      "name": "VILLA CASTRIOTI - LAKE DISTRICT"
     },
     {
       "sn": "VIL2554",
