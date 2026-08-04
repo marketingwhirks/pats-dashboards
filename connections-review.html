@@ -116,7 +116,7 @@
   </div>
 </div>
 
-<script src="connections_review_data.js?v=1785863456"></script>
+<script src="connections_review_data.js?v=1785865426"></script>
 <script>
 var API_BASE = "https://standing-malamute-183.convex.site";
 var DATA = typeof CONNECTIONS_REVIEW_DATA !== "undefined" ? CONNECTIONS_REVIEW_DATA : { items: [] };
@@ -140,7 +140,11 @@ var SUGGESTION_TO_DECISION = {
   dba: "dba_of",
   dropped: "dropped",
   needs_connection: "needs_connection",
-  review: ""
+  // A "review" item is a connected pair whose names only partly match. Accepting
+  // it means "yes, this is the right file", i.e. pin the realm it's already on
+  // (the realm select is prefilled with suggested_realm). Without this mapping
+  // there was no button at all and Kim had no way to confirm a good pair.
+  review: "pinned"
 };
 
 var KIND_LABEL = {
@@ -287,7 +291,9 @@ function render() {
             : "") +
         '</td>' +
         '<td><input class="note" type="text" value="' + esc(cur.note || "") + '" placeholder="optional"></td>' +
-        '<td>' + (SUGGESTION_TO_DECISION[it.suggestion] ? '<button class="accept">Accept</button>' : "") + '</td>' +
+        '<td>' + (SUGGESTION_TO_DECISION[it.suggestion]
+          ? '<button class="accept">' + (it.suggestion === "review" ? "Confirm pair" : "Accept") + '</button>'
+          : "") + '</td>' +
         '</tr>';
     });
     tbody.innerHTML = html;
@@ -340,6 +346,8 @@ function acceptAllVisible() {
     var it = DATA.items.filter(function (x) { return x.id === tr.dataset.key; })[0];
     var d = SUGGESTION_TO_DECISION[it.suggestion];
     if (!d) return;
+    // Never bulk-confirm name-mismatch pairs -- those need a human eyeball.
+    if (it.suggestion === "review") return;
     if (current(it.id)) return;
     tr.querySelector(".dec").value = d;
     stage(it, tr);
