@@ -116,7 +116,7 @@
   </div>
 </div>
 
-<script src="connections_review_data.js?v=1785797541"></script>
+<script src="connections_review_data.js?v=1785853201"></script>
 <script>
 var API_BASE = "https://standing-malamute-183.convex.site";
 var DATA = typeof CONNECTIONS_REVIEW_DATA !== "undefined" ? CONNECTIONS_REVIEW_DATA : { items: [] };
@@ -127,6 +127,7 @@ var filter = "open";
 var DECISION_LABEL = {
   pinned: "Pinned to QBO file",
   rolled_up: "Rolls up into parent",
+  dba_of: "DBA / trade name of another client",
   not_qbo: "Not on QBO",
   dropped: "Dropped client",
   needs_connection: "Needs connection"
@@ -136,6 +137,7 @@ var SUGGESTION_TO_DECISION = {
   pin: "pinned",
   pin_match: "pinned",
   rollup: "rolled_up",
+  dba: "dba_of",
   dropped: "dropped",
   needs_connection: "needs_connection",
   review: ""
@@ -152,6 +154,7 @@ var SUGGESTION_BADGE = {
   pin: ["b-pin", "Pin"],
   pin_match: ["b-pin", "Pin"],
   rollup: ["b-rollup", "Roll up"],
+  dba: ["b-rollup", "DBA"],
   dropped: ["b-dropped", "Dropped"],
   needs_connection: ["b-needs", "Needs connection"],
   review: ["b-review", "Your call"]
@@ -277,7 +280,7 @@ function render() {
           (it.realm_options
             ? '<select class="realm">' + realmOptions(it, cur.realmId || it.suggested_realm || "") + '</select>'
             : "") +
-          '<div class="sub">Roll up into parent (any Qount client):</div>' +
+          '<div class="sub">Roll up into parent, or the real client if this is a DBA (any Qount client):</div>' +
           '<select class="par">' + parentOptions(it, parent) + '</select>' +
           (it.kind === "unconnected_client" && !it.realm_options
             ? '<div class="sub">or pin to a QBO file (only the ' + (DATA.all_qbo_files||[]).length + ' files authorized in Viktor):</div><select class="realm">' + allFileOptions(cur.realmId || "") + '</select>'
