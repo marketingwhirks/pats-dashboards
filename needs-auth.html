@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="/theme.js"></script>
+<link rel="stylesheet" href="/theme.css">
+<script src="/auth.js"></script>
+<title>Needs Authorization &mdash; PATS Dashboards</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; background:#f5f5f5; color:#333; }
+  .container { max-width:1200px; margin:0 auto; padding:20px; }
+  header { background:#1a3a5c; color:#fff; padding:28px 20px; margin:-20px -20px 24px -20px; text-align:center; }
+  h1 { font-size:25px; font-weight:600; margin-bottom:8px; }
+  .subtitle { font-size:15px; opacity:.95; }
+  .source-info { font-size:13px; opacity:.75; margin-top:6px; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin-bottom:22px; }
+  .card { background:#fff; padding:16px; border-radius:4px; box-shadow:0 1px 3px rgba(0,0,0,.1); text-align:center; }
+  .card .count { font-size:28px; font-weight:700; color:#1a3a5c; }
+  .card .label { font-size:12px; color:#666; text-transform:uppercase; letter-spacing:.5px; margin-top:4px; }
+  .card.warn .count { color:#b9770e; }
+  .card.bad .count { color:#a93226; }
+  .card.good .count { color:#1e8449; }
+  section { background:#fff; border-radius:4px; box-shadow:0 1px 3px rgba(0,0,0,.1); margin-bottom:22px; overflow:hidden; }
+  .shead { padding:16px 18px; border-bottom:1px solid #eee; }
+  .shead h2 { font-size:17px; color:#1a3a5c; }
+  .shead p { font-size:13px; color:#666; margin-top:5px; line-height:1.5; }
+  table { width:100%; border-collapse:collapse; }
+  th { background:#fafafa; text-align:left; padding:10px 14px; font-size:11px; text-transform:uppercase;
+       letter-spacing:.5px; color:#666; border-bottom:1px solid #eee; }
+  td { padding:10px 14px; border-bottom:1px solid #f2f2f2; font-size:14px; vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  .name { font-weight:600; }
+  .sub { font-size:12px; color:#888; margin-top:2px; }
+  .mono { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; color:#555; }
+  .pill { display:inline-block; padding:3px 9px; border-radius:11px; font-size:11px; font-weight:600; }
+  .p-warn { background:#fdebd0; color:#8a5b00; }
+  .p-bad { background:#fadbd8; color:#922b21; }
+  .note { padding:14px 18px; background:#fdf6e3; border-left:3px solid #d4ac0d; font-size:13px; line-height:1.6; color:#5c4a00; }
+  .empty { padding:34px; text-align:center; color:#999; }
+  .search { width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:4px; font-size:14px; margin-bottom:18px; }
+</style>
+</head>
+<body>
+<nav style="display:flex;align-items:center;gap:8px;padding:12px 20px;background:rgba(26,31,46,0.95);border-bottom:1px solid rgba(74,144,226,0.2);"><a href="/" style="margin-right:16px;display:flex;align-items:center;text-decoration:none;"><img data-logo src="/assets/logo.png" alt="Patrick Accounting" style="height:28px;"></a><a href="index.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Automation Scorecard</a><a href="activity.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Monthly Activity</a><a href="connections.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">QBO Connections</a><a href="connections-review.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Reconciliation</a><a href="connections-pairs.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#fff;background:rgba(74,144,226,0.15);border:1px solid rgba(74,144,226,0.3);">Pairings</a><a href="needs-auth.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#fff;background:rgba(74,144,226,0.15);border:1px solid rgba(74,144,226,0.3);">Needs Auth</a><a href="fee-analysis.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Fee Analysis</a><a href="admin.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Admin</a></nav>
+<div class="container">
+  <header>
+    <h1>Needs Authorization</h1>
+    <div class="subtitle">Clients whose QuickBooks data is not reaching us</div>
+    <div class="source-info" id="genInfo">loading&hellip;</div>
+  </header>
+
+  <div class="cards">
+    <div class="card good"><div class="count" id="cLive">&mdash;</div><div class="label">Flowing</div></div>
+    <div class="card warn"><div class="count" id="cRe">&mdash;</div><div class="label">Reconnect</div></div>
+    <div class="card bad"><div class="count" id="cAuth">&mdash;</div><div class="label">Authorize</div></div>
+    <div class="card"><div class="count" id="cTotal">&mdash;</div><div class="label">Clients tracked</div></div>
+  </div>
+
+  <input class="search" id="search" type="text" placeholder="Filter by client or QBO file name&hellip;">
+
+  <section>
+    <div class="shead">
+      <h2>Reconnect &mdash; <span id="nRe">0</span> clients</h2>
+      <p>We were connected to these files and the connection has since expired or been
+         revoked. The file is already correctly paired, so reconnecting is all that is
+         needed &mdash; no re-pairing afterwards.</p>
+    </div>
+    <table><thead><tr><th>Client</th><th>QBO file</th><th>Last working</th><th></th></tr></thead>
+    <tbody id="tRe"></tbody></table>
+  </section>
+
+  <section>
+    <div class="shead">
+      <h2>Authorize &mdash; <span id="nAuth">0</span> clients</h2>
+      <p>No connection has ever been approved for these clients, so no key was ever
+         issued. After authorizing, check the Reconciliation tab &mdash; a new file
+         sometimes needs pairing if its QBO name differs from the Qount name.</p>
+    </div>
+    <table><thead><tr><th>Client</th><th>Qount</th><th>Known QBO file</th><th></th></tr></thead>
+    <tbody id="tAuth"></tbody></table>
+  </section>
+
+  <div class="note">
+    <b>Why a client can sit here:</b> the two lists are separate because the fix differs
+    &mdash; reconnect versus first-time approval. Both mean no data is flowing today.
+    This page rebuilds itself every 15 minutes on weekdays, so a client disappears
+    shortly after you connect it. Anything you have rolled up, or marked as not on QBO,
+    never appears here.
+  </div>
+</div>
+
+<script src="/needs_auth_data.js"></script>
+<script>
+var D = window.NEEDS_AUTH_DATA || { reconnect: [], authorize: [] };
+
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+  });
+}
+
+function q() { return (document.getElementById("search").value || "").toLowerCase(); }
+
+function match(o) {
+  var hay = ((o.name || "") + " " + (o.qbo_file || "") + " " + (o.sn || "")).toLowerCase();
+  return hay.indexOf(q()) !== -1;
+}
+
+function render() {
+  var re = (D.reconnect || []).filter(match);
+  var au = (D.authorize || []).filter(match);
+
+  document.getElementById("tRe").innerHTML = re.length ? re.map(function (o) {
+    return '<tr><td><div class="name">' + esc(o.name) + '</div>' +
+      '<div class="sub">' + esc(o.sn) + '</div></td>' +
+      '<td>' + esc(o.qbo_file || "&mdash;") +
+      '<div class="sub mono">' + esc(o.realm_id) + '</div></td>' +
+      '<td>' + esc(o.last_ok || "unknown") + '</td>' +
+      '<td><span class="pill p-warn">reconnect</span></td></tr>';
+  }).join("") : '<tr><td colspan="4" class="empty">Nothing to reconnect.</td></tr>';
+
+  document.getElementById("tAuth").innerHTML = au.length ? au.map(function (o) {
+    return '<tr><td><div class="name">' + esc(o.name) + '</div></td>' +
+      '<td class="mono">' + esc(o.sn) + '</td>' +
+      '<td>' + (o.qbo_file && o.qbo_file !== o.name ? esc(o.qbo_file) : "&mdash;") +
+      (o.realm_id ? '<div class="sub mono">' + esc(o.realm_id) + '</div>' : "") + '</td>' +
+      '<td><span class="pill p-bad">authorize</span></td></tr>';
+  }).join("") : '<tr><td colspan="4" class="empty">Nothing to authorize.</td></tr>';
+
+  document.getElementById("nRe").textContent = re.length;
+  document.getElementById("nAuth").textContent = au.length;
+}
+
+function init() {
+  document.getElementById("cLive").textContent = D.live_count || 0;
+  document.getElementById("cRe").textContent = (D.reconnect || []).length;
+  document.getElementById("cAuth").textContent = (D.authorize || []).length;
+  document.getElementById("cTotal").textContent = D.total || 0;
+  document.getElementById("genInfo").textContent =
+    "Token check " + (D.token_run_date || "unknown") + " \u00b7 " +
+    ((D.reconnect || []).length + (D.authorize || []).length) + " clients not flowing";
+  document.getElementById("search").addEventListener("input", render);
+  render();
+}
+
+function waitForAuth() {
+  if (window.__PATS_USER) { init(); } else { setTimeout(waitForAuth, 120); }
+}
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", function () { setTimeout(waitForAuth, 100); });
+} else { setTimeout(waitForAuth, 100); }
+</script>
+</body>
+</html>
