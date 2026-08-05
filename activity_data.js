@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-08-02T12:04:44Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-08-05T12:06:29Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -21990,22 +21990,22 @@ var ACTIVITY_DATA = {
     "summary": {
       "totalClients": 292,
       "totalDollars": 307818.0,
-      "doneClients": 15,
-      "doneDollars": 21657.0,
-      "inReviewClients": 1,
-      "inReviewDollars": 1225.0,
+      "doneClients": 17,
+      "doneDollars": 22937.0,
+      "inReviewClients": 23,
+      "inReviewDollars": 20767.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 135,
         "dollars": 136960.0,
-        "kickbackCount": 0,
-        "kickbackPct": 0.0
+        "kickbackCount": 2,
+        "kickbackPct": 1.5
       },
       "papa": {
         "clientCount": 95,
         "dollars": 80658.0,
-        "kickbackCount": 4,
-        "kickbackPct": 4.2
+        "kickbackCount": 5,
+        "kickbackPct": 5.3
       },
       "tango": {
         "clientCount": 61,
@@ -22014,9 +22014,9 @@ var ACTIVITY_DATA = {
         "kickbackPct": 0.0
       },
       "otdAlpha": {
-        "pct40": 0.0456,
-        "pct75": 0.0456,
-        "pct95": 0.0456
+        "pct40": 0.0729,
+        "pct75": 0.0729,
+        "pct95": 0.0729
       },
       "otdPapa": {
         "pct40": 0.2062,
@@ -22030,10 +22030,13 @@ var ACTIVITY_DATA = {
       }
     },
     "statusCounts": {
-      "Collect": 272,
-      "Prep": 4,
-      "Done": 15,
-      "Review #2": 1
+      "Collect": 206,
+      "Prep": 46,
+      "Review": 15,
+      "Done": 17,
+      "Review #2": 2,
+      "Clear Notes": 4,
+      "Deliver": 2
     },
     "clients": [
       {
@@ -22070,7 +22073,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "M",
         "dollars": 1084.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -22083,7 +22086,7 @@ var ACTIVITY_DATA = {
         "manager": "KMP",
         "wuFrequency": "M",
         "dollars": 125.0,
-        "status": "Collect",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -22096,7 +22099,7 @@ var ACTIVITY_DATA = {
         "manager": "KMP",
         "wuFrequency": "M",
         "dollars": 0.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -22122,7 +22125,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "M",
         "dollars": 370.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -22330,7 +22333,7 @@ var ACTIVITY_DATA = {
         "manager": "SLL",
         "wuFrequency": "M",
         "dollars": 600.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -22369,7 +22372,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "M",
         "dollars": 3000.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -22408,7 +22411,7 @@ var ACTIVITY_DATA = {
         "manager": "JAL",
         "wuFrequency": "M",
         "dollars": 310.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -22460,7 +22463,7 @@ var ACTIVITY_DATA = {
         "manager": "DAW",
         "wuFrequency": "M",
         "dollars": 755.0,
-        "status": "Collect",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -22642,7 +22645,7 @@ var ACTIVITY_DATA = {
         "manager": "DAW",
         "wuFrequency": "M",
         "dollars": 1000.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -22733,7 +22736,7 @@ var ACTIVITY_DATA = {
         "manager": "TJS",
         "wuFrequency": "M",
         "dollars": 3281.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -22941,7 +22944,7 @@ var ACTIVITY_DATA = {
         "manager": "JAL",
         "wuFrequency": "M",
         "dollars": 525.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23006,10 +23009,10 @@ var ACTIVITY_DATA = {
         "manager": "DAW",
         "wuFrequency": "M",
         "dollars": 930.0,
-        "status": "Collect",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-04"
       },
       {
         "company": "CURA BEATUS INCORPORATED",
@@ -23019,7 +23022,7 @@ var ACTIVITY_DATA = {
         "manager": "KMP",
         "wuFrequency": "M",
         "dollars": 280.0,
-        "status": "Collect",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23045,7 +23048,7 @@ var ACTIVITY_DATA = {
         "manager": "KMP",
         "wuFrequency": "M",
         "dollars": 2256.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23058,7 +23061,7 @@ var ACTIVITY_DATA = {
         "manager": "KMP",
         "wuFrequency": "M",
         "dollars": 1806.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23110,7 +23113,7 @@ var ACTIVITY_DATA = {
         "manager": "TJS",
         "wuFrequency": "M",
         "dollars": 640.0,
-        "status": "Collect",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23136,7 +23139,7 @@ var ACTIVITY_DATA = {
         "manager": "DAW",
         "wuFrequency": "M",
         "dollars": 485.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23253,7 +23256,7 @@ var ACTIVITY_DATA = {
         "manager": "DAW",
         "wuFrequency": "M",
         "dollars": 585.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23266,10 +23269,10 @@ var ACTIVITY_DATA = {
         "manager": "TJS",
         "wuFrequency": "M",
         "dollars": 1350.0,
-        "status": "Collect",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-04"
       },
       {
         "company": "FLYBOYS FITNESS LLC",
@@ -23305,7 +23308,7 @@ var ACTIVITY_DATA = {
         "manager": "JLG",
         "wuFrequency": "M",
         "dollars": 430.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23318,7 +23321,7 @@ var ACTIVITY_DATA = {
         "manager": "JLG",
         "wuFrequency": "M",
         "dollars": 1715.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23331,7 +23334,7 @@ var ACTIVITY_DATA = {
         "manager": "JLG",
         "wuFrequency": "M",
         "dollars": 960.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23396,7 +23399,7 @@ var ACTIVITY_DATA = {
         "manager": "JAL",
         "wuFrequency": "M",
         "dollars": 615.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23409,7 +23412,7 @@ var ACTIVITY_DATA = {
         "manager": "MAD",
         "wuFrequency": "M",
         "dollars": 353.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23461,7 +23464,7 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 495.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23500,7 +23503,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "M",
         "dollars": 335.0,
-        "status": "Collect",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23526,7 +23529,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "M",
         "dollars": 1850.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23578,7 +23581,7 @@ var ACTIVITY_DATA = {
         "manager": "DAW",
         "wuFrequency": "M",
         "dollars": 605.0,
-        "status": "Collect",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23591,8 +23594,8 @@ var ACTIVITY_DATA = {
         "manager": "SLL",
         "wuFrequency": "M",
         "dollars": 630.0,
-        "status": "Collect",
-        "kickback": false,
+        "status": "Clear Notes",
+        "kickback": true,
         "staffCommitDate": "",
         "completeDate": ""
       },
@@ -23604,7 +23607,7 @@ var ACTIVITY_DATA = {
         "manager": "KMP",
         "wuFrequency": "M",
         "dollars": 820.0,
-        "status": "Collect",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23630,7 +23633,7 @@ var ACTIVITY_DATA = {
         "manager": "DAW",
         "wuFrequency": "M",
         "dollars": 2500.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23721,7 +23724,7 @@ var ACTIVITY_DATA = {
         "manager": "JAL",
         "wuFrequency": "M",
         "dollars": 665.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23864,7 +23867,7 @@ var ACTIVITY_DATA = {
         "manager": "SLL",
         "wuFrequency": "M",
         "dollars": 990.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23942,7 +23945,7 @@ var ACTIVITY_DATA = {
         "manager": "TJS",
         "wuFrequency": "M",
         "dollars": 340.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23968,10 +23971,10 @@ var ACTIVITY_DATA = {
         "manager": "MAD",
         "wuFrequency": "M",
         "dollars": 1065.0,
-        "status": "Collect",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-04"
       },
       {
         "company": "KAREN ANN QUINLAN HOSPICE - CHARITABLE FOUNDATION",
@@ -24033,7 +24036,7 @@ var ACTIVITY_DATA = {
         "manager": "KMP",
         "wuFrequency": "M",
         "dollars": 2128.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24046,10 +24049,10 @@ var ACTIVITY_DATA = {
         "manager": "JLG",
         "wuFrequency": "M",
         "dollars": 385.0,
-        "status": "Collect",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-03"
       },
       {
         "company": "LAINE REAL ESTATE LLC",
@@ -24085,7 +24088,7 @@ var ACTIVITY_DATA = {
         "manager": "JAL",
         "wuFrequency": "M",
         "dollars": 1265.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24111,7 +24114,7 @@ var ACTIVITY_DATA = {
         "manager": "KMP",
         "wuFrequency": "M",
         "dollars": 200.0,
-        "status": "Collect",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24202,7 +24205,7 @@ var ACTIVITY_DATA = {
         "manager": "KMP",
         "wuFrequency": "M",
         "dollars": 95.0,
-        "status": "Collect",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24280,7 +24283,7 @@ var ACTIVITY_DATA = {
         "manager": "JLG",
         "wuFrequency": "M",
         "dollars": 1400.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24306,7 +24309,7 @@ var ACTIVITY_DATA = {
         "manager": "DAW",
         "wuFrequency": "M",
         "dollars": 1585.0,
-        "status": "Collect",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24371,7 +24374,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 470.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24488,7 +24491,7 @@ var ACTIVITY_DATA = {
         "manager": "TJS",
         "wuFrequency": "M",
         "dollars": 0.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24501,7 +24504,7 @@ var ACTIVITY_DATA = {
         "manager": "SLL",
         "wuFrequency": "M",
         "dollars": 435.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24540,7 +24543,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "M",
         "dollars": 1060.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24657,7 +24660,7 @@ var ACTIVITY_DATA = {
         "manager": "TJS",
         "wuFrequency": "M",
         "dollars": 1235.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24709,7 +24712,7 @@ var ACTIVITY_DATA = {
         "manager": "TJS",
         "wuFrequency": "M",
         "dollars": 2380.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24774,7 +24777,7 @@ var ACTIVITY_DATA = {
         "manager": "TJS",
         "wuFrequency": "M",
         "dollars": 1755.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24839,7 +24842,7 @@ var ACTIVITY_DATA = {
         "manager": "TJS",
         "wuFrequency": "M",
         "dollars": 3155.0,
-        "status": "Collect",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24878,7 +24881,7 @@ var ACTIVITY_DATA = {
         "manager": "KMP",
         "wuFrequency": "M",
         "dollars": 1394.0,
-        "status": "Collect",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24904,7 +24907,7 @@ var ACTIVITY_DATA = {
         "manager": "DAW",
         "wuFrequency": "M",
         "dollars": 1350.0,
-        "status": "Collect",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25001,19 +25004,6 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
-        "company": "SOUTHERN PEDIATRICS, LLC",
-        "team": "ALPHA",
-        "prep": "Madison Dearing",
-        "seniorAcct": "",
-        "manager": "SLL",
-        "wuFrequency": "M",
-        "dollars": 3465.0,
-        "status": "Collect",
-        "kickback": false,
-        "staffCommitDate": "",
-        "completeDate": ""
-      },
-      {
         "company": "SPANOW, LLC",
         "team": "PAPA",
         "prep": "Jaxon Ammons",
@@ -25021,7 +25011,7 @@ var ACTIVITY_DATA = {
         "manager": "JAL",
         "wuFrequency": "M",
         "dollars": 325.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25034,7 +25024,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "M",
         "dollars": 1980.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25118,6 +25108,19 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
+        "company": "Southern Pediatrics LLC",
+        "team": "ALPHA",
+        "prep": "Madison Dearing",
+        "seniorAcct": "",
+        "manager": "SLL",
+        "wuFrequency": "M",
+        "dollars": 3465.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
         "company": "TAD L BEENE DDS PA",
         "team": "ALPHA",
         "prep": "Analytix 360",
@@ -25190,7 +25193,7 @@ var ACTIVITY_DATA = {
         "manager": "KMP",
         "wuFrequency": "M",
         "dollars": 1499.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25203,7 +25206,7 @@ var ACTIVITY_DATA = {
         "manager": "KMP",
         "wuFrequency": "M",
         "dollars": 770.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25359,7 +25362,7 @@ var ACTIVITY_DATA = {
         "manager": "KMP",
         "wuFrequency": "M",
         "dollars": 770.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25398,7 +25401,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "M",
         "dollars": 650.0,
-        "status": "Collect",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25411,7 +25414,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "M",
         "dollars": 975.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25476,7 +25479,7 @@ var ACTIVITY_DATA = {
         "manager": "JLG",
         "wuFrequency": "M",
         "dollars": 990.0,
-        "status": "Collect",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25502,7 +25505,7 @@ var ACTIVITY_DATA = {
         "manager": "MAD",
         "wuFrequency": "M",
         "dollars": 975.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25541,7 +25544,7 @@ var ACTIVITY_DATA = {
         "manager": "AJS",
         "wuFrequency": "M",
         "dollars": 1654.5,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25554,7 +25557,7 @@ var ACTIVITY_DATA = {
         "manager": "AJS",
         "wuFrequency": "M",
         "dollars": 1654.5,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25567,7 +25570,7 @@ var ACTIVITY_DATA = {
         "manager": "AJS",
         "wuFrequency": "M",
         "dollars": 1960.0,
-        "status": "Collect",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25580,7 +25583,7 @@ var ACTIVITY_DATA = {
         "manager": "JLG",
         "wuFrequency": "M",
         "dollars": 1310.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25593,8 +25596,8 @@ var ACTIVITY_DATA = {
         "manager": "MAD",
         "wuFrequency": "M",
         "dollars": 435.0,
-        "status": "Collect",
-        "kickback": false,
+        "status": "Review",
+        "kickback": true,
         "staffCommitDate": "",
         "completeDate": ""
       },
@@ -25606,7 +25609,7 @@ var ACTIVITY_DATA = {
         "manager": "MAD",
         "wuFrequency": "M",
         "dollars": 423.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25619,7 +25622,7 @@ var ACTIVITY_DATA = {
         "manager": "TJS",
         "wuFrequency": "M",
         "dollars": 350.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25632,8 +25635,8 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Done",
-        "kickback": false,
+        "status": "Deliver",
+        "kickback": true,
         "staffCommitDate": "",
         "completeDate": "2026-06-27"
       },
@@ -25671,7 +25674,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Done",
+        "status": "Review #2",
         "kickback": true,
         "staffCommitDate": "",
         "completeDate": "2026-06-27"
@@ -25762,7 +25765,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Review #2",
+        "status": "Deliver",
         "kickback": true,
         "staffCommitDate": "",
         "completeDate": "2026-06-27"
@@ -25840,8 +25843,8 @@ var ACTIVITY_DATA = {
       "totalDollars": 22882.0,
       "doneClients": 10,
       "doneDollars": 11692.0,
-      "inReviewClients": 1,
-      "inReviewDollars": 1225.0,
+      "inReviewClients": 4,
+      "inReviewDollars": 4355.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 1,
@@ -25879,9 +25882,10 @@ var ACTIVITY_DATA = {
     },
     "statusCounts": {
       "Done": 10,
-      "Collect": 3,
+      "Review #2": 1,
       "Prep": 2,
-      "Review": 1
+      "Review": 2,
+      "Clear Notes": 1
     },
     "clients": [
       {
@@ -25931,7 +25935,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "W",
         "dollars": 1100.0,
-        "status": "Collect",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -26022,7 +26026,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "W",
         "dollars": 1050.0,
-        "status": "Collect",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -26087,7 +26091,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "W",
         "dollars": 980.0,
-        "status": "Collect",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -26207,9 +26211,9 @@ var OTD_TRENDS = [
   {
     "month": "July",
     "alpha": {
-      "pct40": 0.0456,
-      "pct75": 0.0456,
-      "pct95": 0.0456
+      "pct40": 0.0729,
+      "pct75": 0.0729,
+      "pct95": 0.0729
     },
     "papa": {
       "pct40": 0.2062,
