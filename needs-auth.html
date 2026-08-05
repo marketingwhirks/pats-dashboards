@@ -40,6 +40,8 @@
   .note { padding:14px 18px; background:#fdf6e3; border-left:3px solid #d4ac0d; font-size:13px; line-height:1.6; color:#5c4a00; }
   .empty { padding:34px; text-align:center; color:#999; }
   .search { width:100%; padding:10px 12px; border:1px solid #ddd; border-radius:4px; font-size:14px; margin-bottom:18px; }
+.connect-btn{display:inline-block;margin-left:8px;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600;text-decoration:none;color:#fff;background:#2ca01c;border:1px solid rgba(255,255,255,0.15);}
+.connect-btn:hover{background:#38b528;}
 </style>
 </head>
 <body>
@@ -85,7 +87,7 @@
 
   <div class="note">
     <b>Why a client can sit here:</b> the two lists are separate because the fix differs
-    &mdash; reconnect versus first-time approval. Both mean no data is flowing today.
+    &mdash; reconnect versus first-time approval. Both mean no data is flowing today. Hit <b>Connect</b> to open Intuit's approval screen for that client &mdash; <b>check the company name in Intuit's dropdown before you approve</b>, since Intuit connects whatever file is selected there, not the one you clicked.
     This page rebuilds itself every 15 minutes on weekdays, so a client disappears
     shortly after you connect it. Anything you have rolled up, or marked as not on QBO,
     never appears here.
@@ -95,6 +97,16 @@
 <script src="/needs_auth_data.js"></script>
 <script>
 var D = window.NEEDS_AUTH_DATA || { reconnect: [], authorize: [] };
+
+
+var AUTH_BASE = "https://appcenter.intuit.com/connect/oauth2?client_id=AB7MyQslNgsncbRDGAJhdXPCICBvfgLAWkONkgzQyukHXHExzW"
+  + "&scope=com.intuit.quickbooks.accounting"
+  + "&redirect_uri=" + encodeURIComponent("https://hook.us1.make.com/98y8xjh2or1bm2aw48w0n3w5sb6t1zh3")
+  + "&response_type=code&state=";
+function authBtn(o) {
+  var url = AUTH_BASE + encodeURIComponent(o.sn || o.name || "");
+  return '<a class="connect-btn" target="_blank" rel="noopener" href="' + url + '">Connect &rarr;</a>';
+}
 
 function esc(s) {
   return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
@@ -119,7 +131,7 @@ function render() {
       '<td>' + esc(o.qbo_file || "&mdash;") +
       '<div class="sub mono">' + esc(o.realm_id) + '</div></td>' +
       '<td>' + esc(o.last_ok || "unknown") + '</td>' +
-      '<td><span class="pill p-warn">reconnect</span></td></tr>';
+      '<td><span class="pill p-warn">reconnect</span> ' + authBtn(o) + '</td></tr>';
   }).join("") : '<tr><td colspan="4" class="empty">Nothing to reconnect.</td></tr>';
 
   document.getElementById("tAuth").innerHTML = au.length ? au.map(function (o) {
@@ -127,7 +139,7 @@ function render() {
       '<td class="mono">' + esc(o.sn) + '</td>' +
       '<td>' + (o.qbo_file && o.qbo_file !== o.name ? esc(o.qbo_file) : "&mdash;") +
       (o.realm_id ? '<div class="sub mono">' + esc(o.realm_id) + '</div>' : "") + '</td>' +
-      '<td><span class="pill p-bad">authorize</span></td></tr>';
+      '<td><span class="pill p-bad">authorize</span> ' + authBtn(o) + '</td></tr>';
   }).join("") : '<tr><td colspan="4" class="empty">Nothing to authorize.</td></tr>';
 
   document.getElementById("nRe").textContent = re.length;
