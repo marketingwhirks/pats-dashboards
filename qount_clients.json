@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-08-04T16:02:39.135562+00:00",
-  "count": 315,
+  "last_updated": "2026-08-05T16:03:08.574869+00:00",
+  "count": 311,
   "clients": [
     {
       "sn": "117001",
@@ -91,6 +91,10 @@
       "name": "AEROQUEST, LLC"
     },
     {
+      "sn": "AGA8279",
+      "name": "AGAPE FAMILY HOSPICE INC"
+    },
+    {
       "sn": "AHH017",
       "name": "AGAVE HOME HEALTH, LLC"
     },
@@ -101,6 +105,10 @@
     {
       "sn": "AMA001",
       "name": "AMANDA EAVES PSYCHIATRIC MENTAL HEALTH NURSE PRACTITIONER, LLC"
+    },
+    {
+      "sn": "AME6544",
+      "name": "AMEDICUS HOSPICE INC"
     },
     {
       "sn": "1440",
@@ -271,6 +279,10 @@
       "name": "Barbian Management LLC"
     },
     {
+      "sn": "CAL9912",
+      "name": "CALDWELL HOME SERVICES LLC"
+    },
+    {
       "sn": "ECI003",
       "name": "CARE HOSPICE LLC"
     },
@@ -343,6 +355,10 @@
       "name": "COZY CORNER RESTAURANTS INC."
     },
     {
+      "sn": "LHH008",
+      "name": "CROWN HOME HEALTH SERVICES, LLC"
+    },
+    {
       "sn": "CTI3416",
       "name": "CTI PROFESSIONAL FLIGHT TRAINING, LLC"
     },
@@ -407,10 +423,6 @@
       "name": "Dark Horse Education & Entertainment, LLC"
     },
     {
-      "sn": "ECC0342",
-      "name": "ECCO ON OVERTON PARK, LLC"
-    },
-    {
       "sn": "ECO4244",
       "name": "ECO ERA LLC"
     },
@@ -461,10 +473,6 @@
     {
       "sn": "FAR008",
       "name": "FARWINDS PARTNERSHIP"
-    },
-    {
-      "sn": "FIR5934",
-      "name": "FIREWHEEL CAKES LLC"
     },
     {
       "sn": "FIR0656",
@@ -723,6 +731,10 @@
       "name": "KH525 LLC"
     },
     {
+      "sn": "RAH001",
+      "name": "KINETICARE REHAB SERVICES, P.C."
+    },
+    {
       "sn": "KOL8642",
       "name": "KOLB DEVELOPMENTS, LLC"
     },
@@ -835,6 +847,10 @@
       "name": "MEDIPLAN PROPERTIES LLC"
     },
     {
+      "sn": "MEM015",
+      "name": "MEMPHIS MUSIC ARCHIVES, INC"
+    },
+    {
       "sn": "MEM1682",
       "name": "MEMPHIS PSYCHIATRY PLLC"
     },
@@ -847,8 +863,8 @@
       "name": "MEMPHIS TURNKEY PROPERTIES GP"
     },
     {
-      "sn": "MH002",
-      "name": "MERIT HOSPICE, LLC"
+      "sn": "MID1368",
+      "name": "MIDSOUTH FACILITY SERVICES, LLC"
     },
     {
       "sn": "MID1689",
@@ -967,10 +983,6 @@
       "name": "R N ENTERPRISE INC"
     },
     {
-      "sn": "RAM1111",
-      "name": "RAMBLIN' JOE'S"
-    },
-    {
       "sn": "REL8723",
       "name": "RELEASE COATINGS LLC"
     },
@@ -979,20 +991,12 @@
       "name": "RELIANT PROPERTY SERVICES, LP"
     },
     {
-      "sn": "7684",
-      "name": "RESILIENT ASSET MANAGEMENT, LLC"
-    },
-    {
       "sn": "RGG7611",
       "name": "RGGC Flooring LLC"
     },
     {
       "sn": "RIC004",
       "name": "RICH-WAY LANDSCAPE, INC."
-    },
-    {
-      "sn": "RMR001",
-      "name": "RMR COMM PROPERTIES, LLC"
     },
     {
       "sn": "ROB012",
@@ -1051,16 +1055,8 @@
       "name": "SOL 2 SOUL YOGA, LLC"
     },
     {
-      "sn": "SOU6458",
-      "name": "SOUTHERN PEDIATRICS, LLC"
-    },
-    {
       "sn": "SPA1352",
       "name": "SPANOW, LLC"
-    },
-    {
-      "sn": "STA1111",
-      "name": "STAGE LEFT"
     },
     {
       "sn": "STA009",
@@ -1127,10 +1123,6 @@
       "name": "THE DANIEL LAW FIRM"
     },
     {
-      "sn": "PUZ2860",
-      "name": "THE ESCAPE ROOM ALABAMA, LLC"
-    },
-    {
       "sn": "ESC9938",
       "name": "THE ESCAPE ROOM TENNESSEE LLC"
     },
@@ -1149,10 +1141,6 @@
     {
       "sn": "TKP0969",
       "name": "TKP MANAGEMENT LLC"
-    },
-    {
-      "sn": "TON6012",
-      "name": "TONICA LLC"
     },
     {
       "sn": "TRI003",
@@ -1221,10 +1209,6 @@
     {
       "sn": "VIL2554",
       "name": "VILONIA METAL WORKS, INC"
-    },
-    {
-      "sn": "VRS001",
-      "name": "VRSSSE PROPERTIES, LLC"
     },
     {
       "sn": "WES003",
