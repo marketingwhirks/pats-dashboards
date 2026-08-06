@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-08-05T16:03:08.574869+00:00",
-  "count": 311,
+  "last_updated": "2026-08-06T16:02:31.935253+00:00",
+  "count": 314,
   "clients": [
     {
       "sn": "117001",
@@ -37,6 +37,10 @@
     {
       "sn": "69P9951",
       "name": "69 PONTOTOC, LLC"
+    },
+    {
+      "sn": "833001",
+      "name": "8336 MACON ROAD, LLC"
     },
     {
       "sn": "9013233",
@@ -139,10 +143,6 @@
       "name": "AT LAST, INC."
     },
     {
-      "sn": "AUM001",
-      "name": "AUM Enterprises, Inc"
-    },
-    {
       "sn": "ACL001",
       "name": "AURUM CARE, LLC"
     },
@@ -171,16 +171,16 @@
       "name": "BASSJENKINS LLC"
     },
     {
-      "sn": "BAY001",
-      "name": "BAYOU CAKES, LLC"
-    },
-    {
       "sn": "BEH001",
       "name": "BE HEALTHY AT HOME LLC"
     },
     {
       "sn": "BEA003",
       "name": "BEARMAN GOLDEN GARDENS, INC."
+    },
+    {
+      "sn": "2040",
+      "name": "BEENE AND BEENE PROPERTIES, LLC"
     },
     {
       "sn": "PIM3014",
@@ -217,10 +217,6 @@
     {
       "sn": "BHS0289",
       "name": "BHS HOLDINGS LLC"
-    },
-    {
-      "sn": "BLU005",
-      "name": "BLUEBONNET CAKES, LLC"
     },
     {
       "sn": "BLU004",
@@ -551,6 +547,10 @@
       "name": "GREGORY T. WILKINSON DDS PC"
     },
     {
+      "sn": "GRI8258",
+      "name": "GRIND CITY BREWING COMPANY, LLC"
+    },
+    {
       "sn": "GRU1101",
       "name": "GRUDZIENA INC"
     },
@@ -771,10 +771,6 @@
       "name": "LETTUCE EAT MIDTOWN, LLC"
     },
     {
-      "sn": "LET001",
-      "name": "LETTUCE EAT, LLC"
-    },
-    {
       "sn": "LIV003",
       "name": "LIVE HAUL PRODUCTS, INC."
     },
@@ -789,10 +785,6 @@
     {
       "sn": "LOF001",
       "name": "LOFLIN YARD, LLC"
-    },
-    {
-      "sn": "LON001",
-      "name": "LONE STAR CAKES, LLC"
     },
     {
       "sn": "LOV002",
@@ -819,6 +811,10 @@
       "name": "LWL - HELLO, LLC"
     },
     {
+      "sn": "LET001",
+      "name": "Lettuce Eat, LLC"
+    },
+    {
       "sn": "MWE001",
       "name": "M.W.ESCUE COMPANY, INC."
     },
@@ -829,6 +825,10 @@
     {
       "sn": "6287",
       "name": "MAUMELLE GYMNASTICS"
+    },
+    {
+      "sn": "MAX3547",
+      "name": "MAXIMACARE, LLC"
     },
     {
       "sn": "MCE001",
@@ -903,6 +903,10 @@
       "name": "MVAG INC."
     },
     {
+      "sn": "MUS6149",
+      "name": "Music Box Inc."
+    },
+    {
       "sn": "NOR004",
       "name": "NAHL II LLC"
     },
@@ -947,6 +951,10 @@
       "name": "PEDIATRIC PARTNERS OF NASHVILLE PLLC"
     },
     {
+      "sn": "PEI003",
+      "name": "PEIFER PROPERTIES, LLC"
+    },
+    {
       "sn": "PIN7883",
       "name": "PINK FLAMINGO LLC"
     },
@@ -965,6 +973,10 @@
     {
       "sn": "PHC002",
       "name": "PRESIDENTE HOME CARE, INC"
+    },
+    {
+      "sn": "PRT001",
+      "name": "PRT, LLC"
     },
     {
       "sn": "PUZ1455",
