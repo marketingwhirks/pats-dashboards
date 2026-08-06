@@ -596,7 +596,7 @@
     </footer>
 </div>
 
-<script src="dashboard_v2_jsdata.js?v=1786055047"></script>
+<script src="dashboard_v2_jsdata.js?v=1786055173"></script>
 <script>
 
 // ─── State ───
@@ -843,8 +843,8 @@ function renderOverviewCharts(d) {
 
     // Source breakdown donut chart
     const bs = d.by_source || {};
-    const sourceLabels = { pa_rule: 'PA Rules', integration: 'Integrations', bank_feed: 'Bank Feed', manual: 'Manual Entry', system: 'System/Recurring', unknown: 'Unknown' };
-    const sourceColors = { pa_rule: 'rgba(74,144,226,0.8)', integration: 'rgba(81,207,102,0.8)', bank_feed: 'rgba(252,196,25,0.8)', manual: 'rgba(255,107,107,0.7)', system: 'rgba(177,151,252,0.8)', unknown: 'rgba(120,120,120,0.5)' };
+    const sourceLabels = { pa_rule: 'PA Rules', integration: 'Integrations', bank_feed: 'Bank Feed', manual: 'Manual Entry', system: 'System/Recurring', matched_transfer: 'Matched Transfers (not scored)', unknown: 'Unknown' };
+    const sourceColors = { pa_rule: 'rgba(74,144,226,0.8)', integration: 'rgba(81,207,102,0.8)', bank_feed: 'rgba(252,196,25,0.8)', manual: 'rgba(255,107,107,0.7)', system: 'rgba(177,151,252,0.8)', matched_transfer: 'rgba(150,150,150,0.55)', unknown: 'rgba(120,120,120,0.5)' };
     const srcKeys = Object.keys(bs).filter(k => bs[k].total > 0).sort((a,b) => bs[b].total - bs[a].total);
     const srcEl = document.getElementById('sourceChart');
     if (srcEl && srcKeys.length > 0) {
@@ -868,7 +868,7 @@ function renderOverviewCharts(d) {
     const trendEl = document.getElementById('sourceTrendChart');
     if (trendEl) {
         const allMonths = Object.keys(SCORECARD_DATA).sort();
-        const allSrcKeys = ['pa_rule', 'integration', 'bank_feed', 'manual', 'system'];
+        const allSrcKeys = ['pa_rule', 'integration', 'bank_feed', 'manual', 'system', 'matched_transfer'];
         const trendData = {};
         allSrcKeys.forEach(k => { trendData[k] = []; });
         allMonths.forEach(m => {
@@ -1383,8 +1383,8 @@ function renderOpportunities(d) {
         ).join('');
 
         // Source breakdown mini-bar
-        const sourceLabels = { pa_rule: 'PA Rules', integration: 'Integrations', bank_feed: 'Bank Feed', manual: 'Manual', system: 'System', unknown: 'Unknown' };
-        const sourceColors = { pa_rule: '#4a90e2', integration: '#51cf66', bank_feed: '#fcc419', manual: '#ff6b6b', system: '#b197fc', unknown: '#888' };
+        const sourceLabels = { pa_rule: 'PA Rules', integration: 'Integrations', bank_feed: 'Bank Feed', manual: 'Manual', system: 'System', matched_transfer: 'Matched Transfers (not scored)', unknown: 'Unknown' };
+        const sourceColors = { pa_rule: '#4a90e2', integration: '#51cf66', bank_feed: '#fcc419', manual: '#ff6b6b', system: '#b197fc', matched_transfer: '#9aa0a6', unknown: '#888' };
         let sourceBarHtml = '';
         if (Object.keys(sources).length > 0) {
             const srcParts = Object.keys(sources).filter(k => sources[k] > 0).sort((a,b) => sources[b] - sources[a]);
