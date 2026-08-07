@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-08-06T16:02:31.935253+00:00",
-  "count": 314,
+  "last_updated": "2026-08-07T16:04:46.048499+00:00",
+  "count": 313,
   "clients": [
     {
       "sn": "117001",
@@ -809,10 +809,6 @@
     {
       "sn": "LWL7532",
       "name": "LWL - HELLO, LLC"
-    },
-    {
-      "sn": "LET001",
-      "name": "Lettuce Eat, LLC"
     },
     {
       "sn": "MWE001",
