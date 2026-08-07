@@ -1,1 +1,1 @@
-var NEEDS_AUTH_DATA = {"generated":"2026-08-07T19:31:40.580460+00:00","token_run_date":"2026-08-07","live_count":282,"total":310,"reconnect":[],"authorize":[]};
+var NEEDS_AUTH_DATA = {"generated":"2026-08-07T19:45:55.016016+00:00","token_run_date":"2026-08-07","live_count":281,"total":310,"reconnect":[],"authorize":[{"name":"APPLEWHITE HEALTH CARE GROUP, INC","sn":"APP4953","qbo_file":"APPLEWHITE HEALTH CARE GROUP, INC","realm_id":"","added_by":"auto (sync_pending_auth)"}]};
