@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-08-08T12:04:21Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-08-09T12:04:39Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -25674,7 +25674,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Deliver",
+        "status": "Review #2",
         "kickback": true,
         "staffCommitDate": "",
         "completeDate": "2026-06-27"
@@ -25765,7 +25765,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Review #2",
+        "status": "Deliver",
         "kickback": true,
         "staffCommitDate": "",
         "completeDate": "2026-06-27"
@@ -25841,10 +25841,10 @@ var ACTIVITY_DATA = {
     "summary": {
       "totalClients": 16,
       "totalDollars": 22882.0,
-      "doneClients": 10,
-      "doneDollars": 11692.0,
-      "inReviewClients": 4,
-      "inReviewDollars": 4355.0,
+      "doneClients": 9,
+      "doneDollars": 10467.0,
+      "inReviewClients": 5,
+      "inReviewDollars": 5580.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 1,
@@ -25881,8 +25881,8 @@ var ACTIVITY_DATA = {
       }
     },
     "statusCounts": {
-      "Done": 10,
-      "Deliver": 1,
+      "Done": 9,
+      "Deliver": 2,
       "Prep": 2,
       "Review #2": 2,
       "Review": 1
@@ -25961,7 +25961,7 @@ var ACTIVITY_DATA = {
         "manager": "CRP",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Done",
+        "status": "Deliver",
         "kickback": true,
         "staffCommitDate": "",
         "completeDate": "2026-08-01"
