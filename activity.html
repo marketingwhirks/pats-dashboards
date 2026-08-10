@@ -254,7 +254,7 @@
     </div>
 </div>
 
-<script src="activity_data.js?v=1786391024"></script>
+<script src="activity_data.js?v=1786390670"></script>
 <script>
 // OTD_TRENDS is loaded from activity_data.js. Do NOT inline it here: the data file
 // declares `var OTD_TRENDS`, so a `const` here redeclares the same global and throws
@@ -262,12 +262,33 @@
 // the page blank. Regressed and fixed 2026-08-07.
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const MONTH_SHORT = {"January": "Jan", "February": "Feb", "March": "Mar", "April": "Apr", "May": "May", "June": "Jun", "July": "Jul", "August": "Aug", "September": "Sep", "October": "Oct", "November": "Nov", "December": "Dec"};
+// === Month labeling (Kim, 2026-08-10) ===
+// ACTIVITY_DATA is keyed by BOOK month. Kim wants every label to read the month the
+// work is DONE in, so May books (worked in June) display as "June" and July books
+// display as "August". Data keys are untouched — display only. DO NOT REVERT.
+function displayMonth(m) {
+    const i = MONTHS.indexOf(m);
+    return i < 0 ? m : MONTHS[(i + 1) % 12];
+}
+function displayMonthShort(m) { return MONTH_SHORT[displayMonth(m)] || m; }
+function displayYear(m) {
+    const y = new Date().getFullYear();
+    return MONTHS.indexOf(m) === 11 ? y + 1 : y;
+}
+
 const STATUS_ORDER = ["Collect", "Prep", "Review", "Clear Notes", "Review #2", "Deliver", "Done"];
 const STATUS_COLORS = {"Collect": "#94a3b8", "Prep": "#3b82f6", "Review": "#f59e0b", "Clear Notes": "#f97316", "Review #2": "#a855f7", "Deliver": "#06b6d4", "Done": "#10b981"};
 
 // Auto-detect available months and default to latest
 const availableMonths = MONTHS.filter(m => ACTIVITY_DATA[m]);
-let currentMonth = availableMonths[availableMonths.length - 1] || "January";
+let currentMonth = (function() {
+    // Default to the newest month whose display label is not a future month,
+    // i.e. in August we land on July books labeled "August".
+    const nowIdx = new Date().getMonth() + 1; // 1-12
+    const ok = availableMonths.filter(m => (MONTHS.indexOf(m) + 2) <= nowIdx);
+    const pick = ok.length ? ok[ok.length - 1] : availableMonths[availableMonths.length - 1];
+    return pick || "January";
+})();
 
 // Populate month dropdown dynamically
 (function() {
@@ -277,7 +298,7 @@ let currentMonth = availableMonths[availableMonths.length - 1] || "January";
         availableMonths.slice().reverse().forEach(m => {
             const opt = document.createElement("option");
             opt.value = m;
-            opt.textContent = m + " " + year;
+            opt.textContent = displayMonth(m) + " " + displayYear(m);
             if (m === currentMonth) opt.selected = true;
             sel.appendChild(opt);
         });
@@ -324,7 +345,7 @@ function renderSummary(d) {
         <div class="card card-clickable" onclick="openDrawerInProgress()">
             <div class="card-header"><span class="card-label">In Progress</span><span style="color:var(--text-muted)">⚡</span></div>
             <div class="card-value">${inProgress}</div>
-            <div class="card-sub">${currentMonth} ${new Date().getFullYear()}</div>
+            <div class="card-sub">${displayMonth(currentMonth)} ${displayYear(currentMonth)}</div>
         </div>
     `;
 }
@@ -434,7 +455,7 @@ function renderOtdTrends() {
                 if (!t) return '';
                 pct40 = t.pct40; pct75 = t.pct75; pct95 = t.pct95;
             }
-            return `<span class="trend-month">${MONTH_SHORT[m]}</span>
+            return `<span class="trend-month">${displayMonthShort(m)}</span>
                 <span class="trend-val" style="color:${pctColor(pct40, 0.4)}">${fmtPct(pct40)}</span>
                 <span class="trend-val" style="color:${pctColor(pct75, 0.75)}">${fmtPct(pct75)}</span>
                 <span class="trend-val" style="color:${pctColor(pct95, 0.95)}">${fmtPct(pct95)}</span>`;
