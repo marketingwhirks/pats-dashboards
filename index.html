@@ -597,7 +597,7 @@
     </footer>
 </div>
 
-<script src="dashboard_v2_jsdata.js?v=1786397695"></script>
+<script src="dashboard_v2_jsdata.js?v=1786398079"></script>
 <script>
 
 // ─── State ───
@@ -693,6 +693,12 @@ function renderKPIs(d) {
             <div class="kpi-label">PA-Only Rate <span style="opacity:.6;font-weight:400">(our work)</span></div>
             <div class="kpi-value" style="color:${rateColor(s.pa_only_rate)}">${s.pa_only_rate.toFixed(1)}%</div>
             <div class="kpi-sub">${formatNum(s.client_manual)} client-entered rows excluded</div>
+        </div>` : ''}
+        ${s.pa_books_rate != null ? `
+        <div class="kpi-card" style="border-color:var(--green)">
+            <div class="kpi-label">PA-Run Books <span style="opacity:.6;font-weight:400">(excl. client-run)</span></div>
+            <div class="kpi-value" style="color:${rateColor(s.pa_books_rate)}">${s.pa_books_rate.toFixed(1)}%</div>
+            <div class="kpi-sub">${formatNum(s.client_run_books)} client-run books set aside (${formatNum(s.client_run_txns)} txns)</div>
         </div>` : ''}
         <div class="kpi-card">
             <div class="kpi-label">Total Transactions</div>
@@ -1117,6 +1123,13 @@ function renderClients(d) {
         const [name, auto, manual, total, rate, autoTypes, manualTypes] = c;
         const clientManual = c[16] || 0;
         const paRate = c[17] != null ? c[17] : null;
+        // Client-run book tag (Kim 8/10/26). The client keys nearly all of this book;
+        // PA reconciles and reviews behind them, so the all-in rate is not our scorecard.
+        const clientRun = c[18] === 1;
+        const clientKeyedPct = c[19] != null ? c[19] : null;
+        const clientRunBadge = clientRun
+            ? `<span title="Client-run book: the client keys ${clientKeyedPct}% of transactions. PA reconciles and reviews. Judge this book on the PA-only rate." style="margin-left:6px;font-size:9px;font-weight:600;padding:1px 5px;border-radius:3px;background:rgba(120,120,180,.18);color:var(--text-secondary);border:1px solid rgba(120,120,180,.35);white-space:nowrap">CLIENT-RUN</span>`
+            : '';
         const color = rateColor(rate);
         const topManual = manualTypes ? Object.keys(manualTypes).sort((a,b) => manualTypes[b] - manualTypes[a]).slice(0,3) : [];
         const manualTags = topManual.map(t => `<span class="opp-tag">${t} (${manualTypes[t]})</span>`).join('');
@@ -1128,7 +1141,7 @@ function renderClients(d) {
         const mgr = c[13] || '';
 
         html += `<tr onclick="toggleExpand(${start+idx})" style="cursor:pointer" id="row-${start+idx}">
-            <td style="font-weight:500">${name}</td>
+            <td style="font-weight:500">${name}${clientRunBadge}</td>
             <td><span style="font-size:11px;color:var(--text-secondary)">${team}</span></td>
             <td class="ind-cell"><span style="font-size:11px;color:var(--text-secondary);cursor:pointer" onclick="event.stopPropagation();editIndustry('${name.replace(/'/g,"\\'")}','${(industry||'').replace(/'/g,"\\'")}',this.parentElement)">${industry ? industry + ' &#x270E;' : '<span style="opacity:0.3">-- &#x270E;</span>'}</span></td>
             <td><span style="font-size:11px;color:var(--text-secondary)">${family || '<span style="opacity:0.3">--</span>'}</span></td>
@@ -1460,10 +1473,10 @@ function renderOpportunities(d) {
 function exportCSV() {
     const d = SCORECARD_DATA[currentMonth];
     if (!d) return;
-    let csv = 'Client,Team,Industry,Family,Prep,Senior,Manager,Total,Automated,Manual,Rate,PA_Only_Rate,Client_Entered,PA_Rules,Integration,Bank_Feed,Manual_Entry,System\n';
+    let csv = 'Client,Team,Industry,Family,Prep,Senior,Manager,Total,Automated,Manual,Rate,PA_Only_Rate,Client_Entered,Client_Run,Client_Keyed_Pct,PA_Rules,Integration,Bank_Feed,Manual_Entry,System\n';
     d.clients.forEach(c => {
         const src = c[8] || {};
-        csv += `"${c[0]}","${c[7] || ''}","${c[9] || ''}","${c[10] || ''}","${c[11] || ''}","${c[12] || ''}","${c[13] || ''}",${c[3]},${c[1]},${c[2]},${c[4]},${c[17] != null ? c[17] : ''},${c[16]||0},${src.pa_rule||0},${src.integration||0},${src.bank_feed||0},${src.manual||0},${src.system||0}\n`;
+        csv += `"${c[0]}","${c[7] || ''}","${c[9] || ''}","${c[10] || ''}","${c[11] || ''}","${c[12] || ''}","${c[13] || ''}",${c[3]},${c[1]},${c[2]},${c[4]},${c[17] != null ? c[17] : ''},${c[16]||0},${c[18]===1?'Y':''},${c[19]!=null?c[19]:''},${src.pa_rule||0},${src.integration||0},${src.bank_feed||0},${src.manual||0},${src.system||0}\n`;
     });
     const blob = new Blob([csv], { type: 'text/csv' });
     const a = document.createElement('a');
