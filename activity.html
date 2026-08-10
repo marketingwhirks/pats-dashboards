@@ -280,13 +280,15 @@ const STATUS_ORDER = ["Collect", "Prep", "Review", "Clear Notes", "Review #2", "
 const STATUS_COLORS = {"Collect": "#94a3b8", "Prep": "#3b82f6", "Review": "#f59e0b", "Clear Notes": "#f97316", "Review #2": "#a855f7", "Deliver": "#06b6d4", "Done": "#10b981"};
 
 // Auto-detect available months and default to latest
-const availableMonths = MONTHS.filter(m => ACTIVITY_DATA[m]);
+// Only surface book months whose DISPLAY label (book month + 1) has actually arrived.
+// Otherwise a barely-started book month (e.g. August books opened in August) renders as
+// a future tab ("September"). Kim flagged this 2026-08-10. DO NOT REVERT.
+const _nowMonthIdx = new Date().getMonth() + 1; // 1-12
+const availableMonths = MONTHS.filter(m => ACTIVITY_DATA[m] && (MONTHS.indexOf(m) + 2) <= _nowMonthIdx);
 let currentMonth = (function() {
     // Default to the newest month whose display label is not a future month,
     // i.e. in August we land on July books labeled "August".
-    const nowIdx = new Date().getMonth() + 1; // 1-12
-    const ok = availableMonths.filter(m => (MONTHS.indexOf(m) + 2) <= nowIdx);
-    const pick = ok.length ? ok[ok.length - 1] : availableMonths[availableMonths.length - 1];
+    const pick = availableMonths[availableMonths.length - 1];
     return pick || "January";
 })();
 
