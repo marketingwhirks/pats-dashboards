@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-08-10T19:43:35Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-08-10T19:54:32Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -22014,19 +22014,19 @@ var ACTIVITY_DATA = {
         "kickbackPct": 0.0
       },
       "otdAlpha": {
-        "pct40": 0.1366,
-        "pct75": 0.1366,
-        "pct95": 0.1366
+        "pct40": 0.1426,
+        "pct75": 0.1426,
+        "pct95": 0.1426
       },
       "otdPapa": {
-        "pct40": 0.2615,
-        "pct75": 0.2615,
-        "pct95": 0.2615
+        "pct40": 0.2628,
+        "pct75": 0.2628,
+        "pct95": 0.2628
       },
       "otdTango": {
-        "pct40": 0.0326,
-        "pct75": 0.0326,
-        "pct95": 0.0326
+        "pct40": 0.0343,
+        "pct75": 0.0343,
+        "pct95": 0.0343
       }
     },
     "statusCounts": {
@@ -26198,19 +26198,19 @@ var OTD_TRENDS = [
   {
     "month": "July",
     "alpha": {
-      "pct40": 0.1366,
-      "pct75": 0.1366,
-      "pct95": 0.1366
+      "pct40": 0.1426,
+      "pct75": 0.1426,
+      "pct95": 0.1426
     },
     "papa": {
-      "pct40": 0.2615,
-      "pct75": 0.2615,
-      "pct95": 0.2615
+      "pct40": 0.2628,
+      "pct75": 0.2628,
+      "pct95": 0.2628
     },
     "tango": {
-      "pct40": 0.0326,
-      "pct75": 0.0326,
-      "pct95": 0.0326
+      "pct40": 0.0343,
+      "pct75": 0.0343,
+      "pct95": 0.0343
     }
   },
   {
