@@ -165,9 +165,12 @@
 </head>
 <body>
 <!-- DO NOT REVERT: this page carries the dynamic month dropdown,
-     the Refresh Now button (Convex /__activity_refresh) and the
-     ACTIVITY_META last-refresh badge. Wiped once on 2026-08-07 by
-     commit 0d8cad8c; restored 2026-08-10. Keep these when editing. -->
+     the "Updates 7am & 3pm CT" note and the ACTIVITY_META last-refresh badge.
+     Wiped once on 2026-08-07 by commit 0d8cad8c; restored 2026-08-10.
+     2026-08-11: the Refresh Now button was REMOVED on Matt's instruction - the
+     10-min poller behind it cost ~$1,300/mo. Data now refreshes on a 7am+3pm CT
+     cron. Do NOT re-add a click-to-refresh button: this repo is PUBLIC, so the
+     webhook token it would need would be world-readable. Keep these when editing. -->
 
 <nav style="display:flex;align-items:center;gap:8px;padding:12px 20px;background:rgba(26,31,46,0.95);border-bottom:1px solid rgba(74,144,226,0.2);"><a href="/" style="margin-right:16px;display:flex;align-items:center;text-decoration:none;"><img data-logo src="/assets/logo.png" alt="Patrick Accounting" style="height:28px;"></a><a href="index.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Automation Scorecard</a><a href="activity.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#fff;background:rgba(74,144,226,0.15);border:1px solid rgba(74,144,226,0.3);">Monthly Activity</a><a href="connections.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">QBO Connections</a><a href="connections-pairs.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;">Pairings</a><a href="fee-analysis.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Fee Analysis</a><a href="admin.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Admin</a><a href="equipment.html" style="padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;text-decoration:none;color:#a0a0a0;background:transparent;border:1px solid transparent;transition:all 0.2s;">Equipment</a></nav>
 <div class="container">
@@ -179,13 +182,13 @@
         </div>
         <div class="header-right">
             <select id="monthSelect" onchange="switchMonth(this.value)"></select>
-            <button id="refreshBtn" onclick="requestRefresh()" style="
-                background: rgba(74,144,226,0.15); color: var(--accent); border: 1px solid rgba(74,144,226,0.3);
-                border-radius: 8px; padding: 7px 14px; font-size: 13px; cursor: pointer; font-weight: 600;
-                display: flex; align-items: center; gap: 6px; transition: all 0.2s;
-            " onmouseover="this.style.background='rgba(74,144,226,0.25)'" onmouseout="this.style.background='rgba(74,144,226,0.15)'">
-                🔄 Refresh Now
-            </button>
+            <div id="refreshNote" style="
+                background: rgba(255,255,255,0.04); color: #a0a0a0; border: 1px solid rgba(255,255,255,0.08);
+                border-radius: 8px; padding: 7px 14px; font-size: 13px; font-weight: 500;
+                display: flex; align-items: center; gap: 6px;
+            " title="Updates automatically twice a day. Ask Viktor in Slack for an off-schedule refresh.">
+                🔄 Updates 7am &amp; 3pm CT
+            </div>
             <div class="sync-badge" id="syncBadge">🕐 Loading...</div>
         </div>
     </div>
@@ -254,7 +257,7 @@
     </div>
 </div>
 
-<script src="activity_data.js?v=1786450280"></script>
+<script src="activity_data.js?v=1786476837"></script>
 <script>
 // OTD_TRENDS is loaded from activity_data.js. Do NOT inline it here: the data file
 // declares `var OTD_TRENDS`, so a `const` here redeclares the same global and throws
