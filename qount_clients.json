@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-08-11T16:03:51.059810+00:00",
-  "count": 313,
+  "last_updated": "2026-08-12T16:02:14.632860+00:00",
+  "count": 312,
   "clients": [
     {
       "sn": "117001",
@@ -85,10 +85,6 @@
     {
       "sn": "ADV001",
       "name": "ADVANCED POOLS, INC"
-    },
-    {
-      "sn": "ADV4819",
-      "name": "ADVANCED RESCUE SOLUTIONS"
     },
     {
       "sn": "AER001",
@@ -827,10 +823,6 @@
       "name": "MAXIMACARE, LLC"
     },
     {
-      "sn": "MCE001",
-      "name": "MCEVOY, JEFFREY & EMILY"
-    },
-    {
       "sn": "ME30755",
       "name": "ME3 CAPITAL, LLC"
     },
@@ -1229,6 +1221,10 @@
     {
       "sn": "BHH004TAX",
       "name": "WICHITA HHS - HHA"
+    },
+    {
+      "sn": "BHH005",
+      "name": "WICHITA HHS - PAS"
     },
     {
       "sn": "WOL003",
