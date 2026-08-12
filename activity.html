@@ -241,7 +241,7 @@
                         <option value="">All Statuses</option>
                         <option value="Collect">Collect</option><option value="Prep">Prep</option><option value="Review">Review</option><option value="Clear Notes">Clear Notes</option><option value="Review #2">Review #2</option><option value="Deliver">Deliver</option><option value="Done">Done</option>
                     </select>
-                    <input id="clientSearch" oninput="renderClients()" placeholder="Search company..." style="background:var(--bg-card);color:#fff;border:1px solid var(--border);border-radius:6px;padding:5px 10px;font-size:12px;width:180px">
+                    <input id="clientSearch" oninput="renderClients()" placeholder="Search company, prep, senior, mgr..." style="background:var(--bg-card);color:#fff;border:1px solid var(--border);border-radius:6px;padding:5px 10px;font-size:12px;width:180px">
                 </div>
             </div>
             <div id="clientTable" style="overflow-x:auto"></div>
@@ -531,7 +531,7 @@ function renderClients() {
     
     if (teamFilter) clients = clients.filter(c => c.team === teamFilter);
     if (statusFilter) clients = clients.filter(c => c.status === statusFilter);
-    if (search) clients = clients.filter(c => c.company.toLowerCase().includes(search));
+    if (search) clients = clients.filter(c => [c.company,c.prep,c.seniorAcct,c.manager].some(v => (v||'').toLowerCase().includes(search)));
     
     clients.sort((a,b) => a.company.localeCompare(b.company));
     
@@ -556,70 +556,65 @@ function renderClients() {
     ${clients.length > 200 ? `<p style="color:var(--text-muted);font-size:12px;margin-top:8px">Showing 200 of ${clients.length}</p>` : ''}`;
 }
 
+let DRAWER_ROWS = [], DRAWER_TITLE = '';
+function drawerFiltered() {
+    const el = document.getElementById('drawerSearch');
+    const s = el ? el.value.toLowerCase() : '';
+    if (!s) return DRAWER_ROWS;
+    return DRAWER_ROWS.filter(c => [c.company,c.prep,c.seniorAcct,c.manager,c.team,c.status].some(v => (v||'').toLowerCase().includes(s)));
+}
+function renderDrawerTable() {
+    const rows = drawerFiltered();
+    document.getElementById('drawerTableWrap').innerHTML = `<table>
+        <thead><tr><th>Company</th><th>Team</th><th>Status</th><th>Prep</th><th>Sr Acct</th><th>Manager</th><th>$</th><th>KB</th></tr></thead>
+        <tbody>${rows.map(c => `<tr>
+            <td style="font-weight:500">${c.company}</td>
+            <td style="color:${c.team==='ALPHA'?'#3b82f6':c.team==='PAPA'?'#a855f7':'#f59e0b'};font-size:11px">${c.team}</td>
+            <td style="color:${STATUS_COLORS[c.status]||'var(--text-muted)'};font-size:12px">${c.status || '\u2014'}</td>
+            <td style="font-size:12px">${c.prep || '\u2014'}</td>
+            <td style="font-size:12px">${c.seniorAcct || '\u2014'}</td>
+            <td style="font-size:12px">${c.manager || '\u2014'}</td>
+            <td class="font-mono" style="font-size:12px">${c.dollars > 0 ? fmtDollars(c.dollars) : '\u2014'}</td>
+            <td>${c.kickback ? '<span class="kickback">KB</span>' : ''}</td>
+        </tr>`).join('')}</tbody></table>
+        <p style="color:var(--text-muted);font-size:12px;margin-top:8px">${rows.length} of ${DRAWER_ROWS.length} shown${rows.length!==DRAWER_ROWS.length?'':''} &middot; $${rows.reduce((a,c)=>a+(c.dollars||0),0).toLocaleString()}</p>`;
+}
+function showDrawer(title, rows) {
+    DRAWER_ROWS = rows; DRAWER_TITLE = title;
+    document.getElementById('drawerBody').innerHTML = `
+        <h2 style="font-size:18px;font-weight:700;margin-bottom:12px">${title} (${rows.length})</h2>
+        <input id="drawerSearch" oninput="renderDrawerTable()" placeholder="Filter by company, prep, senior, manager..."
+            style="background:var(--bg-card);color:#fff;border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:12px;width:320px;margin-bottom:12px">
+        <div id="drawerTableWrap"></div>`;
+    renderDrawerTable();
+    document.getElementById('drawerOverlay').classList.add('open');
+}
+
 function openDrawer(statusFilter) {
     const d = ACTIVITY_DATA[currentMonth];
     if (!d || !d.clients) return;
-    
     let clients = d.clients;
     let title = 'All Clients';
     if (statusFilter) {
         clients = clients.filter(c => c.status === statusFilter);
         title = statusFilter + ' Clients';
     }
-    clients.sort((a,b) => a.company.localeCompare(b.company));
-    
-    document.getElementById('drawerBody').innerHTML = `
-        <h2 style="font-size:18px;font-weight:700;margin-bottom:16px">${title} (${clients.length})</h2>
-        <table>
-            <thead><tr><th>Company</th><th>Team</th><th>Prep</th><th>Status</th><th>$</th></tr></thead>
-            <tbody>${clients.map(c => `<tr>
-                <td style="font-weight:500">${c.company}</td>
-                <td style="color:${c.team==='ALPHA'?'#3b82f6':c.team==='PAPA'?'#a855f7':'#f59e0b'};font-size:11px">${c.team}</td>
-                <td style="font-size:12px">${c.prep || '—'}</td>
-                <td style="color:${STATUS_COLORS[c.status]||'var(--text-muted)'};font-size:12px">${c.status}</td>
-                <td class="font-mono" style="font-size:12px">${c.dollars > 0 ? fmtDollars(c.dollars) : '—'}</td>
-            </tr>`).join('')}</tbody>
-        </table>`;
-    document.getElementById('drawerOverlay').classList.add('open');
+    clients = clients.slice().sort((a,b) => a.company.localeCompare(b.company));
+    showDrawer(title, clients);
 }
 
 function openDrawerInProgress() {
     const d = ACTIVITY_DATA[currentMonth];
     if (!d || !d.clients) return;
-    const clients = d.clients.filter(c => c.status !== 'Done').sort((a,b) => a.company.localeCompare(b.company));
-    document.getElementById('drawerBody').innerHTML = `
-        <h2 style="font-size:18px;font-weight:700;margin-bottom:16px">In Progress (${clients.length})</h2>
-        <table>
-            <thead><tr><th>Company</th><th>Team</th><th>Prep</th><th>Status</th><th>$</th></tr></thead>
-            <tbody>${clients.map(c => `<tr>
-                <td style="font-weight:500">${c.company}</td>
-                <td style="color:${c.team==='ALPHA'?'#3b82f6':c.team==='PAPA'?'#a855f7':'#f59e0b'};font-size:11px">${c.team}</td>
-                <td style="font-size:12px">${c.prep || '\u2014'}</td>
-                <td style="color:${STATUS_COLORS[c.status]||'var(--text-muted)'};font-size:12px">${c.status}</td>
-                <td class="font-mono" style="font-size:12px">${c.dollars > 0 ? fmtDollars(c.dollars) : '\u2014'}</td>
-            </tr>`).join('')}</tbody>
-        </table>`;
-    document.getElementById('drawerOverlay').classList.add('open');
+    const clients = d.clients.filter(c => c.status !== 'Done').slice().sort((a,b) => a.company.localeCompare(b.company));
+    showDrawer('In Progress', clients);
 }
 
 function openDrawerTeam(teamName) {
     const d = ACTIVITY_DATA[currentMonth];
     if (!d || !d.clients) return;
-    const clients = d.clients.filter(c => c.team === teamName).sort((a,b) => a.company.localeCompare(b.company));
-    document.getElementById('drawerBody').innerHTML = `
-        <h2 style="font-size:18px;font-weight:700;margin-bottom:16px">${teamName} Team (${clients.length})</h2>
-        <table>
-            <thead><tr><th>Company</th><th>Status</th><th>Prep</th><th>Manager</th><th>$</th><th>KB</th></tr></thead>
-            <tbody>${clients.map(c => `<tr>
-                <td style="font-weight:500">${c.company}</td>
-                <td style="color:${STATUS_COLORS[c.status]||'var(--text-muted)'};font-size:12px">${c.status}</td>
-                <td style="font-size:12px">${c.prep || '\u2014'}</td>
-                <td style="font-size:12px">${c.manager || '\u2014'}</td>
-                <td class="font-mono" style="font-size:12px">${c.dollars > 0 ? fmtDollars(c.dollars) : '\u2014'}</td>
-                <td>${c.kickback ? '<span class="kickback">KB</span>' : ''}</td>
-            </tr>`).join('')}</tbody>
-        </table>`;
-    document.getElementById('drawerOverlay').classList.add('open');
+    const clients = d.clients.filter(c => c.team === teamName).slice().sort((a,b) => a.company.localeCompare(b.company));
+    showDrawer(teamName + ' Team', clients);
 }
 
 function closeDrawer(e) {
