@@ -1,1 +1,1 @@
-var NEEDS_AUTH_DATA = {"generated":"2026-08-12T14:04:48.712795+00:00","token_run_date":"2026-08-11","live_count":282,"total":311,"reconnect":[],"authorize":[{"name":"WICHITA HHS - PAS","sn":"BHH005","qbo_file":"WICHITA HHS - PAS","realm_id":"","added_by":"auto (sync_pending_auth)"}]};
+var NEEDS_AUTH_DATA = {"generated":"2026-08-12T17:05:58.520967+00:00","token_run_date":"2026-08-12","live_count":282,"total":309,"reconnect":[],"authorize":[]};
