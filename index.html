@@ -296,9 +296,10 @@
         <div class="header-top">
             <h1>&#x1f4ca; Automation Scorecard</h1>
             <div class="header-controls">
-                <select class="month-selector" id="monthSelect"></select>
+                <select class="month-selector" id="monthSelect" title="Book month: transactions dated in that month"></select>
                 <button class="export-btn" onclick="exportCSV()">&#x2B07; Export CSV</button></div>
         </div>
+        <div style="margin:6px 0 10px;font-size:12px;color:#8b93a7;">Months are <strong style="color:#a9b3c9;">book months</strong> &mdash; transactions <em>dated</em> in that month. (The Monthly Activity dashboard labels by the month the work was <em>done</em>, so July books = August activity.)</div>
         <div class="tab-bar">
             <div class="tab active" data-tab="overview" onclick="switchTab('overview')">Overview</div>
             <div class="tab" data-tab="types" onclick="switchTab('types')">By Transaction Type</div>
@@ -597,7 +598,7 @@
     </footer>
 </div>
 
-<script src="dashboard_v2_jsdata.js?v=1786573205"></script>
+<script src="dashboard_v2_jsdata.js?v=1786573482"></script>
 <script>
 
 // ─── State ───
@@ -615,7 +616,7 @@ function init() {
     months.forEach(m => {
         const opt = document.createElement('option');
         opt.value = m;
-        opt.textContent = formatMonth(m);
+        opt.textContent = formatMonth(m) + ' books';
         sel.appendChild(opt);
     });
     sel.addEventListener('change', e => { currentMonth = e.target.value; render(); });
