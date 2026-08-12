@@ -321,6 +321,7 @@ function fmtDollars(n) {
     if (n >= 1000) return '$' + (n/1000).toFixed(1) + 'k';
     return '$' + n.toLocaleString();
 }
+function fmtDollarsFull(n) { return '$' + Math.round(n).toLocaleString(); }
 function pctColor(pct, target) {
     target = target || 1;
     if (pct >= target) return '#10b981';
@@ -537,7 +538,7 @@ function renderClients() {
     
     document.getElementById('clientTable').innerHTML = `<table>
         <thead><tr>
-            <th>Company</th><th>Team</th><th>Status</th><th>Prep</th><th>Manager</th><th>Freq</th><th>Dollars</th><th>KB</th>
+            <th>Company</th><th>Team</th><th>Status</th><th>Prep</th><th>Senior</th><th>Manager</th><th>Freq</th><th style="min-width:110px;text-align:right">Dollars</th><th>KB</th>
         </tr></thead>
         <tbody>${clients.slice(0, 200).map(c => {
             const statusColor = STATUS_COLORS[c.status] || 'var(--text-muted)';
@@ -546,9 +547,10 @@ function renderClients() {
                 <td><span style="color:${c.team==='ALPHA'?'#3b82f6':c.team==='PAPA'?'#a855f7':'#f59e0b'};font-size:11px;font-weight:600">${c.team}</span></td>
                 <td><span style="color:${statusColor};font-size:12px;font-weight:500">${c.status || '—'}</span></td>
                 <td style="font-size:12px">${c.prep || '—'}</td>
+                <td style="font-size:12px">${c.seniorAcct || '—'}</td>
                 <td style="font-size:12px">${c.manager || '—'}</td>
                 <td style="font-size:12px;text-align:center">${c.wuFrequency || '—'}</td>
-                <td class="font-mono" style="font-size:12px">${c.dollars > 0 ? fmtDollars(c.dollars) : '—'}</td>
+                <td class="font-mono" style="font-size:12px;min-width:110px;text-align:right;white-space:nowrap">${c.dollars > 0 ? fmtDollarsFull(c.dollars) : '—'}</td>
                 <td>${c.kickback ? '<span class="kickback">KB</span>' : ''}</td>
             </tr>`;
         }).join('')}</tbody>
@@ -574,7 +576,7 @@ function renderDrawerTable() {
             <td style="font-size:12px">${c.prep || '\u2014'}</td>
             <td style="font-size:12px">${c.seniorAcct || '\u2014'}</td>
             <td style="font-size:12px">${c.manager || '\u2014'}</td>
-            <td class="font-mono" style="font-size:12px">${c.dollars > 0 ? fmtDollars(c.dollars) : '\u2014'}</td>
+            <td class="font-mono" style="font-size:12px">${c.dollars > 0 ? fmtDollarsFull(c.dollars) : '\u2014'}</td>
             <td>${c.kickback ? '<span class="kickback">KB</span>' : ''}</td>
         </tr>`).join('')}</tbody></table>
         <p style="color:var(--text-muted);font-size:12px;margin-top:8px">${rows.length} of ${DRAWER_ROWS.length} shown${rows.length!==DRAWER_ROWS.length?'':''} &middot; $${rows.reduce((a,c)=>a+(c.dollars||0),0).toLocaleString()}</p>`;
