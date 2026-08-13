@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-08-13T12:12:40Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-08-13T19:11:50Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -21987,24 +21987,24 @@ var ACTIVITY_DATA = {
   },
   "July": {
     "summary": {
-      "totalClients": 310,
-      "totalDollars": 331818.86,
+      "totalClients": 307,
+      "totalDollars": 329188.86,
       "doneClients": 62,
-      "doneDollars": 61481.0,
-      "inReviewClients": 40,
-      "inReviewDollars": 54567.36,
+      "doneDollars": 63731.0,
+      "inReviewClients": 44,
+      "inReviewDollars": 55445.36,
       "blankClients": 0,
       "alpha": {
         "clientCount": 117,
-        "dollars": 112262.0,
+        "dollars": 112327.0,
         "kickbackCount": 7,
         "kickbackPct": 6.0
       },
       "papa": {
-        "clientCount": 132,
-        "dollars": 128620.86,
+        "clientCount": 129,
+        "dollars": 125925.86,
         "kickbackCount": 8,
-        "kickbackPct": 6.1
+        "kickbackPct": 6.2
       },
       "tango": {
         "clientCount": 60,
@@ -22013,14 +22013,14 @@ var ACTIVITY_DATA = {
         "kickbackPct": 3.3
       },
       "otdAlpha": {
-        "pct40": 0.2679,
-        "pct75": 0.2679,
-        "pct95": 0.2679
+        "pct40": 0.2677,
+        "pct75": 0.2677,
+        "pct95": 0.2677
       },
       "otdPapa": {
-        "pct40": 0.1496,
-        "pct75": 0.1496,
-        "pct95": 0.1496
+        "pct40": 0.1696,
+        "pct75": 0.1696,
+        "pct95": 0.1696
       },
       "otdTango": {
         "pct40": 0.182,
@@ -22029,13 +22029,13 @@ var ACTIVITY_DATA = {
       }
     },
     "statusCounts": {
-      "Review": 29,
+      "Review": 31,
       "Done": 62,
       "Deliver": 2,
-      "Prep": 95,
-      "Collect": 113,
-      "Review #2": 8,
-      "Clear Notes": 1
+      "Prep": 93,
+      "Collect": 108,
+      "Review #2": 9,
+      "Clear Notes": 2
     },
     "clients": [
       {
@@ -22163,7 +22163,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 355.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -22202,7 +22202,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 825.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -22370,7 +22370,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "",
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
-        "dollars": 750.0,
+        "dollars": 3000.0,
         "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
@@ -22734,7 +22734,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "",
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
-        "dollars": 3590.0,
+        "dollars": 0.0,
         "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
@@ -23099,7 +23099,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 2179.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23372,7 +23372,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 650.0,
-        "status": "Review",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23931,7 +23931,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 630.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24139,7 +24139,7 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 1818.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24529,7 +24529,7 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 440.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24710,7 +24710,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "",
         "manager": "Madison Dearing",
         "wuFrequency": "M",
-        "dollars": 1900.0,
+        "dollars": 3125.0,
         "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
@@ -24736,7 +24736,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "",
         "manager": "Madison Dearing",
         "wuFrequency": "M",
-        "dollars": 1650.0,
+        "dollars": 2200.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -25269,7 +25269,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "",
         "manager": "Debbie Warren",
         "wuFrequency": "M",
-        "dollars": 1570.0,
+        "dollars": 1635.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -25582,7 +25582,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 423.0,
-        "status": "Review",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25638,19 +25638,6 @@ var ACTIVITY_DATA = {
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": "2026-08-12"
-      },
-      {
-        "company": "LAFAYETTE'S MUSIC ROOM LLC",
-        "team": "PAPA",
-        "prep": "Jaxon Ammons",
-        "seniorAcct": "Amber Alexander",
-        "manager": "Carolyn Pugh",
-        "wuFrequency": "W",
-        "dollars": 980.0,
-        "status": "Collect",
-        "kickback": false,
-        "staffCommitDate": "",
-        "completeDate": ""
       },
       {
         "company": "LAFAYETTE'S MUSIC ROOM LLC",
@@ -25757,19 +25744,6 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
-        "company": "MOONDANCE-THORNWOOD, LLC",
-        "team": "PAPA",
-        "prep": "Jaxon Ammons",
-        "seniorAcct": "Amber Alexander",
-        "manager": "Carolyn Pugh",
-        "wuFrequency": "W",
-        "dollars": 1050.0,
-        "status": "Collect",
-        "kickback": false,
-        "staffCommitDate": "",
-        "completeDate": ""
-      },
-      {
         "company": "PYRO'S COMPANY",
         "team": "ALPHA",
         "prep": "Amber Alexander",
@@ -26041,19 +26015,6 @@ var ACTIVITY_DATA = {
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": "2026-08-12"
-      },
-      {
-        "company": "THE OVERLAND LLC",
-        "team": "PAPA",
-        "prep": "Jaxon Ammons",
-        "seniorAcct": "Amber Alexander",
-        "manager": "Carolyn Pugh",
-        "wuFrequency": "W",
-        "dollars": 1100.0,
-        "status": "Collect",
-        "kickback": false,
-        "staffCommitDate": "",
-        "completeDate": ""
       },
       {
         "company": "THE OVERLAND LLC",
@@ -26183,14 +26144,14 @@ var OTD_TRENDS = [
   {
     "month": "July",
     "alpha": {
-      "pct40": 0.2679,
-      "pct75": 0.2679,
-      "pct95": 0.2679
+      "pct40": 0.2677,
+      "pct75": 0.2677,
+      "pct95": 0.2677
     },
     "papa": {
-      "pct40": 0.1496,
-      "pct75": 0.1496,
-      "pct95": 0.1496
+      "pct40": 0.1696,
+      "pct75": 0.1696,
+      "pct95": 0.1696
     },
     "tango": {
       "pct40": 0.182,
