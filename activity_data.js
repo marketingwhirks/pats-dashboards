@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-08-13T19:11:50Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-08-13T20:08:46Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -21988,21 +21988,21 @@ var ACTIVITY_DATA = {
   "July": {
     "summary": {
       "totalClients": 307,
-      "totalDollars": 329188.86,
+      "totalDollars": 328688.86,
       "doneClients": 62,
-      "doneDollars": 63731.0,
+      "doneDollars": 61481.0,
       "inReviewClients": 44,
-      "inReviewDollars": 55445.36,
+      "inReviewDollars": 57810.36,
       "blankClients": 0,
       "alpha": {
         "clientCount": 117,
-        "dollars": 112327.0,
+        "dollars": 112262.0,
         "kickbackCount": 7,
         "kickbackPct": 6.0
       },
       "papa": {
         "clientCount": 129,
-        "dollars": 125925.86,
+        "dollars": 125490.86,
         "kickbackCount": 8,
         "kickbackPct": 6.2
       },
@@ -22013,14 +22013,14 @@ var ACTIVITY_DATA = {
         "kickbackPct": 3.3
       },
       "otdAlpha": {
-        "pct40": 0.2677,
-        "pct75": 0.2677,
-        "pct95": 0.2677
+        "pct40": 0.2679,
+        "pct75": 0.2679,
+        "pct95": 0.2679
       },
       "otdPapa": {
-        "pct40": 0.1696,
-        "pct75": 0.1696,
-        "pct95": 0.1696
+        "pct40": 0.151,
+        "pct75": 0.151,
+        "pct95": 0.151
       },
       "otdTango": {
         "pct40": 0.182,
@@ -22370,7 +22370,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "",
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
-        "dollars": 3000.0,
+        "dollars": 750.0,
         "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
@@ -22734,7 +22734,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "",
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
-        "dollars": 0.0,
+        "dollars": 3590.0,
         "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
@@ -24710,7 +24710,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "",
         "manager": "Madison Dearing",
         "wuFrequency": "M",
-        "dollars": 3125.0,
+        "dollars": 1900.0,
         "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
@@ -24736,7 +24736,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "",
         "manager": "Madison Dearing",
         "wuFrequency": "M",
-        "dollars": 2200.0,
+        "dollars": 1650.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -25269,7 +25269,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "",
         "manager": "Debbie Warren",
         "wuFrequency": "M",
-        "dollars": 1635.0,
+        "dollars": 1570.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -26144,14 +26144,14 @@ var OTD_TRENDS = [
   {
     "month": "July",
     "alpha": {
-      "pct40": 0.2677,
-      "pct75": 0.2677,
-      "pct95": 0.2677
+      "pct40": 0.2679,
+      "pct75": 0.2679,
+      "pct95": 0.2679
     },
     "papa": {
-      "pct40": 0.1696,
-      "pct75": 0.1696,
-      "pct95": 0.1696
+      "pct40": 0.151,
+      "pct75": 0.151,
+      "pct95": 0.151
     },
     "tango": {
       "pct40": 0.182,
