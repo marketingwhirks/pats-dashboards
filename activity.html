@@ -257,7 +257,7 @@
     </div>
 </div>
 
-<script src="activity_data.js?v=1786739437"></script>
+<script src="activity_data.js?v=1786739943"></script>
 <script>
 // OTD_TRENDS is loaded from activity_data.js. Do NOT inline it here: the data file
 // declares `var OTD_TRENDS`, so a `const` here redeclares the same global and throws
@@ -391,8 +391,8 @@ function renderTeamCards(d) {
         return `<div class="team-card" style="border-color: ${t.accent}30;cursor:pointer" onclick="openDrawerTeam('${t.name}')" title="Click to see ${t.name} clients">
             <div class="team-name" style="color:${t.accent}">${t.name}</div>
             <div class="team-stats">
-                <div class="team-stat"><div class="team-stat-value">${t.data?.clientCount || 0}</div><div style="color:var(--text-muted);font-size:11px">clients</div></div>
-                <div class="team-stat"><div class="team-stat-value">${fmtDollars(t.data?.dollars || 0)}</div><div style="color:var(--text-muted);font-size:11px">dollars</div></div>
+                <div class="team-stat"><div class="team-stat-value">${(t.data?.otdClients ?? t.data?.clientCount) || 0}</div><div style="color:var(--text-muted);font-size:11px">clients</div></div>
+                <div class="team-stat" title="Same dollars the OTD percentages are measured against (installs excluded)"><div class="team-stat-value">${fmtDollarsFull(t.data?.otdDollars ?? t.data?.dollars ?? 0)}</div><div style="color:var(--text-muted);font-size:11px">OTD denominator $</div></div>
                 ${kb > 0 ? `<div class="team-stat"><div class="team-stat-value kickback">${kb} (${(kbPct*100).toFixed(0)}%)</div><div style="color:var(--text-muted);font-size:11px">kickbacks</div></div>` : ''}
             </div>
             <div style="margin-top:10px">
