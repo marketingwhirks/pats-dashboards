@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-08-15T12:12:58Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-08-15T20:08:47Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -21991,8 +21991,8 @@ var ACTIVITY_DATA = {
       "totalDollars": 301495.86,
       "doneClients": 97,
       "doneDollars": 100550.86,
-      "inReviewClients": 24,
-      "inReviewDollars": 32257.5,
+      "inReviewClients": 25,
+      "inReviewDollars": 33072.5,
       "blankClients": 0,
       "alpha": {
         "clientCount": 102,
@@ -22039,12 +22039,12 @@ var ACTIVITY_DATA = {
     },
     "statusCounts": {
       "Done": 97,
-      "Prep": 92,
-      "Review": 14,
+      "Prep": 91,
+      "Review": 15,
       "Collect": 61,
       "Deliver": 3,
-      "Clear Notes": 4,
-      "Review #2": 3
+      "Clear Notes": 3,
+      "Review #2": 4
     },
     "clients": [
       {
@@ -22887,7 +22887,7 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 590.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23563,7 +23563,7 @@ var ACTIVITY_DATA = {
         "manager": "Alex Liu",
         "wuFrequency": "M",
         "dollars": 815.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
