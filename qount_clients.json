@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-08-14T16:03:05.961396+00:00",
-  "count": 313,
+  "last_updated": "2026-08-15T16:02:56.095585+00:00",
+  "count": 314,
   "clients": [
     {
       "sn": "117001",
@@ -1063,6 +1063,10 @@
       "name": "SPANOW, LLC"
     },
     {
+      "sn": "SRE9520",
+      "name": "SR Enterprise, LLC"
+    },
+    {
       "sn": "STA009",
       "name": "STATLINK MD, LLC"
     },
@@ -1212,7 +1216,7 @@
     },
     {
       "sn": "VIL2554",
-      "name": "VILONIA METAL WORKS, INC"
+      "name": "Vilonia Metal Works Inc"
     },
     {
       "sn": "WES003",
