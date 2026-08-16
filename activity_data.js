@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-08-15T20:08:47Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-08-16T12:11:25Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -21991,8 +21991,8 @@ var ACTIVITY_DATA = {
       "totalDollars": 301495.86,
       "doneClients": 97,
       "doneDollars": 100550.86,
-      "inReviewClients": 25,
-      "inReviewDollars": 33072.5,
+      "inReviewClients": 28,
+      "inReviewDollars": 36592.5,
       "blankClients": 0,
       "alpha": {
         "clientCount": 102,
@@ -22039,8 +22039,8 @@ var ACTIVITY_DATA = {
     },
     "statusCounts": {
       "Done": 97,
-      "Prep": 91,
-      "Review": 15,
+      "Prep": 88,
+      "Review": 18,
       "Collect": 61,
       "Deliver": 3,
       "Clear Notes": 3,
@@ -23654,7 +23654,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 1425.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23732,7 +23732,7 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 595.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24499,7 +24499,7 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 1500.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
