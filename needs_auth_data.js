@@ -1,1 +1,1 @@
-var NEEDS_AUTH_DATA = {"generated":"2026-08-17T12:02:47.137668+00:00","token_run_date":"2026-08-16","live_count":283,"total":311,"reconnect":[],"authorize":[{"name":"JEHL CONSULTING LLC","sn":"JEH2019","qbo_file":"JEHL CONSULTING LLC","realm_id":"","added_by":"auto (sync_pending_auth)"}]};
+var NEEDS_AUTH_DATA = {"generated":"2026-08-17T17:05:04.797728+00:00","token_run_date":"2026-08-17","live_count":284,"total":311,"reconnect":[],"authorize":[]};
