@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-08-16T20:10:00Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-08-17T12:14:14Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -21991,8 +21991,8 @@ var ACTIVITY_DATA = {
       "totalDollars": 301495.86,
       "doneClients": 97,
       "doneDollars": 100550.86,
-      "inReviewClients": 28,
-      "inReviewDollars": 36592.5,
+      "inReviewClients": 31,
+      "inReviewDollars": 40151.5,
       "blankClients": 0,
       "alpha": {
         "clientCount": 102,
@@ -22039,9 +22039,9 @@ var ACTIVITY_DATA = {
     },
     "statusCounts": {
       "Done": 97,
-      "Prep": 88,
-      "Review": 18,
-      "Collect": 61,
+      "Prep": 87,
+      "Review": 21,
+      "Collect": 59,
       "Deliver": 3,
       "Clear Notes": 3,
       "Review #2": 4
@@ -22367,7 +22367,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 2719.0,
-        "status": "Collect",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -22380,7 +22380,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 2099.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -22744,7 +22744,7 @@ var ACTIVITY_DATA = {
         "manager": "Alex Liu",
         "wuFrequency": "M",
         "dollars": 205.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24252,7 +24252,7 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 635.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
