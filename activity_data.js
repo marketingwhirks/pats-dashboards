@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-08-17T20:12:38Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-08-18T12:12:39Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -22656,7 +22656,7 @@ var ACTIVITY_DATA = {
         "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-17"
       },
       {
         "company": "BRICKHOUSE BUFFETS, LLC",
@@ -22747,7 +22747,7 @@ var ACTIVITY_DATA = {
         "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-17"
       },
       {
         "company": "CELEBRATING RENEE, LLC",
@@ -23088,19 +23088,6 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
-        "company": "ELITE ELECTRIC &LIGHTING, INC.",
-        "team": "ALPHA",
-        "prep": "Madison Dearing",
-        "seniorAcct": "",
-        "manager": "Sandy Ledbetter",
-        "wuFrequency": "M",
-        "dollars": 850.0,
-        "status": "Collect",
-        "kickback": false,
-        "staffCommitDate": "",
-        "completeDate": ""
-      },
-      {
         "company": "ELITE PREMIER NURSING SERVICES LLC",
         "team": "TANGO",
         "prep": "Jaxon Ammons",
@@ -23151,6 +23138,19 @@ var ACTIVITY_DATA = {
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": "2026-08-12"
+      },
+      {
+        "company": "Elite Electric & Lighting Inc",
+        "team": "ALPHA",
+        "prep": "Madison Dearing",
+        "seniorAcct": "",
+        "manager": "Sandy Ledbetter",
+        "wuFrequency": "M",
+        "dollars": 850.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
       },
       {
         "company": "FARWINDS PARTNERSHIP",
@@ -23540,7 +23540,7 @@ var ACTIVITY_DATA = {
         "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-17"
       },
       {
         "company": "HOLISTIC CARE HOME HEALTH AGENCY INC",
@@ -23566,7 +23566,7 @@ var ACTIVITY_DATA = {
         "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-17"
       },
       {
         "company": "HUB ATHLETICS LLC",
@@ -23657,7 +23657,7 @@ var ACTIVITY_DATA = {
         "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-17"
       },
       {
         "company": "J.H. SHOEMAKER COMPANY INC",
@@ -23761,7 +23761,7 @@ var ACTIVITY_DATA = {
         "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-17"
       },
       {
         "company": "JZDH LLC",
@@ -24255,7 +24255,7 @@ var ACTIVITY_DATA = {
         "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-17"
       },
       {
         "company": "MOUNT PLEASANT SC-BAKERY CORPORATION",
@@ -24996,7 +24996,7 @@ var ACTIVITY_DATA = {
         "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-17"
       },
       {
         "company": "U360 PC",
@@ -25243,7 +25243,7 @@ var ACTIVITY_DATA = {
         "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-17"
       },
       {
         "company": "BELLE MEADE SOCIAL LLC",
