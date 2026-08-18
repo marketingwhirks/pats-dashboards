@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-08-18T12:12:39Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-08-18T20:09:41Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -23098,7 +23098,7 @@ var ACTIVITY_DATA = {
         "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-18"
       },
       {
         "company": "ELITE PREMIER NURSING SERVICES OF NAPLES LLC",
@@ -23111,7 +23111,7 @@ var ACTIVITY_DATA = {
         "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-18"
       },
       {
         "company": "ENFINITY SUPPLY LLC",
