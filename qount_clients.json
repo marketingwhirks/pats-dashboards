@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-08-17T16:03:31.107161+00:00",
-  "count": 314,
+  "last_updated": "2026-08-18T16:03:03.045047+00:00",
+  "count": 312,
   "clients": [
     {
       "sn": "117001",
@@ -411,10 +411,6 @@
       "name": "DOOLEY COMPANY INC."
     },
     {
-      "sn": "DAR004",
-      "name": "Dark Horse Education & Entertainment, LLC"
-    },
-    {
       "sn": "ECO4244",
       "name": "ECO ERA LLC"
     },
@@ -429,10 +425,6 @@
     {
       "sn": "ELM002",
       "name": "EL MERO, INC"
-    },
-    {
-      "sn": "ELI001",
-      "name": "ELITE ELECTRIC &LIGHTING, INC."
     },
     {
       "sn": "ELI4384",
@@ -1219,12 +1211,12 @@
       "name": "Vilonia Metal Works Inc"
     },
     {
-      "sn": "WES003",
-      "name": "WEST STONE WORKS CO, INC."
+      "sn": "WEA1775",
+      "name": "WEAKLEY & ASSOCIATES INC"
     },
     {
-      "sn": "WHI003",
-      "name": "WHITE LIGHTNING ENTERPRISES, LLC"
+      "sn": "WES003",
+      "name": "WEST STONE WORKS CO, INC."
     },
     {
       "sn": "BHH004TAX",
