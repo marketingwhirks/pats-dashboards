@@ -1,1 +1,1 @@
-var NEEDS_AUTH_DATA = {"generated":"2026-08-17T18:02:09.867162+00:00","token_run_date":"2026-08-17","live_count":284,"total":311,"reconnect":[],"authorize":[]};
+var NEEDS_AUTH_DATA = {"generated":"2026-08-18T17:05:46.795927+00:00","token_run_date":"2026-08-18","live_count":282,"total":309,"reconnect":[],"authorize":[{"name":"WEAKLEY & ASSOCIATES INC","sn":"WEA1775","qbo_file":"WEAKLEY & ASSOCIATES INC","realm_id":"","added_by":"auto (sync_pending_auth)"}]};
