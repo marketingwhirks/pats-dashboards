@@ -598,7 +598,7 @@
     </footer>
 </div>
 
-<script src="dashboard_v2_jsdata.js?v=1787174304"></script>
+<script src="dashboard_v2_jsdata.js?v=1786573205"></script>
 <script>
 
 // ─── State ───
@@ -1144,7 +1144,7 @@ function renderClients(d) {
         html += `<tr onclick="toggleExpand(${start+idx})" style="cursor:pointer" id="row-${start+idx}">
             <td style="font-weight:500">${name}${clientRunBadge}</td>
             <td><span style="font-size:11px;color:var(--text-secondary)">${team}</span></td>
-            <td class="ind-cell"><span style="font-size:11px;color:var(--text-secondary);cursor:pointer" onclick="event.stopPropagation();editIndustry('${name.replace(/'/g,"\\'")}','${(industry||'').replace(/'/g,"\\'")}',this.parentElement)">${industry ? industry + ' &#x270E;' : '<span style="opacity:0.3">-- &#x270E;</span>'}</span></td>
+            <td class="ind-cell"><span style="font-size:11px;color:var(--text-secondary)">${industry || '<span style="opacity:0.3">--</span>'}</span></td>
             <td><span style="font-size:11px;color:var(--text-secondary)">${family || '<span style="opacity:0.3">--</span>'}</span></td>
             <td><span style="font-size:11px;color:var(--text-secondary)">${prep || '<span style="opacity:0.3">--</span>'}</span></td>
             <td><span style="font-size:11px;color:var(--text-secondary)">${senior || '<span style="opacity:0.3">--</span>'}</span></td>
