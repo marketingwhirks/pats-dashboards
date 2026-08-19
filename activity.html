@@ -386,12 +386,14 @@ function renderTeamCards(d) {
     ];
     document.getElementById('teamCards').innerHTML = teams.map(t => {
         const otd = t.otd || {pct40:0,pct75:0,pct95:0};
+        const curPct = (otd.pctCurrent !== undefined && otd.pctCurrent !== null) ? otd.pctCurrent : Math.max(otd.pct40||0, otd.pct75||0, otd.pct95||0);
         const kb = t.data?.kickbackCount || 0;
         const kbPct = t.data?.kickbackPct || 0;
         return `<div class="team-card" style="border-color: ${t.accent}30;cursor:pointer" onclick="openDrawerTeam('${t.name}')" title="Click to see ${t.name} clients">
             <div class="team-name" style="color:${t.accent}">${t.name}</div>
             <div class="team-stats">
                 <div class="team-stat"><div class="team-stat-value">${(t.data?.otdClients ?? t.data?.clientCount) || 0}</div><div style="color:var(--text-muted);font-size:11px">clients</div></div>
+                <div class="team-stat" title="Current OTD: all Done dollars / OTD denominator, as of the last refresh. The rows below are snapshots as of each gate date."><div class="team-stat-value" style="color:${pctColor(curPct, 0.95)}">${fmtPct(curPct)}</div><div style="color:var(--text-muted);font-size:11px">current OTD</div></div>
                 <div class="team-stat" title="Same dollars the OTD percentages are measured against (installs excluded)"><div class="team-stat-value">${fmtDollarsFull(t.data?.otdDollars ?? t.data?.dollars ?? 0)}</div><div style="color:var(--text-muted);font-size:11px">OTD denominator $</div></div>
                 ${kb > 0 ? `<div class="team-stat"><div class="team-stat-value kickback">${kb} (${(kbPct*100).toFixed(0)}%)</div><div style="color:var(--text-muted);font-size:11px">kickbacks</div></div>` : ''}
             </div>
@@ -407,7 +409,7 @@ function renderTeamCards(d) {
 function renderOtdRow(label, pct, target) {
     const color = pctColor(pct, target);
     const width = Math.min(pct * 100, 100);
-    return `<div class="otd-row">
+    return `<div class="otd-row" title="Snapshot: dollars Done on or before this gate date. Not the current OTD.">
         <span class="otd-label">${label}</span>
         <span class="otd-value" style="color:${color}">${fmtPct(pct)}</span>
     </div>
