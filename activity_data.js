@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-08-19T12:13:39Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-08-19T20:09:33Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -21991,8 +21991,8 @@ var ACTIVITY_DATA = {
       "totalDollars": 301495.86,
       "doneClients": 123,
       "doneDollars": 130564.86,
-      "inReviewClients": 42,
-      "inReviewDollars": 50950.0,
+      "inReviewClients": 45,
+      "inReviewDollars": 51930.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 102,
@@ -22039,11 +22039,11 @@ var ACTIVITY_DATA = {
     },
     "statusCounts": {
       "Done": 123,
-      "Review": 30,
-      "Prep": 69,
+      "Review": 32,
+      "Prep": 66,
       "Collect": 39,
       "Deliver": 2,
-      "Review #2": 6,
+      "Review #2": 7,
       "Clear Notes": 4
     },
     "clients": [
@@ -23017,7 +23017,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 2179.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": true,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23771,7 +23771,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 2000.0,
-        "status": "Review",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24161,7 +24161,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 470.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24265,7 +24265,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 0.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24941,7 +24941,7 @@ var ACTIVITY_DATA = {
         "manager": "Alex Liu",
         "wuFrequency": "M",
         "dollars": 510.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
