@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-08-20T12:14:18Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-08-20T20:09:58Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -21989,10 +21989,10 @@ var ACTIVITY_DATA = {
     "summary": {
       "totalClients": 272,
       "totalDollars": 301495.86,
-      "doneClients": 132,
-      "doneDollars": 144285.86,
-      "inReviewClients": 43,
-      "inReviewDollars": 44604.0,
+      "doneClients": 134,
+      "doneDollars": 148760.86,
+      "inReviewClients": 46,
+      "inReviewDollars": 42482.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 101,
@@ -22034,20 +22034,19 @@ var ACTIVITY_DATA = {
         "pctCurrent": 0.4279
       },
       "otdTango": {
-        "pct40": 0.5135,
-        "pct75": 0.5135,
-        "pct95": 0.5135,
-        "pctCurrent": 0.5135
+        "pct40": 0.5672,
+        "pct75": 0.5672,
+        "pct95": 0.5672,
+        "pctCurrent": 0.5672
       }
     },
     "statusCounts": {
-      "Done": 132,
-      "Review": 24,
-      "Prep": 62,
-      "Collect": 35,
-      "Deliver": 2,
+      "Done": 134,
+      "Review": 28,
+      "Prep": 58,
+      "Collect": 34,
       "Review #2": 8,
-      "Clear Notes": 9
+      "Clear Notes": 10
     },
     "clients": [
       {
@@ -22331,10 +22330,10 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 2375.0,
-        "status": "Deliver",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-20"
       },
       {
         "company": "ARJOSAMA",
@@ -22578,7 +22577,7 @@ var ACTIVITY_DATA = {
         "manager": "Alex Liu",
         "wuFrequency": "M",
         "dollars": 440.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23176,7 +23175,7 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 1305.0,
-        "status": "Review",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23293,7 +23292,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 353.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24021,7 +24020,7 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 620.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24034,7 +24033,7 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 0.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24125,10 +24124,10 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 2100.0,
-        "status": "Deliver",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-20"
       },
       {
         "company": "MEDIPLAN HOLDINGS LLC",
@@ -24346,7 +24345,7 @@ var ACTIVITY_DATA = {
         "manager": "Alex Liu",
         "wuFrequency": "M",
         "dollars": 770.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24554,7 +24553,7 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 940.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25217,10 +25216,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 730.0,
-        "status": "Collect",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-17"
       },
       {
         "company": "BELLE MEADE SOCIAL LLC",
@@ -25230,10 +25229,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 730.0,
-        "status": "Done",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": "2026-08-17"
+        "completeDate": ""
       },
       {
         "company": "LOFLIN YARD, LLC",
@@ -25711,9 +25710,9 @@ var OTD_TRENDS = [
       "pct95": 0.4279
     },
     "tango": {
-      "pct40": 0.5135,
-      "pct75": 0.5135,
-      "pct95": 0.5135
+      "pct40": 0.5672,
+      "pct75": 0.5672,
+      "pct95": 0.5672
     }
   }
 ];
