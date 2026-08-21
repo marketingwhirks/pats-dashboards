@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-08-21T12:13:22Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-08-21T20:10:02Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -21989,10 +21989,10 @@ var ACTIVITY_DATA = {
     "summary": {
       "totalClients": 272,
       "totalDollars": 301495.86,
-      "doneClients": 146,
-      "doneDollars": 160219.86,
-      "inReviewClients": 50,
-      "inReviewDollars": 46443.0,
+      "doneClients": 148,
+      "doneDollars": 161502.86,
+      "inReviewClients": 53,
+      "inReviewDollars": 51306.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 100,
@@ -22023,15 +22023,15 @@ var ACTIVITY_DATA = {
       },
       "otdAlpha": {
         "pct40": 0.4367,
-        "pct75": 0.5523,
-        "pct95": 0.5523,
-        "pctCurrent": 0.5523
+        "pct75": 0.5558,
+        "pct95": 0.5558,
+        "pctCurrent": 0.5558
       },
       "otdPapa": {
         "pct40": 0.3353,
-        "pct75": 0.4726,
-        "pct95": 0.4726,
-        "pctCurrent": 0.4726
+        "pct75": 0.4804,
+        "pct95": 0.4804,
+        "pctCurrent": 0.4804
       },
       "otdTango": {
         "pct40": 0.5906,
@@ -22041,12 +22041,12 @@ var ACTIVITY_DATA = {
       }
     },
     "statusCounts": {
-      "Done": 146,
-      "Review": 30,
-      "Prep": 47,
+      "Done": 148,
+      "Review": 33,
+      "Prep": 42,
       "Collect": 29,
-      "Clear Notes": 8,
-      "Review #2": 11,
+      "Clear Notes": 4,
+      "Review #2": 15,
       "Deliver": 1
     },
     "clients": [
@@ -22266,7 +22266,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 1826.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -22669,7 +22669,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 1655.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23293,10 +23293,10 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 353.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-21"
       },
       {
         "company": "GREEN FAMILY VENTURES, LLC",
@@ -23514,7 +23514,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 400.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23592,7 +23592,7 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 565.0,
-        "status": "Review",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23774,7 +23774,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 2000.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23826,7 +23826,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 800.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23904,7 +23904,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 1860.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24294,7 +24294,7 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 565.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24775,7 +24775,7 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 520.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24918,10 +24918,10 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 930.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-21"
       },
       {
         "company": "TRILOGY MARKETING, INC.",
@@ -25087,7 +25087,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 1580.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25702,13 +25702,13 @@ var OTD_TRENDS = [
     "month": "July",
     "alpha": {
       "pct40": 0.4367,
-      "pct75": 0.5523,
-      "pct95": 0.5523
+      "pct75": 0.5558,
+      "pct95": 0.5558
     },
     "papa": {
       "pct40": 0.3353,
-      "pct75": 0.4726,
-      "pct95": 0.4726
+      "pct75": 0.4804,
+      "pct95": 0.4804
     },
     "tango": {
       "pct40": 0.5906,
