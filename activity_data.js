@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-08-20T20:09:58Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-08-21T12:13:22Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -21989,28 +21989,28 @@ var ACTIVITY_DATA = {
     "summary": {
       "totalClients": 272,
       "totalDollars": 301495.86,
-      "doneClients": 134,
-      "doneDollars": 148760.86,
-      "inReviewClients": 46,
-      "inReviewDollars": 42482.0,
+      "doneClients": 146,
+      "doneDollars": 160219.86,
+      "inReviewClients": 50,
+      "inReviewDollars": 46443.0,
       "blankClients": 0,
       "alpha": {
-        "clientCount": 101,
-        "dollars": 100814.0,
+        "clientCount": 100,
+        "dollars": 98964.0,
         "kickbackCount": 8,
-        "kickbackPct": 7.9,
-        "otdDollars": 100814.0,
-        "otdClients": 100,
-        "otdWorkflows": 101
+        "kickbackPct": 8.0,
+        "otdDollars": 98964.0,
+        "otdClients": 99,
+        "otdWorkflows": 100
       },
       "papa": {
-        "clientCount": 117,
-        "dollars": 117240.86,
+        "clientCount": 118,
+        "dollars": 119090.86,
         "kickbackCount": 10,
         "kickbackPct": 8.5,
-        "otdDollars": 117240.86,
-        "otdClients": 103,
-        "otdWorkflows": 117
+        "otdDollars": 119090.86,
+        "otdClients": 104,
+        "otdWorkflows": 118
       },
       "tango": {
         "clientCount": 53,
@@ -22022,31 +22022,32 @@ var ACTIVITY_DATA = {
         "otdWorkflows": 53
       },
       "otdAlpha": {
-        "pct40": 0.4471,
-        "pct75": 0.5086,
-        "pct95": 0.5086,
-        "pctCurrent": 0.5086
+        "pct40": 0.4367,
+        "pct75": 0.5523,
+        "pct95": 0.5523,
+        "pctCurrent": 0.5523
       },
       "otdPapa": {
-        "pct40": 0.3248,
-        "pct75": 0.4279,
-        "pct95": 0.4279,
-        "pctCurrent": 0.4279
+        "pct40": 0.3353,
+        "pct75": 0.4726,
+        "pct95": 0.4726,
+        "pctCurrent": 0.4726
       },
       "otdTango": {
-        "pct40": 0.5672,
-        "pct75": 0.5672,
-        "pct95": 0.5672,
-        "pctCurrent": 0.5672
+        "pct40": 0.5906,
+        "pct75": 0.5906,
+        "pct95": 0.5906,
+        "pctCurrent": 0.5906
       }
     },
     "statusCounts": {
-      "Done": 134,
-      "Review": 28,
-      "Prep": 58,
-      "Collect": 34,
-      "Review #2": 8,
-      "Clear Notes": 10
+      "Done": 146,
+      "Review": 30,
+      "Prep": 47,
+      "Collect": 29,
+      "Clear Notes": 8,
+      "Review #2": 11,
+      "Deliver": 1
     },
     "clients": [
       {
@@ -22265,7 +22266,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 1826.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -22486,10 +22487,10 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 700.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-20"
       },
       {
         "company": "BETTER BUSINESS BUREAU OF THE MID-SOUTH",
@@ -22577,10 +22578,10 @@ var ACTIVITY_DATA = {
         "manager": "Alex Liu",
         "wuFrequency": "M",
         "dollars": 440.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-20"
       },
       {
         "company": "BOOYAS INC",
@@ -22655,10 +22656,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 930.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-20"
       },
       {
         "company": "BRIDGEWAY HOSPICE, LLC",
@@ -22824,7 +22825,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 1145.0,
-        "status": "Prep",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -22850,7 +22851,7 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "M",
         "dollars": 570.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -22902,10 +22903,10 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 1954.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-20"
       },
       {
         "company": "CTI PROFESSIONAL FLIGHT TRAINING, LLC",
@@ -22993,10 +22994,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 945.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-20"
       },
       {
         "company": "DEVOTED HEALTHCARE & HOSPICE SERVICES, LLC",
@@ -23136,7 +23137,7 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 850.0,
-        "status": "Collect",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23175,10 +23176,10 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 1305.0,
-        "status": "Clear Notes",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-20"
       },
       {
         "company": "FOUNDATION FOR CHIROPRACTIC EDUCATION",
@@ -23253,10 +23254,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 650.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-20"
       },
       {
         "company": "GOODWILL HOMES COMMUNITY SERVICES",
@@ -23305,7 +23306,7 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "M",
         "dollars": 2620.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23377,7 +23378,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "GUARDIAN TITLE, LLC",
-        "team": "ALPHA",
+        "team": "PAPA",
         "prep": "Analytix 360",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "Madison Dearing",
@@ -23591,7 +23592,7 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 565.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23656,7 +23657,7 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 690.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23669,7 +23670,7 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 675.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23695,7 +23696,7 @@ var ACTIVITY_DATA = {
         "manager": "Alex Liu",
         "wuFrequency": "M",
         "dollars": 1235.0,
-        "status": "Collect",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23838,7 +23839,7 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 1070.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23968,7 +23969,7 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 785.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23981,7 +23982,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 1938.0,
-        "status": "Clear Notes",
+        "status": "Deliver",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24254,7 +24255,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 1180.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24410,7 +24411,7 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 905.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24423,7 +24424,7 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 1575.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24501,7 +24502,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 1410.0,
-        "status": "Review",
+        "status": "Clear Notes",
         "kickback": true,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24527,10 +24528,10 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 660.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-20"
       },
       {
         "company": "RELEASE COATINGS LLC",
@@ -24540,10 +24541,10 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 910.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-20"
       },
       {
         "company": "RICH-WAY LANDSCAPE, INC.",
@@ -24579,10 +24580,10 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 1310.0,
-        "status": "Collect",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-20"
       },
       {
         "company": "SAN RAFAEL HEALTHCARE, INC.",
@@ -24618,7 +24619,7 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 690.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24657,10 +24658,10 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 950.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-20"
       },
       {
         "company": "SLB ENTERPRISE INC",
@@ -24787,10 +24788,10 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 705.0,
-        "status": "Prep",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-20"
       },
       {
         "company": "TAMBOLI'S LLC",
@@ -24813,7 +24814,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 690.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24865,7 +24866,7 @@ var ACTIVITY_DATA = {
         "manager": "Alex Liu",
         "wuFrequency": "M",
         "dollars": 2000.0,
-        "status": "Review",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24917,7 +24918,7 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 930.0,
-        "status": "Review",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25164,7 +25165,7 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 1310.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25255,7 +25256,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1160.0,
-        "status": "Collect",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25700,19 +25701,19 @@ var OTD_TRENDS = [
   {
     "month": "July",
     "alpha": {
-      "pct40": 0.4471,
-      "pct75": 0.5086,
-      "pct95": 0.5086
+      "pct40": 0.4367,
+      "pct75": 0.5523,
+      "pct95": 0.5523
     },
     "papa": {
-      "pct40": 0.3248,
-      "pct75": 0.4279,
-      "pct95": 0.4279
+      "pct40": 0.3353,
+      "pct75": 0.4726,
+      "pct95": 0.4726
     },
     "tango": {
-      "pct40": 0.5672,
-      "pct75": 0.5672,
-      "pct95": 0.5672
+      "pct40": 0.5906,
+      "pct75": 0.5906,
+      "pct95": 0.5906
     }
   }
 ];
