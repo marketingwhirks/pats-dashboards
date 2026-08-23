@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-08-22T20:09:06Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-08-23T12:10:22Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -25333,10 +25333,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Done",
-        "kickback": true,
+        "status": "Collect",
+        "kickback": false,
         "staffCommitDate": "",
-        "completeDate": "2026-08-21"
+        "completeDate": ""
       },
       {
         "company": "SAM'S SPORTS GRILL -  NIPPERS CORNER, LLC",
@@ -25346,10 +25346,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
-        "kickback": false,
+        "status": "Done",
+        "kickback": true,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-21"
       },
       {
         "company": "SAM'S SPORTS GRILL - FLORENCE, LLC #6371",
