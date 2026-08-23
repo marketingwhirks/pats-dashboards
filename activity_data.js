@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-08-23T12:10:22Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-08-23T20:09:19Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -25216,10 +25216,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 730.0,
-        "status": "Done",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": "2026-08-17"
+        "completeDate": ""
       },
       {
         "company": "BELLE MEADE SOCIAL LLC",
@@ -25229,10 +25229,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 730.0,
-        "status": "Collect",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-17"
       },
       {
         "company": "LOFLIN YARD, LLC",
@@ -25333,10 +25333,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
-        "kickback": false,
+        "status": "Done",
+        "kickback": true,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-21"
       },
       {
         "company": "SAM'S SPORTS GRILL -  NIPPERS CORNER, LLC",
@@ -25346,10 +25346,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Done",
-        "kickback": true,
+        "status": "Collect",
+        "kickback": false,
         "staffCommitDate": "",
-        "completeDate": "2026-08-21"
+        "completeDate": ""
       },
       {
         "company": "SAM'S SPORTS GRILL - FLORENCE, LLC #6371",
