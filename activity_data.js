@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-08-24T12:13:15Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-08-24T20:11:15Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -21991,8 +21991,8 @@ var ACTIVITY_DATA = {
       "totalDollars": 301495.86,
       "doneClients": 186,
       "doneDollars": 199912.86,
-      "inReviewClients": 27,
-      "inReviewDollars": 24426.0,
+      "inReviewClients": 29,
+      "inReviewDollars": 26267.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 100,
@@ -22043,9 +22043,9 @@ var ACTIVITY_DATA = {
     "statusCounts": {
       "Done": 186,
       "Review": 19,
-      "Prep": 30,
+      "Prep": 28,
       "Collect": 29,
-      "Clear Notes": 4,
+      "Clear Notes": 6,
       "Review #2": 4
     },
     "clients": [
@@ -23188,7 +23188,7 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 430.0,
-        "status": "Review",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23201,7 +23201,7 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 1715.0,
-        "status": "Review",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24878,7 +24878,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 1255.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25034,7 +25034,7 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "M",
         "dollars": 586.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25255,7 +25255,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1160.0,
-        "status": "Clear Notes",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25268,7 +25268,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1160.0,
-        "status": "Collect",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
