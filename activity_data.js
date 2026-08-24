@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-08-23T20:09:19Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-08-24T12:13:15Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -21991,8 +21991,8 @@ var ACTIVITY_DATA = {
       "totalDollars": 301495.86,
       "doneClients": 186,
       "doneDollars": 199912.86,
-      "inReviewClients": 25,
-      "inReviewDollars": 22281.0,
+      "inReviewClients": 27,
+      "inReviewDollars": 24426.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 100,
@@ -22042,8 +22042,8 @@ var ACTIVITY_DATA = {
     },
     "statusCounts": {
       "Done": 186,
-      "Review": 17,
-      "Prep": 32,
+      "Review": 19,
+      "Prep": 30,
       "Collect": 29,
       "Clear Notes": 4,
       "Review #2": 4
@@ -23188,7 +23188,7 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 430.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23201,7 +23201,7 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 1715.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25216,10 +25216,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 730.0,
-        "status": "Collect",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-17"
       },
       {
         "company": "BELLE MEADE SOCIAL LLC",
@@ -25229,10 +25229,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 730.0,
-        "status": "Done",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": "2026-08-17"
+        "completeDate": ""
       },
       {
         "company": "LOFLIN YARD, LLC",
