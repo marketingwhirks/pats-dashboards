@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-08-25T20:10:49Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-08-26T12:14:46Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -21989,10 +21989,10 @@ var ACTIVITY_DATA = {
     "summary": {
       "totalClients": 258,
       "totalDollars": 280643.86,
-      "doneClients": 196,
-      "doneDollars": 208968.86,
-      "inReviewClients": 36,
-      "inReviewDollars": 35332.0,
+      "doneClients": 236,
+      "doneDollars": 249365.86,
+      "inReviewClients": 7,
+      "inReviewDollars": 5145.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 99,
@@ -22024,30 +22024,30 @@ var ACTIVITY_DATA = {
       "otdAlpha": {
         "pct40": 0.4662,
         "pct75": 0.7968,
-        "pct95": 0.8124,
-        "pctCurrent": 0.8124
+        "pct95": 0.9326,
+        "pctCurrent": 0.9326
       },
       "otdPapa": {
         "pct40": 0.3821,
         "pct75": 0.7161,
-        "pct95": 0.7835,
-        "pctCurrent": 0.7835
+        "pct95": 0.9039,
+        "pctCurrent": 0.9039
       },
       "otdTango": {
         "pct40": 0.6138,
-        "pct75": 0.6206,
-        "pct95": 0.6206,
-        "pctCurrent": 0.6206
+        "pct75": 0.8204,
+        "pct95": 0.8204,
+        "pctCurrent": 0.8204
       }
     },
     "statusCounts": {
-      "Done": 196,
-      "Review": 23,
-      "Prep": 14,
-      "Collect": 12,
-      "Review #2": 10,
-      "Deliver": 1,
-      "Clear Notes": 2
+      "Done": 236,
+      "Prep": 7,
+      "Clear Notes": 2,
+      "Collect": 8,
+      "Review": 2,
+      "Review #2": 2,
+      "Deliver": 1
     },
     "clients": [
       {
@@ -22136,10 +22136,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 885.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "901 GAMES, LLC",
@@ -22149,10 +22149,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 515.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "901 TOYS LLC",
@@ -22162,10 +22162,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 355.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "A&L PARTNERSHIP",
@@ -22175,10 +22175,10 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "M",
         "dollars": 640.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "A-ONE-PLUS HOME HEALTH CARE AGENCY",
@@ -22266,10 +22266,10 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 1826.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "ALLSTAR HOSPICE INC",
@@ -22396,10 +22396,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 725.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "BAKING JOY, LLC",
@@ -22409,10 +22409,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 585.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "BARON'S MAN CAVE, LLC",
@@ -22435,10 +22435,10 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "M",
         "dollars": 1590.0,
-        "status": "Prep",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "BASSJENKINS LLC",
@@ -22461,10 +22461,10 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 2435.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "BEARMAN GOLDEN GARDENS, INC.",
@@ -22513,10 +22513,10 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 820.0,
-        "status": "Collect",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "BEYONDFAITH HOSPICE OF GARLAND, LLC",
@@ -22526,10 +22526,10 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 820.0,
-        "status": "Collect",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "BEYONDFAITH HOSPICE OF JACKSBORO, LLC",
@@ -22539,10 +22539,10 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 820.0,
-        "status": "Collect",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "BEYONDFAITH HOSPICE, LLC",
@@ -22552,10 +22552,10 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 820.0,
-        "status": "Collect",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "BLUES CITY PSYCHIATRY, PLLC",
@@ -22604,10 +22604,10 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 1050.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "BRAMBLY PARK, LLC",
@@ -22617,7 +22617,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 1125.0,
-        "status": "Review",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -22669,10 +22669,10 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 1655.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "BST HOLDINGS, LLC",
@@ -22825,10 +22825,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 1145.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "COLMAKJAK, INC",
@@ -22890,10 +22890,10 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 960.0,
-        "status": "Deliver",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "CROWN HOME HEALTH SERVICES, LLC",
@@ -22968,10 +22968,10 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 2206.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "DAISY KIDS THERAPY LLC",
@@ -22981,10 +22981,10 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 1756.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "DANVER'S LLC",
@@ -23072,10 +23072,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 775.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "ELITE PREMIER NURSING SERVICES LLC",
@@ -23111,10 +23111,10 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 820.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "EPSTEIN'S LOAN OFFICE, INC.",
@@ -23189,10 +23189,10 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 430.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "FOUNDATION FOR CHIROPRACTIC PROGRESS",
@@ -23202,10 +23202,10 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 1715.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "GERMANTOWN BASEBALL LEAGUE, INC",
@@ -23241,10 +23241,10 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 889.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "GOOD FORTUNE COMPANY MEMPHIS LLC",
@@ -23319,10 +23319,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 1000.0,
-        "status": "Prep",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "GREER ORTHOTICS & PROSTHETICS INC",
@@ -23332,10 +23332,10 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 495.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "GREGORY T. WILKINSON DDS PC",
@@ -23358,7 +23358,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 770.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -23501,10 +23501,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 825.0,
-        "status": "Prep",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "HK MEM LLC",
@@ -23579,10 +23579,10 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 1965.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": true,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "HYDRA FIRE PROTECTION, LLC",
@@ -23930,10 +23930,10 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 655.0,
-        "status": "Prep",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "LEE HEALTHCARE, INC",
@@ -24008,10 +24008,10 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 635.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "LSUB SV, LLC",
@@ -24021,10 +24021,10 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 620.0,
-        "status": "Clear Notes",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "LSUB, LLC",
@@ -24034,10 +24034,10 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 0.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "LSUB-MILL, LLC",
@@ -24047,10 +24047,10 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 635.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "LWL - HELLO, LLC",
@@ -24060,7 +24060,7 @@ var ACTIVITY_DATA = {
         "manager": "Alex Liu",
         "wuFrequency": "M",
         "dollars": 440.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24255,7 +24255,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 1180.0,
-        "status": "Review",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24268,7 +24268,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 0.0,
-        "status": "Review #2",
+        "status": "Deliver",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -24281,10 +24281,10 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 435.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": true,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "MVAG INC.",
@@ -24333,10 +24333,10 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 510.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "NORMAN'S BODY SHOP, INC.",
@@ -24346,10 +24346,10 @@ var ACTIVITY_DATA = {
         "manager": "Alex Liu",
         "wuFrequency": "M",
         "dollars": 770.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "PATRICK ACCOUNTING",
@@ -24463,10 +24463,10 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 1650.0,
-        "status": "Prep",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "PRAVINCHANDRA P PATEL MD PC",
@@ -24502,10 +24502,10 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 1410.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": true,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "QUALITY HOME HEALTH CARE INC",
@@ -25009,10 +25009,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 975.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": true,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "V&R HEALTH CARE SERVICES LLC",
@@ -25087,10 +25087,10 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 1580.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-08-25"
       },
       {
         "company": "Vilonia Metal Works Inc",
@@ -25243,7 +25243,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1160.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -25408,39 +25408,39 @@ var ACTIVITY_DATA = {
   },
   "August": {
     "summary": {
-      "totalClients": 229,
-      "totalDollars": 225366.36,
+      "totalClients": 256,
+      "totalDollars": 245743.36,
       "doneClients": 0,
       "doneDollars": 0,
       "inReviewClients": 0,
       "inReviewDollars": 0,
       "blankClients": 0,
       "alpha": {
-        "clientCount": 86,
-        "dollars": 80363.0,
+        "clientCount": 97,
+        "dollars": 89659.0,
         "kickbackCount": 0,
         "kickbackPct": 0.0,
-        "otdDollars": 80363.0,
-        "otdClients": 86,
-        "otdWorkflows": 86
+        "otdDollars": 89659.0,
+        "otdClients": 97,
+        "otdWorkflows": 97
       },
       "papa": {
-        "clientCount": 96,
-        "dollars": 100467.86,
+        "clientCount": 105,
+        "dollars": 105628.86,
         "kickbackCount": 0,
         "kickbackPct": 0.0,
-        "otdDollars": 100467.86,
-        "otdClients": 95,
-        "otdWorkflows": 96
+        "otdDollars": 105628.86,
+        "otdClients": 104,
+        "otdWorkflows": 105
       },
       "tango": {
-        "clientCount": 46,
-        "dollars": 44535.5,
+        "clientCount": 53,
+        "dollars": 50455.5,
         "kickbackCount": 0,
         "kickbackPct": 0.0,
-        "otdDollars": 44535.5,
-        "otdClients": 46,
-        "otdWorkflows": 46
+        "otdDollars": 50455.5,
+        "otdClients": 53,
+        "otdWorkflows": 53
       },
       "otdAlpha": {
         "pct40": 0.0,
@@ -25462,7 +25462,7 @@ var ACTIVITY_DATA = {
       }
     },
     "statusCounts": {
-      "Collect": 229
+      "Collect": 256
     },
     "clients": [
       {
@@ -25512,6 +25512,32 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 125.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "4CII PROPERTY INVESTMENTS LLC",
+        "team": "TANGO",
+        "prep": "Johandre Slabbert",
+        "seniorAcct": "",
+        "manager": "Kim Pope",
+        "wuFrequency": "M",
+        "dollars": 0.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "69 PONTOTOC, LLC",
+        "team": "PAPA",
+        "prep": "Jean Cherie Jordaan",
+        "seniorAcct": "Lani Pavao",
+        "manager": "Carolyn Pugh",
+        "wuFrequency": "M",
+        "dollars": 698.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -25830,6 +25856,19 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
+        "company": "BARON'S MEMPHIS LLC",
+        "team": "ALPHA",
+        "prep": "Allyson Simmons",
+        "seniorAcct": "Kevin Flores",
+        "manager": "Debbie Warren",
+        "wuFrequency": "M",
+        "dollars": 1590.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
         "company": "BASSJENKINS LLC",
         "team": "ALPHA",
         "prep": "Kevin Flores",
@@ -25843,6 +25882,19 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
+        "company": "BE HEALTHY AT HOME LLC",
+        "team": "TANGO",
+        "prep": "Johandre Slabbert",
+        "seniorAcct": "Shayla Menefee",
+        "manager": "Kim Pope",
+        "wuFrequency": "M",
+        "dollars": 2435.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
         "company": "BEARMAN GOLDEN GARDENS, INC.",
         "team": "ALPHA",
         "prep": "Kevin Flores",
@@ -25850,6 +25902,19 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 450.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "BENCHMARK ATLANTIC HEALTHCARE MEMPHIS INC",
+        "team": "ALPHA",
+        "prep": "Allyson Simmons",
+        "seniorAcct": "",
+        "manager": "Jennifer Gann",
+        "wuFrequency": "M",
+        "dollars": 700.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -25954,6 +26019,19 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "M",
         "dollars": 1000.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "BOSTON NURSING CARE & CONSULTING INC",
+        "team": "TANGO",
+        "prep": "Johandre Slabbert",
+        "seniorAcct": "Shayla Menefee",
+        "manager": "Asher Silbermann",
+        "wuFrequency": "M",
+        "dollars": 1050.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -26181,6 +26259,19 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
+        "company": "COLMAKJAK, INC",
+        "team": "TANGO",
+        "prep": "",
+        "seniorAcct": "",
+        "manager": "John Northernor",
+        "wuFrequency": "M",
+        "dollars": 0.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
         "company": "CONCORD ACADEMY INC",
         "team": "ALPHA",
         "prep": "Kevin Flores",
@@ -26376,6 +26467,19 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
+        "company": "ECO ERA LLC",
+        "team": "ALPHA",
+        "prep": "Andrew White",
+        "seniorAcct": "Robert Peiffer",
+        "manager": "Madison Dearing",
+        "wuFrequency": "M",
+        "dollars": 498.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
         "company": "EDWARDS LAW GROUP, LLC",
         "team": "ALPHA",
         "prep": "Andrew White",
@@ -26396,6 +26500,32 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 775.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "ELITE PREMIER NURSING SERVICES LLC",
+        "team": "TANGO",
+        "prep": "Jaxon Ammons",
+        "seniorAcct": "",
+        "manager": "Asher Silbermann",
+        "wuFrequency": "M",
+        "dollars": 1165.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "ELITE PREMIER NURSING SERVICES OF NAPLES LLC",
+        "team": "TANGO",
+        "prep": "Jaxon Ammons",
+        "seniorAcct": "",
+        "manager": "Asher Silbermann",
+        "wuFrequency": "M",
+        "dollars": 705.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -26571,6 +26701,45 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
+        "company": "GRAWE HAUL AND INSTALL LLC",
+        "team": "ALPHA",
+        "prep": "Analytix 360",
+        "seniorAcct": "",
+        "manager": "Madison Dearing",
+        "wuFrequency": "M",
+        "dollars": 353.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "GREEN FAMILY VENTURES, LLC",
+        "team": "ALPHA",
+        "prep": "Andrew White",
+        "seniorAcct": "Julianne Louchren",
+        "manager": "Debbie Warren",
+        "wuFrequency": "M",
+        "dollars": 2620.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "GREEN FROG COFFEE COMPANY LLC",
+        "team": "PAPA",
+        "prep": "Amber Alexander",
+        "seniorAcct": "",
+        "manager": "Carolyn Pugh",
+        "wuFrequency": "M",
+        "dollars": 1000.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
         "company": "GREER ORTHOTICS & PROSTHETICS INC",
         "team": "ALPHA",
         "prep": "",
@@ -26604,6 +26773,19 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 770.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "GRUDZIENA INC",
+        "team": "PAPA",
+        "prep": "Analytix 360",
+        "seniorAcct": "Jean Cherie Jordaan",
+        "manager": "Carolyn Pugh",
+        "wuFrequency": "M",
+        "dollars": 335.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -26695,6 +26877,19 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "M",
         "dollars": 2120.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "HIGHERVISIBILITY LLC",
+        "team": "ALPHA",
+        "prep": "Kevin Flores",
+        "seniorAcct": "",
+        "manager": "Debbie Warren",
+        "wuFrequency": "M",
+        "dollars": 2500.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -26831,6 +27026,19 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
+        "company": "Integrity Construction of Arkansas, Inc",
+        "team": "ALPHA",
+        "prep": "Allyson Simmons",
+        "seniorAcct": "Kevin Flores",
+        "manager": "Debbie Warren",
+        "wuFrequency": "M",
+        "dollars": 0.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
         "company": "J & J JOYBITES, LLC",
         "team": "PAPA",
         "prep": "Analytix 360",
@@ -26942,6 +27150,19 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 630.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "JZDH LLC",
+        "team": "PAPA",
+        "prep": "Analytix 360",
+        "seniorAcct": "Jean Cherie Jordaan",
+        "manager": "Madison Dearing",
+        "wuFrequency": "M",
+        "dollars": 340.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -27137,6 +27358,19 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 0.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "LETTUCE EAT MIDTOWN, LLC",
+        "team": "ALPHA",
+        "prep": "Kevin Flores",
+        "seniorAcct": "Julianne Louchren",
+        "manager": "Debbie Warren",
+        "wuFrequency": "M",
+        "dollars": 375.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -27455,6 +27689,19 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
+        "company": "MVAG INC.",
+        "team": "TANGO",
+        "prep": "Jean Cherie Jordaan",
+        "seniorAcct": "Robert Peiffer",
+        "manager": "Asher Silbermann",
+        "wuFrequency": "M",
+        "dollars": 565.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
         "company": "NASHVILLE SUNFLOWER CAFE, LLC",
         "team": "PAPA",
         "prep": "Nini Dinh",
@@ -27501,6 +27748,32 @@ var ACTIVITY_DATA = {
         "manager": "Alex Liu",
         "wuFrequency": "M",
         "dollars": 770.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "PATRICK ACCOUNTING",
+        "team": "ALPHA",
+        "prep": "Madison Dearing",
+        "seniorAcct": "",
+        "manager": "Matthew Patrick",
+        "wuFrequency": "M",
+        "dollars": 0.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "PATRICK FL REAL ESTATE LLC",
+        "team": "ALPHA",
+        "prep": "Kevin Flores",
+        "seniorAcct": "Lani Pavao",
+        "manager": "Matthew Patrick",
+        "wuFrequency": "M",
+        "dollars": 0.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -27644,6 +27917,19 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 0.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "R N ENTERPRISE INC",
+        "team": "ALPHA",
+        "prep": "Allyson Simmons",
+        "seniorAcct": "",
+        "manager": "Jennifer Gann",
+        "wuFrequency": "M",
+        "dollars": 660.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -27923,6 +28209,19 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
+        "company": "TDJ 77 LLC",
+        "team": "PAPA",
+        "prep": "Analytix 360",
+        "seniorAcct": "Jean Cherie Jordaan",
+        "manager": "Madison Dearing",
+        "wuFrequency": "M",
+        "dollars": 690.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
         "company": "TEAMWEAR GRAPHICS LLC",
         "team": "ALPHA",
         "prep": "Robert Peiffer",
@@ -28040,6 +28339,19 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
+        "company": "TTKBG INC.",
+        "team": "PAPA",
+        "prep": "Analytix 360",
+        "seniorAcct": "Jean Cherie Jordaan",
+        "manager": "Madison Dearing",
+        "wuFrequency": "M",
+        "dollars": 350.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
         "company": "Terrel II Investments LLC",
         "team": "TANGO",
         "prep": "Johandre Slabbert",
@@ -28086,6 +28398,19 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 650.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "UNBROKEN219 LLC",
+        "team": "PAPA",
+        "prep": "Analytix 360",
+        "seniorAcct": "Jean Cherie Jordaan",
+        "manager": "Carolyn Pugh",
+        "wuFrequency": "M",
+        "dollars": 975.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -28242,6 +28567,32 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 435.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "ZENFIRE ATL LLC",
+        "team": "PAPA",
+        "prep": "Analytix 360",
+        "seniorAcct": "Jean Cherie Jordaan",
+        "manager": "Madison Dearing",
+        "wuFrequency": "M",
+        "dollars": 423.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "ZONKHEAD, LLC",
+        "team": "PAPA",
+        "prep": "Analytix 360",
+        "seniorAcct": "Jean Cherie Jordaan",
+        "manager": "Madison Dearing",
+        "wuFrequency": "M",
+        "dollars": 350.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -28559,17 +28910,17 @@ var OTD_TRENDS = [
     "alpha": {
       "pct40": 0.4662,
       "pct75": 0.7968,
-      "pct95": 0.8124
+      "pct95": 0.9326
     },
     "papa": {
       "pct40": 0.3821,
       "pct75": 0.7161,
-      "pct95": 0.7835
+      "pct95": 0.9039
     },
     "tango": {
       "pct40": 0.6138,
-      "pct75": 0.6206,
-      "pct95": 0.6206
+      "pct75": 0.8204,
+      "pct95": 0.8204
     }
   },
   {
