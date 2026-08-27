@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-08-26T16:03:28.549061+00:00",
-  "count": 305,
+  "last_updated": "2026-08-27T16:03:45.302680+00:00",
+  "count": 306,
   "clients": [
     {
       "sn": "117001",
@@ -307,10 +307,6 @@
       "name": "CHILDREN'S HOME CARE LLC"
     },
     {
-      "sn": "CHO1251",
-      "name": "CHOICE FARMS LLC"
-    },
-    {
       "sn": "CIT001",
       "name": "CITY & STATE RETAIL"
     },
@@ -361,6 +357,10 @@
     {
       "sn": "CUR7815",
       "name": "CURA BEATUS INCORPORATED"
+    },
+    {
+      "sn": "CHO1251",
+      "name": "Choice Farms, LLC"
     },
     {
       "sn": "CYN001",
@@ -919,10 +919,6 @@
       "name": "PEDIATRIC PARTNERS OF NASHVILLE PLLC"
     },
     {
-      "sn": "PEI003",
-      "name": "PEIFER PROPERTIES, LLC"
-    },
-    {
       "sn": "PIN7883",
       "name": "PINK FLAMINGO LLC"
     },
@@ -953,6 +949,10 @@
     {
       "sn": "PUZ2621",
       "name": "PUZZOL HOLDINGS LLC"
+    },
+    {
+      "sn": "PEI003",
+      "name": "Peifer Properties, LLC"
     },
     {
       "sn": "QUA6056",
@@ -1021,6 +1021,10 @@
     {
       "sn": "SID002",
       "name": "SIDDIHIVINAYAK, INC."
+    },
+    {
+      "sn": "SIM2084",
+      "name": "SIMPLE GROUND INC"
     },
     {
       "sn": "SLB9389",
