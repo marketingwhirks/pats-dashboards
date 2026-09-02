@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-09-01T16:04:16.611990+00:00",
-  "count": 308,
+  "last_updated": "2026-09-02T16:08:08.638211+00:00",
+  "count": 309,
   "clients": [
     {
       "sn": "117001",
@@ -759,10 +759,6 @@
       "name": "LIVE HAUL PRODUCTS, INC."
     },
     {
-      "sn": "LIV1009",
-      "name": "LIVEWELL ASSOCIATES LLC"
-    },
-    {
       "sn": "LLA001",
       "name": "LLANO ESTACADO HEALTHCARE LLC"
     },
@@ -793,6 +789,10 @@
     {
       "sn": "LWL7532",
       "name": "LWL - HELLO, LLC"
+    },
+    {
+      "sn": "LIV1009",
+      "name": "LiveWell Associates LLC"
     },
     {
       "sn": "MWE001",
@@ -893,6 +893,10 @@
     {
       "sn": "NEW1960",
       "name": "NEW URBAN MEDIA"
+    },
+    {
+      "sn": "NOR001",
+      "name": "NORMAN'S BODY SHOP, INC."
     },
     {
       "sn": "NOR6792",
