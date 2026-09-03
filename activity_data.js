@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-09-03T12:12:52Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-09-03T20:10:00Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -25398,8 +25398,8 @@ var ACTIVITY_DATA = {
       "totalDollars": 276990.86,
       "doneClients": 1,
       "doneDollars": 1100.0,
-      "inReviewClients": 9,
-      "inReviewDollars": 9750.0,
+      "inReviewClients": 11,
+      "inReviewDollars": 11570.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 97,
@@ -25448,9 +25448,9 @@ var ACTIVITY_DATA = {
       }
     },
     "statusCounts": {
-      "Collect": 210,
-      "Prep": 36,
-      "Review": 8,
+      "Collect": 207,
+      "Prep": 37,
+      "Review": 10,
       "Review #2": 1,
       "Done": 1
     },
@@ -25762,7 +25762,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 750.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -26009,7 +26009,7 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "M",
         "dollars": 1000.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -26828,7 +26828,7 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "M",
         "dollars": 605.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -26854,7 +26854,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 820.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -27998,7 +27998,7 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "M",
         "dollars": 1350.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
