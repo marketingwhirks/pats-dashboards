@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-09-02T16:08:08.638211+00:00",
-  "count": 309,
+  "last_updated": "2026-09-03T16:03:27.736389+00:00",
+  "count": 310,
   "clients": [
     {
       "sn": "117001",
@@ -1001,6 +1001,10 @@
     {
       "sn": "RTK4369",
       "name": "RTK COMPONENTS, LLC"
+    },
+    {
+      "sn": "1871",
+      "name": "Robert Bailey Electric, Inc."
     },
     {
       "sn": "ECC9968",
