@@ -64,6 +64,17 @@
         .kpi-grid { margin-bottom: 20px; }
         /* Kim 9/3/26: row 1 = the four percentages, row 2 = the transaction counts */
         .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 14px; }
+        .kpi-card.clickable { cursor: pointer; transition: transform .12s, box-shadow .12s; }
+        .kpi-card.clickable:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,.25); }
+        .kpi-card.clickable.open { outline: 2px solid var(--accent, #6c8cff); }
+        .kpi-hint { font-size: 10px; color: var(--text-muted); margin-top: 6px; opacity: .7; }
+        .kpi-explain { display: none; background: var(--bg-card, #1c2230); border: 1px solid var(--accent, #6c8cff); border-radius: 10px; padding: 14px 18px; margin: -4px 0 14px; font-size: 13px; line-height: 1.55; color: var(--text-secondary); }
+        .kpi-explain.show { display: block; }
+        .kpi-explain h4 { margin: 0 0 6px; font-size: 13px; color: var(--text-primary, #fff); }
+        html[data-theme="light"] .kpi-explain { background: #ffffff; color: #374151; }
+        html[data-theme="light"] .kpi-explain h4, html[data-theme="light"] .kpi-explain .formula { color: #1a1a2e; background: #f3f4f6; }
+        .kpi-explain .formula { font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: var(--text-primary, #fff); background: rgba(255,255,255,.06); padding: 6px 10px; border-radius: 6px; display: inline-block; margin: 6px 0 8px; }
+        .kpi-explain .close { float: right; cursor: pointer; color: var(--text-muted); font-size: 16px; line-height: 1; }
         .kpi-card {
             background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px;
         }
@@ -601,7 +612,7 @@
     </footer>
 </div>
 
-<script src="dashboard_v2_jsdata.js?v=1788471738"></script>
+<script src="dashboard_v2_jsdata.js?v=1788472137"></script>
 <script>
 
 // ─── State ───
@@ -671,6 +682,41 @@ function render() {
     try { renderTrends(); } catch(e) { console.error('renderTrends:', e); }
 }
 
+// Kim 9/3/26: click a percentage box for a plain-English explanation.
+const KPI_EXPLAIN = {
+    rate: {
+        title: 'Automation Rate (all-in)',
+        formula: 'automated transactions ÷ all scored transactions',
+        body: 'Every transaction posted in QBO this month, across all books, except the ones we can never automate (matched transfers and credit-card payments between connected accounts, and non-posting paperwork like estimates, POs and time charges) and client invoices / customer payments, which are the client\'s billing cycle, not bookkeeping entry. "Automated" means a bank rule, an integration sync (Bill.com, Ramp, Toast, Square, payroll, etc.), a QBO recurring template or a synced bill did the entry. Everything else was keyed by a person.'
+    },
+    expense: {
+        title: 'Expense Automation (goal metric)',
+        formula: 'automated expense-side rows ÷ all expense-side rows',
+        body: 'Same scoring, but only the money-out side: bills, bill payments, expenses, checks, card charges, vendor credits and journal entries. Deposits, sales receipts, credit memos and refunds are set aside and scored separately (the "revenue side" number in the footnote). This is the one to move if the goal is getting expenses onto rules and integrations. Note: it is type-based, so owner draws or loan payments land on the expense side too.'
+    },
+    pa: {
+        title: 'PA-Only Rate (our work)',
+        formula: 'automated ÷ (automated + rows keyed by Patrick Accounting staff)',
+        body: 'Takes out the manual rows a client\'s own people typed (based on the QBO user who created the transaction). What\'s left is our side of the ledger: of the entries that were either automated or keyed by us, how many were automated. Shown only when QBO gives us the created-by user on at least 90% of rows.'
+    },
+    books: {
+        title: 'PA-Run Books (excl. client-run)',
+        formula: 'automation rate across books we run, leaving out client-run books entirely',
+        body: 'A book is "client-run" when the client keys 90%+ of its own transactions (they enter and pay daily, so bank rules can\'t be set up). Those books are set aside whole, and the automation rate is recalculated on the rest. It answers: on the books where we do the entry, how automated are we?'
+    }
+};
+function toggleKpiExplain(key) {
+    const box = document.getElementById('kpiExplain');
+    const cards = document.querySelectorAll('.kpi-card.clickable');
+    const isOpen = box.classList.contains('show') && box.dataset.key === key;
+    cards.forEach(c => c.classList.remove('open'));
+    if (isOpen) { box.classList.remove('show'); box.dataset.key = ''; return; }
+    const e = KPI_EXPLAIN[key]; if (!e) return;
+    box.innerHTML = `<span class="close" onclick="toggleKpiExplain('${key}')">&times;</span><h4>${e.title}</h4><div class="formula">${e.formula}</div><div>${e.body}</div>`;
+    box.dataset.key = key; box.classList.add('show');
+    const card = document.querySelector(`.kpi-card.clickable[data-kpi="${key}"]`); if (card) card.classList.add('open');
+}
+
 function renderKPIs(d) {
     const s = d.summary;
     const rate = s.automation_rate;
@@ -697,31 +743,33 @@ function renderKPIs(d) {
 
     document.getElementById('kpiGrid').innerHTML = `
       <div class="kpi-row">
-        <div class="kpi-card">
+        <div class="kpi-card clickable" data-kpi="rate" onclick="toggleKpiExplain('rate')" title="Click for what this measures">
             <div class="kpi-label">Automation Rate</div>
             <div class="kpi-value" style="color:${rateColor(rate)}">${rate.toFixed(1)}%</div>
             ${changeHtml}
+            <div class="kpi-hint">click for details</div>
         </div>
         ${s.expense_rate != null ? `
-        <div class="kpi-card" style="border-color:var(--accent, #6c8cff)">
+        <div class="kpi-card clickable" data-kpi="expense" onclick="toggleKpiExplain('expense')" title="Click for what this measures" style="border-color:var(--accent, #6c8cff)">
             <div class="kpi-label">Expense Automation <span style="opacity:.6;font-weight:400">(goal metric)</span></div>
             <div class="kpi-value" style="color:${rateColor(s.expense_rate)}">${s.expense_rate.toFixed(1)}%</div>
             ${expChangeHtml}
             <div class="kpi-sub" title="Expense, Check, Bill, Bill Payment, card charges, Vendor Credit and Journal Entries. Deposits and other revenue-side rows are scored separately.">${formatNum(s.expense_automated)} of ${formatNum(s.expense_automated + s.expense_manual)} expense-side rows${s.revenue_rate != null ? ` &bull; revenue side ${s.revenue_rate.toFixed(1)}%` : ''}</div>
         </div>` : ''}
         ${s.pa_only_rate != null ? `
-        <div class="kpi-card" style="border-color:var(--green)">
+        <div class="kpi-card clickable" data-kpi="pa" onclick="toggleKpiExplain('pa')" title="Click for what this measures" style="border-color:var(--green)">
             <div class="kpi-label">PA-Only Rate <span style="opacity:.6;font-weight:400">(our work)</span></div>
             <div class="kpi-value" style="color:${rateColor(s.pa_only_rate)}">${s.pa_only_rate.toFixed(1)}%</div>
             <div class="kpi-sub">${formatNum(s.client_manual)} client-entered rows excluded</div>
         </div>` : ''}
         ${s.pa_books_rate != null ? `
-        <div class="kpi-card" style="border-color:var(--green)">
+        <div class="kpi-card clickable" data-kpi="books" onclick="toggleKpiExplain('books')" title="Click for what this measures" style="border-color:var(--green)">
             <div class="kpi-label">PA-Run Books <span style="opacity:.6;font-weight:400">(excl. client-run)</span></div>
             <div class="kpi-value" style="color:${rateColor(s.pa_books_rate)}">${s.pa_books_rate.toFixed(1)}%</div>
             <div class="kpi-sub">${formatNum(s.client_run_books)} client-run books set aside (${formatNum(s.client_run_txns)} txns)</div>
         </div>` : ''}
       </div>
+      <div class="kpi-explain" id="kpiExplain"></div>
       <div class="kpi-row">
         <div class="kpi-card">
             <div class="kpi-label">Total Transactions</div>
