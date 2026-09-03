@@ -449,6 +449,7 @@
                         <th onclick="sortClients('auto-desc')" style="text-align:right">Auto</th>
                         <th onclick="sortClients('manual-desc')" style="text-align:right">Manual</th>
                         <th onclick="sortClients('rate-desc')" style="text-align:right">Rate</th>
+                        <th onclick="sortClients('exprate-desc')" style="text-align:right" title="Expense-side automation: Expense, Check, Bill, Bill Payment, card charges, Vendor Credit and Journal Entries. Deposits and other revenue rows left out.">Expense</th>
                         <th onclick="sortClients('parate-desc')" style="text-align:right" title="Automation rate counting only transactions PA entered. Client-entered rows are excluded.">PA-Only</th>
                         <th style="width:140px">Automation</th>
                         <th>Top Manual Types</th>
@@ -598,7 +599,7 @@
     </footer>
 </div>
 
-<script src="dashboard_v2_jsdata.js?v=1788419110"></script>
+<script src="dashboard_v2_jsdata.js?v=1788465106"></script>
 <script>
 
 // ─── State ───
@@ -682,6 +683,15 @@ function renderKPIs(d) {
 
     const manualTxns = s.total_manual;
     const autoTxns = s.total_automated;
+    // Expense-side MoM delta (Kim 9/3/26: expense score side by side with all-in)
+    let expChangeHtml = '';
+    if (idx > 0 && s.expense_rate != null) {
+        const prevExp = SCORECARD_DATA[months[idx-1]].summary.expense_rate;
+        if (prevExp != null) {
+            const er = s.expense_rate;
+            expChangeHtml = `<div class="kpi-change ${er > prevExp ? 'up' : er < prevExp ? 'down' : 'flat'}">${er > prevExp ? '&#x25B2;' : er < prevExp ? '&#x25BC;' : '&#x25CF;'} ${Math.abs(er - prevExp).toFixed(1)}pp vs ${formatMonth(months[idx-1])}</div>`;
+        }
+    }
 
     document.getElementById('kpiGrid').innerHTML = `
         <div class="kpi-card">
@@ -689,6 +699,13 @@ function renderKPIs(d) {
             <div class="kpi-value" style="color:${rateColor(rate)}">${rate.toFixed(1)}%</div>
             ${changeHtml}
         </div>
+        ${s.expense_rate != null ? `
+        <div class="kpi-card" style="border-color:var(--accent, #6c8cff)">
+            <div class="kpi-label">Expense Automation <span style="opacity:.6;font-weight:400">(goal metric)</span></div>
+            <div class="kpi-value" style="color:${rateColor(s.expense_rate)}">${s.expense_rate.toFixed(1)}%</div>
+            ${expChangeHtml}
+            <div class="kpi-sub" title="Expense, Check, Bill, Bill Payment, card charges, Vendor Credit and Journal Entries. Deposits and other revenue-side rows are scored separately.">${formatNum(s.expense_automated)} of ${formatNum(s.expense_automated + s.expense_manual)} expense-side rows${s.revenue_rate != null ? ` &bull; revenue side ${s.revenue_rate.toFixed(1)}%` : ''}</div>
+        </div>` : ''}
         ${s.pa_only_rate != null ? `
         <div class="kpi-card" style="border-color:var(--green)">
             <div class="kpi-label">PA-Only Rate <span style="opacity:.6;font-weight:400">(our work)</span></div>
@@ -1069,6 +1086,7 @@ function getFilteredClients(d) {
         if (field === 'manager') { va = (a[13]||'').toLowerCase(); vb = (b[13]||'').toLowerCase(); return desc ? vb.localeCompare(va) : va.localeCompare(vb); }
         if (field === 'rate') { va = a[4]; vb = b[4]; }
         else if (field === 'parate') { va = a[17] != null ? a[17] : -1; vb = b[17] != null ? b[17] : -1; }
+        else if (field === 'exprate') { va = a[22] != null ? a[22] : -1; vb = b[22] != null ? b[22] : -1; }
         else if (field === 'manual') { va = a[2]; vb = b[2]; }
         else if (field === 'auto') { va = a[1]; vb = b[1]; }
         else if (field === 'total') { va = a[3]; vb = b[3]; }
@@ -1124,6 +1142,8 @@ function renderClients(d) {
         const [name, auto, manual, total, rate, autoTypes, manualTypes] = c;
         const clientManual = c[16] || 0;
         const paRate = c[17] != null ? c[17] : null;
+        const expRate = c[22] != null ? c[22] : null;
+        const expAuto = c[20] || 0, expManual = c[21] || 0;
         // Client-run book tag (Kim 8/10/26). The client keys nearly all of this book;
         // PA reconciles and reviews behind them, so the all-in rate is not our scorecard.
         const clientRun = c[18] === 1;
@@ -1153,12 +1173,13 @@ function renderClients(d) {
             <td style="text-align:right;color:var(--green)">${formatNum(auto)}</td>
             <td style="text-align:right;color:var(--red)">${formatNum(manual)}</td>
             <td style="text-align:right;font-weight:700;color:${color}">${rate.toFixed(1)}%</td>
+            <td style="text-align:right;font-weight:700;color:${expRate != null ? rateColor(expRate) : 'var(--text-muted)'}" title="${expRate != null ? formatNum(expAuto) + ' auto / ' + formatNum(expManual) + ' manual expense-side rows' : 'no expense-side rows'}">${expRate != null ? expRate.toFixed(1) + '%' : '--'}</td>
             <td style="text-align:right;font-weight:700;color:${paRate != null ? rateColor(paRate) : 'var(--text-muted)'}" title="${clientManual ? formatNum(clientManual) + ' client-entered rows excluded' : 'no client-entered rows'}">${paRate != null ? paRate.toFixed(1) + '%' : '--'}</td>
             <td><div class="rate-bar-bg" style="width:100%"><div class="rate-bar-fill" style="width:${rate}%;background:${color}"></div></div></td>
             <td>${manualTags || '<span style="color:var(--text-muted)">-</span>'}</td>
         </tr>`;
         // Expandable detail row
-        html += `<tr class="expand-row" id="expand-${start+idx}"><td colspan="14">
+        html += `<tr class="expand-row" id="expand-${start+idx}"><td colspan="15">
             <div class="expand-content">
                 <div class="mini-bar-grid">${renderMiniBreakdown(autoTypes, manualTypes)}</div>
             </div>
@@ -1474,10 +1495,10 @@ function renderOpportunities(d) {
 function exportCSV() {
     const d = SCORECARD_DATA[currentMonth];
     if (!d) return;
-    let csv = 'Client,Team,Industry,Family,Prep,Senior,Manager,Total,Automated,Manual,Rate,PA_Only_Rate,Client_Entered,Client_Run,Client_Keyed_Pct,PA_Rules,Integration,Bank_Feed,Manual_Entry,System\n';
+    let csv = 'Client,Team,Industry,Family,Prep,Senior,Manager,Total,Automated,Manual,Rate,Expense_Rate,Expense_Auto,Expense_Manual,PA_Only_Rate,Client_Entered,Client_Run,Client_Keyed_Pct,PA_Rules,Integration,Bank_Feed,Manual_Entry,System\n';
     d.clients.forEach(c => {
         const src = c[8] || {};
-        csv += `"${c[0]}","${c[7] || ''}","${c[9] || ''}","${c[10] || ''}","${c[11] || ''}","${c[12] || ''}","${c[13] || ''}",${c[3]},${c[1]},${c[2]},${c[4]},${c[17] != null ? c[17] : ''},${c[16]||0},${c[18]===1?'Y':''},${c[19]!=null?c[19]:''},${src.pa_rule||0},${src.integration||0},${src.bank_feed||0},${src.manual||0},${src.system||0}\n`;
+        csv += `"${c[0]}","${c[7] || ''}","${c[9] || ''}","${c[10] || ''}","${c[11] || ''}","${c[12] || ''}","${c[13] || ''}",${c[3]},${c[1]},${c[2]},${c[4]},${c[22] != null ? c[22] : ''},${c[20]||0},${c[21]||0},${c[17] != null ? c[17] : ''},${c[16]||0},${c[18]===1?'Y':''},${c[19]!=null?c[19]:''},${src.pa_rule||0},${src.integration||0},${src.bank_feed||0},${src.manual||0},${src.system||0}\n`;
     });
     const blob = new Blob([csv], { type: 'text/csv' });
     const a = document.createElement('a');
@@ -1500,7 +1521,9 @@ function renderTeamLeaderboard(d) {
     d.clients.forEach(c => {
         const [name, auto, manual, total, rate, autoTypes, manualTypes, team] = c;
         const t = team || 'Unassigned';
-        if (!teams[t]) teams[t] = {auto:0, manual:0, total:0, clients:0, clientList:[]};
+        if (!teams[t]) teams[t] = {auto:0, manual:0, total:0, clients:0, clientList:[], expAuto:0, expTotal:0};
+        teams[t].expAuto += (c[20] || 0);
+        teams[t].expTotal += (c[20] || 0) + (c[21] || 0);
         teams[t].auto += auto;
         teams[t].manual += manual;
         teams[t].total += total;
@@ -1510,7 +1533,8 @@ function renderTeamLeaderboard(d) {
 
     // Calculate rates and sort
     const sorted = Object.entries(teams).map(([name, s]) => ({
-        name, ...s, rate: s.total > 0 ? (s.auto / s.total * 100) : 0
+        name, ...s, rate: s.total > 0 ? (s.auto / s.total * 100) : 0,
+        expRate: s.expTotal > 0 ? (s.expAuto / s.expTotal * 100) : null
     })).sort((a,b) => b.rate - a.rate);
 
     // Get previous month for delta
@@ -1545,7 +1569,7 @@ function renderTeamLeaderboard(d) {
                 <div class="team-bar"><div class="team-bar-fill" style="width:${team.rate}%;background:${rateColor(team.rate)}"></div></div>
             </div>
             <div class="team-rate-big" style="color:${rateColor(team.rate)}">${team.rate.toFixed(1)}%</div>
-            <div class="team-delta">${deltaStr}</div>
+            <div class="team-delta">${deltaStr}${team.expRate != null ? `<br><span title="Expense-side automation (JEs included, deposits out)" style="color:${rateColor(team.expRate)}">Expense ${team.expRate.toFixed(1)}%</span>` : ''}</div>
             <div class="team-meta" style="text-align:right">${formatNum(team.auto)} auto<br>${formatNum(team.manual)} manual</div>
         </div>`;
     });
