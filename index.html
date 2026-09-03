@@ -442,6 +442,11 @@
                 <select class="filter-select" id="clientManagerFilter" onchange="filterClients()">
                     <option value="all">All Managers</option>
                 </select>
+                <select class="filter-select" id="clientRunFilter" onchange="filterClients()" title="Client-run = the client keys 90%+ of the book's transactions that month">
+                    <option value="all">All Books</option>
+                    <option value="client">Client-run only</option>
+                    <option value="pa">PA-run only</option>
+                </select>
                 <button class="sort-btn active" data-sort="rate-desc" onclick="sortClients('rate-desc')">&#x2B07; Rate</button>
                 <button class="sort-btn" data-sort="rate-asc" onclick="sortClients('rate-asc')">&#x2B06; Rate</button>
                 <button class="sort-btn" data-sort="manual-desc" onclick="sortClients('manual-desc')">&#x2B07; Manual Txns</button>
@@ -612,7 +617,7 @@
     </footer>
 </div>
 
-<script src="dashboard_v2_jsdata.js?v=1788472137"></script>
+<script src="dashboard_v2_jsdata.js?v=1788472265"></script>
 <script>
 
 // ─── State ───
@@ -1125,6 +1130,10 @@ function getFilteredClients(d) {
     if (seniorFilter !== 'all') clients = clients.filter(c => (c[12] || '') === seniorFilter);
     const managerFilter = document.getElementById('clientManagerFilter')?.value || 'all';
     if (managerFilter !== 'all') clients = clients.filter(c => (c[13] || '') === managerFilter);
+    // Kim 9/3/26: one-click view of every client-run book (the tag is per book per month)
+    const runFilter = document.getElementById('clientRunFilter')?.value || 'all';
+    if (runFilter === 'client') clients = clients.filter(c => c[18] === 1);
+    if (runFilter === 'pa') clients = clients.filter(c => c[18] !== 1);
 
     // Sort
     const [field, dir] = currentSort.split('-');
