@@ -442,7 +442,7 @@
                 <select class="filter-select" id="clientManagerFilter" onchange="filterClients()">
                     <option value="all">All Managers</option>
                 </select>
-                <select class="filter-select" id="clientRunFilter" onchange="filterClients()" title="Client-run = the client keys 90%+ of the book's transactions that month">
+                <select class="filter-select" id="clientRunFilter" onchange="filterClients()" title="Client-run = the client keys 80%+ of the book's transactions that month">
                     <option value="all">All Books</option>
                     <option value="client">Client-run only</option>
                     <option value="pa">PA-run only</option>
@@ -617,7 +617,7 @@
     </footer>
 </div>
 
-<script src="dashboard_v2_jsdata.js?v=1788472265"></script>
+<script src="dashboard_v2_jsdata.js?v=1788473215"></script>
 <script>
 
 // ─── State ───
@@ -707,7 +707,7 @@ const KPI_EXPLAIN = {
     books: {
         title: 'PA-Run Books (excl. client-run)',
         formula: 'automation rate across books we run, leaving out client-run books entirely',
-        body: 'A book is "client-run" when the client keys 90%+ of its own transactions (they enter and pay daily, so bank rules can\'t be set up). Those books are set aside whole, and the automation rate is recalculated on the rest. It answers: on the books where we do the entry, how automated are we?'
+        body: 'A book is "client-run" when the client keys 80%+ of its own transactions (they enter and pay daily, so bank rules can\'t be set up). Those books are set aside whole, and the automation rate is recalculated on the rest. It answers: on the books where we do the entry, how automated are we?'
     }
 };
 function toggleKpiExplain(key) {
