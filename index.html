@@ -61,7 +61,9 @@
         .tab:hover:not(.active) { background: rgba(255,255,255,0.06); color: var(--text-primary); }
 
         /* KPI Cards */
-        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 20px; }
+        .kpi-grid { margin-bottom: 20px; }
+        /* Kim 9/3/26: row 1 = the four percentages, row 2 = the transaction counts */
+        .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 14px; }
         .kpi-card {
             background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px;
         }
@@ -280,11 +282,11 @@
         @media (max-width: 900px) {
             .charts-row { grid-template-columns: 1fr; }
             .tier-grid { grid-template-columns: repeat(2, 1fr); }
-            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .kpi-row { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 600px) {
             .tier-grid { grid-template-columns: 1fr 1fr; }
-            .kpi-grid { grid-template-columns: 1fr; }
+            .kpi-row { grid-template-columns: 1fr; }
             body { padding: 12px; }
         }
     </style>
@@ -599,7 +601,7 @@
     </footer>
 </div>
 
-<script src="dashboard_v2_jsdata.js?v=1788465106"></script>
+<script src="dashboard_v2_jsdata.js?v=1788471738"></script>
 <script>
 
 // ─── State ───
@@ -694,6 +696,7 @@ function renderKPIs(d) {
     }
 
     document.getElementById('kpiGrid').innerHTML = `
+      <div class="kpi-row">
         <div class="kpi-card">
             <div class="kpi-label">Automation Rate</div>
             <div class="kpi-value" style="color:${rateColor(rate)}">${rate.toFixed(1)}%</div>
@@ -718,6 +721,8 @@ function renderKPIs(d) {
             <div class="kpi-value" style="color:${rateColor(s.pa_books_rate)}">${s.pa_books_rate.toFixed(1)}%</div>
             <div class="kpi-sub">${formatNum(s.client_run_books)} client-run books set aside (${formatNum(s.client_run_txns)} txns)</div>
         </div>` : ''}
+      </div>
+      <div class="kpi-row">
         <div class="kpi-card">
             <div class="kpi-label">Total Transactions</div>
             <div class="kpi-value">${formatNum(s.total_transactions)}</div>
@@ -738,6 +743,7 @@ function renderKPIs(d) {
             <div class="kpi-value">${Math.round(s.total_transactions / s.clients)}</div>
             <div class="kpi-sub">${Math.round(manualTxns / s.clients)} manual per client</div>
         </div>
+      </div>
     `;
 }
 
