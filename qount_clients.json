@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-09-03T16:03:27.736389+00:00",
-  "count": 310,
+  "last_updated": "2026-09-04T16:04:05.877442+00:00",
+  "count": 312,
   "clients": [
     {
       "sn": "117001",
@@ -151,10 +151,6 @@
       "name": "BAKING JOY, LLC"
     },
     {
-      "sn": "BAR1657",
-      "name": "BARCAS ENTERPRISES LLC"
-    },
-    {
       "sn": "BAR015",
       "name": "BARON'S MAN CAVE, LLC"
     },
@@ -265,6 +261,10 @@
     {
       "sn": "BYS001",
       "name": "BYS PROPERTIES, LLC"
+    },
+    {
+      "sn": "BAR1657",
+      "name": "BarCas Enterprises, LLC"
     },
     {
       "sn": "BAR8915",
@@ -453,6 +453,10 @@
     {
       "sn": "EPS001",
       "name": "EPSTEIN'S LOAN OFFICE, INC."
+    },
+    {
+      "sn": "EXE9402",
+      "name": "EXERCISE UNLIMITED LLC"
     },
     {
       "sn": "FAR008",
@@ -795,16 +799,16 @@
       "name": "LiveWell Associates LLC"
     },
     {
+      "sn": "MMC001",
+      "name": "M&M Commissary"
+    },
+    {
       "sn": "MWE001",
       "name": "M.W.ESCUE COMPANY, INC."
     },
     {
       "sn": "MAN7663",
       "name": "MANGO SHEET METAL LLC"
-    },
-    {
-      "sn": "6287",
-      "name": "MAUMELLE GYMNASTICS"
     },
     {
       "sn": "MAX3547",
@@ -973,6 +977,10 @@
     {
       "sn": "RNE5277",
       "name": "R N ENTERPRISE INC"
+    },
+    {
+      "sn": "REI001",
+      "name": "REIMBURSEMENT X-PERTS INC."
     },
     {
       "sn": "REL8723",
