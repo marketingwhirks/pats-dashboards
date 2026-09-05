@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-09-05T12:11:15Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-09-05T20:08:48Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -25452,9 +25452,8 @@ var ACTIVITY_DATA = {
       "Prep": 46,
       "Review": 9,
       "Done": 8,
-      "Review #2": 2,
-      "Deliver": 1,
-      "Clear Notes": 1
+      "Review #2": 3,
+      "Deliver": 1
     },
     "clients": [
       {
@@ -28481,7 +28480,7 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 975.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
