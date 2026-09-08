@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-09-07T20:08:47Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-09-08T12:13:07Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -25398,8 +25398,8 @@ var ACTIVITY_DATA = {
       "totalDollars": 297842.86,
       "doneClients": 8,
       "doneDollars": 5845.0,
-      "inReviewClients": 18,
-      "inReviewDollars": 18233.0,
+      "inReviewClients": 22,
+      "inReviewDollars": 21773.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 98,
@@ -25448,9 +25448,9 @@ var ACTIVITY_DATA = {
       }
     },
     "statusCounts": {
-      "Collect": 202,
-      "Review": 14,
-      "Prep": 42,
+      "Collect": 201,
+      "Review": 18,
+      "Prep": 39,
       "Done": 8,
       "Review #2": 3,
       "Deliver": 1
@@ -26283,7 +26283,7 @@ var ACTIVITY_DATA = {
         "manager": "Alexl",
         "wuFrequency": "M",
         "dollars": 525.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -26361,7 +26361,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 230.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -26959,7 +26959,7 @@ var ACTIVITY_DATA = {
         "manager": "Alexl",
         "wuFrequency": "M",
         "dollars": 665.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28259,7 +28259,7 @@ var ACTIVITY_DATA = {
         "manager": "Alexl",
         "wuFrequency": "M",
         "dollars": 2000.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28584,7 +28584,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 350.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
