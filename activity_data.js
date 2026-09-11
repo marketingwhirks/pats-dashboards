@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-09-11T12:13:13Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-09-11T20:09:35Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -25398,8 +25398,8 @@ var ACTIVITY_DATA = {
       "totalDollars": 297967.86,
       "doneClients": 29,
       "doneDollars": 23726.0,
-      "inReviewClients": 45,
-      "inReviewDollars": 48574.24,
+      "inReviewClients": 49,
+      "inReviewDollars": 52137.24,
       "blankClients": 0,
       "alpha": {
         "clientCount": 97,
@@ -25448,12 +25448,12 @@ var ACTIVITY_DATA = {
       }
     },
     "statusCounts": {
-      "Prep": 89,
+      "Prep": 85,
       "Done": 29,
       "Deliver": 2,
       "Review #2": 7,
       "Collect": 106,
-      "Review": 34,
+      "Review": 38,
       "Clear Notes": 2
     },
     "clients": [
@@ -25556,7 +25556,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 885.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -26362,7 +26362,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 230.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -27454,7 +27454,7 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 1938.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -27714,7 +27714,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 510.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
