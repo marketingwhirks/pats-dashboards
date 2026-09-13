@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-09-12T20:08:13Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-09-13T12:24:18Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -25398,8 +25398,8 @@ var ACTIVITY_DATA = {
       "totalDollars": 297967.86,
       "doneClients": 42,
       "doneDollars": 38559.0,
-      "inReviewClients": 52,
-      "inReviewDollars": 55323.86,
+      "inReviewClients": 55,
+      "inReviewDollars": 56688.86,
       "blankClients": 0,
       "alpha": {
         "clientCount": 97,
@@ -25448,11 +25448,11 @@ var ACTIVITY_DATA = {
       }
     },
     "statusCounts": {
-      "Review": 37,
+      "Review": 40,
       "Done": 42,
       "Deliver": 7,
       "Review #2": 6,
-      "Prep": 85,
+      "Prep": 82,
       "Collect": 90,
       "Clear Notes": 2
     },
@@ -27376,7 +27376,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 95.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28013,7 +28013,7 @@ var ACTIVITY_DATA = {
         "manager": "Alexl",
         "wuFrequency": "M",
         "dollars": 400.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28351,7 +28351,7 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 870.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28741,7 +28741,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Prep",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28754,7 +28754,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28819,7 +28819,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Prep",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28832,19 +28832,6 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
-        "kickback": false,
-        "staffCommitDate": "",
-        "completeDate": ""
-      },
-      {
-        "company": "SPERRY'S RESTAURANTS - COOL SPRINGS, LLC",
-        "team": "PAPA",
-        "prep": "Amber Alexander",
-        "seniorAcct": "",
-        "manager": "Carolyn Pugh",
-        "wuFrequency": "W",
-        "dollars": 1225.0,
         "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
@@ -28859,6 +28846,19 @@ var ACTIVITY_DATA = {
         "wuFrequency": "W",
         "dollars": 1225.0,
         "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "SPERRY'S RESTAURANTS - COOL SPRINGS, LLC",
+        "team": "PAPA",
+        "prep": "Amber Alexander",
+        "seniorAcct": "",
+        "manager": "Carolyn Pugh",
+        "wuFrequency": "W",
+        "dollars": 1225.0,
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28897,7 +28897,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 585.0,
-        "status": "Prep",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28910,7 +28910,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 585.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
