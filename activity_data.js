@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-09-13T12:24:18Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-09-13T20:08:33Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -28741,7 +28741,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28754,7 +28754,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Prep",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28819,7 +28819,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28832,19 +28832,6 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Prep",
-        "kickback": false,
-        "staffCommitDate": "",
-        "completeDate": ""
-      },
-      {
-        "company": "SPERRY'S RESTAURANTS - COOL SPRINGS, LLC",
-        "team": "PAPA",
-        "prep": "Amber Alexander",
-        "seniorAcct": "",
-        "manager": "Carolyn Pugh",
-        "wuFrequency": "W",
-        "dollars": 1225.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -28859,6 +28846,19 @@ var ACTIVITY_DATA = {
         "wuFrequency": "W",
         "dollars": 1225.0,
         "status": "Prep",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "SPERRY'S RESTAURANTS - COOL SPRINGS, LLC",
+        "team": "PAPA",
+        "prep": "Amber Alexander",
+        "seniorAcct": "",
+        "manager": "Carolyn Pugh",
+        "wuFrequency": "W",
+        "dollars": 1225.0,
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28897,7 +28897,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 585.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28910,7 +28910,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 585.0,
-        "status": "Prep",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
