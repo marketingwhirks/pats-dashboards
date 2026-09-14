@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-09-14T12:13:18Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-09-14T20:11:22Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -25396,10 +25396,10 @@ var ACTIVITY_DATA = {
     "summary": {
       "totalClients": 269,
       "totalDollars": 297967.86,
-      "doneClients": 42,
-      "doneDollars": 38559.0,
-      "inReviewClients": 56,
-      "inReviewDollars": 56893.86,
+      "doneClients": 45,
+      "doneDollars": 40789.0,
+      "inReviewClients": 58,
+      "inReviewDollars": 65493.86,
       "blankClients": 0,
       "alpha": {
         "clientCount": 97,
@@ -25429,16 +25429,16 @@ var ACTIVITY_DATA = {
         "otdWorkflows": 54
       },
       "otdAlpha": {
-        "pct40": 0.2232,
-        "pct75": 0.2232,
-        "pct95": 0.2232,
-        "pctCurrent": 0.2232
+        "pct40": 0.2323,
+        "pct75": 0.2323,
+        "pct95": 0.2323,
+        "pctCurrent": 0.2323
       },
       "otdPapa": {
-        "pct40": 0.1029,
-        "pct75": 0.1029,
-        "pct95": 0.1029,
-        "pctCurrent": 0.1029
+        "pct40": 0.1142,
+        "pct75": 0.1142,
+        "pct95": 0.1142,
+        "pctCurrent": 0.1142
       },
       "otdTango": {
         "pct40": 0.0563,
@@ -25448,13 +25448,13 @@ var ACTIVITY_DATA = {
       }
     },
     "statusCounts": {
-      "Review": 41,
-      "Done": 42,
-      "Deliver": 7,
-      "Review #2": 7,
-      "Prep": 81,
-      "Collect": 90,
-      "Clear Notes": 1
+      "Review": 42,
+      "Done": 45,
+      "Deliver": 6,
+      "Review #2": 8,
+      "Prep": 78,
+      "Collect": 88,
+      "Clear Notes": 2
     },
     "clients": [
       {
@@ -25647,10 +25647,10 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "M",
         "dollars": 880.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-14"
       },
       {
         "company": "ADVANCED COLDFORMING, INC.",
@@ -26297,10 +26297,10 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 590.0,
-        "status": "Deliver",
+        "status": "Done",
         "kickback": true,
         "staffCommitDate": "",
-        "completeDate": "2026-09-11"
+        "completeDate": "2026-09-14"
       },
       {
         "company": "COZY CORNER RESTAURANTS INC.",
@@ -26557,7 +26557,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 1350.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -26752,7 +26752,7 @@ var ACTIVITY_DATA = {
         "manager": "Alexl",
         "wuFrequency": "M",
         "dollars": 840.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -27194,7 +27194,7 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 6710.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -27298,7 +27298,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 200.0,
-        "status": "Review",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -27376,7 +27376,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 95.0,
-        "status": "Review",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28026,7 +28026,7 @@ var ACTIVITY_DATA = {
         "manager": "Ashers",
         "wuFrequency": "M",
         "dollars": 575.0,
-        "status": "Prep",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28091,7 +28091,7 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 1355.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28117,7 +28117,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 1060.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28182,10 +28182,10 @@ var ACTIVITY_DATA = {
         "manager": "Ashers",
         "wuFrequency": "M",
         "dollars": 760.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-14"
       },
       {
         "company": "TDJ 77 LLC",
@@ -28377,7 +28377,7 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 650.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28741,7 +28741,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Prep",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28754,19 +28754,6 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
-        "kickback": false,
-        "staffCommitDate": "",
-        "completeDate": ""
-      },
-      {
-        "company": "SAM'S SPORTS GRILL - MURFREESBORO, LLC #6369",
-        "team": "PAPA",
-        "prep": "Amber Alexander",
-        "seniorAcct": "",
-        "manager": "Carolyn Pugh",
-        "wuFrequency": "W",
-        "dollars": 1225.0,
         "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
@@ -28781,6 +28768,19 @@ var ACTIVITY_DATA = {
         "wuFrequency": "W",
         "dollars": 1225.0,
         "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "SAM'S SPORTS GRILL - MURFREESBORO, LLC #6369",
+        "team": "PAPA",
+        "prep": "Amber Alexander",
+        "seniorAcct": "",
+        "manager": "Carolyn Pugh",
+        "wuFrequency": "W",
+        "dollars": 1225.0,
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -29087,14 +29087,14 @@ var OTD_TRENDS = [
   {
     "month": "August",
     "alpha": {
-      "pct40": 0.2232,
-      "pct75": 0.2232,
-      "pct95": 0.2232
+      "pct40": 0.2323,
+      "pct75": 0.2323,
+      "pct95": 0.2323
     },
     "papa": {
-      "pct40": 0.1029,
-      "pct75": 0.1029,
-      "pct95": 0.1029
+      "pct40": 0.1142,
+      "pct75": 0.1142,
+      "pct95": 0.1142
     },
     "tango": {
       "pct40": 0.0563,
