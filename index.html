@@ -67,6 +67,9 @@
         /* Kim 9/14/26: the two all-in cuts live as tokens inside Automation Rate, so the
            primary row is 2 hero cards (all-in vs the expense goal metric). */
         .kpi-row-primary { grid-template-columns: repeat(2, 1fr); }
+        /* Kim 9/14/26: Q3 goal 80%, EOY goal 90% on the expense goal metric (overall). */
+        .kpi-goal { font-size: 11px; margin-top: 5px; color: var(--text-muted); }
+        .kpi-goal b { color: var(--accent); font-weight: 700; }
         .kpi-tokens { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
         .kpi-token.clickable { cursor: pointer; }
         .kpi-token.clickable:hover { filter: brightness(1.15); }
@@ -629,7 +632,7 @@
     </footer>
 </div>
 
-<script src="dashboard_v2_jsdata.js?v=1789413387"></script>
+<script src="dashboard_v2_jsdata.js?v=1789413644"></script>
 <script>
 
 // ─── State ───
@@ -779,6 +782,7 @@ function renderKPIs(d) {
               ${s.expense_pa_only_rate != null ? `<div class="kpi-token" title="Same expense-side scoring with client-keyed rows removed from the denominator. Not the same as the all-in PA-only token.">PA-only ${s.expense_pa_only_rate.toFixed(1)}%</div>` : ''}
             </div>
             <div class="kpi-sub" title="Expense, Check, Bill, Bill Payment, card charges, Vendor Credit and Journal Entries. Deposits and other revenue-side rows are scored separately.">${formatNum(s.expense_automated)} of ${formatNum(s.expense_automated + s.expense_manual)} expense-side rows${s.revenue_rate != null ? ` &bull; revenue side ${s.revenue_rate.toFixed(1)}%` : ''}</div>
+            <div class="kpi-goal" title="Goals are set on the overall expense-automation rate, not the PA-only token. Kim Pope, 9/14/26.">Q3 goal <b>80%</b> (${s.expense_rate >= 80 ? 'met' : (80 - s.expense_rate).toFixed(1) + 'pp to go'}) &bull; EOY goal <b>90%</b></div>
         </div>` : ''}
       </div>
       <div class="kpi-explain" id="kpiExplain"></div>
