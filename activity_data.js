@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-09-13T20:08:33Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-09-14T12:13:18Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -25398,8 +25398,8 @@ var ACTIVITY_DATA = {
       "totalDollars": 297967.86,
       "doneClients": 42,
       "doneDollars": 38559.0,
-      "inReviewClients": 55,
-      "inReviewDollars": 56688.86,
+      "inReviewClients": 56,
+      "inReviewDollars": 56893.86,
       "blankClients": 0,
       "alpha": {
         "clientCount": 97,
@@ -25448,13 +25448,13 @@ var ACTIVITY_DATA = {
       }
     },
     "statusCounts": {
-      "Review": 40,
+      "Review": 41,
       "Done": 42,
       "Deliver": 7,
-      "Review #2": 6,
-      "Prep": 82,
+      "Review #2": 7,
+      "Prep": 81,
       "Collect": 90,
-      "Clear Notes": 2
+      "Clear Notes": 1
     },
     "clients": [
       {
@@ -26154,7 +26154,7 @@ var ACTIVITY_DATA = {
         "manager": "Alexl",
         "wuFrequency": "M",
         "dollars": 205.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -26609,7 +26609,7 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 1715.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
