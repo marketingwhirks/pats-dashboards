@@ -81,6 +81,10 @@
         .kpi-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin-bottom: 6px; }
         .kpi-value { font-size: 28px; font-weight: 700; color: #fff; }
         .kpi-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+        .kpi-token { display:inline-block; margin-top:6px; padding:2px 8px; border-radius:999px;
+            font-size:11px; font-weight:600; letter-spacing:.2px; white-space:nowrap;
+            border:1px solid var(--green); color: var(--green); background: rgba(46,204,113,.10); }
+        html[data-theme="light"] .kpi-token { background: rgba(16,145,86,.10); }
         .kpi-change { font-size: 12px; font-weight: 600; margin-top: 4px; }
         .kpi-change.up { color: var(--green); }
         .kpi-change.down { color: var(--red); }
@@ -619,7 +623,7 @@
     </footer>
 </div>
 
-<script src="dashboard_v2_jsdata.js?v=1789410428"></script>
+<script src="dashboard_v2_jsdata.js?v=1789412827"></script>
 <script>
 
 // ─── State ───
@@ -699,7 +703,7 @@ const KPI_EXPLAIN = {
     expense: {
         title: 'Expense Automation (goal metric)',
         formula: 'automated expense-side rows ÷ all expense-side rows',
-        body: 'Same scoring, but only the money-out side: bills, bill payments, expenses, checks, card charges, vendor credits and journal entries. Deposits, sales receipts, credit memos and refunds are set aside and scored separately (the "revenue side" number in the footnote). This is the one to move if the goal is getting expenses onto rules and integrations. Note: it is type-based, so owner draws or loan payments land on the expense side too.'
+        body: 'Same scoring, but only the money-out side: bills, bill payments, expenses, checks, card charges, vendor credits and journal entries. Deposits, sales receipts, credit memos and refunds are set aside and scored separately (the "revenue side" number in the footnote). This is the one to move if the goal is getting expenses onto rules and integrations. Note: it is type-based, so owner draws or loan payments land on the expense side too. The green PA-only token is the same expense-side rate with client-keyed rows taken out of the denominator - our work only. It is not the same as the all-in PA-Only card, which includes deposits.'
     },
     pa: {
         title: 'PA-Only Rate (our work)',
@@ -761,6 +765,7 @@ function renderKPIs(d) {
             <div class="kpi-label">Expense Automation <span style="opacity:.6;font-weight:400">(goal metric)</span></div>
             <div class="kpi-value" style="color:${rateColor(s.expense_rate)}">${s.expense_rate.toFixed(1)}%</div>
             ${expChangeHtml}
+            ${s.expense_pa_only_rate != null ? `<div class="kpi-token" title="Same expense-side scoring with client-keyed rows removed from the denominator. Not comparable to the all-in PA-Only card.">PA-only ${s.expense_pa_only_rate.toFixed(1)}%</div>` : ''}
             <div class="kpi-sub" title="Expense, Check, Bill, Bill Payment, card charges, Vendor Credit and Journal Entries. Deposits and other revenue-side rows are scored separately.">${formatNum(s.expense_automated)} of ${formatNum(s.expense_automated + s.expense_manual)} expense-side rows${s.revenue_rate != null ? ` &bull; revenue side ${s.revenue_rate.toFixed(1)}%` : ''}</div>
         </div>` : ''}
         ${s.pa_only_rate != null ? `
