@@ -90,6 +90,31 @@
         .kpi-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin-bottom: 6px; }
         .kpi-value { font-size: 28px; font-weight: 700; color: #fff; }
         .kpi-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+        /* Kim 9/14/26: the PA cuts render as clickable dials on the right of each hero card. */
+        .kpi-card--split { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+        .kpi-card--split .kpi-main { min-width: 0; flex: 1 1 auto; }
+        .kpi-dials { display: flex; gap: 14px; flex: 0 0 auto; }
+        .kpi-dial { width: 92px; text-align: center; cursor: pointer; }
+        .kpi-dial .ring {
+            width: 78px; height: 78px; margin: 0 auto; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: conic-gradient(var(--dial-color) calc(var(--dial-pct) * 1%), rgba(128,128,128,.18) 0);
+            transition: filter .15s ease;
+        }
+        .kpi-dial .ring-inner {
+            width: 62px; height: 62px; border-radius: 50%; background: var(--bg-secondary, #1a1f2e);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px; font-weight: 700; color: var(--dial-color);
+        }
+        html[data-theme="light"] .kpi-dial .ring-inner { background: #ffffff; }
+        .kpi-dial .dial-label { font-size: 10px; text-transform: uppercase; letter-spacing: .6px;
+            color: var(--text-secondary); margin-top: 6px; line-height: 1.25; }
+        .kpi-dial:hover .ring { filter: brightness(1.12); }
+        .kpi-dial:hover .dial-label { color: var(--accent); }
+        @media (max-width: 1100px) {
+            .kpi-card--split { flex-direction: column; align-items: flex-start; }
+            .kpi-dials { align-self: stretch; }
+        }
         .kpi-token { display:inline-block; margin-top:6px; padding:2px 8px; border-radius:999px;
             font-size:11px; font-weight:600; letter-spacing:.2px; white-space:nowrap;
             border:1px solid var(--green); color: var(--green); background: rgba(46,204,113,.10); }
@@ -632,7 +657,7 @@
     </footer>
 </div>
 
-<script src="dashboard_v2_jsdata.js?v=1789413644"></script>
+<script src="dashboard_v2_jsdata.js?v=1789414080"></script>
 <script>
 
 // ─── State ───
@@ -714,6 +739,11 @@ const KPI_EXPLAIN = {
         formula: 'automated expense-side rows ÷ all expense-side rows',
         body: 'Same scoring, but only the money-out side: bills, bill payments, expenses, checks, card charges, vendor credits and journal entries. Deposits, sales receipts, credit memos and refunds are set aside and scored separately (the "revenue side" number in the footnote). This is the one to move if the goal is getting expenses onto rules and integrations. Note: it is type-based, so owner draws or loan payments land on the expense side too. The green PA-only token is the same expense-side rate with client-keyed rows taken out of the denominator - our work only. It is not the same as the all-in PA-Only card, which includes deposits.'
     },
+    expense_pa: {
+        title: 'PA-Only Expense Rate (our work, money-out only)',
+        formula: 'automated expense-side rows \u00f7 (automated + expense-side rows keyed by PA staff)',
+        body: 'The goal metric with client-keyed rows taken out of the denominator - how automated the expense work is on the part we actually touch. Two things to keep straight: it is expense-side only, so deposits and sales receipts are not in it, and it is therefore NOT the same as the all-in PA-only dial on the left card. The Q3 80% and EOY 90% goals are set on the overall expense rate, not on this number.'
+    },
     pa: {
         title: 'PA-Only Rate (our work)',
         formula: 'automated ÷ (automated + rows keyed by Patrick Accounting staff)',
@@ -763,26 +793,42 @@ function renderKPIs(d) {
 
     document.getElementById('kpiGrid').innerHTML = `
       <div class="kpi-row kpi-row-primary">
-        <div class="kpi-card clickable" data-kpi="rate" onclick="toggleKpiExplain('rate')" title="Click for what this measures">
+        <div class="kpi-card kpi-card--split clickable" data-kpi="rate" onclick="toggleKpiExplain('rate')" title="Click for what this measures">
+          <div class="kpi-main">
             <div class="kpi-label">Automation Rate <span style="opacity:.6;font-weight:400">(all-in)</span></div>
             <div class="kpi-value" style="color:${rateColor(rate)}">${rate.toFixed(1)}%</div>
             ${changeHtml}
-            <div class="kpi-tokens">
-              ${s.pa_only_rate != null ? `<div class="kpi-token clickable" onclick="event.stopPropagation();toggleKpiExplain('pa')" title="All-in rate with ${formatNum(s.client_manual)} client-entered rows taken out of the denominator - our work only. Click for details.">PA-only ${s.pa_only_rate.toFixed(1)}%</div>` : ''}
-              ${s.pa_books_rate != null ? `<div class="kpi-token clickable" onclick="event.stopPropagation();toggleKpiExplain('books')" title="All-in rate with ${formatNum(s.client_run_books)} client-run books set aside (${formatNum(s.client_run_txns)} txns). Click for details.">PA-run books ${s.pa_books_rate.toFixed(1)}%</div>` : ''}
-            </div>
-            <div class="kpi-sub">${formatNum(s.total_automated)} of ${formatNum(s.total_transactions)} transactions &bull; click any number for details</div>
+            <div class="kpi-sub">${formatNum(s.total_automated)} of ${formatNum(s.total_transactions)} transactions &bull; click any dial for details</div>
+          </div>
+          <div class="kpi-dials">
+            ${s.pa_only_rate != null ? `
+            <div class="kpi-dial" onclick="event.stopPropagation();toggleKpiExplain('pa')" title="All-in rate with ${formatNum(s.client_manual)} client-keyed rows out of the denominator. Click for details." style="--dial-pct:${s.pa_only_rate};--dial-color:${rateColor(s.pa_only_rate)}">
+              <div class="ring"><div class="ring-inner">${s.pa_only_rate.toFixed(1)}%</div></div>
+              <div class="dial-label">PA-only<br>rate</div>
+            </div>` : ''}
+            ${s.pa_books_rate != null ? `
+            <div class="kpi-dial" onclick="event.stopPropagation();toggleKpiExplain('books')" title="All-in rate with ${formatNum(s.client_run_books)} client-run books set aside (${formatNum(s.client_run_txns)} txns). Click for details." style="--dial-pct:${s.pa_books_rate};--dial-color:${rateColor(s.pa_books_rate)}">
+              <div class="ring"><div class="ring-inner">${s.pa_books_rate.toFixed(1)}%</div></div>
+              <div class="dial-label">PA-run<br>books</div>
+            </div>` : ''}
+          </div>
         </div>
         ${s.expense_rate != null ? `
-        <div class="kpi-card clickable" data-kpi="expense" onclick="toggleKpiExplain('expense')" title="Click for what this measures" style="border-color:var(--accent, #6c8cff)">
+        <div class="kpi-card kpi-card--split clickable" data-kpi="expense" onclick="toggleKpiExplain('expense')" title="Click for what this measures" style="border-color:var(--accent, #6c8cff)">
+          <div class="kpi-main">
             <div class="kpi-label">Expense Automation <span style="opacity:.6;font-weight:400">(goal metric)</span></div>
             <div class="kpi-value" style="color:${rateColor(s.expense_rate)}">${s.expense_rate.toFixed(1)}%</div>
             ${expChangeHtml}
-            <div class="kpi-tokens">
-              ${s.expense_pa_only_rate != null ? `<div class="kpi-token" title="Same expense-side scoring with client-keyed rows removed from the denominator. Not the same as the all-in PA-only token.">PA-only ${s.expense_pa_only_rate.toFixed(1)}%</div>` : ''}
-            </div>
             <div class="kpi-sub" title="Expense, Check, Bill, Bill Payment, card charges, Vendor Credit and Journal Entries. Deposits and other revenue-side rows are scored separately.">${formatNum(s.expense_automated)} of ${formatNum(s.expense_automated + s.expense_manual)} expense-side rows${s.revenue_rate != null ? ` &bull; revenue side ${s.revenue_rate.toFixed(1)}%` : ''}</div>
-            <div class="kpi-goal" title="Goals are set on the overall expense-automation rate, not the PA-only token. Kim Pope, 9/14/26.">Q3 goal <b>80%</b> (${s.expense_rate >= 80 ? 'met' : (80 - s.expense_rate).toFixed(1) + 'pp to go'}) &bull; EOY goal <b>90%</b></div>
+            <div class="kpi-goal" title="Goals are set on the overall expense-automation rate, not the PA-only dial. Kim Pope, 9/14/26.">Q3 goal <b>80%</b> (${s.expense_rate >= 80 ? 'met' : (80 - s.expense_rate).toFixed(1) + 'pp to go'}) &bull; EOY goal <b>90%</b></div>
+          </div>
+          <div class="kpi-dials">
+            ${s.expense_pa_only_rate != null ? `
+            <div class="kpi-dial" onclick="event.stopPropagation();toggleKpiExplain('expense_pa')" title="Same expense-side scoring with client-keyed rows out of the denominator. Click for details." style="--dial-pct:${s.expense_pa_only_rate};--dial-color:${rateColor(s.expense_pa_only_rate)}">
+              <div class="ring"><div class="ring-inner">${s.expense_pa_only_rate.toFixed(1)}%</div></div>
+              <div class="dial-label">PA-only<br>expense</div>
+            </div>` : ''}
+          </div>
         </div>` : ''}
       </div>
       <div class="kpi-explain" id="kpiExplain"></div>
