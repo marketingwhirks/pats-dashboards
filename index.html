@@ -64,6 +64,12 @@
         .kpi-grid { margin-bottom: 20px; }
         /* Kim 9/3/26: row 1 = the four percentages, row 2 = the transaction counts */
         .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 14px; }
+        /* Kim 9/14/26: the two all-in cuts live as tokens inside Automation Rate, so the
+           primary row is 2 hero cards (all-in vs the expense goal metric). */
+        .kpi-row-primary { grid-template-columns: repeat(2, 1fr); }
+        .kpi-tokens { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+        .kpi-token.clickable { cursor: pointer; }
+        .kpi-token.clickable:hover { filter: brightness(1.15); }
         .kpi-card.clickable { cursor: pointer; transition: transform .12s, box-shadow .12s; }
         .kpi-card.clickable:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,.25); }
         .kpi-card.clickable.open { outline: 2px solid var(--accent, #6c8cff); }
@@ -623,7 +629,7 @@
     </footer>
 </div>
 
-<script src="dashboard_v2_jsdata.js?v=1789412827"></script>
+<script src="dashboard_v2_jsdata.js?v=1789413387"></script>
 <script>
 
 // ─── State ───
@@ -753,32 +759,26 @@ function renderKPIs(d) {
     }
 
     document.getElementById('kpiGrid').innerHTML = `
-      <div class="kpi-row">
+      <div class="kpi-row kpi-row-primary">
         <div class="kpi-card clickable" data-kpi="rate" onclick="toggleKpiExplain('rate')" title="Click for what this measures">
-            <div class="kpi-label">Automation Rate</div>
+            <div class="kpi-label">Automation Rate <span style="opacity:.6;font-weight:400">(all-in)</span></div>
             <div class="kpi-value" style="color:${rateColor(rate)}">${rate.toFixed(1)}%</div>
             ${changeHtml}
-            <div class="kpi-hint">click for details</div>
+            <div class="kpi-tokens">
+              ${s.pa_only_rate != null ? `<div class="kpi-token clickable" onclick="event.stopPropagation();toggleKpiExplain('pa')" title="All-in rate with ${formatNum(s.client_manual)} client-entered rows taken out of the denominator - our work only. Click for details.">PA-only ${s.pa_only_rate.toFixed(1)}%</div>` : ''}
+              ${s.pa_books_rate != null ? `<div class="kpi-token clickable" onclick="event.stopPropagation();toggleKpiExplain('books')" title="All-in rate with ${formatNum(s.client_run_books)} client-run books set aside (${formatNum(s.client_run_txns)} txns). Click for details.">PA-run books ${s.pa_books_rate.toFixed(1)}%</div>` : ''}
+            </div>
+            <div class="kpi-sub">${formatNum(s.total_automated)} of ${formatNum(s.total_transactions)} transactions &bull; click any number for details</div>
         </div>
         ${s.expense_rate != null ? `
         <div class="kpi-card clickable" data-kpi="expense" onclick="toggleKpiExplain('expense')" title="Click for what this measures" style="border-color:var(--accent, #6c8cff)">
             <div class="kpi-label">Expense Automation <span style="opacity:.6;font-weight:400">(goal metric)</span></div>
             <div class="kpi-value" style="color:${rateColor(s.expense_rate)}">${s.expense_rate.toFixed(1)}%</div>
             ${expChangeHtml}
-            ${s.expense_pa_only_rate != null ? `<div class="kpi-token" title="Same expense-side scoring with client-keyed rows removed from the denominator. Not comparable to the all-in PA-Only card.">PA-only ${s.expense_pa_only_rate.toFixed(1)}%</div>` : ''}
+            <div class="kpi-tokens">
+              ${s.expense_pa_only_rate != null ? `<div class="kpi-token" title="Same expense-side scoring with client-keyed rows removed from the denominator. Not the same as the all-in PA-only token.">PA-only ${s.expense_pa_only_rate.toFixed(1)}%</div>` : ''}
+            </div>
             <div class="kpi-sub" title="Expense, Check, Bill, Bill Payment, card charges, Vendor Credit and Journal Entries. Deposits and other revenue-side rows are scored separately.">${formatNum(s.expense_automated)} of ${formatNum(s.expense_automated + s.expense_manual)} expense-side rows${s.revenue_rate != null ? ` &bull; revenue side ${s.revenue_rate.toFixed(1)}%` : ''}</div>
-        </div>` : ''}
-        ${s.pa_only_rate != null ? `
-        <div class="kpi-card clickable" data-kpi="pa" onclick="toggleKpiExplain('pa')" title="Click for what this measures" style="border-color:var(--green)">
-            <div class="kpi-label">PA-Only Rate <span style="opacity:.6;font-weight:400">(our work)</span></div>
-            <div class="kpi-value" style="color:${rateColor(s.pa_only_rate)}">${s.pa_only_rate.toFixed(1)}%</div>
-            <div class="kpi-sub">${formatNum(s.client_manual)} client-entered rows excluded</div>
-        </div>` : ''}
-        ${s.pa_books_rate != null ? `
-        <div class="kpi-card clickable" data-kpi="books" onclick="toggleKpiExplain('books')" title="Click for what this measures" style="border-color:var(--green)">
-            <div class="kpi-label">PA-Run Books <span style="opacity:.6;font-weight:400">(excl. client-run)</span></div>
-            <div class="kpi-value" style="color:${rateColor(s.pa_books_rate)}">${s.pa_books_rate.toFixed(1)}%</div>
-            <div class="kpi-sub">${formatNum(s.client_run_books)} client-run books set aside (${formatNum(s.client_run_txns)} txns)</div>
         </div>` : ''}
       </div>
       <div class="kpi-explain" id="kpiExplain"></div>
