@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-09-18T20:09:51Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-09-19T12:10:32Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -25396,10 +25396,10 @@ var ACTIVITY_DATA = {
     "summary": {
       "totalClients": 267,
       "totalDollars": 297867.86,
-      "doneClients": 109,
-      "doneDollars": 118962.86,
-      "inReviewClients": 51,
-      "inReviewDollars": 57084.0,
+      "doneClients": 122,
+      "doneDollars": 138188.86,
+      "inReviewClients": 44,
+      "inReviewDollars": 44753.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 95,
@@ -25430,29 +25430,29 @@ var ACTIVITY_DATA = {
       },
       "otdAlpha": {
         "pct40": 0.4147,
-        "pct75": 0.4396,
-        "pct95": 0.4396,
-        "pctCurrent": 0.4396
+        "pct75": 0.4462,
+        "pct95": 0.4462,
+        "pctCurrent": 0.4462
       },
       "otdPapa": {
         "pct40": 0.3107,
-        "pct75": 0.4161,
-        "pct95": 0.4161,
-        "pctCurrent": 0.4161
+        "pct75": 0.4711,
+        "pct95": 0.4711,
+        "pctCurrent": 0.4711
       },
       "otdTango": {
-        "pct40": 0.3278,
-        "pct75": 0.3278,
-        "pct95": 0.3278,
-        "pctCurrent": 0.3278
+        "pct40": 0.4745,
+        "pct75": 0.4745,
+        "pct95": 0.4745,
+        "pctCurrent": 0.4745
       }
     },
     "statusCounts": {
-      "Done": 109,
-      "Prep": 72,
-      "Collect": 35,
-      "Review": 48,
-      "Clear Notes": 2,
+      "Done": 122,
+      "Prep": 68,
+      "Collect": 33,
+      "Review": 40,
+      "Clear Notes": 3,
       "Review #2": 1
     },
     "clients": [
@@ -25750,10 +25750,10 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 2375.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-18"
       },
       {
         "company": "ARJOSAMA",
@@ -25997,7 +25997,7 @@ var ACTIVITY_DATA = {
         "manager": "Alexl",
         "wuFrequency": "M",
         "dollars": 440.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -26322,10 +26322,10 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 1954.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-18"
       },
       {
         "company": "CTI PROFESSIONAL FLIGHT TRAINING, LLC",
@@ -26803,10 +26803,10 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 1178.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-18"
       },
       {
         "company": "HARPER-AVERY INSURANCE, LLC",
@@ -26933,10 +26933,10 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 2242.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-18"
       },
       {
         "company": "HOUSE OF AGLAIA SALON, LLC",
@@ -27505,10 +27505,10 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 2100.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-18"
       },
       {
         "company": "MEDIPLAN HOLDINGS LLC",
@@ -27518,10 +27518,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 400.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-18"
       },
       {
         "company": "MEMPHIS MUSIC ARCHIVES, INC",
@@ -27622,10 +27622,10 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 635.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-18"
       },
       {
         "company": "MOUNT PLEASANT SC-BAKERY CORPORATION",
@@ -27726,7 +27726,7 @@ var ACTIVITY_DATA = {
         "manager": "Alexl",
         "wuFrequency": "M",
         "dollars": 770.0,
-        "status": "Prep",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -27804,7 +27804,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 1650.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -27830,10 +27830,10 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 2217.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-18"
       },
       {
         "company": "PUZZOL HOLDINGS LLC",
@@ -28298,7 +28298,7 @@ var ACTIVITY_DATA = {
         "manager": "Alexl",
         "wuFrequency": "M",
         "dollars": 510.0,
-        "status": "Review",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28675,7 +28675,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Prep",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28688,10 +28688,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-18"
       },
       {
         "company": "SAM'S SPORTS GRILL - FLORENCE, LLC #6371",
@@ -28727,10 +28727,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Prep",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-18"
       },
       {
         "company": "SAM'S SPORTS GRILL - HENDERSONVILLE, LLC #6368",
@@ -28753,7 +28753,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Prep",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28766,10 +28766,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-18"
       },
       {
         "company": "SAM'S SPORTS GRILL - OLD HICKORY, LLC #6367",
@@ -28779,10 +28779,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Prep",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-18"
       },
       {
         "company": "SAM'S SPORTS GRILL - OLD HICKORY, LLC #6367",
@@ -28805,7 +28805,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Prep",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28818,10 +28818,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-18"
       },
       {
         "company": "SPERRY'S RESTAURANTS - COOL SPRINGS, LLC",
@@ -28857,7 +28857,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Prep",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28870,7 +28870,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -29061,18 +29061,18 @@ var OTD_TRENDS = [
     "month": "August",
     "alpha": {
       "pct40": 0.4147,
-      "pct75": 0.4396,
-      "pct95": 0.4396
+      "pct75": 0.4462,
+      "pct95": 0.4462
     },
     "papa": {
       "pct40": 0.3107,
-      "pct75": 0.4161,
-      "pct95": 0.4161
+      "pct75": 0.4711,
+      "pct95": 0.4711
     },
     "tango": {
-      "pct40": 0.3278,
-      "pct75": 0.3278,
-      "pct95": 0.3278
+      "pct40": 0.4745,
+      "pct75": 0.4745,
+      "pct95": 0.4745
     }
   }
 ];
