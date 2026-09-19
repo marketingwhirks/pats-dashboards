@@ -1,1 +1,1 @@
-var NEEDS_AUTH_DATA = {"generated":"2026-09-18T17:06:48.926728+00:00","token_run_date":"2026-09-18","live_count":287,"total":309,"reconnect":[],"authorize":[]};
+var NEEDS_AUTH_DATA = {"generated":"2026-09-19T17:05:31.113729+00:00","token_run_date":"2026-09-19","live_count":287,"total":309,"reconnect":[],"authorize":[]};
