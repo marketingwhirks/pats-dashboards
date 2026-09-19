@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-09-19T12:10:32Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-09-19T20:08:53Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -25398,8 +25398,8 @@ var ACTIVITY_DATA = {
       "totalDollars": 297867.86,
       "doneClients": 122,
       "doneDollars": 138188.86,
-      "inReviewClients": 44,
-      "inReviewDollars": 44753.0,
+      "inReviewClients": 45,
+      "inReviewDollars": 45448.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 95,
@@ -25449,9 +25449,9 @@ var ACTIVITY_DATA = {
     },
     "statusCounts": {
       "Done": 122,
-      "Prep": 68,
+      "Prep": 67,
       "Collect": 33,
-      "Review": 40,
+      "Review": 41,
       "Clear Notes": 3,
       "Review #2": 1
     },
@@ -28155,7 +28155,7 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 695.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28675,10 +28675,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-18"
       },
       {
         "company": "SAM'S SPORTS GRILL -  NIPPERS CORNER, LLC",
@@ -28688,10 +28688,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Done",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": "2026-09-18"
+        "completeDate": ""
       },
       {
         "company": "SAM'S SPORTS GRILL - FLORENCE, LLC #6371",
@@ -28753,10 +28753,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-18"
       },
       {
         "company": "SAM'S SPORTS GRILL - MURFREESBORO, LLC #6369",
@@ -28766,10 +28766,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Done",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": "2026-09-18"
+        "completeDate": ""
       },
       {
         "company": "SAM'S SPORTS GRILL - OLD HICKORY, LLC #6367",
@@ -28805,10 +28805,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-18"
       },
       {
         "company": "SAM'S SPORTS GRILL - WESTGATE, LLC #6366",
@@ -28818,10 +28818,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Done",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": "2026-09-18"
+        "completeDate": ""
       },
       {
         "company": "SPERRY'S RESTAURANTS - COOL SPRINGS, LLC",
@@ -28857,7 +28857,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28870,7 +28870,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Prep",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
