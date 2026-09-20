@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-09-19T20:08:53Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-09-20T12:10:21Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -28675,10 +28675,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Done",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": "2026-09-18"
+        "completeDate": ""
       },
       {
         "company": "SAM'S SPORTS GRILL -  NIPPERS CORNER, LLC",
@@ -28688,10 +28688,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-18"
       },
       {
         "company": "SAM'S SPORTS GRILL - FLORENCE, LLC #6371",
@@ -28727,10 +28727,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Done",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": "2026-09-18"
+        "completeDate": ""
       },
       {
         "company": "SAM'S SPORTS GRILL - HENDERSONVILLE, LLC #6368",
@@ -28740,19 +28740,6 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
-        "kickback": false,
-        "staffCommitDate": "",
-        "completeDate": ""
-      },
-      {
-        "company": "SAM'S SPORTS GRILL - MURFREESBORO, LLC #6369",
-        "team": "PAPA",
-        "prep": "Amber Alexander",
-        "seniorAcct": "",
-        "manager": "Carolyn Pugh",
-        "wuFrequency": "W",
-        "dollars": 1225.0,
         "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
@@ -28772,7 +28759,7 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
-        "company": "SAM'S SPORTS GRILL - OLD HICKORY, LLC #6367",
+        "company": "SAM'S SPORTS GRILL - MURFREESBORO, LLC #6369",
         "team": "PAPA",
         "prep": "Amber Alexander",
         "seniorAcct": "",
@@ -28798,7 +28785,7 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
-        "company": "SAM'S SPORTS GRILL - WESTGATE, LLC #6366",
+        "company": "SAM'S SPORTS GRILL - OLD HICKORY, LLC #6367",
         "team": "PAPA",
         "prep": "Amber Alexander",
         "seniorAcct": "",
@@ -28822,6 +28809,19 @@ var ACTIVITY_DATA = {
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
+      },
+      {
+        "company": "SAM'S SPORTS GRILL - WESTGATE, LLC #6366",
+        "team": "PAPA",
+        "prep": "Amber Alexander",
+        "seniorAcct": "",
+        "manager": "Carolyn Pugh",
+        "wuFrequency": "W",
+        "dollars": 1225.0,
+        "status": "Done",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": "2026-09-18"
       },
       {
         "company": "SPERRY'S RESTAURANTS - COOL SPRINGS, LLC",
