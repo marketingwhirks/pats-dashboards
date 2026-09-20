@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-09-20T12:10:21Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-09-20T20:08:54Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -28571,7 +28571,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 730.0,
-        "status": "Prep",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28584,19 +28584,6 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 730.0,
-        "status": "Collect",
-        "kickback": false,
-        "staffCommitDate": "",
-        "completeDate": ""
-      },
-      {
-        "company": "LOFLIN YARD, LLC",
-        "team": "PAPA",
-        "prep": "Nini Dinh",
-        "seniorAcct": "Amber Alexander",
-        "manager": "Carolyn Pugh",
-        "wuFrequency": "W",
-        "dollars": 1160.0,
         "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
@@ -28616,13 +28603,13 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
-        "company": "MKT, INC",
+        "company": "LOFLIN YARD, LLC",
         "team": "PAPA",
-        "prep": "Jean Cherie Jordaan",
-        "seniorAcct": "Robert Peiffer",
-        "manager": "Ashers",
+        "prep": "Nini Dinh",
+        "seniorAcct": "Amber Alexander",
+        "manager": "Carolyn Pugh",
         "wuFrequency": "W",
-        "dollars": 1227.0,
+        "dollars": 1160.0,
         "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
@@ -28642,13 +28629,13 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
-        "company": "PYRO'S COMPANY",
-        "team": "ALPHA",
-        "prep": "Amber Alexander",
-        "seniorAcct": "",
-        "manager": "Debbie Warren",
+        "company": "MKT, INC",
+        "team": "PAPA",
+        "prep": "Jean Cherie Jordaan",
+        "seniorAcct": "Robert Peiffer",
+        "manager": "Ashers",
         "wuFrequency": "W",
-        "dollars": 6250.0,
+        "dollars": 1227.0,
         "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
@@ -28663,6 +28650,19 @@ var ACTIVITY_DATA = {
         "wuFrequency": "W",
         "dollars": 6250.0,
         "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "PYRO'S COMPANY",
+        "team": "ALPHA",
+        "prep": "Amber Alexander",
+        "seniorAcct": "",
+        "manager": "Debbie Warren",
+        "wuFrequency": "W",
+        "dollars": 6250.0,
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28701,7 +28701,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Prep",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28714,7 +28714,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28779,10 +28779,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-18"
       },
       {
         "company": "SAM'S SPORTS GRILL - OLD HICKORY, LLC #6367",
@@ -28792,10 +28792,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Done",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": "2026-09-18"
+        "completeDate": ""
       },
       {
         "company": "SAM'S SPORTS GRILL - WESTGATE, LLC #6366",
@@ -28883,7 +28883,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 585.0,
-        "status": "Prep",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28896,7 +28896,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 585.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
