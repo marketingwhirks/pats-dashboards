@@ -1,1 +1,1 @@
-var NEEDS_AUTH_DATA = {"generated":"2026-09-21T17:06:41.897116+00:00","token_run_date":"2026-09-21","live_count":287,"total":309,"reconnect":[],"authorize":[]};
+var NEEDS_AUTH_DATA = {"generated":"2026-09-23T17:04:55.135840+00:00","token_run_date":"2026-09-23","live_count":287,"total":310,"reconnect":[],"authorize":[{"name":"PEIFER COMPANIES, LLC","sn":"PEI001","qbo_file":"PEIFER COMPANIES, LLC","realm_id":"","added_by":"auto (sync_pending_auth)"}]};
