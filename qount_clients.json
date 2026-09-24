@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-23T16:02:30.257199+00:00",
+  "last_updated": "2026-09-24T16:01:26.633257+00:00",
   "count": 313,
   "clients": [
     {
@@ -151,6 +151,10 @@
       "name": "BAKING JOY, LLC"
     },
     {
+      "sn": "BAR1657",
+      "name": "BARCAS ENTERPRISES LLC"
+    },
+    {
       "sn": "BAR015",
       "name": "BARON'S MAN CAVE, LLC"
     },
@@ -261,10 +265,6 @@
     {
       "sn": "BYS001",
       "name": "BYS PROPERTIES, LLC"
-    },
-    {
-      "sn": "BAR1657",
-      "name": "BarCas Enterprises, LLC"
     },
     {
       "sn": "BAR8915",
