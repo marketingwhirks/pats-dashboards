@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-09-24T14:10:40Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-09-24T20:11:42Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -25396,10 +25396,10 @@ var ACTIVITY_DATA = {
     "summary": {
       "totalClients": 253,
       "totalDollars": 277015.86,
-      "doneClients": 178,
-      "doneDollars": 197330.86,
-      "inReviewClients": 36,
-      "inReviewDollars": 43150.0,
+      "doneClients": 179,
+      "doneDollars": 197895.86,
+      "inReviewClients": 38,
+      "inReviewDollars": 44843.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 94,
@@ -25442,18 +25442,18 @@ var ACTIVITY_DATA = {
       },
       "otdTango": {
         "pct40": 0.6136,
-        "pct75": 0.7162,
-        "pct95": 0.7162,
-        "pctCurrent": 0.7162
+        "pct75": 0.7231,
+        "pct95": 0.7231,
+        "pctCurrent": 0.7231
       }
     },
     "statusCounts": {
-      "Done": 178,
-      "Prep": 32,
+      "Done": 179,
+      "Review": 19,
+      "Prep": 29,
       "Clear Notes": 4,
-      "Review #2": 11,
+      "Review #2": 14,
       "Collect": 7,
-      "Review": 20,
       "Deliver": 1
     },
     "clients": [
@@ -25530,7 +25530,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 698.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -26388,7 +26388,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 1756.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -26544,7 +26544,7 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "M",
         "dollars": 585.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -26661,7 +26661,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 650.0,
-        "status": "Review",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -26908,7 +26908,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 400.0,
-        "status": "Review",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -27311,7 +27311,7 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 655.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -27675,10 +27675,10 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 565.0,
-        "status": "Deliver",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-24"
       },
       {
         "company": "NASHVILLE SUNFLOWER CAFE, LLC",
@@ -27766,7 +27766,7 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 905.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28247,7 +28247,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 1255.0,
-        "status": "Review #2",
+        "status": "Deliver",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28286,7 +28286,7 @@ var ACTIVITY_DATA = {
         "manager": "Ashers",
         "wuFrequency": "M",
         "dollars": 930.0,
-        "status": "Review",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28429,7 +28429,7 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 990.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28572,7 +28572,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 730.0,
-        "status": "Review",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -28890,8 +28890,8 @@ var OTD_TRENDS = [
     },
     "tango": {
       "pct40": 0.6136,
-      "pct75": 0.7162,
-      "pct95": 0.7162
+      "pct75": 0.7231,
+      "pct95": 0.7231
     }
   }
 ];
