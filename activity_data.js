@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-09-25T12:13:29Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-09-25T20:11:07Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -25396,10 +25396,10 @@ var ACTIVITY_DATA = {
     "summary": {
       "totalClients": 253,
       "totalDollars": 277015.86,
-      "doneClients": 200,
-      "doneDollars": 221468.86,
-      "inReviewClients": 25,
-      "inReviewDollars": 27156.0,
+      "doneClients": 201,
+      "doneDollars": 223118.86,
+      "inReviewClients": 26,
+      "inReviewDollars": 27326.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 94,
@@ -25437,8 +25437,8 @@ var ACTIVITY_DATA = {
       "otdPapa": {
         "pct40": 0.3543,
         "pct75": 0.6419,
-        "pct95": 0.8384,
-        "pctCurrent": 0.8384
+        "pct95": 0.8543,
+        "pctCurrent": 0.8543
       },
       "otdTango": {
         "pct40": 0.6136,
@@ -25448,12 +25448,12 @@ var ACTIVITY_DATA = {
       }
     },
     "statusCounts": {
-      "Done": 200,
-      "Prep": 22,
+      "Done": 201,
+      "Prep": 20,
       "Clear Notes": 3,
       "Collect": 6,
       "Review": 12,
-      "Review #2": 10
+      "Review #2": 11
     },
     "clients": [
       {
@@ -26088,7 +26088,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 1655.0,
-        "status": "Review",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -27752,7 +27752,7 @@ var ACTIVITY_DATA = {
         "manager": "Alexl",
         "wuFrequency": "M",
         "dollars": 1160.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -27765,7 +27765,7 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 905.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -27804,10 +27804,10 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 1650.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-25"
       },
       {
         "company": "PRAVINCHANDRA P PATEL MD PC",
@@ -27882,7 +27882,7 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 660.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -31910,7 +31910,7 @@ var OTD_TRENDS = [
     "papa": {
       "pct40": 0.3543,
       "pct75": 0.6419,
-      "pct95": 0.8384
+      "pct95": 0.8543
     },
     "tango": {
       "pct40": 0.6136,
