@@ -1,1 +1,1 @@
-var NEEDS_AUTH_DATA = {"generated":"2026-09-25T17:06:19.387086+00:00","token_run_date":"2026-09-25","live_count":288,"total":311,"reconnect":[],"authorize":[{"name":"ZAP LLC","sn":"ZAP5075","qbo_file":"ZAP LLC","realm_id":"","added_by":"auto (sync_pending_auth)"}]};
+var NEEDS_AUTH_DATA = {"generated":"2026-09-26T17:06:03.893909+00:00","token_run_date":"2026-09-26","live_count":288,"total":310,"reconnect":[],"authorize":[]};
