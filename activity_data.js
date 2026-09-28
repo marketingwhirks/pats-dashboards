@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-09-28T12:14:40Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-09-28T20:57:29Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -25396,10 +25396,10 @@ var ACTIVITY_DATA = {
     "summary": {
       "totalClients": 253,
       "totalDollars": 277015.86,
-      "doneClients": 221,
-      "doneDollars": 249270.86,
+      "doneClients": 223,
+      "doneDollars": 251090.86,
       "inReviewClients": 13,
-      "inReviewDollars": 11687.0,
+      "inReviewDollars": 11777.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 94,
@@ -25438,21 +25438,20 @@ var ACTIVITY_DATA = {
         "pct40": 0.3543,
         "pct75": 0.6419,
         "pct95": 0.9413,
-        "pctCurrent": 0.9413
+        "pctCurrent": 0.9487
       },
       "otdTango": {
         "pct40": 0.6136,
         "pct75": 0.8986,
-        "pct95": 0.8986,
-        "pctCurrent": 0.8986
+        "pct95": 0.9114,
+        "pctCurrent": 0.9114
       }
     },
     "statusCounts": {
-      "Done": 221,
-      "Prep": 13,
-      "Review #2": 3,
-      "Collect": 6,
-      "Clear Notes": 1,
+      "Done": 223,
+      "Prep": 12,
+      "Review #2": 4,
+      "Collect": 5,
       "Review": 9
     },
     "clients": [
@@ -26023,10 +26022,10 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 1050.0,
-        "status": "Collect",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-28"
       },
       {
         "company": "BRAMBLY PARK, LLC",
@@ -26088,7 +26087,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 1655.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -26764,10 +26763,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 770.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-28"
       },
       {
         "company": "GRUDZIENA INC",
@@ -27557,7 +27556,7 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "M",
         "dollars": 860.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -32279,7 +32278,7 @@ var OTD_TRENDS = [
     "tango": {
       "pct40": 0.6136,
       "pct75": 0.8986,
-      "pct95": 0.8986
+      "pct95": 0.9114
     }
   },
   {
