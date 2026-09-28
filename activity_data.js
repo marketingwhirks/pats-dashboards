@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-09-27T20:09:46Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-09-28T12:14:40Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -25450,10 +25450,10 @@ var ACTIVITY_DATA = {
     "statusCounts": {
       "Done": 221,
       "Prep": 13,
-      "Clear Notes": 2,
+      "Review #2": 3,
       "Collect": 6,
-      "Review": 9,
-      "Review #2": 2
+      "Clear Notes": 1,
+      "Review": 9
     },
     "clients": [
       {
@@ -25607,7 +25607,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 1543.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": true,
         "staffCommitDate": "",
         "completeDate": ""
