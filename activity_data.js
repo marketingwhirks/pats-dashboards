@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-09-29T12:11:57Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-09-29T20:09:52Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -76,7 +76,7 @@ var ACTIVITY_DATA = {
       {
         "company": "3DNYC Corp",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -635,7 +635,7 @@ var ACTIVITY_DATA = {
       {
         "company": "BRAMBLY PARK, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -661,7 +661,7 @@ var ACTIVITY_DATA = {
       {
         "company": "BRIC FITNESS, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -674,7 +674,7 @@ var ACTIVITY_DATA = {
       {
         "company": "BRICKHOUSE BUFFETS, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -791,7 +791,7 @@ var ACTIVITY_DATA = {
       {
         "company": "CITY & STATE RETAIL",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -921,7 +921,7 @@ var ACTIVITY_DATA = {
       {
         "company": "COZY CORNER RESTAURANTS INC.",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -1025,7 +1025,7 @@ var ACTIVITY_DATA = {
       {
         "company": "DANVER'S LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -1129,7 +1129,7 @@ var ACTIVITY_DATA = {
       {
         "company": "EL MERO, INC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -1155,7 +1155,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ELITE INFUSION SERVICES, LLC",
         "team": "TANGO",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -1168,7 +1168,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ELITE PREMIER NURSING SERVICES LLC",
         "team": "TANGO",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -1181,7 +1181,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ELITE PREMIER NURSING SERVICES OF NAPLES LLC",
         "team": "TANGO",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -1259,7 +1259,7 @@ var ACTIVITY_DATA = {
       {
         "company": "FLYBOYS FITNESS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -1350,7 +1350,7 @@ var ACTIVITY_DATA = {
       {
         "company": "GOOD FORTUNE COMPANY MEMPHIS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -1389,7 +1389,7 @@ var ACTIVITY_DATA = {
       {
         "company": "GORDIN HOLDINGS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -1480,7 +1480,7 @@ var ACTIVITY_DATA = {
       {
         "company": "GRIND CITY BREWING COMPANY, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -1493,7 +1493,7 @@ var ACTIVITY_DATA = {
       {
         "company": "GRUDZIENA INC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -1610,7 +1610,7 @@ var ACTIVITY_DATA = {
       {
         "company": "HICKS CONVENTION SERVICES AND SPECIAL EVENTS INC",
         "team": "ALPHA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -1701,7 +1701,7 @@ var ACTIVITY_DATA = {
       {
         "company": "HUB ATHLETICS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -2286,7 +2286,7 @@ var ACTIVITY_DATA = {
       {
         "company": "MEDIPLAN HOLDINGS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -2403,7 +2403,7 @@ var ACTIVITY_DATA = {
       {
         "company": "MOUNT PLEASANT SC-BAKERY CORPORATION",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -2819,7 +2819,7 @@ var ACTIVITY_DATA = {
       {
         "company": "SCARY GARY 2, INC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -2897,7 +2897,7 @@ var ACTIVITY_DATA = {
       {
         "company": "SLB ENTERPRISE INC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -2923,7 +2923,7 @@ var ACTIVITY_DATA = {
       {
         "company": "SPANOW, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -2936,7 +2936,7 @@ var ACTIVITY_DATA = {
       {
         "company": "SR Enterprise, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -3209,7 +3209,7 @@ var ACTIVITY_DATA = {
       {
         "company": "TTKBG INC.",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -3274,7 +3274,7 @@ var ACTIVITY_DATA = {
       {
         "company": "UBIQUISOFT TECHNOLOGIES, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -3521,7 +3521,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ZENFIRE ATL LLC",
         "team": "ALPHA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "MAD",
         "wuFrequency": "M",
@@ -3534,7 +3534,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ZONKHEAD, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -3622,7 +3622,7 @@ var ACTIVITY_DATA = {
       {
         "company": "3DNYC Corp",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -4181,7 +4181,7 @@ var ACTIVITY_DATA = {
       {
         "company": "BRAMBLY PARK, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -4207,7 +4207,7 @@ var ACTIVITY_DATA = {
       {
         "company": "BRIC FITNESS, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -4220,7 +4220,7 @@ var ACTIVITY_DATA = {
       {
         "company": "BRICKHOUSE BUFFETS, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -4337,7 +4337,7 @@ var ACTIVITY_DATA = {
       {
         "company": "CITY & STATE RETAIL",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -4467,7 +4467,7 @@ var ACTIVITY_DATA = {
       {
         "company": "COZY CORNER RESTAURANTS INC.",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -4571,7 +4571,7 @@ var ACTIVITY_DATA = {
       {
         "company": "DANVER'S LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -4688,7 +4688,7 @@ var ACTIVITY_DATA = {
       {
         "company": "EL MERO, INC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -4714,7 +4714,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ELITE INFUSION SERVICES, LLC",
         "team": "TANGO",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -4727,7 +4727,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ELITE PREMIER NURSING SERVICES LLC",
         "team": "TANGO",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -4740,7 +4740,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ELITE PREMIER NURSING SERVICES OF NAPLES LLC",
         "team": "TANGO",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -4818,7 +4818,7 @@ var ACTIVITY_DATA = {
       {
         "company": "FLYBOYS FITNESS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -4909,7 +4909,7 @@ var ACTIVITY_DATA = {
       {
         "company": "GOOD FORTUNE COMPANY MEMPHIS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -5026,7 +5026,7 @@ var ACTIVITY_DATA = {
       {
         "company": "GRIND CITY BREWING COMPANY, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -5039,7 +5039,7 @@ var ACTIVITY_DATA = {
       {
         "company": "GRUDZIENA INC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -5156,7 +5156,7 @@ var ACTIVITY_DATA = {
       {
         "company": "HICKS CONVENTION SERVICES AND SPECIAL EVENTS INC",
         "team": "ALPHA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -5247,7 +5247,7 @@ var ACTIVITY_DATA = {
       {
         "company": "HUB ATHLETICS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -5832,7 +5832,7 @@ var ACTIVITY_DATA = {
       {
         "company": "MEDIPLAN HOLDINGS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -5949,7 +5949,7 @@ var ACTIVITY_DATA = {
       {
         "company": "MOUNT PLEASANT SC-BAKERY CORPORATION",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -6443,7 +6443,7 @@ var ACTIVITY_DATA = {
       {
         "company": "SLB ENTERPRISE INC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -6469,7 +6469,7 @@ var ACTIVITY_DATA = {
       {
         "company": "SPANOW, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -6482,7 +6482,7 @@ var ACTIVITY_DATA = {
       {
         "company": "SR Enterprise, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -6755,7 +6755,7 @@ var ACTIVITY_DATA = {
       {
         "company": "TTKBG INC.",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -6820,7 +6820,7 @@ var ACTIVITY_DATA = {
       {
         "company": "UBIQUISOFT TECHNOLOGIES, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -7067,7 +7067,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ZENFIRE ATL LLC",
         "team": "ALPHA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "MAD",
         "wuFrequency": "M",
@@ -7080,7 +7080,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ZONKHEAD, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -7168,7 +7168,7 @@ var ACTIVITY_DATA = {
       {
         "company": "3DNYC Corp",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -7727,7 +7727,7 @@ var ACTIVITY_DATA = {
       {
         "company": "BRAMBLY PARK, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -7753,7 +7753,7 @@ var ACTIVITY_DATA = {
       {
         "company": "BRIC FITNESS, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -7766,7 +7766,7 @@ var ACTIVITY_DATA = {
       {
         "company": "BRICKHOUSE BUFFETS, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -7883,7 +7883,7 @@ var ACTIVITY_DATA = {
       {
         "company": "CITY & STATE RETAIL",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -8000,7 +8000,7 @@ var ACTIVITY_DATA = {
       {
         "company": "COZY CORNER RESTAURANTS INC.",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -8104,7 +8104,7 @@ var ACTIVITY_DATA = {
       {
         "company": "DANVER'S LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -8208,7 +8208,7 @@ var ACTIVITY_DATA = {
       {
         "company": "EL MERO, INC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -8234,7 +8234,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ELITE INFUSION SERVICES, LLC",
         "team": "TANGO",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -8247,7 +8247,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ELITE PREMIER NURSING SERVICES LLC",
         "team": "TANGO",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -8260,7 +8260,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ELITE PREMIER NURSING SERVICES OF NAPLES LLC",
         "team": "TANGO",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -8338,7 +8338,7 @@ var ACTIVITY_DATA = {
       {
         "company": "FLYBOYS FITNESS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -8429,7 +8429,7 @@ var ACTIVITY_DATA = {
       {
         "company": "GOOD FORTUNE COMPANY MEMPHIS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -8546,7 +8546,7 @@ var ACTIVITY_DATA = {
       {
         "company": "GRIND CITY BREWING COMPANY, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -8559,7 +8559,7 @@ var ACTIVITY_DATA = {
       {
         "company": "GRUDZIENA INC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -8676,7 +8676,7 @@ var ACTIVITY_DATA = {
       {
         "company": "HICKS CONVENTION SERVICES AND SPECIAL EVENTS INC",
         "team": "ALPHA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -8767,7 +8767,7 @@ var ACTIVITY_DATA = {
       {
         "company": "HUB ATHLETICS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -9352,7 +9352,7 @@ var ACTIVITY_DATA = {
       {
         "company": "MEDIPLAN HOLDINGS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -9469,7 +9469,7 @@ var ACTIVITY_DATA = {
       {
         "company": "MOUNT PLEASANT SC-BAKERY CORPORATION",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -9963,7 +9963,7 @@ var ACTIVITY_DATA = {
       {
         "company": "SLB ENTERPRISE INC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -9989,7 +9989,7 @@ var ACTIVITY_DATA = {
       {
         "company": "SPANOW, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -10002,7 +10002,7 @@ var ACTIVITY_DATA = {
       {
         "company": "SR Enterprise, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -10275,7 +10275,7 @@ var ACTIVITY_DATA = {
       {
         "company": "TTKBG INC.",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -10340,7 +10340,7 @@ var ACTIVITY_DATA = {
       {
         "company": "UBIQUISOFT TECHNOLOGIES, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -10353,7 +10353,7 @@ var ACTIVITY_DATA = {
       {
         "company": "UNBROKEN219 LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -10561,7 +10561,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ZENFIRE ATL LLC",
         "team": "ALPHA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "MAD",
         "wuFrequency": "M",
@@ -10574,7 +10574,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ZONKHEAD, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -10691,7 +10691,7 @@ var ACTIVITY_DATA = {
       {
         "company": "MOONDANCE-THORNWOOD, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "W",
@@ -10756,7 +10756,7 @@ var ACTIVITY_DATA = {
       {
         "company": "LAFAYETTE'S MUSIC ROOM LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "W",
@@ -10769,7 +10769,7 @@ var ACTIVITY_DATA = {
       {
         "company": "LOFLIN YARD, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "W",
@@ -10857,7 +10857,7 @@ var ACTIVITY_DATA = {
       {
         "company": "3DNYC Corp",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -11429,7 +11429,7 @@ var ACTIVITY_DATA = {
       {
         "company": "BRAMBLY PARK, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -11455,7 +11455,7 @@ var ACTIVITY_DATA = {
       {
         "company": "BRIC FITNESS, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -11468,7 +11468,7 @@ var ACTIVITY_DATA = {
       {
         "company": "BRICKHOUSE BUFFETS, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -11585,7 +11585,7 @@ var ACTIVITY_DATA = {
       {
         "company": "CITY & STATE RETAIL",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -11702,7 +11702,7 @@ var ACTIVITY_DATA = {
       {
         "company": "COZY CORNER RESTAURANTS INC.",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -11806,7 +11806,7 @@ var ACTIVITY_DATA = {
       {
         "company": "DANVER'S LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -11910,7 +11910,7 @@ var ACTIVITY_DATA = {
       {
         "company": "EL MERO, INC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -11936,7 +11936,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ELITE INFUSION SERVICES, LLC",
         "team": "TANGO",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -11949,7 +11949,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ELITE PREMIER NURSING SERVICES LLC",
         "team": "TANGO",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -11962,7 +11962,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ELITE PREMIER NURSING SERVICES OF NAPLES LLC",
         "team": "TANGO",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -12040,7 +12040,7 @@ var ACTIVITY_DATA = {
       {
         "company": "FLYBOYS FITNESS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -12131,7 +12131,7 @@ var ACTIVITY_DATA = {
       {
         "company": "GOOD FORTUNE COMPANY MEMPHIS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -12248,7 +12248,7 @@ var ACTIVITY_DATA = {
       {
         "company": "GRIND CITY BREWING COMPANY, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -12261,7 +12261,7 @@ var ACTIVITY_DATA = {
       {
         "company": "GRUDZIENA INC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -12378,7 +12378,7 @@ var ACTIVITY_DATA = {
       {
         "company": "HICKS CONVENTION SERVICES AND SPECIAL EVENTS INC",
         "team": "ALPHA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -12469,7 +12469,7 @@ var ACTIVITY_DATA = {
       {
         "company": "HUB ATHLETICS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -13041,7 +13041,7 @@ var ACTIVITY_DATA = {
       {
         "company": "MEDIPLAN HOLDINGS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -13158,7 +13158,7 @@ var ACTIVITY_DATA = {
       {
         "company": "MOUNT PLEASANT SC-BAKERY CORPORATION",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -13652,7 +13652,7 @@ var ACTIVITY_DATA = {
       {
         "company": "SLB ENTERPRISE INC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -13691,7 +13691,7 @@ var ACTIVITY_DATA = {
       {
         "company": "SPANOW, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -13704,7 +13704,7 @@ var ACTIVITY_DATA = {
       {
         "company": "SR Enterprise, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -13977,7 +13977,7 @@ var ACTIVITY_DATA = {
       {
         "company": "TTKBG INC.",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -14042,7 +14042,7 @@ var ACTIVITY_DATA = {
       {
         "company": "UBIQUISOFT TECHNOLOGIES, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -14055,7 +14055,7 @@ var ACTIVITY_DATA = {
       {
         "company": "UNBROKEN219 LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -14250,7 +14250,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ZENFIRE ATL LLC",
         "team": "ALPHA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "MAD",
         "wuFrequency": "M",
@@ -14263,7 +14263,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ZONKHEAD, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -14380,7 +14380,7 @@ var ACTIVITY_DATA = {
       {
         "company": "MOONDANCE-THORNWOOD, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "W",
@@ -14393,7 +14393,7 @@ var ACTIVITY_DATA = {
       {
         "company": "LAFAYETTE'S MUSIC ROOM LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "W",
@@ -14432,7 +14432,7 @@ var ACTIVITY_DATA = {
       {
         "company": "LOFLIN YARD, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "W",
@@ -14471,7 +14471,7 @@ var ACTIVITY_DATA = {
       {
         "company": "THE OVERLAND LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "W",
@@ -14562,7 +14562,7 @@ var ACTIVITY_DATA = {
       {
         "company": "3DNYC Corp",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -15160,7 +15160,7 @@ var ACTIVITY_DATA = {
       {
         "company": "BRAMBLY PARK, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -15186,7 +15186,7 @@ var ACTIVITY_DATA = {
       {
         "company": "BRIC FITNESS, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -15199,7 +15199,7 @@ var ACTIVITY_DATA = {
       {
         "company": "BRICKHOUSE BUFFETS, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -15316,7 +15316,7 @@ var ACTIVITY_DATA = {
       {
         "company": "CITY & STATE RETAIL",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -15433,7 +15433,7 @@ var ACTIVITY_DATA = {
       {
         "company": "COZY CORNER RESTAURANTS INC.",
         "team": "ALPHA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -15537,7 +15537,7 @@ var ACTIVITY_DATA = {
       {
         "company": "DANVER'S LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -15641,7 +15641,7 @@ var ACTIVITY_DATA = {
       {
         "company": "EL MERO, INC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -15667,7 +15667,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ELITE INFUSION SERVICES, LLC",
         "team": "TANGO",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -15680,7 +15680,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ELITE PREMIER NURSING SERVICES LLC",
         "team": "TANGO",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -15693,7 +15693,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ELITE PREMIER NURSING SERVICES OF NAPLES LLC",
         "team": "TANGO",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -15771,7 +15771,7 @@ var ACTIVITY_DATA = {
       {
         "company": "FLYBOYS FITNESS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -15862,7 +15862,7 @@ var ACTIVITY_DATA = {
       {
         "company": "GOOD FORTUNE COMPANY MEMPHIS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -15979,7 +15979,7 @@ var ACTIVITY_DATA = {
       {
         "company": "GRIND CITY BREWING COMPANY, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -15992,7 +15992,7 @@ var ACTIVITY_DATA = {
       {
         "company": "GRUDZIENA INC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -16109,7 +16109,7 @@ var ACTIVITY_DATA = {
       {
         "company": "HICKS CONVENTION SERVICES AND SPECIAL EVENTS INC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -16200,7 +16200,7 @@ var ACTIVITY_DATA = {
       {
         "company": "HUB ATHLETICS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -16408,7 +16408,7 @@ var ACTIVITY_DATA = {
       {
         "company": "JZDH LLC",
         "team": "ALPHA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -16785,7 +16785,7 @@ var ACTIVITY_DATA = {
       {
         "company": "MEDIPLAN HOLDINGS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -16902,7 +16902,7 @@ var ACTIVITY_DATA = {
       {
         "company": "MOUNT PLEASANT SC-BAKERY CORPORATION",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -17396,7 +17396,7 @@ var ACTIVITY_DATA = {
       {
         "company": "SLB ENTERPRISE INC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -17422,7 +17422,7 @@ var ACTIVITY_DATA = {
       {
         "company": "SPANOW, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -17435,7 +17435,7 @@ var ACTIVITY_DATA = {
       {
         "company": "SR Enterprise, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -17734,7 +17734,7 @@ var ACTIVITY_DATA = {
       {
         "company": "TTKBG INC.",
         "team": "ALPHA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -17799,7 +17799,7 @@ var ACTIVITY_DATA = {
       {
         "company": "UBIQUISOFT TECHNOLOGIES, LLC",
         "team": "ALPHA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -17812,7 +17812,7 @@ var ACTIVITY_DATA = {
       {
         "company": "UNBROKEN219 LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -18007,7 +18007,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ZENFIRE ATL LLC",
         "team": "ALPHA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "MAD",
         "wuFrequency": "M",
@@ -18020,7 +18020,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ZONKHEAD, LLC",
         "team": "ALPHA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -18072,7 +18072,7 @@ var ACTIVITY_DATA = {
       {
         "company": "MOONDANCE-THORNWOOD, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "W",
@@ -18176,7 +18176,7 @@ var ACTIVITY_DATA = {
       {
         "company": "LAFAYETTE'S MUSIC ROOM LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "W",
@@ -18189,7 +18189,7 @@ var ACTIVITY_DATA = {
       {
         "company": "LOFLIN YARD, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "W",
@@ -18228,7 +18228,7 @@ var ACTIVITY_DATA = {
       {
         "company": "THE OVERLAND LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "W",
@@ -18320,7 +18320,7 @@ var ACTIVITY_DATA = {
       {
         "company": "3DNYC Corp",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -18918,7 +18918,7 @@ var ACTIVITY_DATA = {
       {
         "company": "BRAMBLY PARK, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -18944,7 +18944,7 @@ var ACTIVITY_DATA = {
       {
         "company": "BRIC FITNESS, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -18957,7 +18957,7 @@ var ACTIVITY_DATA = {
       {
         "company": "BRICKHOUSE BUFFETS, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -19074,7 +19074,7 @@ var ACTIVITY_DATA = {
       {
         "company": "CITY & STATE RETAIL",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -19191,7 +19191,7 @@ var ACTIVITY_DATA = {
       {
         "company": "COZY CORNER RESTAURANTS INC.",
         "team": "ALPHA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -19295,7 +19295,7 @@ var ACTIVITY_DATA = {
       {
         "company": "DANVER'S LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -19399,7 +19399,7 @@ var ACTIVITY_DATA = {
       {
         "company": "EL MERO, INC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -19425,7 +19425,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ELITE INFUSION SERVICES, LLC",
         "team": "TANGO",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -19438,7 +19438,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ELITE PREMIER NURSING SERVICES LLC",
         "team": "TANGO",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -19451,7 +19451,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ELITE PREMIER NURSING SERVICES OF NAPLES LLC",
         "team": "TANGO",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "AJS",
         "wuFrequency": "M",
@@ -19503,7 +19503,7 @@ var ACTIVITY_DATA = {
       {
         "company": "FLYBOYS FITNESS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -19594,7 +19594,7 @@ var ACTIVITY_DATA = {
       {
         "company": "GOOD FORTUNE COMPANY MEMPHIS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -19711,7 +19711,7 @@ var ACTIVITY_DATA = {
       {
         "company": "GRIND CITY BREWING COMPANY, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -19724,7 +19724,7 @@ var ACTIVITY_DATA = {
       {
         "company": "GRUDZIENA INC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -19841,7 +19841,7 @@ var ACTIVITY_DATA = {
       {
         "company": "HICKS CONVENTION SERVICES AND SPECIAL EVENTS INC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -19945,7 +19945,7 @@ var ACTIVITY_DATA = {
       {
         "company": "HUB ATHLETICS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -20166,7 +20166,7 @@ var ACTIVITY_DATA = {
       {
         "company": "JZDH LLC",
         "team": "ALPHA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -20543,7 +20543,7 @@ var ACTIVITY_DATA = {
       {
         "company": "MEDIPLAN HOLDINGS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -20660,7 +20660,7 @@ var ACTIVITY_DATA = {
       {
         "company": "MOUNT PLEASANT SC-BAKERY CORPORATION",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -21154,7 +21154,7 @@ var ACTIVITY_DATA = {
       {
         "company": "SLB ENTERPRISE INC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -21180,7 +21180,7 @@ var ACTIVITY_DATA = {
       {
         "company": "SPANOW, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "JAL",
         "wuFrequency": "M",
@@ -21193,7 +21193,7 @@ var ACTIVITY_DATA = {
       {
         "company": "SR Enterprise, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -21479,7 +21479,7 @@ var ACTIVITY_DATA = {
       {
         "company": "TTKBG INC.",
         "team": "ALPHA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -21544,7 +21544,7 @@ var ACTIVITY_DATA = {
       {
         "company": "UBIQUISOFT TECHNOLOGIES, LLC",
         "team": "ALPHA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -21557,7 +21557,7 @@ var ACTIVITY_DATA = {
       {
         "company": "UNBROKEN219 LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "CRP",
         "wuFrequency": "M",
@@ -21752,7 +21752,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ZENFIRE ATL LLC",
         "team": "ALPHA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "MAD",
         "wuFrequency": "M",
@@ -21765,7 +21765,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ZONKHEAD, LLC",
         "team": "ALPHA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "TJS",
         "wuFrequency": "M",
@@ -21817,7 +21817,7 @@ var ACTIVITY_DATA = {
       {
         "company": "THE OVERLAND LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "W",
@@ -21830,7 +21830,7 @@ var ACTIVITY_DATA = {
       {
         "company": "LAFAYETTE'S MUSIC ROOM LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "W",
@@ -21869,7 +21869,7 @@ var ACTIVITY_DATA = {
       {
         "company": "MOONDANCE-THORNWOOD, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "W",
@@ -21973,7 +21973,7 @@ var ACTIVITY_DATA = {
       {
         "company": "LOFLIN YARD, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "CRP",
         "wuFrequency": "W",
@@ -22611,7 +22611,7 @@ var ACTIVITY_DATA = {
       {
         "company": "BRAMBLY PARK, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
@@ -22650,7 +22650,7 @@ var ACTIVITY_DATA = {
       {
         "company": "BRICKHOUSE BUFFETS, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
@@ -22767,7 +22767,7 @@ var ACTIVITY_DATA = {
       {
         "company": "CITY & STATE RETAIL",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "Ashers",
         "wuFrequency": "M",
@@ -22793,7 +22793,7 @@ var ACTIVITY_DATA = {
       {
         "company": "CLIPPERS OF KNOXVILLE, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "Madison Dearing",
         "wuFrequency": "M",
@@ -22806,7 +22806,7 @@ var ACTIVITY_DATA = {
       {
         "company": "CLIPPERS OF THE MID-SOUTH LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "Madison Dearing",
         "wuFrequency": "M",
@@ -22871,7 +22871,7 @@ var ACTIVITY_DATA = {
       {
         "company": "COZY CORNER RESTAURANTS INC.",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "Madison Dearing",
         "wuFrequency": "M",
@@ -22975,7 +22975,7 @@ var ACTIVITY_DATA = {
       {
         "company": "DANVER'S LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Lani Pavao",
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
@@ -23053,7 +23053,7 @@ var ACTIVITY_DATA = {
       {
         "company": "EL MERO, INC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
@@ -23066,7 +23066,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ELITE PREMIER NURSING SERVICES LLC",
         "team": "TANGO",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
@@ -23079,7 +23079,7 @@ var ACTIVITY_DATA = {
       {
         "company": "ELITE PREMIER NURSING SERVICES OF NAPLES LLC",
         "team": "TANGO",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "",
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
@@ -23235,7 +23235,7 @@ var ACTIVITY_DATA = {
       {
         "company": "GOOD FORTUNE COMPANY MEMPHIS LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
@@ -23339,7 +23339,7 @@ var ACTIVITY_DATA = {
       {
         "company": "GRIND CITY BREWING COMPANY, LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
@@ -24236,7 +24236,7 @@ var ACTIVITY_DATA = {
       {
         "company": "MOUNT PLEASANT SC-BAKERY CORPORATION",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
@@ -25380,7 +25380,7 @@ var ACTIVITY_DATA = {
       {
         "company": "THE OVERLAND LLC",
         "team": "PAPA",
-        "prep": "Jaxon Ammons",
+        "prep": "former staff",
         "seniorAcct": "Amber Alexander",
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
@@ -25396,10 +25396,10 @@ var ACTIVITY_DATA = {
     "summary": {
       "totalClients": 253,
       "totalDollars": 277015.86,
-      "doneClients": 229,
-      "doneDollars": 255412.86,
-      "inReviewClients": 12,
-      "inReviewDollars": 10862.0,
+      "doneClients": 231,
+      "doneDollars": 256484.86,
+      "inReviewClients": 13,
+      "inReviewDollars": 14101.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 93,
@@ -25432,7 +25432,7 @@ var ACTIVITY_DATA = {
         "pct40": 0.4479,
         "pct75": 0.5922,
         "pct95": 0.8519,
-        "pctCurrent": 0.9
+        "pctCurrent": 0.9069
       },
       "otdPapa": {
         "pct40": 0.3511,
@@ -25443,16 +25443,17 @@ var ACTIVITY_DATA = {
       "otdTango": {
         "pct40": 0.6136,
         "pct75": 0.8986,
-        "pct95": 0.9114,
-        "pctCurrent": 0.9114
+        "pct95": 0.9169,
+        "pctCurrent": 0.9169
       }
     },
     "statusCounts": {
-      "Done": 229,
+      "Done": 231,
       "Review": 8,
       "Review #2": 4,
-      "Collect": 4,
-      "Prep": 8
+      "Prep": 7,
+      "Collect": 2,
+      "Clear Notes": 1
     },
     "clients": [
       {
@@ -25853,7 +25854,7 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "M",
         "dollars": 1590.0,
-        "status": "Collect",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -26178,10 +26179,10 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 452.0,
-        "status": "Collect",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-29"
       },
       {
         "company": "CITY & STATE RETAIL",
@@ -26646,7 +26647,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 889.0,
-        "status": "Review",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -27400,10 +27401,10 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 620.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-29"
       },
       {
         "company": "LSUB, LLC",
@@ -27868,7 +27869,7 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 2269.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -32278,7 +32279,7 @@ var OTD_TRENDS = [
     "tango": {
       "pct40": 0.6136,
       "pct75": 0.8986,
-      "pct95": 0.9114
+      "pct95": 0.9169
     }
   },
   {
