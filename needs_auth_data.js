@@ -1,1 +1,1 @@
-var NEEDS_AUTH_DATA = {"generated":"2026-09-29T15:24:36.911350+00:00","token_run_date":"2026-09-28","live_count":288,"total":311,"reconnect":[],"authorize":[{"name":"SKYROS DESIGNS, INC.","sn":"SKY001","qbo_file":"SKYROS DESIGNS, INC.","realm_id":"","added_by":"auto (sync_pending_auth)"}]};
+var NEEDS_AUTH_DATA = {"generated":"2026-09-29T17:05:15.913496+00:00","token_run_date":"2026-09-29","live_count":289,"total":311,"reconnect":[],"authorize":[]};
