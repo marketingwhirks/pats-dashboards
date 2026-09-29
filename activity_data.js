@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-09-28T20:57:29Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-09-29T12:11:57Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -25396,28 +25396,28 @@ var ACTIVITY_DATA = {
     "summary": {
       "totalClients": 253,
       "totalDollars": 277015.86,
-      "doneClients": 223,
-      "doneDollars": 251090.86,
-      "inReviewClients": 13,
-      "inReviewDollars": 11777.0,
+      "doneClients": 229,
+      "doneDollars": 255412.86,
+      "inReviewClients": 12,
+      "inReviewDollars": 10862.0,
       "blankClients": 0,
       "alpha": {
-        "clientCount": 94,
-        "dollars": 90799.0,
+        "clientCount": 93,
+        "dollars": 89859.0,
         "kickbackCount": 1,
         "kickbackPct": 1.1,
-        "otdDollars": 90799.0,
-        "otdClients": 94,
-        "otdWorkflows": 94
+        "otdDollars": 89859.0,
+        "otdClients": 93,
+        "otdWorkflows": 93
       },
       "papa": {
-        "clientCount": 103,
-        "dollars": 103963.86,
-        "kickbackCount": 9,
-        "kickbackPct": 8.7,
-        "otdDollars": 103963.86,
-        "otdClients": 103,
-        "otdWorkflows": 103
+        "clientCount": 104,
+        "dollars": 104903.86,
+        "kickbackCount": 10,
+        "kickbackPct": 9.6,
+        "otdDollars": 104903.86,
+        "otdClients": 104,
+        "otdWorkflows": 104
       },
       "tango": {
         "clientCount": 55,
@@ -25429,16 +25429,16 @@ var ACTIVITY_DATA = {
         "otdWorkflows": 55
       },
       "otdAlpha": {
-        "pct40": 0.4433,
-        "pct75": 0.5861,
-        "pct95": 0.8534,
-        "pctCurrent": 0.8534
+        "pct40": 0.4479,
+        "pct75": 0.5922,
+        "pct95": 0.8519,
+        "pctCurrent": 0.9
       },
       "otdPapa": {
-        "pct40": 0.3543,
-        "pct75": 0.6419,
-        "pct95": 0.9413,
-        "pctCurrent": 0.9487
+        "pct40": 0.3511,
+        "pct75": 0.6362,
+        "pct95": 0.9419,
+        "pctCurrent": 0.9492
       },
       "otdTango": {
         "pct40": 0.6136,
@@ -25448,11 +25448,11 @@ var ACTIVITY_DATA = {
       }
     },
     "statusCounts": {
-      "Done": 223,
-      "Prep": 12,
+      "Done": 229,
+      "Review": 8,
       "Review #2": 4,
-      "Collect": 5,
-      "Review": 9
+      "Collect": 4,
+      "Prep": 8
     },
     "clients": [
       {
@@ -25593,7 +25593,7 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "M",
         "dollars": 640.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -26165,10 +26165,10 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 520.0,
-        "status": "Prep",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-28"
       },
       {
         "company": "CHILDREN'S HOME CARE LLC",
@@ -26477,10 +26477,10 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "M",
         "dollars": 767.0,
-        "status": "Prep",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-28"
       },
       {
         "company": "EL MERO, INC",
@@ -26620,10 +26620,10 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 960.0,
-        "status": "Prep",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-28"
       },
       {
         "company": "GERMANTOWN CHRISTIAN COUNSELING",
@@ -27270,8 +27270,8 @@ var ACTIVITY_DATA = {
         "manager": "Alexl",
         "wuFrequency": "M",
         "dollars": 1265.0,
-        "status": "Review",
-        "kickback": false,
+        "status": "Review #2",
+        "kickback": true,
         "staffCommitDate": "",
         "completeDate": ""
       },
@@ -27764,10 +27764,10 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 905.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-28"
       },
       {
         "company": "PILLER HOSPITALITY LLC",
@@ -27868,7 +27868,7 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 2269.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -27901,10 +27901,10 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "RICH-WAY LANDSCAPE, INC.",
-        "team": "ALPHA",
+        "team": "PAPA",
         "prep": "Analytix 360",
         "seniorAcct": "Madison Dearing",
-        "manager": "Sandy Ledbetter",
+        "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 940.0,
         "status": "Done",
@@ -28141,10 +28141,10 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 520.0,
-        "status": "Prep",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-28"
       },
       {
         "company": "TAD L BEENE DDS PA",
@@ -28362,10 +28362,10 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 650.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-28"
       },
       {
         "company": "UNBROKEN219 LLC",
@@ -28756,22 +28756,22 @@ var ACTIVITY_DATA = {
       "inReviewDollars": 0,
       "blankClients": 0,
       "alpha": {
-        "clientCount": 95,
-        "dollars": 90289.0,
+        "clientCount": 94,
+        "dollars": 89349.0,
         "kickbackCount": 0,
         "kickbackPct": 0.0,
-        "otdDollars": 90289.0,
-        "otdClients": 95,
-        "otdWorkflows": 95
+        "otdDollars": 89349.0,
+        "otdClients": 94,
+        "otdWorkflows": 94
       },
       "papa": {
-        "clientCount": 106,
-        "dollars": 106088.86,
+        "clientCount": 107,
+        "dollars": 107028.86,
         "kickbackCount": 0,
         "kickbackPct": 0.0,
-        "otdDollars": 106088.86,
-        "otdClients": 106,
-        "otdWorkflows": 106
+        "otdDollars": 107028.86,
+        "otdClients": 107,
+        "otdWorkflows": 107
       },
       "tango": {
         "clientCount": 54,
@@ -31238,10 +31238,10 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "RICH-WAY LANDSCAPE, INC.",
-        "team": "ALPHA",
+        "team": "PAPA",
         "prep": "Analytix 360",
         "seniorAcct": "Madison Dearing",
-        "manager": "Sandy Ledbetter",
+        "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 940.0,
         "status": "Collect",
@@ -32266,14 +32266,14 @@ var OTD_TRENDS = [
   {
     "month": "August",
     "alpha": {
-      "pct40": 0.4433,
-      "pct75": 0.5861,
-      "pct95": 0.8534
+      "pct40": 0.4479,
+      "pct75": 0.5922,
+      "pct95": 0.8519
     },
     "papa": {
-      "pct40": 0.3543,
-      "pct75": 0.6419,
-      "pct95": 0.9413
+      "pct40": 0.3511,
+      "pct75": 0.6362,
+      "pct95": 0.9419
     },
     "tango": {
       "pct40": 0.6136,
