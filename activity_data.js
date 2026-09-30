@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-09-29T20:09:52Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-09-30T12:14:20Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -25394,12 +25394,12 @@ var ACTIVITY_DATA = {
   },
   "August": {
     "summary": {
-      "totalClients": 253,
+      "totalClients": 252,
       "totalDollars": 277015.86,
-      "doneClients": 231,
-      "doneDollars": 256484.86,
-      "inReviewClients": 13,
-      "inReviewDollars": 14101.0,
+      "doneClients": 242,
+      "doneDollars": 268171.86,
+      "inReviewClients": 4,
+      "inReviewDollars": 4004.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 93,
@@ -25420,40 +25420,40 @@ var ACTIVITY_DATA = {
         "otdWorkflows": 104
       },
       "tango": {
-        "clientCount": 55,
+        "clientCount": 54,
         "dollars": 82253.0,
         "kickbackCount": 5,
-        "kickbackPct": 9.1,
+        "kickbackPct": 9.3,
         "otdDollars": 82253.0,
-        "otdClients": 55,
-        "otdWorkflows": 55
+        "otdClients": 54,
+        "otdWorkflows": 54
       },
       "otdAlpha": {
         "pct40": 0.4479,
         "pct75": 0.5922,
         "pct95": 0.8519,
-        "pctCurrent": 0.9069
+        "pctCurrent": 0.9459
       },
       "otdPapa": {
         "pct40": 0.3511,
         "pct75": 0.6362,
         "pct95": 0.9419,
-        "pctCurrent": 0.9492
+        "pctCurrent": 0.9705
       },
       "otdTango": {
         "pct40": 0.6136,
         "pct75": 0.8986,
-        "pct95": 0.9169,
-        "pctCurrent": 0.9169
+        "pct95": 0.9892,
+        "pctCurrent": 0.9892
       }
     },
     "statusCounts": {
-      "Done": 231,
-      "Review": 8,
-      "Review #2": 4,
-      "Prep": 7,
-      "Collect": 2,
-      "Clear Notes": 1
+      "Done": 242,
+      "Prep": 5,
+      "Clear Notes": 1,
+      "Review #2": 1,
+      "Collect": 1,
+      "Review": 2
     },
     "clients": [
       {
@@ -25594,10 +25594,10 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "M",
         "dollars": 640.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-29"
       },
       {
         "company": "A-ONE-PLUS HOME HEALTH CARE AGENCY",
@@ -25607,10 +25607,10 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 1543.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": true,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-29"
       },
       {
         "company": "ABLE ADVERTISING LLC",
@@ -25854,10 +25854,10 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "M",
         "dollars": 1590.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-29"
       },
       {
         "company": "BASSJENKINS LLC",
@@ -26088,10 +26088,10 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 1655.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-29"
       },
       {
         "company": "BST HOLDINGS, LLC",
@@ -26244,20 +26244,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 1145.0,
-        "status": "Review",
-        "kickback": false,
-        "staffCommitDate": "",
-        "completeDate": ""
-      },
-      {
-        "company": "COLMAKJAK, INC",
-        "team": "TANGO",
-        "prep": "",
-        "seniorAcct": "",
-        "manager": "John Northernor",
-        "wuFrequency": "M",
-        "dollars": 0.0,
-        "status": "Collect",
+        "status": "Clear Notes",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -26647,7 +26634,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 889.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -26998,10 +26985,10 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 480.0,
-        "status": "Prep",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-29"
       },
       {
         "company": "INSPIRE HOSPICE AND PALLIATIVE CARE, INC",
@@ -27271,10 +27258,10 @@ var ACTIVITY_DATA = {
         "manager": "Alexl",
         "wuFrequency": "M",
         "dollars": 1265.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": true,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-29"
       },
       {
         "company": "LATINO MEMPHIS INC",
@@ -27388,10 +27375,10 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 635.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-29"
       },
       {
         "company": "LSUB SV, LLC",
@@ -27414,10 +27401,10 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 0.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-29"
       },
       {
         "company": "LSUB-MILL, LLC",
@@ -27427,10 +27414,10 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 635.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-29"
       },
       {
         "company": "LWL - HELLO, LLC",
@@ -27583,7 +27570,7 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "M",
         "dollars": 1110.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -27869,10 +27856,10 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 2269.0,
-        "status": "Review",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-29"
       },
       {
         "company": "R N ENTERPRISE INC",
@@ -28376,10 +28363,10 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 975.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": true,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-29"
       },
       {
         "company": "VALEO DESIGN AND MARKETING, IN",
@@ -32279,7 +32266,7 @@ var OTD_TRENDS = [
     "tango": {
       "pct40": 0.6136,
       "pct75": 0.8986,
-      "pct95": 0.9169
+      "pct95": 0.9892
     }
   },
   {
