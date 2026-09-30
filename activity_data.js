@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-09-30T12:14:20Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-09-30T20:09:12Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -25396,10 +25396,10 @@ var ACTIVITY_DATA = {
     "summary": {
       "totalClients": 252,
       "totalDollars": 277015.86,
-      "doneClients": 242,
-      "doneDollars": 268171.86,
-      "inReviewClients": 4,
-      "inReviewDollars": 4004.0,
+      "doneClients": 243,
+      "doneDollars": 269060.86,
+      "inReviewClients": 3,
+      "inReviewDollars": 3115.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 93,
@@ -25443,14 +25443,13 @@ var ACTIVITY_DATA = {
       "otdTango": {
         "pct40": 0.6136,
         "pct75": 0.8986,
-        "pct95": 0.9892,
-        "pctCurrent": 0.9892
+        "pct95": 1.0,
+        "pctCurrent": 1.0
       }
     },
     "statusCounts": {
-      "Done": 242,
+      "Done": 243,
       "Prep": 5,
-      "Clear Notes": 1,
       "Review #2": 1,
       "Collect": 1,
       "Review": 2
@@ -26244,7 +26243,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 1145.0,
-        "status": "Clear Notes",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -26634,10 +26633,10 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 889.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-09-30"
       },
       {
         "company": "GOOD FORTUNE COMPANY MEMPHIS LLC",
@@ -31917,7 +31916,7 @@ var ACTIVITY_DATA = {
         "company": "FORTUNE FOODS LLC",
         "team": "PAPA",
         "prep": "Analytix 360",
-        "seniorAcct": "Jean Cherie Jordaan",
+        "seniorAcct": "",
         "manager": "Carolyn Pugh",
         "wuFrequency": "Q",
         "dollars": 450.0,
@@ -32266,7 +32265,7 @@ var OTD_TRENDS = [
     "tango": {
       "pct40": 0.6136,
       "pct75": 0.8986,
-      "pct95": 0.9892
+      "pct95": 1.0
     }
   },
   {
