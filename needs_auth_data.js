@@ -1,1 +1,1 @@
-var NEEDS_AUTH_DATA = {"generated":"2026-09-30T17:05:48.581740+00:00","token_run_date":"2026-09-30","live_count":289,"total":311,"reconnect":[],"authorize":[]};
+var NEEDS_AUTH_DATA = {"generated":"2026-10-01T17:04:56.402482+00:00","token_run_date":"2026-10-01","live_count":289,"total":312,"reconnect":[],"authorize":[{"name":"TOUCHED BY AN ANGEL HOME CARE INC","sn":"TOU9952","qbo_file":"TOUCHED BY AN ANGEL HOME CARE INC","realm_id":"","added_by":"auto (sync_pending_auth)"}]};
