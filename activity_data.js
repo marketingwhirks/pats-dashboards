@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-10-01T12:11:55Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-10-01T20:09:15Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -28752,22 +28752,22 @@ var ACTIVITY_DATA = {
         "otdWorkflows": 112
       },
       "papa": {
-        "clientCount": 121,
-        "dollars": 111073.86,
+        "clientCount": 118,
+        "dollars": 108698.86,
         "kickbackCount": 0,
         "kickbackPct": 0.0,
-        "otdDollars": 111073.86,
-        "otdClients": 121,
-        "otdWorkflows": 121
+        "otdDollars": 108698.86,
+        "otdClients": 118,
+        "otdWorkflows": 118
       },
       "tango": {
-        "clientCount": 63,
-        "dollars": 57097.16,
+        "clientCount": 66,
+        "dollars": 59472.16,
         "kickbackCount": 0,
         "kickbackPct": 0.0,
-        "otdDollars": 57097.16,
-        "otdClients": 63,
-        "otdWorkflows": 63
+        "otdDollars": 59472.16,
+        "otdClients": 66,
+        "otdWorkflows": 66
       },
       "otdAlpha": {
         "pct40": 0.0,
@@ -28789,7 +28789,8 @@ var ACTIVITY_DATA = {
       }
     },
     "statusCounts": {
-      "Collect": 298
+      "Collect": 297,
+      "Prep": 1
     },
     "clients": [
       {
@@ -29034,7 +29035,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 1857.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -29613,7 +29614,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "COPPER WELL RETREAT LLC",
-        "team": "PAPA",
+        "team": "TANGO",
         "prep": "Analytix 360",
         "seniorAcct": "",
         "manager": "Asher Silbermann",
@@ -30392,6 +30393,19 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
+        "company": "JACOB B SCHORR III",
+        "team": "ALPHA",
+        "prep": "Kevin Flores",
+        "seniorAcct": "",
+        "manager": "Debbie Warren",
+        "wuFrequency": "M",
+        "dollars": 560.0,
+        "status": "Collect",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
         "company": "JAMES H. SHOEMAKER & PARTNERS",
         "team": "ALPHA",
         "prep": "Allyson Simmons",
@@ -30926,7 +30940,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "MOSAIC PRIME, LLC",
-        "team": "PAPA",
+        "team": "TANGO",
         "prep": "Analytix 360",
         "seniorAcct": "",
         "manager": "Asher Silbermann",
@@ -31147,7 +31161,7 @@ var ACTIVITY_DATA = {
       },
       {
         "company": "PRAVINCHANDRA P PATEL MD PC",
-        "team": "PAPA",
+        "team": "TANGO",
         "prep": "Analytix 360",
         "seniorAcct": "Jean Cherie Jordaan",
         "manager": "Asher Silbermann",
@@ -31595,19 +31609,6 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 1255.0,
-        "status": "Collect",
-        "kickback": false,
-        "staffCommitDate": "",
-        "completeDate": ""
-      },
-      {
-        "company": "THE CARRIAGE COMPANY",
-        "team": "ALPHA",
-        "prep": "Kevin Flores",
-        "seniorAcct": "",
-        "manager": "Debbie Warren",
-        "wuFrequency": "M",
-        "dollars": 560.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
