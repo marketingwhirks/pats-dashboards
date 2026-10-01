@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-09-30T16:01:22.569457+00:00",
-  "count": 314,
+  "last_updated": "2026-10-01T16:01:28.384301+00:00",
+  "count": 315,
   "clients": [
     {
       "sn": "117001",
@@ -652,7 +652,7 @@
     },
     {
       "sn": "CAR4892",
-      "name": "JACOB SCHORR III"
+      "name": "JACOB B SCHORR III"
     },
     {
       "sn": "JAM4184",
@@ -1147,16 +1147,16 @@
       "name": "THE GOOD VIKING LLC"
     },
     {
-      "sn": "NOR4656",
-      "name": "THE NORTH END, LLC"
-    },
-    {
       "sn": "VAL0062",
       "name": "THE VALLEY EVENT SPACE LLC"
     },
     {
       "sn": "TKP0969",
       "name": "TKP MANAGEMENT LLC"
+    },
+    {
+      "sn": "TOU9952",
+      "name": "TOUCHED BY AN ANGEL HOME CARE INC"
     },
     {
       "sn": "TRI003",
@@ -1179,6 +1179,10 @@
       "name": "Terrel II Investments LLC"
     },
     {
+      "sn": "NOR4656",
+      "name": "The North End, LLC"
+    },
+    {
       "sn": "TRA003",
       "name": "The Transformation Center for Women, LLC"
     },
@@ -1191,12 +1195,12 @@
       "name": "UBIQUISOFT TECHNOLOGIES, LLC"
     },
     {
-      "sn": "UNB1501",
-      "name": "UNBROKEN219 LLC"
-    },
-    {
       "sn": "USA6650",
       "name": "USA KARATE MMA LLC"
+    },
+    {
+      "sn": "UNB1501",
+      "name": "Unbroken219 LLC"
     },
     {
       "sn": "VAL001",
