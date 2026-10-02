@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-10-01T20:09:15Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-10-02T12:11:13Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -28736,7 +28736,7 @@ var ACTIVITY_DATA = {
   "September": {
     "summary": {
       "totalClients": 298,
-      "totalDollars": 263407.02,
+      "totalDollars": 292129.52,
       "doneClients": 0,
       "doneDollars": 0,
       "inReviewClients": 0,
@@ -28762,10 +28762,10 @@ var ACTIVITY_DATA = {
       },
       "tango": {
         "clientCount": 66,
-        "dollars": 59472.16,
+        "dollars": 88194.66,
         "kickbackCount": 0,
         "kickbackPct": 0.0,
-        "otdDollars": 59472.16,
+        "otdDollars": 88194.66,
         "otdClients": 66,
         "otdWorkflows": 66
       },
@@ -28789,8 +28789,8 @@ var ACTIVITY_DATA = {
       }
     },
     "statusCounts": {
-      "Collect": 297,
-      "Prep": 1
+      "Collect": 280,
+      "Prep": 18
     },
     "clients": [
       {
@@ -28820,7 +28820,7 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
-        "company": "3DNYC Corp",
+        "company": "3D NYC CORP",
         "team": "PAPA",
         "prep": "Analytix 360",
         "seniorAcct": "Amber Alexander",
@@ -29021,7 +29021,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "Shayla Menefee",
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
-        "dollars": 0.0,
+        "dollars": 1826.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -29607,7 +29607,7 @@ var ACTIVITY_DATA = {
         "manager": "Alexl",
         "wuFrequency": "M",
         "dollars": 525.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -29672,7 +29672,7 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "M",
         "dollars": 930.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -29684,7 +29684,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "Cornel van Bosch",
         "manager": "Kim Pope",
         "wuFrequency": "M",
-        "dollars": 0.0,
+        "dollars": 230.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -29710,7 +29710,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "Shayla Menefee",
         "manager": "Kim Pope",
         "wuFrequency": "M",
-        "dollars": 0.0,
+        "dollars": 2206.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -29723,7 +29723,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "Shayla Menefee",
         "manager": "Kim Pope",
         "wuFrequency": "M",
-        "dollars": 0.0,
+        "dollars": 1756.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -29749,7 +29749,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "Shayla Menefee",
         "manager": "Kim Pope",
         "wuFrequency": "M",
-        "dollars": 2148.0,
+        "dollars": 2168.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -29906,7 +29906,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 1350.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -29919,7 +29919,7 @@ var ACTIVITY_DATA = {
         "manager": "Alexl",
         "wuFrequency": "M",
         "dollars": 315.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -30140,7 +30140,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 1850.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -30153,7 +30153,7 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 1178.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -30282,7 +30282,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "Shayla Menefee",
         "manager": "Kim Pope",
         "wuFrequency": "M",
-        "dollars": 0.0,
+        "dollars": 2242.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -30309,7 +30309,7 @@ var ACTIVITY_DATA = {
         "manager": "Alexl",
         "wuFrequency": "M",
         "dollars": 665.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -30360,7 +30360,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "",
         "manager": "Kim Pope",
         "wuFrequency": "M",
-        "dollars": 0.0,
+        "dollars": 3541.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -30504,7 +30504,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 340.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -30542,7 +30542,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "Shayla Menefee",
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
-        "dollars": 0.0,
+        "dollars": 1420.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -30555,7 +30555,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "Shayla Menefee",
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
-        "dollars": 0.0,
+        "dollars": 6710.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -30594,8 +30594,8 @@ var ACTIVITY_DATA = {
         "seniorAcct": "Shayla Menefee",
         "manager": "Kim Pope",
         "wuFrequency": "M",
-        "dollars": 0.0,
-        "status": "Collect",
+        "dollars": 2078.0,
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -30685,7 +30685,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "",
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
-        "dollars": 0.0,
+        "dollars": 1818.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -30894,7 +30894,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 470.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -30998,7 +30998,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 0.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -31179,7 +31179,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "Shayla Menefee",
         "manager": "Kim Pope",
         "wuFrequency": "M",
-        "dollars": 0.0,
+        "dollars": 2217.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -31218,7 +31218,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "Shayla Menefee",
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
-        "dollars": 0.0,
+        "dollars": 2269.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -31359,7 +31359,7 @@ var ACTIVITY_DATA = {
         "team": "PAPA",
         "prep": "Jean Cherie Jordaan",
         "seniorAcct": "",
-        "manager": "Ashers",
+        "manager": "Alexl",
         "wuFrequency": "M",
         "dollars": 575.0,
         "status": "Collect",
@@ -31401,7 +31401,7 @@ var ACTIVITY_DATA = {
         "manager": "Alex Liu",
         "wuFrequency": "M",
         "dollars": 325.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -31570,7 +31570,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 2325.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -31582,7 +31582,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "",
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
-        "dollars": 0.0,
+        "dollars": 2044.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -31632,7 +31632,7 @@ var ACTIVITY_DATA = {
         "team": "PAPA",
         "prep": "Jean Cherie Jordaan",
         "seniorAcct": "",
-        "manager": "Ashers",
+        "manager": "Alexl",
         "wuFrequency": "M",
         "dollars": 930.0,
         "status": "Collect",
@@ -31661,7 +31661,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 350.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -31842,7 +31842,7 @@ var ACTIVITY_DATA = {
         "seniorAcct": "",
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
-        "dollars": 3309.0,
+        "dollars": 1654.5,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -31908,7 +31908,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 423.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -31973,7 +31973,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "Q",
         "dollars": 157.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -32376,7 +32376,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "Q",
         "dollars": 365.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
