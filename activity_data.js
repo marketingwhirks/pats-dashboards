@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-10-06T12:11:20Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-10-06T20:09:57Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -28739,8 +28739,8 @@ var ACTIVITY_DATA = {
       "totalDollars": 312981.52,
       "doneClients": 1,
       "doneDollars": 2500.0,
-      "inReviewClients": 24,
-      "inReviewDollars": 23869.0,
+      "inReviewClients": 31,
+      "inReviewDollars": 31696.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 113,
@@ -28754,8 +28754,8 @@ var ACTIVITY_DATA = {
       "papa": {
         "clientCount": 131,
         "dollars": 123300.86,
-        "kickbackCount": 1,
-        "kickbackPct": 0.8,
+        "kickbackCount": 2,
+        "kickbackPct": 1.5,
         "otdDollars": 123300.86,
         "otdClients": 118,
         "otdWorkflows": 131
@@ -28789,13 +28789,13 @@ var ACTIVITY_DATA = {
       }
     },
     "statusCounts": {
-      "Prep": 63,
-      "Collect": 224,
-      "Review": 20,
+      "Prep": 61,
+      "Collect": 219,
+      "Review": 25,
       "Deliver": 1,
       "Clear Notes": 2,
       "Done": 1,
-      "Review #2": 1
+      "Review #2": 3
     },
     "clients": [
       {
@@ -29040,7 +29040,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 1857.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -29079,7 +29079,7 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 590.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -29664,7 +29664,7 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "M",
         "dollars": 1105.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -29989,7 +29989,7 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 845.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -30132,8 +30132,8 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 335.0,
-        "status": "Prep",
-        "kickback": false,
+        "status": "Review",
+        "kickback": true,
         "staffCommitDate": "",
         "completeDate": ""
       },
@@ -30275,7 +30275,7 @@ var ACTIVITY_DATA = {
         "manager": "Alexl",
         "wuFrequency": "M",
         "dollars": 440.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -30535,7 +30535,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 1065.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -30821,7 +30821,7 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 1400.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -30899,7 +30899,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 470.0,
-        "status": "Review",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -31003,7 +31003,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 0.0,
-        "status": "Review",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -31315,7 +31315,7 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "M",
         "dollars": 1350.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -31744,7 +31744,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 975.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -32277,7 +32277,7 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "Q",
         "dollars": 0.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -32498,7 +32498,7 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "W",
         "dollars": 6250.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
