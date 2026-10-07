@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-10-06T16:01:14.938742+00:00",
-  "count": 315,
+  "last_updated": "2026-10-07T16:00:58.843150+00:00",
+  "count": 316,
   "clients": [
     {
       "sn": "117001",
@@ -541,6 +541,10 @@
     {
       "sn": "GRI8258",
       "name": "GRIND CITY BREWING COMPANY, LLC"
+    },
+    {
+      "sn": "GRO9188",
+      "name": "GROSSE COFFEE LLC"
     },
     {
       "sn": "GRU1101",
