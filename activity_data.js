@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-10-10T12:10:28Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-10-10T20:08:47Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -28739,8 +28739,8 @@ var ACTIVITY_DATA = {
       "totalDollars": 309440.52,
       "doneClients": 37,
       "doneDollars": 41685.86,
-      "inReviewClients": 40,
-      "inReviewDollars": 36734.0,
+      "inReviewClients": 43,
+      "inReviewDollars": 38121.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 113,
@@ -28791,8 +28791,8 @@ var ACTIVITY_DATA = {
     "statusCounts": {
       "Done": 37,
       "Collect": 144,
-      "Review": 30,
-      "Prep": 90,
+      "Review": 33,
+      "Prep": 87,
       "Clear Notes": 3,
       "Review #2": 3,
       "Deliver": 4
@@ -31692,7 +31692,7 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 870.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -31926,7 +31926,7 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "Q",
         "dollars": 405.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -32407,7 +32407,7 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "Q",
         "dollars": 112.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -32550,7 +32550,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -32563,19 +32563,6 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Prep",
-        "kickback": false,
-        "staffCommitDate": "",
-        "completeDate": ""
-      },
-      {
-        "company": "SAM'S SPORTS GRILL - FLORENCE, LLC #6371",
-        "team": "PAPA",
-        "prep": "Amber Alexander",
-        "seniorAcct": "",
-        "manager": "Carolyn Pugh",
-        "wuFrequency": "W",
-        "dollars": 1225.0,
         "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
@@ -32595,7 +32582,7 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
-        "company": "SAM'S SPORTS GRILL - HENDERSONVILLE, LLC #6368",
+        "company": "SAM'S SPORTS GRILL - FLORENCE, LLC #6371",
         "team": "PAPA",
         "prep": "Amber Alexander",
         "seniorAcct": "",
@@ -32621,7 +32608,7 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
-        "company": "SAM'S SPORTS GRILL - MURFREESBORO, LLC #6369",
+        "company": "SAM'S SPORTS GRILL - HENDERSONVILLE, LLC #6368",
         "team": "PAPA",
         "prep": "Amber Alexander",
         "seniorAcct": "",
@@ -32647,7 +32634,7 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
-        "company": "SAM'S SPORTS GRILL - OLD HICKORY, LLC #6367",
+        "company": "SAM'S SPORTS GRILL - MURFREESBORO, LLC #6369",
         "team": "PAPA",
         "prep": "Amber Alexander",
         "seniorAcct": "",
@@ -32673,7 +32660,7 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
-        "company": "SAM'S SPORTS GRILL - WESTGATE, LLC #6366",
+        "company": "SAM'S SPORTS GRILL - OLD HICKORY, LLC #6367",
         "team": "PAPA",
         "prep": "Amber Alexander",
         "seniorAcct": "",
@@ -32699,7 +32686,7 @@ var ACTIVITY_DATA = {
         "completeDate": ""
       },
       {
-        "company": "SPERRY'S RESTAURANTS - COOL SPRINGS, LLC",
+        "company": "SAM'S SPORTS GRILL - WESTGATE, LLC #6366",
         "team": "PAPA",
         "prep": "Amber Alexander",
         "seniorAcct": "",
@@ -32720,6 +32707,19 @@ var ACTIVITY_DATA = {
         "wuFrequency": "W",
         "dollars": 1225.0,
         "status": "Prep",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "SPERRY'S RESTAURANTS - COOL SPRINGS, LLC",
+        "team": "PAPA",
+        "prep": "Amber Alexander",
+        "seniorAcct": "",
+        "manager": "Carolyn Pugh",
+        "wuFrequency": "W",
+        "dollars": 1225.0,
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -32758,7 +32758,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 585.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -32771,7 +32771,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 585.0,
-        "status": "Prep",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
