@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-10-11T12:09:07Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-10-11T20:08:29Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -28739,8 +28739,8 @@ var ACTIVITY_DATA = {
       "totalDollars": 309440.52,
       "doneClients": 37,
       "doneDollars": 41685.86,
-      "inReviewClients": 46,
-      "inReviewDollars": 39256.0,
+      "inReviewClients": 47,
+      "inReviewDollars": 39541.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 113,
@@ -28791,8 +28791,8 @@ var ACTIVITY_DATA = {
     "statusCounts": {
       "Done": 37,
       "Collect": 144,
-      "Review": 36,
-      "Prep": 84,
+      "Review": 37,
+      "Prep": 83,
       "Clear Notes": 3,
       "Review #2": 3,
       "Deliver": 4
@@ -30938,7 +30938,7 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 285.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -32680,7 +32680,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -32693,7 +32693,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Prep",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
