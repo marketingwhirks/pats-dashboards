@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-10-12T12:11:30Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-10-12T20:10:12Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -28739,8 +28739,8 @@ var ACTIVITY_DATA = {
       "totalDollars": 309440.52,
       "doneClients": 38,
       "doneDollars": 43270.86,
-      "inReviewClients": 50,
-      "inReviewDollars": 40531.0,
+      "inReviewClients": 52,
+      "inReviewDollars": 42091.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 113,
@@ -28754,8 +28754,8 @@ var ACTIVITY_DATA = {
       "papa": {
         "clientCount": 131,
         "dollars": 123300.86,
-        "kickbackCount": 5,
-        "kickbackPct": 3.8,
+        "kickbackCount": 6,
+        "kickbackPct": 4.6,
         "otdDollars": 123300.86,
         "otdClients": 118,
         "otdWorkflows": 131
@@ -28791,8 +28791,8 @@ var ACTIVITY_DATA = {
     "statusCounts": {
       "Done": 38,
       "Collect": 144,
-      "Review": 41,
-      "Prep": 79,
+      "Review": 43,
+      "Prep": 77,
       "Clear Notes": 3,
       "Review #2": 3,
       "Deliver": 3
@@ -28923,8 +28923,8 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 355.0,
-        "status": "Review",
-        "kickback": false,
+        "status": "Prep",
+        "kickback": true,
         "staffCommitDate": "",
         "completeDate": ""
       },
@@ -29157,7 +29157,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 725.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -30457,7 +30457,7 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 595.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -30912,7 +30912,7 @@ var ACTIVITY_DATA = {
         "manager": "Alexl",
         "wuFrequency": "M",
         "dollars": 595.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -32550,7 +32550,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Prep",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -32563,7 +32563,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
