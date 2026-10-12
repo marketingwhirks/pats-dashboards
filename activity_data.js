@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-10-11T20:08:29Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-10-12T12:11:30Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -28737,10 +28737,10 @@ var ACTIVITY_DATA = {
     "summary": {
       "totalClients": 311,
       "totalDollars": 309440.52,
-      "doneClients": 37,
-      "doneDollars": 41685.86,
-      "inReviewClients": 47,
-      "inReviewDollars": 39541.0,
+      "doneClients": 38,
+      "doneDollars": 43270.86,
+      "inReviewClients": 50,
+      "inReviewDollars": 40531.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 113,
@@ -28770,10 +28770,10 @@ var ACTIVITY_DATA = {
         "otdWorkflows": 65
       },
       "otdAlpha": {
-        "pct40": 0.1185,
-        "pct75": 0.1185,
-        "pct95": 0.1185,
-        "pctCurrent": 0.1185
+        "pct40": 0.1341,
+        "pct75": 0.1341,
+        "pct95": 0.1341,
+        "pctCurrent": 0.1341
       },
       "otdPapa": {
         "pct40": 0.1884,
@@ -28789,13 +28789,13 @@ var ACTIVITY_DATA = {
       }
     },
     "statusCounts": {
-      "Done": 37,
+      "Done": 38,
       "Collect": 144,
-      "Review": 37,
-      "Prep": 83,
+      "Review": 41,
+      "Prep": 79,
       "Clear Notes": 3,
       "Review #2": 3,
-      "Deliver": 4
+      "Deliver": 3
     },
     "clients": [
       {
@@ -28923,7 +28923,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "M",
         "dollars": 355.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -29079,7 +29079,7 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "M",
         "dollars": 590.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -30834,10 +30834,10 @@ var ACTIVITY_DATA = {
         "manager": "Debbie Warren",
         "wuFrequency": "M",
         "dollars": 1585.0,
-        "status": "Deliver",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-10-11"
       },
       {
         "company": "MAXIMACARE, LLC",
@@ -31081,7 +31081,7 @@ var ACTIVITY_DATA = {
         "manager": "Madison Dearing",
         "wuFrequency": "M",
         "dollars": 1235.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -31705,7 +31705,7 @@ var ACTIVITY_DATA = {
         "manager": "Alexl",
         "wuFrequency": "M",
         "dollars": 395.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -32732,7 +32732,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -32745,7 +32745,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Prep",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -32992,9 +32992,9 @@ var OTD_TRENDS = [
   {
     "month": "September",
     "alpha": {
-      "pct40": 0.1185,
-      "pct75": 0.1185,
-      "pct95": 0.1185
+      "pct40": 0.1341,
+      "pct75": 0.1341,
+      "pct95": 0.1341
     },
     "papa": {
       "pct40": 0.1884,
