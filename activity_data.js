@@ -1,4 +1,4 @@
-var ACTIVITY_META = {"lastRefreshed": "2026-10-12T20:10:12Z"};
+var ACTIVITY_META = {"lastRefreshed": "2026-10-13T12:13:39Z"};
 var ACTIVITY_DATA = {
   "January": {
     "summary": {
@@ -28737,10 +28737,10 @@ var ACTIVITY_DATA = {
     "summary": {
       "totalClients": 311,
       "totalDollars": 309440.52,
-      "doneClients": 38,
-      "doneDollars": 43270.86,
-      "inReviewClients": 52,
-      "inReviewDollars": 42091.0,
+      "doneClients": 39,
+      "doneDollars": 43470.86,
+      "inReviewClients": 59,
+      "inReviewDollars": 47326.0,
       "blankClients": 0,
       "alpha": {
         "clientCount": 113,
@@ -28782,17 +28782,17 @@ var ACTIVITY_DATA = {
         "pctCurrent": 0.1884
       },
       "otdTango": {
-        "pct40": 0.076,
-        "pct75": 0.076,
-        "pct95": 0.076,
-        "pctCurrent": 0.076
+        "pct40": 0.0784,
+        "pct75": 0.0784,
+        "pct95": 0.0784,
+        "pctCurrent": 0.0784
       }
     },
     "statusCounts": {
-      "Done": 38,
-      "Collect": 144,
-      "Review": 43,
-      "Prep": 77,
+      "Done": 39,
+      "Collect": 141,
+      "Review": 50,
+      "Prep": 72,
       "Clear Notes": 3,
       "Review #2": 3,
       "Deliver": 3
@@ -29326,7 +29326,7 @@ var ACTIVITY_DATA = {
         "manager": "Asher Silbermann",
         "wuFrequency": "M",
         "dollars": 675.0,
-        "status": "Review",
+        "status": "Review #2",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -29755,7 +29755,7 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 2168.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -30301,7 +30301,7 @@ var ACTIVITY_DATA = {
         "manager": "Alexl",
         "wuFrequency": "M",
         "dollars": 815.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -30431,7 +30431,7 @@ var ACTIVITY_DATA = {
         "manager": "Alexl",
         "wuFrequency": "M",
         "dollars": 1235.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -30652,10 +30652,10 @@ var ACTIVITY_DATA = {
         "manager": "Kim Pope",
         "wuFrequency": "M",
         "dollars": 200.0,
-        "status": "Review #2",
+        "status": "Done",
         "kickback": false,
         "staffCommitDate": "",
-        "completeDate": ""
+        "completeDate": "2026-10-13"
       },
       {
         "company": "LDT BRANDS, INC",
@@ -31198,7 +31198,7 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "M",
         "dollars": 1575.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -31861,7 +31861,7 @@ var ACTIVITY_DATA = {
         "manager": "Ashers",
         "wuFrequency": "M",
         "dollars": 1960.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -31939,7 +31939,7 @@ var ACTIVITY_DATA = {
         "manager": "Ashers",
         "wuFrequency": "Q",
         "dollars": 235.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -31952,7 +31952,7 @@ var ACTIVITY_DATA = {
         "manager": "Ashers",
         "wuFrequency": "Q",
         "dollars": 235.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -32004,7 +32004,7 @@ var ACTIVITY_DATA = {
         "manager": "Ashers",
         "wuFrequency": "Q",
         "dollars": 235.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -32017,7 +32017,7 @@ var ACTIVITY_DATA = {
         "manager": "Jennifer Gann",
         "wuFrequency": "Q",
         "dollars": 280.0,
-        "status": "Prep",
+        "status": "Review",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -32121,7 +32121,7 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "Q",
         "dollars": 400.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -32537,6 +32537,19 @@ var ACTIVITY_DATA = {
         "manager": "Sandy Ledbetter",
         "wuFrequency": "Q",
         "dollars": 100.0,
+        "status": "Review",
+        "kickback": false,
+        "staffCommitDate": "",
+        "completeDate": ""
+      },
+      {
+        "company": "SAM'S SPORTS GRILL -  NIPPERS CORNER, LLC",
+        "team": "PAPA",
+        "prep": "Amber Alexander",
+        "seniorAcct": "",
+        "manager": "Carolyn Pugh",
+        "wuFrequency": "W",
+        "dollars": 1225.0,
         "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
@@ -32551,19 +32564,6 @@ var ACTIVITY_DATA = {
         "wuFrequency": "W",
         "dollars": 1225.0,
         "status": "Collect",
-        "kickback": false,
-        "staffCommitDate": "",
-        "completeDate": ""
-      },
-      {
-        "company": "SAM'S SPORTS GRILL -  NIPPERS CORNER, LLC",
-        "team": "PAPA",
-        "prep": "Amber Alexander",
-        "seniorAcct": "",
-        "manager": "Carolyn Pugh",
-        "wuFrequency": "W",
-        "dollars": 1225.0,
-        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -32732,7 +32732,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Prep",
+        "status": "Collect",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -32745,7 +32745,7 @@ var ACTIVITY_DATA = {
         "manager": "Carolyn Pugh",
         "wuFrequency": "W",
         "dollars": 1225.0,
-        "status": "Collect",
+        "status": "Prep",
         "kickback": false,
         "staffCommitDate": "",
         "completeDate": ""
@@ -33002,9 +33002,9 @@ var OTD_TRENDS = [
       "pct95": 0.1884
     },
     "tango": {
-      "pct40": 0.076,
-      "pct75": 0.076,
-      "pct95": 0.076
+      "pct40": 0.0784,
+      "pct75": 0.0784,
+      "pct95": 0.0784
     }
   }
 ];
