@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-10-13T16:01:22.257452+00:00",
-  "count": 316,
+  "last_updated": "2026-10-14T16:01:25.865293+00:00",
+  "count": 317,
   "clients": [
     {
       "sn": "117001",
@@ -359,12 +359,12 @@
       "name": "CURA BEATUS INCORPORATED"
     },
     {
-      "sn": "CHO1251",
-      "name": "Choice Farms, LLC"
+      "sn": "CYN001",
+      "name": "CYNOSURE DENTAL LABORATORY, LLC"
     },
     {
-      "sn": "CYN001",
-      "name": "Cynosure Dental Laboratory, LLC"
+      "sn": "CHO1251",
+      "name": "Choice Farms, LLC"
     },
     {
       "sn": "DCH001",
@@ -413,6 +413,10 @@
     {
       "sn": "DOO6400",
       "name": "DOOLEY COMPANY INC."
+    },
+    {
+      "sn": "DRY1645",
+      "name": "DRY FAST OF MEMPHIS LLC"
     },
     {
       "sn": "ECO4244",
